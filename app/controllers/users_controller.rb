@@ -1,22 +1,30 @@
 class UsersController < ApplicationController
     def new
-        @user = User.new
+      if logged_in?
+        flash[:warning] = "You have already logged in."
+        redirect_to root_path
+        return
       end
+        
+      @user = User.new
+    end
     
-      def create
-        @user = User.new(user_params)
+    def create
+      @user = User.new(user_params)
     
-        if @user.save
-          flash[:success] = "You have successfully signed up"
-          redirect_to root_path
-        else
-          render "new"
-        end
+      if @user.save
+        log_in(@user)
+        flash[:success] = "You have successfully signed up"
+        redirect_to root_path
+      else
+        flash[:warning] = "You already have an account" 
+        render "new"
       end
+    end
     
-      private
+    private
     
-      def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
-      end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 end
