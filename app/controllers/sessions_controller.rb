@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   
     def create
       if @user&.authenticate(params[:session][:password])
+        log_in(@user)
         flash[:success] = "You have successfully logged in"
         redirect_to root_path
       else
@@ -13,6 +14,16 @@ class SessionsController < ApplicationController
         render "new"
       end
     end
+
+    def destroy
+      return unless logged_in?
+  
+      log_out
+      flash[:danger] = "User has been successfully logged out."
+      redirect_to root_path
+    end
+  
+  
   
     private
   
