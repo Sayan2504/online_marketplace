@@ -7,20 +7,22 @@
   <ul class="navbar-nav ml-auto">
     
     <% if logged_in? %>
-      
-      
+      <li class="nav-item active">
+        <%= link_to "Create Post", logout_path, class: "nav-link" %>
+      </li>
 
-  
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.name %>
-          </a> 
-        </li>
+      <li class="nav-item dropdown nav-item active">
+        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= current_user.name %>
+        </a>  
+      </li>
      
-
       <li class="nav-item active">
         <%= link_to "Log Out", logout_path, method: :delete, class: "nav-link" %>
       </li>
+
+
+
 
     <% else %>
       <li class="nav-item active">
@@ -30,6 +32,7 @@
         <%= link_to "Sign Up", signup_path, class: "nav-link" %>
       </li>
     <% end %>
+    
   </ul>
 </div>
 </nav>

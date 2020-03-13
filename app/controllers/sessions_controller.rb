@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if @user&.authenticate(params[:session][:password])
         log_in(@user)
         flash[:success] = "You have successfully logged in"
-        render "index"
+        redirect_to posts_path
 
       else
         flash.now[:danger] = "Email/Password combination is incorrect."
