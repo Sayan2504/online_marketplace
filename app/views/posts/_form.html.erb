@@ -1,0 +1,49 @@
+<div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
+  <div class="card">
+    <div class="card-body">
+      <%= form_for [@post], :html=> { :multipart=> true} do |f| %>
+
+        
+
+        <div class="form-row">
+            <div class="form-group">
+            <%= f.label :ad_title, "Ad Title" %>
+            <%= f.text_field :ad_title, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Ad Title", maxlength: 255 %>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+            <%= f.label :ad_description, "Ad Description" %>
+            <%= f.text_area :ad_description, cols: "60", rows: "5", class: "form-control", required: true, autocomplete: :off, placeholder: "Ad Description", maxlength: 255 %>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+            <%= f.label :user_name, "Username" %>
+            <%= f.text_field :user_name, class: "form-control", required: true, autocomplete: :off, placeholder: "Username", maxlength: 255 %>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+            <%= f.label :phone, "Phone" %>
+            <%= f.text_field :phone, class: "form-control", required: true, autocomplete: :off, placeholder: "Phone", maxlength: 255 %>
+            </div>
+
+            <div class="form-group">
+            <%= f.label :city, "City" %>
+            <%= f.text_field :city, class: "form-control", required: true, autocomplete: :off, placeholder: "City", maxlength: 255 %>
+            </div>
+        </div>
+
+          <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-9">
+            <%= link_to "Cancel", posts_path, class: "btn btn-light btn-xs-block" %>
+            <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs-block", data: { disable_with: "Saving..." } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
