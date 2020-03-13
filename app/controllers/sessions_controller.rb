@@ -1,14 +1,16 @@
 class SessionsController < ApplicationController
     before_action :set_user, only: :create
 
+    
     def new
     end
+    
   
     def create
       if @user&.authenticate(params[:session][:password])
         log_in(@user)
         flash[:success] = "You have successfully logged in"
-        render "show"
+        render "index"
 
       else
         flash.now[:danger] = "Email/Password combination is incorrect."

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in(@user)
         flash[:success] = "You have successfully signed up"
-        render "show"
+        render "index"
       else
         flash[:warning] = "You already have an account" 
         render "new"
