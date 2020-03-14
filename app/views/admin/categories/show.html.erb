@@ -1,0 +1,21 @@
+<% provide(:title, @category.name) %>
+
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-md-6">
+    <div class="card details-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Category - <%= @category.name %></span>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 details-row">
+            <label>Name</label>
+            <span><%= @category.name %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
