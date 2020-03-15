@@ -25,15 +25,13 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-sm-12 col-md-12">
+            <div class="form-group col-sm-12 col-md-6">
             <%= f.label :user_name, "Username" %>
             <%= f.text_field :user_name, class: "form-control", required: true, autocomplete: :off, placeholder: "Username", maxlength: 255 %>
             </div>
-        </div>
 
-        <div class="form-row">
-            <div class="form-group col-sm-12 col-md-12">
-            <%= f.label :image, "image" %>
+            <div class="form-group col-sm-12 col-md-6">
+            <%= f.label :image, "Image" %>
             <%= f.file_field :image %>
             </div>
         </div>
