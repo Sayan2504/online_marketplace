@@ -4,6 +4,9 @@ class User < ApplicationRecord
 
     after_validation { self.email = self.email.downcase }
 
+    has_many :posts
+    has_and_belongs_to_many :categories
+
     validates :name, presence: true, length: {maximum: 255}
     validates :email, presence: true, length: {maximum: 255}, uniqueness: {case_sensitive: false}, format: {with: VALID_EMAIL_REGEX}
     validates :password, presence: true, length: { minimum: 6 }
