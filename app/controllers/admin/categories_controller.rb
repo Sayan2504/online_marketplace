@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-    before_action :set_format, only: [:show]
+    before_action :set_format, only: [:show, :edit, :update, :destroy]
 
     def index
         @categories = Category.all

@@ -9,6 +9,7 @@
     <div class="card">
       <div class="card-body">
         <%= form_with(model: @user, local: true) do |f| %>
+          <%= render "shared/error_messages", object: @user %>
 
           <div class="form-group">
             <%= f.label :email, "Email Address" %>
@@ -17,17 +18,18 @@
 
           <div class="form-group">
             <%= f.label :password, "New Password" %>
-            <%= f.password_field :password, class: "form-control", required: true, autocomplete: :off, placeholder: "Password", minlength: 6 %>
+            <%= f.password_field :password, class: "form-control", autocomplete: :off, placeholder: "Enter password only if you want to change it", minlength: 6 %>
           </div>
 
           <div class="form-group">
             <%= f.label :password_confirmation, "Password Confirmation" %>
-            <%= f.password_field :password_confirmation, class: "form-control", required: true, autocomplete: :off, placeholder: "Password Confirmation", minlength: 6 %>
+            <%= f.password_field :password_confirmation, class: "form-control", autocomplete: :off, placeholder: "Password Confirmation", minlength: 6 %>
           </div>
 
           <br>
 
           <div class="form-group">
+            <%= link_to "Cancel", users_path, class: "btn btn-light btn-xs-block" %>
             <%= f.submit "Update", class: "btn btn-primary", data: { disable_with: "Updating..." } %>
           </div>
         <% end %>

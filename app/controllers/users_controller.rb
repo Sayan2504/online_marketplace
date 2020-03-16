@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
+    before_action :set_user, only: [:show]
 
+    def index
+      @posts = Post.all
+    end
+  
     def new
       if logged_in?
         flash[:warning] = "You have already logged in."
@@ -16,7 +21,11 @@ class UsersController < ApplicationController
       if @user.save
         log_in(@user)
         flash[:success] = "You have successfully signed up"
-        redirect_to posts_path
+        if admin_user?
+          redirect_to users_path
+        else
+          redirect_to user_path(@user)
+        end
       else
         flash[:warning] = "You already have an account" 
         render "new"
@@ -32,10 +41,14 @@ class UsersController < ApplicationController
      
       if @user.update(user_params)
         flash[:success] = "Email/Password has been successfully updated"
-        redirect_to posts_path
+        redirect_to user_path(@user)
       else
         render 'edit'
       end
+    end
+
+    def show
+      @posts = current_user.posts 
     end
     
     private
@@ -43,5 +56,9 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     end
+
+    def set_user
+      @user = User.find(params[:id])
+  end
 
 end
