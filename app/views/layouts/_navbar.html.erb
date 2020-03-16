@@ -26,19 +26,18 @@
 
 
       <% else %>
-        <li class="nav-item active">
-          <%= link_to "Create Post", new_post_path, class: "nav-link" %>
-        </li>
-
+        
         <li class="nav-item dropdown nav-item active">
           <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu" aria-labelledby="adminDropdown">
-            <%= link_to "Edit Password", edit_user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Edit email id", edit_user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Edit credentials", edit_user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
           </div>       
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Create Post", new_post_path, class: "nav-link" %>
         </li>
       <% end %>
       

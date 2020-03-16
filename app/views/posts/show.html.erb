@@ -1,3 +1,44 @@
-<%= image_tag @post.image.url %>
-<%= image_tag @post.image.url(:medium) %>
-<%= image_tag @post.image.url(:thumb) %>
+<% provide(:title, @post.ad_title) %>
+
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-md-7">
+    <div class="card ">
+        <div class="row justify-content-flex-right">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="col-xs-10 col-sm-4 md-3">
+                <%= image_tag @post.image.url(:medium), alt: @post.ad_title%>
+            </div>
+
+            <div class="col-xs-12 col-sm-5 md-3">
+                <div class="post-details-row">
+                    <span><h2><%= @post.ad_title.upcase %></h2></span>
+                </div>
+
+                <div class="post-details-row">
+                    <label><strong>Description : </strong></label>
+                    <span><%= @post.ad_description %></span>
+                </div>
+
+                <div class="post-details-row">
+                    <label><strong>Advertiser : </strong></label>
+                    <span><%= @post.user_name %></span>
+                </div>
+
+                <div class="post-details-row">
+                    <label><strong>Contact : </strong></label>
+                    <span><%= @post.phone %></span>
+                </div>
+
+                <div class="post-details-row">
+                    <label><strong>Location : </strong></label>
+                    <span><%= @post.city %></span>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
