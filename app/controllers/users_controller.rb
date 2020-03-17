@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
     def index
       @posts = Post.all
+      
+      @posts.each do |p| 
+        @post_attachments = p.post_attachments.all
+      end 
     end
   
     def new
@@ -49,6 +53,9 @@ class UsersController < ApplicationController
 
     def show
       @posts = current_user.posts 
+      @posts.each do |p| 
+        @post_attachments = p.post_attachments.all
+      end 
     end
     
     private
