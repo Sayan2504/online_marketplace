@@ -1,0 +1,2 @@
+module PostAttachmentHelper
+end

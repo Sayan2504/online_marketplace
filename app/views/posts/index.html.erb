@@ -6,7 +6,9 @@
                     <div class="row">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="col-xs-10 col-sm-4 md-3">
-                                <%= image_tag post.image.url(:medium), alt: post.ad_title%>
+                              <% @post_attachments.each do |p| %>
+                                <%= image_tag (p.photo_url.to_s), :size => "150x150" %>
+                              <% end %>
                             </div>
                             <div class="col-xs-12 col-sm-5 md-3">
                                 <div class="post-details-row" >

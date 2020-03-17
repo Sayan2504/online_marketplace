@@ -31,8 +31,12 @@
             </div>
 
             <div class="form-group col-sm-12 col-md-6">
-            <%= f.label :image, "Image" %>
-            <%= f.file_field :image, multiple: true %>
+              <%= f.fields_for :post_attachments do |p| %>
+                <div class="field">
+                  <%= p.label :photo %><br>
+                  <%= p.file_field :photo, :multiple => true, name: "post_attachments[photo][]" %>
+                </div>
+              <% end %>
             </div>
         </div>
 
