@@ -1,11 +1,7 @@
 class Admin::AdsController < ApplicationController
     
     def pending
-        #@post = Post.where(id: params[:id])
-        #if @post.approved_by == "null"
-        #     
-        #end  
-        @posts = Post.all
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
     end
 
     def approve
@@ -33,6 +29,14 @@ class Admin::AdsController < ApplicationController
             flash[:success] = "This post has been approved by Admin"
             redirect_to admin_approved_path
         end
+    end
+
+    def rejected
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
+    end
+
+    def approved
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'Admin'")
     end
 
     
