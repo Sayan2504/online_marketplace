@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         log_in(@user)
         flash[:success] = "You have successfully logged in"
         if admin_user?
-          redirect_to users_path
+          redirect_to posts_path
         else
           redirect_to user_path(@user)
         end

@@ -1,51 +1,27 @@
-<% @posts.each do |post| %>
-    <div class="card ">
-        <div class="row">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="col-xs-10 col-sm-4 md-3">
-                  <% @post_attachments.each do |p| %>
-                    <%= image_tag (p.photo_url.to_s), :size => "150x150" %>
-                  <% end %>
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-sm-4">
+        <div class="card card-header">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <% @post_attachments.each do |p| %>
+                  <%= image_tag (p.photo_url.to_s), :size => "70x70" %>
+                <% end %>
+              </div>
+              <div class="col-sm-8">
+                <span><h4><%=link_to post.ad_title.upcase,  post_path(post) %></h4></span>
+
+                <div class="row" style="display: inline-block" >
+                 <button type="button" class="btn btn-primary btn-sm">Approve</button>
+                 <button type="button" class="btn btn-secondary btn-sm">Reject</button>
                 </div>
-                <div class="col-xs-12 col-sm-5 md-3">
-                    <div class="post-details-row" >
-                        <span><h4><%= post.ad_title.upcase %></h4></span>
-                    </div>
-
-                    <div class="post-details-row">
-                        <label><strong>Description : </strong></label>
-                        <span><%= post.ad_description %></span>
-                    </div>
-
-                    <div class="post-details-row">
-                        <label><strong>Advertiser : </strong></label>
-                        <span><%= post.user_name %></span>
-                    </div>
-
-                    <div class="post-details-row">
-                        <label><strong>Contact : </strong></label>
-                        <span><%= post.phone %></span>
-                    </div>
-
-                    <div class="post-details-row">
-                        <label><strong>Location : </strong></label>
-                        <span><%= post.city %></span>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-5 md-3 align-items-center"">
-                <div>
-                    <%= link_to "Approve", root_path, class: "btn btn-primary btn-xs-block" %>
-                </div>
-                <div>
-                    <%= link_to "Reject", posts_path, class: "btn btn-primary btn-xs-block" %>
-                </div>
-            </div>
+          </div> 
         </div>
-    </div>
-<% end %>
-
-
-    
-
-
+      </div>
+    <% end %>
+  </div>
+</div>

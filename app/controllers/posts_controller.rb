@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
     before_action :set_post, only: [:show]
 
+    
     def index
         @posts = Post.all
+        
+        @posts.each do |p| 
+            @post_attachments = p.post_attachments.all
+        end 
     end     
 
     def show
@@ -20,7 +25,7 @@ class PostsController < ApplicationController
 
         if @post.save
             params[:post_attachments]['photo'].each do |a|
-                @post_attachment = @post.post_attachments.create(:photo => a, :post_id => @post.id)
+                @post_attachment = @post.post_attachments.create(:photo => a, :post_id => @post.id, :user_id => current_user.id)
             end
             flash[:success] = "Post has been successfully created"
             redirect_to post_path(@post)
@@ -41,5 +46,7 @@ class PostsController < ApplicationController
     def set_post
         @post = Post.find(params[:id])
     end
+
+    
 
 end
