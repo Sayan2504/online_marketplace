@@ -1,12 +1,28 @@
-<% provide(:title, "Unapproved posts") %>
+<% if admin_user? %>
+    <% provide(:title, "Pending posts") %>
 
-<section class="table-header mb-3">
-  <div class="row">
-    <div class="col-sm-12 col-md-12">
-      <h3 class="text-center">Pending Posts</h3>
+    <section class="table-header mb-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+        <h3 class="text-center">Pending Posts</h3>
+        </div>
     </div>
-  </div>
-</section>
+    </section>
+
+<% else %>
+
+    <% provide(:title, "Approved posts") %>
+
+    <section class="table-header mb-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+        <h3 class="text-center">Approved Posts</h3>
+        </div>
+    </div>
+    </section>
+
+<% end %>
+
 
 <div class="container">
   <div class="row">
@@ -16,7 +32,9 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-4">
-                <%= image_tag (@post_attachments.first.photo_url.to_s), :size => "70x70" %>
+                <% if post.post_attachments.present? %>
+                  <%= image_tag (post.post_attachments.first.photo_url.to_s), :size => "70x70" %>
+                <% end %>
               </div>
               <div class="col-sm-8 align-item-center">
                 <span><h4><%=link_to post.ad_title.upcase,  post_path(post) %></h4></span>
