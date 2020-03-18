@@ -10,8 +10,15 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
+    get "/unapproved",  to: "users#unapproved"
+    get "/rejected",  to: "users#rejected"
+
   namespace :admin do
     resources :categories
+
+    get "/pending",  to: "ads#pending"
+    get "/approved",  to: "ads#approved"
+    get "/rejected",  to: "ads#rejected"
   end
 
 

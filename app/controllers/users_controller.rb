@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         if admin_user?
           redirect_to users_path
         else
-          redirect_to user_path(@user)
+          redirect_to unapproved_path(@user)
         end
       else
         flash[:warning] = "You already have an account" 
@@ -49,9 +49,14 @@ class UsersController < ApplicationController
 
     def show
       @posts = current_user.posts
-      @posts.each do |p|
-        @post_attachments = p.post_attachments.all
-      end
+    end
+
+    def unapproved
+      @posts = current_user.posts
+    end
+
+    def approved
+      
     end
     
     private
