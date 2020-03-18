@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     resources :categories
 
     get "/pending",  to: "ads#pending"
+    post "/approved", to: "ads#approve"
+    post "/rejected", to: "ads#reject"
+
     get "/approved",  to: "ads#approved"
+    
+
     get "/rejected",  to: "ads#rejected"
   end
 

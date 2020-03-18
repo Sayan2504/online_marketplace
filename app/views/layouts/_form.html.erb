@@ -28,7 +28,7 @@
   <div class="row">
     <% @posts.each do |post| %>
       <div class="col-sm-4">
-        <div class="card card-header">
+        <div class="card card-header rounded-pill shadow p-3 mb-3 bg-white rounded">
           <div class="container">
             <div class="row">
               <div class="col-sm-4">
@@ -37,13 +37,22 @@
                 <% end %>
               </div>
               <div class="col-sm-8 align-item-center">
-                <span><h4><%=link_to post.ad_title.upcase,  post_path(post) %></h4></span>
+                <span><h4><%= link_to post.ad_title.upcase,  post_path(post) %></h4></span>
+
                 <% if admin_user? %>
                     <div class="row" style="display: inline-block" >
-                        <button type="button" class="btn btn-primary btn-sm">Approve</button>
-                        <button type="button" class="btn btn-secondary btn-sm">Reject</button>
+                    <%= link_to 'Approve',  {:controller => "ads",
+                                            :action => "approve",
+                                            :id => post.id,
+                                            :decision => "true"}, method: 'post', class: "btn btn-sm btn-success" %>
+                    
+                    <%= link_to 'Reject',  {:controller => "ads",
+                                            :action => "reject",
+                                            :id => post.id,
+                                            :decision => "false"}, method: 'post', class: "btn btn-sm btn-success" %>
                     </div>
                 <% end %>
+                
               </div>
             </div>
           </div> 
