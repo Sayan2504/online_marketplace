@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show]
 
-    def index 
+    def index
+      @posts = Post.all
+      @posts.each do |p|
+        @post_attachments = p.post_attachments.all
+      end 
     end
   
     def new
@@ -47,11 +51,10 @@ class UsersController < ApplicationController
     end
 
     def show
-      @posts = current_user.posts 
-
-      @posts.each do |p| 
+      @posts = current_user.posts
+      @posts.each do |p|
         @post_attachments = p.post_attachments.all
-      end 
+      end
     end
     
     private

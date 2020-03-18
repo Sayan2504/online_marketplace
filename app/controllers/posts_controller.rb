@@ -3,11 +3,7 @@ class PostsController < ApplicationController
 
     
     def index
-        @posts = Post.all
-        
-        @posts.each do |p| 
-            @post_attachments = p.post_attachments.all
-        end 
+        @posts = Post.all.includes(:post_attachments)
     end     
 
     def show
