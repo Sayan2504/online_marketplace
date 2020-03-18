@@ -1,37 +1,48 @@
 <% provide(:title, @post.ad_title) %>
 
-<div class="row justify-content-center align-items-center">
-  <span><h1><u><%= @post.ad_title.upcase %></u></h1></span>
+<section class="table-header mb-3">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <h2 class="text-center"><%= @post.ad_title.upcase %></h2>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row "> 
+    <% @post_attachments.each do |p| %>
+      <div class="col-xs-10 col-sm-3 md-3">
+        <%= image_tag (p.photo_url.to_s), :size => "250x250" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<div class="row ">    
-  <% @post_attachments.each do |p| %>
-    <div class="col-xs-10 col-sm-4 md-3">
-      <%= image_tag (p.photo_url.to_s), :size => "300x300" %>
-    </div>
-  <% end %>
-</div>
-            
-<div class="row justify-content-flex-center">
-  <div class="col-xs-12 col-sm-12 md-12">
-    <div class="post-details-row">
-      <label><strong>Description : </strong></label>
-      <span><%= @post.ad_description %></span>
-    </div>
 
-    <div class="post-details-row">
-      <label><strong>Advertiser : </strong></label>
-      <span><%= @post.user_name %></span>
-    </div>
+<div class="container">            
+  <div class="row justify-content-flex-center">
+    <div class="col-xs-12 col-sm-12 md-12">
+      <div class="card card-header">
+        <div class="post-details-row">
+          <label><strong>Description : </strong></label>
+          <span><%= @post.ad_description %></span>
+        </div>
 
-    <div class="post-details-row">
-      <label><strong>Contact : </strong></label>
-      <span><%= @post.phone %></span>
-    </div>
+        <div class="post-details-row">
+          <label><strong>Advertiser : </strong></label>
+          <span><%= @post.user_name %></span>
+        </div>
 
-    <div class="post-details-row">
-      <label><strong>Location : </strong></label>
-      <span><%= @post.city %></span>
+        <div class="post-details-row">
+          <label><strong>Contact : </strong></label>
+          <span><%= @post.phone %></span>
+        </div>
+
+        <div class="post-details-row">
+          <label><strong>Location : </strong></label>
+          <span><%= @post.city %></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

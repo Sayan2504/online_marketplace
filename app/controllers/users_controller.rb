@@ -1,13 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show]
 
-    def index
-      @posts = Post.all
-      
-      
-      @posts.each do |p| 
-        @post_attachments = p.post_attachments.all
-      end 
+    def index 
     end
   
     def new
