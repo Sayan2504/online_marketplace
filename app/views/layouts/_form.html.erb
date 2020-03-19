@@ -12,7 +12,11 @@
                 <% end %>
               </div>
               <div class="col-sm-8 align-item-center text-align-center">
-                <span><h4><%= link_to post.ad_title.upcase,  post_path(post) %></h4></span>
+                <% if admin_user? %>
+                  <span><h4><%= link_to post.ad_title.upcase,  post_path(post) %></h4></span>
+                <% else %>
+                  <span><h4 class="mt-3"><%= link_to post.ad_title.upcase,  post_path(post) %></h4></span>
+                <% end %>
 
                 <% if admin_user? %>
                     <div class="row" style="display: inline-block" >

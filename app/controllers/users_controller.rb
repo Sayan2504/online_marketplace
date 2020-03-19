@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     end
 
     def show
-      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by = 'Admin'")
+      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by = 'Admin_user'")
     end
 
     def unchecked

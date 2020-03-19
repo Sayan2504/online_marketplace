@@ -6,19 +6,21 @@
       <h1 class="text-center"><%= @post.ad_title.upcase %></h1>
     </div>
 
-    <div class="col-xs-12 col-sm-3 md-6">
-      <div class="row btn-toolbar" style="display: block">
-        <%= link_to 'Approve',  {:controller => "posts",
-                                :action => "approve",
+    <% if admin_user? %>
+      <div class="col-xs-12 col-sm-3 md-6">
+        <div class="row btn-toolbar" style="display: block">
+          <%= link_to 'Approve',  {:controller => "posts",
+                                  :action => "approve",
+                                  :id => @post.id,
+                                  :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
+      
+          <%= link_to 'Reject',  {:controller => "posts",
+                                :action => "reject",
                                 :id => @post.id,
-                                :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
-     
-        <%= link_to 'Reject',  {:controller => "posts",
-                              :action => "reject",
-                              :id => @post.id,
-                              :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
+                                :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </section>
 

@@ -9,7 +9,7 @@ class Admin::AdsController < ApplicationController
     end
 
     def approved
-        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'Admin'")
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'Admin_user'")
     end
 
     def approve
@@ -18,6 +18,7 @@ class Admin::AdsController < ApplicationController
             @post.update(approved_by: current_user.name)
             flash[:success] = "This post has been approved by Admin"
             redirect_to admin_approved_path
+            
         else
             @post.update(approved_by: "rejected")
             flash[:danger] = "This post has been rejected by Admin"
