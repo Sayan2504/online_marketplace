@@ -37,9 +37,5 @@ class Admin::AdsController < ApplicationController
             flash[:success] = "This post has been approved by Admin"
             redirect_to admin_approved_path
         end
-    end
-
-    
-
-    
+    end  
 end

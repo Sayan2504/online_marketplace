@@ -48,15 +48,15 @@ class UsersController < ApplicationController
     end
 
     def show
-      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by = 'Admin'")
+      @posts = User.posts.select(["approved_by", "id", "ad_title"]).where("approved_by = 'Admin'")
     end
 
     def unchecked
-      @posts = @user.post.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
+      @posts = User.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
     end
 
     def rejected
-      @posts = @user.post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
+      @posts = User.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
     end
     
     private
