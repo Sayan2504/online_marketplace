@@ -39,7 +39,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="adminDropdown">
             <%= link_to "Edit credentials", edit_user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Unapproved posts", unapproved_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Unchecked posts", unchecked_path(current_user), class: "dropdown-item" %>
             <%= link_to "Rejected posts", rejected_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
           </div>       

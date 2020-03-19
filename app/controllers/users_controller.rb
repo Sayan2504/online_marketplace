@@ -48,15 +48,16 @@ class UsersController < ApplicationController
     end
 
     def show
-      @posts = current_user.posts
-    end
-
-    def unapproved
-      @posts = current_user.posts
-    end
-
-    def approved
+        @posts = Post.select(["approved_by", "id", "ad_title", "user_id"]).where("approved_by = 'Admin'")
       
+    end
+
+    def unchecked
+      @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
+    end
+
+    def rejected
+      @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected', user_id : params[:current_user.id]")
     end
     
     private

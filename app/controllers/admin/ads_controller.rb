@@ -1,7 +1,6 @@
 class Admin::AdsController < ApplicationController
     
     def pending
-        #@posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'nil'")
         @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
     end
 

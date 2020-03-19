@@ -3,4 +3,6 @@ class HomeController < ApplicationController
     current_user
   end
 
+  
+
 end

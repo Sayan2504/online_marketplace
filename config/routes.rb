@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  root "home#index"
+
   delete "/logout", to: "sessions#destroy"
 
   get "/login",   to: "sessions#new"
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
-    get "/unapproved",  to: "users#unapproved"
+    get "/unchecked",  to: "users#unchecked"
     get "/rejected",  to: "users#rejected"
 
   namespace :admin do
@@ -27,6 +28,5 @@ Rails.application.routes.draw do
   end
 
 
-  root "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
