@@ -1,7 +1,16 @@
 class Admin::AdsController < ApplicationController
     
     def pending
-        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
+        #@posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'nil'")
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
+    end
+
+    def rejected
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
+    end
+
+    def approved
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'Admin'")
     end
 
     def approve
@@ -31,13 +40,7 @@ class Admin::AdsController < ApplicationController
         end
     end
 
-    def rejected
-        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
-    end
-
-    def approved
-        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'Admin'")
-    end
+    
 
     
 end
