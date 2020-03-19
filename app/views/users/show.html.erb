@@ -1,8 +1,19 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
     <h1 class="display-4">Welcome <%= current_user.name %></h1>
-    <p class="lead">Enjoy our platform to buy or sell item from various categories</p>
+    <p class="lead">Enjoy our platform to buy or sell item of various categories</p>
   </div>
 </div>
+
+
+<% provide(:title, "User Homepage") %>
+
+    <section class="table-header mb-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+        <h3 class="text-center">Your Approved Posts</h3>
+        </div>
+    </div>
+    </section>
 
 <%= render "layouts/form" %>

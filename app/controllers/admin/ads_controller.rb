@@ -1,6 +1,6 @@
 class Admin::AdsController < ApplicationController
     
-    def pending
+    def unchecked
         @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
     end
 
