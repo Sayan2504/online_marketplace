@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         if admin_user?
           redirect_to users_path
         else
-          redirect_to unapproved_path(@user)
+          redirect_to user_path(@user)
         end
       else
         flash[:warning] = "You already have an account" 
@@ -48,15 +48,17 @@ class UsersController < ApplicationController
     end
 
     def show
-      @posts = User.posts.select(["approved_by", "id", "ad_title"]).where("approved_by = 'Admin'")
+      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by = 'Admin'")
     end
 
     def unchecked
-      @posts = User.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
+      @user = current_user
+      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
     end
 
     def rejected
-      @posts = User.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
+      @user = current_user
+      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
     end
     
     private
