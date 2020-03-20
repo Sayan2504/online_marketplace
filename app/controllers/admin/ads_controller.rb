@@ -1,7 +1,7 @@
 class Admin::AdsController < ApplicationController
     
     def unchecked
-        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
     end
 
     def rejected

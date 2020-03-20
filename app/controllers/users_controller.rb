@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
     def unchecked
       @user = current_user
-      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='users'")
+      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
     end
 
     def rejected
