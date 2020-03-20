@@ -9,7 +9,7 @@ class Admin::AdsController < ApplicationController
     end
 
     def approved
-        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= 'Admin_user'")
+        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= ?")
     end
 
     def approve

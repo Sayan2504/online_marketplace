@@ -23,13 +23,13 @@
 
           <div class="form-group">
             <%= f.label :password_confirmation, "Password Confirmation" %>
-            <%= f.password_field :password_confirmation, class: "form-control", autocomplete: :off, placeholder: "Password Confirmation", minlength: 6 %>
+            <%= f.password_field :password_confirmation, class: "form-control", autocomplete: :off, placeholder: "Confirm the new password", minlength: 6 %>
           </div>
 
           <br>
 
           <div class="form-group">
-            <%= link_to "Cancel", users_path, class: "btn btn-light btn-xs-block" %>
+            <%= link_to "Cancel", user_path(@user), class: "btn btn-light btn-xs-block" %>
             <%= f.submit "Update", class: "btn btn-primary", data: { disable_with: "Updating..." } %>
           </div>
         <% end %>

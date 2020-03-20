@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-sm-4">
                 <% if post.post_attachments.present? %>
-                  <%= image_tag (post.post_attachments.first.photo_url.to_s), :size => "70x90" %>
+                  <%= image_tag (post.post_attachments.first.photo_url.to_s), :size => "70x70" %>
                 <% end %>
               </div>
               <div class="col-sm-8 align-item-center text-align-center pr-0 pl-0 pb-0">
@@ -21,7 +21,7 @@
                 <% if admin_user? %>
 
                   <% if post.approved_by == "Admin_user" %>
-                    <div class="row ml-5 align-self-center" style="display: inline-block" >
+                    <div class="row ml-5" style="display: inline-block" >
                       <%= link_to 'Reject',  {:controller => "ads",
                                             :action => "reject",
                                             :id => post.id,
