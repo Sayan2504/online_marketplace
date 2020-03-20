@@ -7,37 +7,43 @@
     </div>
 
     <% if admin_user? %>
+
       <% if @post.approved_by == "Admin_user" %>
-      <div class="row ml-5" style="display: inline-block" >
-        <%= link_to 'Reject',  {:controller => "posts",
-                              :action => "reject",
-                              :id => @post.id,
-                              :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
-      </div>
+        <div class="col-xs-12 col-sm-3 md-6">
+          <div class="row btn-toolbar" style="display: block">
+            <%= link_to 'Reject',  {:controller => "posts",
+                                  :action => "reject",
+                                  :id => @post.id,
+                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
+          </div>
+        </div>
 
       <% elsif @post.approved_by == "rejected" %>
-      <div class="row ml-5" style="display: inline-block" >
-        
-        <%= link_to 'Approve',  {:controller => "posts",
-                                :action => "approve",
-                                :id => @post.id,
-                                :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
-      </div>
+        <div class="col-xs-12 col-sm-3 md-6">
+          <div class="row btn-toolbar" style="display: block">
+            <%= link_to 'Approve',  {:controller => "posts",
+                                    :action => "approve",
+                                    :id => @post.id,
+                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
+          </div>
+        </div>
 
       <% else %>
-      <div class="row ml-3" style="display: inline-block" >
-          
-        <%= link_to 'Approve',  {:controller => "posts",
-                                :action => "approve",
-                                :id => @post.id,
-                                :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
+        <div class="col-xs-12 col-sm-3 md-6">
+          <div class="row btn-toolbar" style="display: block">
+            <%= link_to 'Approve',  {:controller => "posts",
+                                    :action => "approve",
+                                    :id => @post.id,
+                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
         
-        <%= link_to 'Reject',  {:controller => "posts",
-                            :action => "reject",
-                            :id => @post.id,
-                            :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
-      </div>
+            <%= link_to 'Reject',  {:controller => "posts",
+                                  :action => "reject",
+                                  :id => @post.id,
+                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
+          </div>
+        </div>
       <% end %>
+
     <% end %>
   </div>
 </section>
