@@ -25,7 +25,7 @@
                       <%= link_to 'Reject',  {:controller => "ads",
                                             :action => "reject",
                                             :id => post.id,
-                                            :decision => "false"}, method: 'post', class: "btn btn-sm btn-success" %>
+                                            :decision => "false"}, method: 'post', class: "btn btn-sm btn-secondary" %>
                     </div>
 
                   <% elsif post.approved_by == "rejected" %>
@@ -34,7 +34,7 @@
                       <%= link_to 'Approve',  {:controller => "ads",
                                               :action => "approve",
                                               :id => post.id,
-                                              :decision => "true"}, method: 'post', class: "btn btn-sm btn-success" %>
+                                              :decision => "true"}, method: 'post', class: "btn btn-sm btn-primary" %>
                     </div>
 
                   <% else %>
@@ -43,12 +43,12 @@
                       <%= link_to 'Approve',  {:controller => "ads",
                                               :action => "approve",
                                               :id => post.id,
-                                              :decision => "true"}, method: 'post', class: "btn btn-sm btn-success" %>
+                                              :decision => "true"}, method: 'post', class: "btn btn-sm btn-primary" %>
                       
                       <%= link_to 'Reject',  {:controller => "ads",
                                           :action => "reject",
                                           :id => post.id,
-                                          :decision => "false"}, method: 'post', class: "btn btn-sm btn-success" %>
+                                          :decision => "false"}, method: 'post', class: "btn btn-sm btn-secondary" %>
                     </div>
                   <% end %>
                 <% end %>

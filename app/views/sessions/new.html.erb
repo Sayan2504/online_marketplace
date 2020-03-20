@@ -22,7 +22,10 @@
           <br>
 
           <%= f.submit "Log in", class: "btn btn-primary", data: { disable_with: "Logging..." } %>
-          <span style="float:right;" class="btn btn-md btn-primary"><%= link_to "Signup", signup_path, style: "color: #FFFFFF;" %></span>
+          <span style="float:right;" class="btn btn-md btn-primary">
+            <%= link_to "Signup", signup_path, style: "color: #FFFFFF;" %>
+          </span>
+          <span style="float:right; padding-right:10px; padding-top:5px">New User?</span>
         <% end %>
 
         

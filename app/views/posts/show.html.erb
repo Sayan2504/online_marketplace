@@ -14,7 +14,7 @@
             <%= link_to 'Reject',  {:controller => "posts",
                                   :action => "reject",
                                   :id => @post.id,
-                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
+                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-secondary" %>
           </div>
         </div>
 
@@ -24,7 +24,7 @@
             <%= link_to 'Approve',  {:controller => "posts",
                                     :action => "approve",
                                     :id => @post.id,
-                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
+                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-primary" %>
           </div>
         </div>
 
@@ -34,12 +34,12 @@
             <%= link_to 'Approve',  {:controller => "posts",
                                     :action => "approve",
                                     :id => @post.id,
-                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-success" %>
+                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-primary" %>
         
             <%= link_to 'Reject',  {:controller => "posts",
                                   :action => "reject",
                                   :id => @post.id,
-                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-success" %>
+                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-secondary" %>
           </div>
         </div>
       <% end %>
