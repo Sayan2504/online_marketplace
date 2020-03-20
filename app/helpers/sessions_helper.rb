@@ -26,12 +26,4 @@ module SessionsHelper
     def admin_user?
       current_user.admin
     end
-
-    def approved
-      current_user.posts.select(["approved_by"]).where("approved_by = 'Admin_user'")
-    end
-
-    def rejected
-      current_user.posts.select(["approved_by"]).where("approved_by = 'rejected'")
-    end
 end

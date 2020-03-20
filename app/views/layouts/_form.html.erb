@@ -20,16 +20,16 @@
 
                 <% if admin_user? %>
 
-                  <% if approved %>
-                    <div class="row ml-3" style="display: inline-block" >
+                  <% if post.approved_by == "Admin_user" %>
+                    <div class="row ml-5" style="display: inline-block" >
                       <%= link_to 'Reject',  {:controller => "ads",
                                             :action => "reject",
                                             :id => post.id,
                                             :decision => "false"}, method: 'post', class: "btn btn-sm btn-success" %>
                     </div>
 
-                  <% elsif rejected %>
-                    <div class="row ml-3" style="display: inline-block" >
+                  <% elsif post.approved_by == "rejected" %>
+                    <div class="row ml-5" style="display: inline-block" >
                       
                       <%= link_to 'Approve',  {:controller => "ads",
                                               :action => "approve",
