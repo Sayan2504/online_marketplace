@@ -1,15 +1,15 @@
 <% provide(:title, "Rejected posts") %>
 
+<% if @user.posts.present? %>
     <section class="table-header mb-3">
         <div class="row">
             <div class="col-sm-12 col-md-12">
-            <h2 class="text-center">Rejected Posts</h2>
+            <h1 class="text-center">Rejected Posts</h1>
             </div>
         </div>
     </section>
 
-    <% if @user.posts.present? %>
-        <%= render "layouts/form" %>
-    <% else %>
-        <h2> You have no rejected posts now </h2>
-    <% end %>
+    <%= render "layouts/form" %>
+<% else %>
+        <h2 class="text-center text-muted mt-5"> You have no rejected posts now </h2>
+<% end %>

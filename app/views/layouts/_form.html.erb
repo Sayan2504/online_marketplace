@@ -11,7 +11,7 @@
                   <%= image_tag (post.post_attachments.first.photo_url.to_s), :size => "70x70" %>
                 <% end %>
               </div>
-              <div class="col-sm-8 align-item-center text-align-center">
+              <div class="col-sm-8 align-item-center text-align-center pr-0 pl-0">
                 <% if admin_user? %>
                   <span><h4><%= link_to post.ad_title.upcase,  post_path(post) %></h4></span>
                 <% else %>
@@ -19,17 +19,38 @@
                 <% end %>
 
                 <% if admin_user? %>
-                    <div class="row" style="display: inline-block" >
-                    <%= link_to 'Approve',  {:controller => "ads",
-                                            :action => "approve",
-                                            :id => post.id,
-                                            :decision => "true"}, method: 'post', class: "btn btn-sm btn-success" %>
-                    
-                    <%= link_to 'Reject',  {:controller => "ads",
+
+                  <% if approved %>
+                    <div class="row ml-3" style="display: inline-block" >
+                      <%= link_to 'Reject',  {:controller => "ads",
                                             :action => "reject",
                                             :id => post.id,
                                             :decision => "false"}, method: 'post', class: "btn btn-sm btn-success" %>
                     </div>
+
+                  <% elsif rejected %>
+                    <div class="row ml-3" style="display: inline-block" >
+                      
+                      <%= link_to 'Approve',  {:controller => "ads",
+                                              :action => "approve",
+                                              :id => post.id,
+                                              :decision => "true"}, method: 'post', class: "btn btn-sm btn-success" %>
+                    </div>
+
+                  <% else %>
+                    <div class="row ml-3" style="display: inline-block" >
+                        
+                      <%= link_to 'Approve',  {:controller => "ads",
+                                              :action => "approve",
+                                              :id => post.id,
+                                              :decision => "true"}, method: 'post', class: "btn btn-sm btn-success" %>
+                      
+                      <%= link_to 'Reject',  {:controller => "ads",
+                                          :action => "reject",
+                                          :id => post.id,
+                                          :decision => "false"}, method: 'post', class: "btn btn-sm btn-success" %>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>

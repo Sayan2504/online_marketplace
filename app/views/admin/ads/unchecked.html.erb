@@ -1,17 +1,17 @@
 <% provide(:title, "Admin | Unchecked posts") %>
 
+<% if @posts.present? %>
     <section class="table-header mb-3">
     <div class="row">
         <div class="col-sm-12 col-md-12">
-        <h2 class="text-center">Unchecked Posts</h2>
+        <h1 class="text-center">Unchecked Posts</h1>
         </div>
     </div>
     </section>
 
-<% if @posts.present? %>
     <%= render "layouts/form" %>
 <% else %>
-    <h2 class="text-center"> You have no unchecked posts now </h2>
+    <h2 class="text-center text-muted mt-5"> You have no unchecked posts now </h2>
 <% end %>
     
 
