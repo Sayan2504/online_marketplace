@@ -3,5 +3,6 @@
 
 
 User.new({ :name => 'Admin_user', :email => 'admin@gmail.com', :password => 'adminpassword', :password_confirmation => 'adminpassword', :admin => 'true'}).save
+User.new({ :name => 'Admin_user2', :email => 'admin2@gmail.com', :password => 'adminpassword', :password_confirmation => 'adminpassword', :admin => 'true'}).save
 
 

@@ -8,8 +8,8 @@ class Admin::AdsController < ApplicationController
         @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
     end
 
-    def approved
-        @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by= ?")
+    def approved 
+       @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
     end
 
     def approve
