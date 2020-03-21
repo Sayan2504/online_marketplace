@@ -25,6 +25,7 @@ class PostsController < ApplicationController
             flash[:success] = "Post has been successfully created"
             redirect_to post_path(@post)
         else
+            @post_attachment = @post.post_attachments.build
             render "new"
         end
     end
@@ -62,7 +63,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:ad_title, :category_id, :ad_description, :user_name, :phone, :city, post_attachments_attributes: [:id, :post_id, :photo])
+        params.require(:post).permit(:ad_title, :detailed_ad_title, :category_id, :ad_description, :user_name, :phone, :city, post_attachments_attributes: [:id, :post_id, :photo])
     end
 
     def set_post
