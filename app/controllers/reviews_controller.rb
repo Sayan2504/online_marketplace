@@ -1,16 +1,18 @@
 class ReviewsController < ApplicationController
     
+    def index
+    end 
+
     def new
         @review = Review.new
     end
     
     def create
         @review = Review.new(review_params)
-        @review.post_id = @post.id
 
         if @review.save
             flash[:success] = "Your review is send to the admin for approval"
-            redirect_to post_path(@post)
+            redirect_to reviews_path
         else
             render "new"
         end
