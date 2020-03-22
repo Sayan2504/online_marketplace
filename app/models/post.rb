@@ -10,6 +10,7 @@ class Post < ApplicationRecord
     belongs_to :category
 
     has_many :post_attachments
+    has_many :reviews
     accepts_nested_attributes_for :post_attachments
 
     validates :ad_title, presence: true, 

@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_many :posts
     has_and_belongs_to_many :categories
     has_many :post_attachments, through: :posts
+    has_many :reviews, through: :posts
 
     validates :name, presence: true, 
                      length: {maximum: 255},
