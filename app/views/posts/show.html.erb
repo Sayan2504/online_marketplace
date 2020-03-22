@@ -49,7 +49,7 @@
       <% if @post.approved_by != "null" or @post.approved_by == "rejected" %>
         <div class="col-xs-12 col-sm-3 md-6">
           <div class="row btn-toolbar" style="display: block">
-            <%= link_to 'Write review', new_review_path, class: "btn btn-lg btn-primary" %>
+            <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
           </div>
         </div>
       <% end %>

@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
 
   resources :posts
-  resources :users
+  
   resources :reviews
+
+  resources :users
 
     get "/unchecked",  to: "users#unchecked"
     get "/rejected",  to: "users#rejected"
