@@ -10,11 +10,16 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :users
+  resources :reviews
 
     get "/unchecked",  to: "users#unchecked"
     get "/rejected",  to: "users#rejected"
     post "/approved", to: "posts#approve"
     post "/rejected", to: "posts#reject"
+
+
+
+
 
   namespace :admin do
     resources :categories

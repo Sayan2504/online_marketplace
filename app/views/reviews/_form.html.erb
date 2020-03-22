@@ -1,0 +1,33 @@
+<div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
+  <div class="card">
+    <div class="card-body">
+      <%= form_for [@review], :html=> { :multipart=> true} do |f| %>
+        <%= render "shared/error_messages", object: @review %>
+
+        <div class="form-group">
+          <%= f.label :name , "Name" %>
+          <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your name", maxlength: 255 %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :review , "Review" %>
+          <%= f.text_area :review, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Write your review", maxlength: 255 %>
+        </div>
+
+        
+        <div class="form-row">
+          <div class="col-xs-12 order-2 order-sm-1 col-sm-3">
+            <% if !@review.new_record? %>
+              <%= link_to "Delete", admin_categories_path(@category), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <% end %>
+          </div>
+
+          <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-9">
+            <%= link_to "Cancel", admin_categories_path, class: "btn btn-light btn-xs-block" %>
+            <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs-block", data: { disable_with: "Sending..." } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

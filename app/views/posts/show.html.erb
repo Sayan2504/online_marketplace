@@ -8,9 +8,14 @@
 
     <% if admin_user? %>
 
-      <% if @post.approved_by == "Admin_user" %>
+      <% if @post.approved_by == "null" %>
         <div class="col-xs-12 col-sm-3 md-6">
           <div class="row btn-toolbar" style="display: block">
+            <%= link_to 'Approve',  {:controller => "posts",
+                                    :action => "approve",
+                                    :id => @post.id,
+                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-primary" %>
+        
             <%= link_to 'Reject',  {:controller => "posts",
                                   :action => "reject",
                                   :id => @post.id,
@@ -31,15 +36,20 @@
       <% else %>
         <div class="col-xs-12 col-sm-3 md-6">
           <div class="row btn-toolbar" style="display: block">
-            <%= link_to 'Approve',  {:controller => "posts",
-                                    :action => "approve",
-                                    :id => @post.id,
-                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-primary" %>
-        
             <%= link_to 'Reject',  {:controller => "posts",
                                   :action => "reject",
                                   :id => @post.id,
                                   :decision => "false"}, method: 'post', class: "btn btn-lg btn-secondary" %>
+          </div>
+        </div>
+      <% end %>
+
+
+    <% else %>
+      <% if @post.approved_by != "null" or @post.approved_by == "rejected" %>
+        <div class="col-xs-12 col-sm-3 md-6">
+          <div class="row btn-toolbar" style="display: block">
+            <%= link_to 'Write review', new_review_path, class: "btn btn-lg btn-primary" %>
           </div>
         </div>
       <% end %>
