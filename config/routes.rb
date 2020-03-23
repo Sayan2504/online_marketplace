@@ -10,14 +10,18 @@ Rails.application.routes.draw do
 
   resources :posts
   
+  post "rapproved", to: "posts#rapprove" 
+
   resources :reviews
 
   resources :users
 
-    get "/unchecked",  to: "users#unchecked"
-    get "/rejected",  to: "users#rejected"
-    post "/approved", to: "posts#approve"
-    post "/rejected", to: "posts#reject"
+  get "/unchecked",  to: "users#unchecked"
+  get "/rejected",  to: "users#rejected"
+  post "/approved", to: "posts#approve"
+  post "/rejected", to: "posts#reject"
+
+  
 
 
 
@@ -29,10 +33,7 @@ Rails.application.routes.draw do
     get "/unchecked",  to: "ads#unchecked"
     post "/approved", to: "ads#approve"
     post "/rejected", to: "ads#reject"
-
     get "/approved",  to: "ads#approved"
-    
-
     get "/rejected",  to: "ads#rejected"
   end
 

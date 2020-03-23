@@ -45,6 +45,12 @@
       <% end %>
 
 
+
+
+
+
+
+
     <% elsif @post.approved_by != "null" or @post.approved_by != "rejected" %>
         <% if !logged_in? %>
           <div class="col-xs-12 col-sm-3 md-6">
@@ -66,6 +72,13 @@
   </div>
 </section>
 
+
+
+
+
+
+
+
 <div class="container">
   <div class="row justify-content-center"> 
     <% @post_attachments.each do |p| %>
@@ -75,6 +88,15 @@
     <% end %>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 
 <div class="container">            
@@ -107,6 +129,13 @@
 
 
 
+
+
+
+
+
+
+
 <div class="container">            
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-9">
@@ -120,22 +149,36 @@
 
           <div class="col-xs-12 col-sm-9 ">
             <div class="card card-body justify-content-flex-center">
-              <div class="post-details-row mb-2">
-                <label><strong>Name : </strong></label>
-                <span><%= r.name %></span>
-              </div>
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="post-details-row mb-2">
+                    <label><strong>Name : </strong></label>
+                    <span><%= r.name %></span>
+                  </div>
 
-              <div class="post-details-row">
-                <label><strong>Review : </strong></label>
-                <span><%= r.review %></span>
+                  <div class="post-details-row">
+                    <label><strong>Review : </strong></label>
+                    <span><%= r.review %></span>
+                  </div>
+                </div>
+
+                <div class="col-sm-3 mt-3">
+                  <div class="post-details-row">
+                    <%= link_to 'Approve',  {:controller => "posts",
+                                          :action => "rapprove",
+                                          :id => r.id,
+                                          :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
+
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
 
         
 
       <% else %>
-        <% if !@user %>
           <% if r.approved_by != "null" %>
 
             <div class="col-xs-12 col-sm-9 ">
@@ -153,7 +196,7 @@
             </div>
           
           <% end %>
-        <% end %>
+        
       <% end %>
     <% end %>
   </div>
