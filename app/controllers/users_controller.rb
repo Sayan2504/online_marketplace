@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     end
 
     def show
-      @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
     end
 
     def unchecked

@@ -70,7 +70,7 @@
 
 
 <div class="container">            
-  <div class="row justify-content-flex-center">
+  <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-12 md-6 mt-4">
       <div class="card card-header">
         <div class="post-details-row mb-4">
@@ -98,25 +98,58 @@
 </div>
 
 
+
 <div class="container">            
-  <div class="row justify-content-flex-center">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-9">
+      <h1 class="text-center">Reviews</h1>
+    </div>
+  </div>
+  <div class = "row justify-content-center">
     <% @reviews.each do |r| %>
-      <div class="col-xs-12 col-sm-12 md-6 mt-4">
-        <div class="card card-header">
-          <div class="post-details-row mb-4">
-            <label><strong>Name : </strong></label>
-            <span><%= r.name %></span>
+
+      <% if admin_user? %>
+
+          <div class="col-xs-12 col-sm-9 ">
+            <div class="card card-body justify-content-flex-center">
+              <div class="post-details-row mb-2">
+                <label><strong>Name : </strong></label>
+                <span><%= r.name %></span>
+              </div>
+
+              <div class="post-details-row">
+                <label><strong>Review : </strong></label>
+                <span><%= r.review %></span>
+              </div>
+            </div>
           </div>
 
-          <div class="post-details-row mb-4">
-            <label><strong>Advertiser : </strong></label>
-            <span><%= r.review %></span>
-          </div>
-        </div>
-      </div>
+        
+
+      <% else %>
+        
+          <% if r.approved_by != "null" %>
+
+            <div class="col-xs-12 col-sm-9 ">
+              <div class="card card-body justify-content-flex-center">
+                <div class="post-details-row mb-2">
+                  <label><strong>Name : </strong></label>
+                  <span><%= r.name %></span>
+                </div>
+
+                <div class="post-details-row">
+                  <label><strong>Review : </strong></label>
+                  <span><%= r.review %></span>
+                </div>
+              </div>
+            </div>
+          
+          <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>
+ 
         
 
 
