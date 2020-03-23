@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     end     
 
     def show
+        @user = current_user
         @post_attachments = @post.post_attachments.all
         @reviews = @post.reviews.all
     end

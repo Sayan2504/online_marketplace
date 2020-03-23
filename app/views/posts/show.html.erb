@@ -45,16 +45,24 @@
       <% end %>
 
 
-    <% else %>
-      <% if @post.approved_by != "null" or @post.approved_by == "rejected" %>
-        <div class="col-xs-12 col-sm-3 md-6">
-          <div class="row btn-toolbar" style="display: block">
-            <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
+    <% elsif @post.approved_by != "null" or @post.approved_by != "rejected" %>
+        <% if !logged_in? %>
+          <div class="col-xs-12 col-sm-3 md-6">
+            <div class="row btn-toolbar" style="display: block">
+              <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        
+        <% elsif @post.user_id != current_user.id %>
+          <div class="col-xs-12 col-sm-3 md-6">
+            <div class="row btn-toolbar" style="display: block">
+              <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
+            </div>
+          </div>
 
+        <% end %>
     <% end %>
+   
   </div>
 </section>
 
@@ -127,7 +135,7 @@
         
 
       <% else %>
-        
+        <% if !@user %>
           <% if r.approved_by != "null" %>
 
             <div class="col-xs-12 col-sm-9 ">
@@ -145,6 +153,7 @@
             </div>
           
           <% end %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
