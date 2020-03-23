@@ -96,6 +96,27 @@
     </div>
   </div>
 </div>
+
+
+<div class="container">            
+  <div class="row justify-content-flex-center">
+    <% @reviews.each do |r| %>
+      <div class="col-xs-12 col-sm-12 md-6 mt-4">
+        <div class="card card-header">
+          <div class="post-details-row mb-4">
+            <label><strong>Name : </strong></label>
+            <span><%= r.name %></span>
+          </div>
+
+          <div class="post-details-row mb-4">
+            <label><strong>Advertiser : </strong></label>
+            <span><%= r.review %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
         
 
 

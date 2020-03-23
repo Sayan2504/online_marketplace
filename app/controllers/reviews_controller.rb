@@ -7,15 +7,13 @@ class ReviewsController < ApplicationController
     def new
         @post = Post.find(params[:post_id])
         @review = Review.new
-        flash[:val] = @post.id
     end
     
     def create
         @review = Review.new(review_params)
-        @review.post_id = flash[:val]
         if @review.save
             flash[:success] = "Your review is send to the admin for approval"
-            redirect_to reviews_path
+            redirect_to post_path(@review.post_id)
         else
             render "new"
         end

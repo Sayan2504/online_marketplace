@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
     def show
         @post_attachments = @post.post_attachments.all
+        @reviews = @post.reviews.all
     end
 
     def new
