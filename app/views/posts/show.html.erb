@@ -79,7 +79,7 @@
 
 
 
-<div class="container">
+<section class="container">
   <div class="row justify-content-center"> 
     <% @post_attachments.each do |p| %>
       <div class="col-xs-10 col-sm-3 md-3">
@@ -87,7 +87,7 @@
       </div>
     <% end %>
   </div>
-</div>
+</section>
 
 
 
@@ -99,10 +99,15 @@
 
 
 
-<div class="container">            
+<section class="container">            
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-12 md-6 mt-4">
       <div class="card card-header">
+        <div class="post-details-row mb-4">
+          <label><strong>Advertisement : </strong></label>
+          <span><%= @post.detailed_ad_title %></span>
+        </div>
+
         <div class="post-details-row mb-4">
           <label><strong>Description : </strong></label>
           <span><%= @post.ad_description %></span>
@@ -125,7 +130,7 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 
 
@@ -136,12 +141,14 @@
 
 
 
-<div class="container">            
+<section class="container">            
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-9">
       <h1 class="text-center">Reviews</h1>
     </div>
   </div>
+
+  <% shown_title = false %>
   <div class = "row justify-content-center">
     <% @reviews.each do |r| %>
 
@@ -167,15 +174,17 @@
                     <%= link_to 'Approve',  {:controller => "posts",
                                           :action => "rapprove",
                                           :id => r.id,
-                                          :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
+                                          :decision => "true"}, method: 'post', 
+                                           class: "btn btn-md btn-primary",
+                                           data: { disable_with: "Approved"  } %>
 
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
-
+          
+          <% shown_title = true %>
         
 
       <% else %>
@@ -194,13 +203,24 @@
                 </div>
               </div>
             </div>
-          
+            <% shown_title = true %>
+        
           <% end %>
         
       <% end %>
     <% end %>
+
+    <% if shown_title == false %>
+      <div class="col-xs-12 col-sm-12 ">
+        <% if admin_user? %>
+          <h2 class="text-center text-muted mt-2"> No one has reviewed on this post</h2>
+        <% else %>
+          <h2 class="text-center text-muted mt-2"> You have no reviews yet</h2>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-</div>
+</section>
  
         
 
