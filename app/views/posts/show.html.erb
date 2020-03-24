@@ -153,7 +153,7 @@
     <% @reviews.each do |r| %>
 
       <% if admin_user? %>
-
+        <% if r.approved_by == "null" %>
           <div class="col-xs-12 col-sm-9 ">
             <div class="card card-body justify-content-flex-center">
               <div class="row">
@@ -176,15 +176,40 @@
                                           :id => r.id,
                                           :decision => "true"}, method: 'post', 
                                            class: "btn btn-md btn-primary",
-                                           data: { disable_with: "Approved"  } %>
+                                           data: { disable_with: "Approving..."  } %>
 
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          <% shown_title = true %>
+
+        <% else %>
+          <div class="col-xs-12 col-sm-9 ">
+            <div class="card card-body justify-content-flex-center">
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="post-details-row mb-2">
+                    <label><strong>Name : </strong></label>
+                    <span><%= r.name %></span>
+                  </div>
+
+                  <div class="post-details-row">
+                    <label><strong>Review : </strong></label>
+                    <span><%= r.review %></span>
+                  </div>
+                </div>
+                <div class="col-sm-3 mt-3">
+                  <div class="post-details-row">
+                    <button type="button" class="btn btn-md btn-primary" disabled>Approved</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% shown_title = true %>
         
 
       <% else %>
@@ -213,7 +238,7 @@
     <% if shown_title == false %>
       <div class="col-xs-12 col-sm-12 ">
         <% if admin_user? %>
-          <h2 class="text-center text-muted mt-2"> No one has reviewed on this post</h2>
+          <h2 class="text-center text-muted mt-2"> No one has reviewed this post</h2>
         <% else %>
           <h2 class="text-center text-muted mt-2"> You have no reviews yet</h2>
         <% end %>

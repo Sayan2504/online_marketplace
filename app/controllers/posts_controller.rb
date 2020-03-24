@@ -64,7 +64,8 @@ class PostsController < ApplicationController
         @review = Review.where(id: params[:id])
         if params[:decision] == "true"
             @review.update(approved_by: current_user.name)
-            flash.now[:success] = "This review by @review.name has been approved by Admin"
+            flash[:success] = "This review has been approved by Admin"
+            redirect_to request.referrer
         end
     end
     
