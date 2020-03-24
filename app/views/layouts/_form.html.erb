@@ -6,11 +6,13 @@
         <div class="card card-header rounded-pill shadow p-3 mb-3 bg-white rounded">
           <div class="container">
             <div class="row">
+
               <div class="col-sm-4">
                 <% if post.post_attachments.present? %>
                   <%= image_tag (post.post_attachments.first.photo_url.to_s), :size => "70x70" %>
                 <% end %>
               </div>
+              
               <div class="col-sm-8 align-item-center text-align-center pr-0 pl-0 pb-0">
                 <% if admin_user? %>
                   <span style="text-align:center"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>

@@ -246,15 +246,15 @@
 
 
 
-    
+
     <% if no_review_message == false %>
       <div class="col-xs-12 col-sm-12 ">
         <% if admin_user? %>
 
           <% if @post.approved_by == "null" %>
             <h2 class="text-center text-muted mt-2"> Reviews can be given by users once this post will be approved</h2>
-          <% else %>
-            <h2 class="text-center text-muted mt-2"> No one has reviewed this post</h2>
+          <% elsif @post.approved_by == "rejected" %>
+            <h2 class="text-center text-muted mt-2"> This post is currently rejected</h2>
           <% end %>
 
         <% else %>
@@ -262,7 +262,7 @@
           <% if @post.approved_by == "null" %>
             <h2 class="text-center text-muted mt-2"> Reviews can be given after this post will be approved by Admin</h2>
           <% else %>
-            <h2 class="text-center text-muted mt-2"> You have no reviews yet</h2>
+            <h2 class="text-center text-muted mt-2"> Rejected Post cannot have reviews </h2>
           <% end %>
 
         <% end %>
@@ -271,6 +271,7 @@
 
   </div>
 </section>
+
  
         
 
