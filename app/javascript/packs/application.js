@@ -8,7 +8,9 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-require("reviews/rating")
+//= require jquery3
+//= require popper
+//= require bootstrap
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -17,3 +19,4 @@ require("reviews/rating")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+

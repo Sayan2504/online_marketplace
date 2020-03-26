@@ -12,6 +12,7 @@
     position:absolute;
     top:-9999pxpx;
     clip:rect(0,0,0,0);
+    visibility: hidden;
     }
 
 
@@ -40,10 +41,33 @@
     text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
     }
       
-.rating > input:checked + label:hover, .rating > input:checked + label:hover ~ label, .rating > input:checked ~ label:hover, .rating > input:checked ~ label:hover ~ label, .rating > label:hover ~ input:checked ~ label {
-     color: #ea0; text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+.rating > input:checked + label:hover, 
+.rating > input:checked + label:hover ~ label, 
+.rating > input:checked ~ label:hover, 
+.rating > input:checked ~ label:hover ~ label, 
+.rating > label:hover ~ input:checked ~ label
+{
+     color: gold; text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+     visibility: visible;
     }
 
 .rating:not(:checked) > input { 
     display: none; 
     }
+
+#star_1.activated, #star_2.activated, #star_3.activated, #star_4.activated, #star_5.activated{
+    color: gold; text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+     visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+
+
+    

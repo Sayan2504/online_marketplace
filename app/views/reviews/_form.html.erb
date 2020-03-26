@@ -5,52 +5,51 @@
         <%= render "shared/error_messages", object: @review %>
 
         <div class="form-group">
-          <%= f.label :name , "Name" %>
+          <%= f.label :name , "Name:" %>
           <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your name", maxlength: 255 %>
         </div>
 
         <div class="form-group">
-          <%= f.label :email , "Email id" %>
+          <%= f.label :email , "Email id:" %>
           <%= f.text_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id", maxlength: 255 %>
         </div>
 
         <div class="form-group">
-          <%= f.label :location , "Location" %>
+          <%= f.label :location , "Location:" %>
           <%= f.text_field :location, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your address", maxlength: 255 %>
         </div>
 
-        
-
         <%= f.hidden_field :post_id, value: @post.id %>
         
-
-
-
         <div class="form-group">
           <div>Rate and Review the post: </div>
 
-          <div class="rating">  
-            <label for="star5" title="Excellent!">5 Stars</label>
+          
+          <div class="rating" id="star_rating">
+            <label for="star5" title="Excellent!" id="star_5" class="check5">5 Stars</label>
             <%=f.radio_button :rating, 5, :id => "star5" %>
 
             
-            <label for="star4" title="Good!">4 Stars</label>
+            <label for="star4" title="Good!" id="star_4" class="check4">4 Stars</label>
             <%=f.radio_button :rating, 4, :id => "star4" %> 
 
              
-            <label for="star3" title="Average!">3 Stars</label>
+            <label for="star3" title="Average!" id="star_3" class="check3">3 Stars</label>
             <%=f.radio_button :rating, 3, :id => "star3" %>
 
             
-            <label for="star2" title="Poor!">2 Stars</label>
+            <label for="star2" title="Poor!" id="star_2" class="check2">2 Stars</label>
             <%=f.radio_button :rating, 2, :id => "star2" %> 
 
              
-            <label for="star1" title="Very Poor!">1 Stars</label>
+            <label for="star1" title="Very Poor!" id="star_1" class="check1">1 Stars</label>
             <%=f.radio_button :rating, 1, :id => "star1" %>
+
           </div>
  
+ 
         </div>
+
 
         <div class="form-group">
           <%= f.text_area :review, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Write your review", maxlength: 255 %>
@@ -67,10 +66,11 @@
 
           <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-9">
             <%= link_to "Cancel", post_path(@post), class: "btn btn-light btn-xs-block" %>
-            <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs-block", data: { disable_with: "Sending..." } %>
+            <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs-block", data: { disable_with: "Submitting..." } %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
