@@ -21,6 +21,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in(@user)
         flash[:success] = "You have successfully signed up"
+        UserMailer.welcome_email(@user).deliver_now
         if admin_user?
           redirect_to users_path
         else
