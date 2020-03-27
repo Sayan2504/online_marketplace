@@ -309,16 +309,19 @@
             <h2 class="text-center text-muted mt-2"> Reviews can be given by users once this post will be approved</h2>
           <% elsif @post.approved_by == "rejected" %>
             <h2 class="text-center text-muted mt-2"> This post is currently rejected</h2>
+          <% else %>
+            <h2 class="text-center text-muted mt-2"> No reviews on this post</h2>
           <% end %>
 
         <% else %>
 
           <% if @post.approved_by == "null" %>
             <h2 class="text-center text-muted mt-2"> Reviews can be given after this post will be approved by Admin</h2>
-          <% else %>
+          <% elsif @post.approved_by == "rejected" %>
             <h2 class="text-center text-muted mt-2"> Rejected Post cannot have reviews </h2>
+          <% else %>
+            <h2 class="text-center text-muted mt-2"> No reviews on this post</h2>
           <% end %>
-
         <% end %>
       </div>
     <% end %>
