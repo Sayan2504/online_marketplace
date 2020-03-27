@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Hello <%= @user.name %></h3>
+    <p>
+      <%= @review.name %> from <%= @review.location %> has reviewed your post <%= @post.ad_title %>
+    </p>
+    <p>
+      You can contact the reviewer at <%= @review.email %> 
+    </p>
+    <p>Check your post for the review and rating</p>
+  </body>
+</html>

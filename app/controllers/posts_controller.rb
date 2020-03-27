@@ -62,15 +62,13 @@ class PostsController < ApplicationController
 
     def rapprove
         @review = Review.where(id: params[:id])
-        @review_post_id = Review.find_by(post_id: params[:post_id])
-
-        @post = Post.where(id: params[:review_post_id])
-        @post_user_id = Post.find_by(user_id: params[:user_id])
-
-        @user = User.where(id: params[:post_user_id])
-
+        @review_unique = @review.first
+        @post = @review_unique.post
+        @user = @post.user
+        
+       
         if params[:decision] == "true"
-            PostMailer.welcome_email(@user).deliver_now
+            PostMailer.welcome_email(@user, @review_unique, @post).deliver_now
             @review.update(approved_by: current_user.name)
             flash[:success] = "This review has been approved by Admin"
             redirect_to request.referrer

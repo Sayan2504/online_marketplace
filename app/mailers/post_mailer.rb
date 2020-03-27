@@ -1,9 +1,11 @@
 class PostMailer < ApplicationMailer
     default :from => "Sayan Online Marketplace"
 
-    def welcome_email(user)
+    def review(user, review, post)
         @user = user
+        @review = review
+        @post = post
         @url  = "http://www.example/login"
-        mail(:to => @user.email, :subject => "Welcome to My Awesome Site")
+        mail(:to => @user.email, :subject => "You got a review on your post")
     end
 end
