@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-    default :from => "myonlinemarketplace03@gmail.com"
+    default :from => "Sayan Online Marketplace"
 
     def welcome_email(user)
         @user = user
