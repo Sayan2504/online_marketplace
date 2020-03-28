@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/signup",  to: "users#new"
   post "/signup", to: "users#create"
 
+  get 'login/create', to: 'logins#google_create', as: :create_login
+
   resources :posts
   
   post "rapproved", to: "posts#rapprove" 

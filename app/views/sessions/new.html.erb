@@ -8,6 +8,7 @@
   <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
     <div class="card">
       <div class="card-body">
+        
         <%= form_for :session, url: login_path do |f| %>
           <div class="form-group">
             <%= f.label :email, "Email Address" %>
@@ -22,15 +23,18 @@
           <br>
 
           <%= f.submit "Log in", class: "btn btn-primary", data: { disable_with: "Logging..." } %>
+          
           <span style="float:right;" class="btn btn-md btn-primary">
             <%= link_to "Signup", signup_path, style: "color: #FFFFFF;" %>
           </span>
           <span style="float:right; padding-right:10px; padding-top:5px">New User?</span>
+
+          <span style="margin-left:5px">
+            <%= google_sign_in_button image_tag('google_logo.png', alt: 'Google', :size => "35x35"), proceed_to: create_login_url %>
+          </span>
         <% end %>
-
         
-
-
+        
       </div>
     </div>
   </div>
