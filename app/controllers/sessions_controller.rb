@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
     before_action :set_user, only: :create
-
     
     def new
     end
@@ -28,7 +27,8 @@ class SessionsController < ApplicationController
       session[:omniauth] = auth.except('extra')
       user = User.sign_in_from_omniauth(auth)
       session[:user_id] = user.id
-      redirect_to root_url, notice: "Signed in"
+      flash[:success] = "You have successfully logged in"
+      redirect_to users_path
     end
 
     def fb_destroy
@@ -54,15 +54,6 @@ class SessionsController < ApplicationController
 
     def set_user
       @user = User.find_by(email: params[:session][:email].downcase)
-    end
-
-    def authenticate_with_google
-      if id_token = flash[:google_sign_in][:id_token]
-        User.find_by google_id: GoogleSignIn::Identity.new(id_token).user_id
-      elsif error = flash[:google_sign_in][:error]
-        logger.error "Google authentication error: #{error}"
-        nil
-      end
     end
     
 end

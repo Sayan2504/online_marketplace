@@ -6,10 +6,13 @@
 <div class="collapse navbar-collapse" id="navbarNavDropdown">
   <ul class="navbar-nav ml-auto">
     
+
+
     <% if logged_in? %>
       
 
       <% if admin_user? %>
+      
         <li class="nav-item active">
           <%= link_to "Approved Posts", admin_approved_path, class: "nav-link" %>
         </li>
@@ -42,7 +45,8 @@
             <%= link_to "Unchecked posts", unchecked_path, class: "dropdown-item" %>
             <%= link_to "Rejected posts", rejected_path, class: "dropdown-item" %>
             <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
-          </div>       
+          </div> 
+
         </li>
         <li class="nav-item active">
           <%= link_to "User Homepage", user_path(current_user), class: "nav-link" %>
@@ -52,11 +56,12 @@
         </li>
       <% end %>
       
-
+      
 
     <% else %>
-      <li class="nav-item active">
-        <%= link_to "auth/facebook" do %><%= image_tag('facebook.png', :size => "50x40") %><% end %>
+
+      <li class="nav-item active" style="margin-top:5px; margin-right:5px">
+        <%= link_to "auth/facebook" do %><%= image_tag('facebook.png', :size => "40x30") %><% end %>
       </li>
       <li class="nav-item active">
         <%= link_to "Log In", login_path, class: "nav-link" %>
