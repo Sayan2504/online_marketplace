@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     end
 
 
-    def fb_create
+    def fb_google_create
       auth = request.env["omniauth.auth"]
       session[:omniauth] = auth.except('extra')
       user = User.sign_in_from_omniauth(auth)
@@ -31,11 +31,6 @@ class SessionsController < ApplicationController
       redirect_to user_path(user)
     end
 
-    def fb_destroy
-      session[:user_id] = nil
-      session[:omniauth] = nil
-      redirect_to root_url, notice: "Signed out"
-    end
 
 
     

@@ -11,8 +11,7 @@ Rails.application.routes.draw do
 
 
   #fb authentication
-  get "auth/:provider/callback", to: "sessions#fb_create"
-  delete "sign_out", to: "sessions#fb_destroy", as: "sign_out"
+  get "auth/:provider/callback", to: "sessions#fb_google_create"
 
   resources :socials
 
