@@ -29,9 +29,9 @@
           </span>
           <span style="float:right; padding-right:10px; padding-top:5px">New User?</span>
 
-          <span style="margin-left:5px">
-            <%= google_sign_in_button image_tag('google_logo.png', alt: 'Google', :size => "35x35"), proceed_to: create_login_url %>
-          </span>
+          <span>
+            <%= link_to "auth/facebook" do %><%= image_tag('facebook.png', :size => "50x40") %><% end %>
+          </span
         <% end %>
         
         

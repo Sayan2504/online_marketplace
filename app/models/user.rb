@@ -3,7 +3,7 @@ class User < ApplicationRecord
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
     VALID_NAME_REGEX = /\A[\w]+[\s\w]*\z/i.freeze
 
-    after_validation { self.email = self.email.downcase }
+    #after_validation { self.email = self.email.downcase }
 
     has_many :posts
     has_and_belongs_to_many :categories
@@ -27,5 +27,20 @@ class User < ApplicationRecord
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
+    end
+
+
+
+    
+    def self.sign_in_from_omniauth(auth)
+      find_by(provider: auth['provider'], uid: auth['uid']) || create_user_from_omniauth(auth)
+    end
+
+    def self.create_user_from_omniauth(auth)
+      create(
+        provider: auth['provider'],
+        uid: auth['uid'],
+        name: auth['info']['name']
+      )
     end
 end

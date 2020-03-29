@@ -22,14 +22,21 @@ class SessionsController < ApplicationController
       end
     end
 
-    def google_create
-      if user = authenticate_with_google
-        cookies.signed[:user_id] = user.id
-        redirect_to user
-      else
-        redirect_to new_session_url, alert: 'authentication_failed'
-      end
+
+    def fb_create
+      auth = request.env["omniauth.auth"]
+      session[:omniauth] = auth.except('extra')
+      user = User.sign_in_from_omniauth(auth)
+      session[:user_id] = user.id
+      redirect_to root_url, notice: "Signed in"
     end
+
+    def fb_destroy
+      session[:user_id] = nil
+      session[:omniauth] = nil
+      redirect_to root_url, notice: "Signed out"
+    end
+
 
     
 

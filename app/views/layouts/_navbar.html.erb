@@ -56,6 +56,9 @@
 
     <% else %>
       <li class="nav-item active">
+        <%= link_to "auth/facebook" do %><%= image_tag('facebook.png', :size => "50x40") %><% end %>
+      </li>
+      <li class="nav-item active">
         <%= link_to "Log In", login_path, class: "nav-link" %>
       </li>
       <li class="nav-item active">
