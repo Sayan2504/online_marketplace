@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       user = User.sign_in_from_omniauth(auth)
       session[:user_id] = user.id
       flash[:success] = "You have successfully logged in"
-      redirect_to users_path
+      redirect_to user_path(user)
     end
 
     def fb_destroy

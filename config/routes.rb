@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "auth/:provider/callback", to: "sessions#fb_create"
   delete "sign_out", to: "sessions#fb_destroy", as: "sign_out"
 
-  
+  resources :socials
 
   #for reviews
   post "rapproved", to: "posts#rapprove" 
