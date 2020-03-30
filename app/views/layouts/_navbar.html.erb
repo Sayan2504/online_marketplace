@@ -61,6 +61,20 @@
 
     <% else %>
 
+      <li class="nav-item dropdown nav-item active">
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Choose Category
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#">
+            
+          </a>
+        </div>
+      </li>
+      <a>
+      <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name") %>
+  </a>
       <li class="nav-item active">
         <%= link_to "Log In", login_path, class: "nav-link" %>
       </li>
