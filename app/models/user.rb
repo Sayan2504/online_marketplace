@@ -24,6 +24,9 @@ class User < ApplicationRecord
                          
     validates :admin, default: false
 
+    validates :location, presence: true,
+                         length: {maximum: 64} 
+
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
@@ -42,7 +45,8 @@ class User < ApplicationRecord
         uid: auth['uid'],
         name: auth['info']['name'],
         email: auth['info']['email'],
-        password: '11111111'
+        password: '11111111',
+        location: 'nil'
       )
     end
 end
