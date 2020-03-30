@@ -33,8 +33,6 @@ class SessionsController < ApplicationController
 
 
 
-    
-
     def destroy
       return unless logged_in?
   

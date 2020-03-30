@@ -6,7 +6,7 @@
 </div>
 
 
-<% provide(:title, "User Homepage") %>
+<% provide(:title, current_user.name) %>
 
 <% if @posts.present? %>  
     <section class="table-header mb-3">

@@ -10,6 +10,8 @@
               <div class="col-sm-4">
                 <% if post.post_attachments.present? %>
                   <%= image_tag (post.post_attachments.first.photo_url.to_s), :size => "70x70" %>
+                <% else %>
+                  <%= image_tag ("default.png"), :size => "70x70" %>
                 <% end %>
               </div>
               
