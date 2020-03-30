@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       auth = request.env["omniauth.auth"]
       session[:omniauth] = auth.except('extra')
       user = User.sign_in_from_omniauth(auth)
-      session[:user_id] = user.id
+      log_in(user)
       flash[:success] = "You have successfully logged in"
       redirect_to user_path(user)
     end
