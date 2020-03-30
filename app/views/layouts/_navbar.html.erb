@@ -1,5 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to "Online Marketplace App", root_path, class: "navbar-brand" %>
+  <% if logged_in? %>
+    <%= link_to "User Homepage", user_path(current_user), class: "navbar-brand" %>
+  <% else %>
+    <%= link_to "Online Marketplace App", root_path, class: "navbar-brand" %>
+  <% end %>
+
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -10,7 +15,6 @@
 
     <% if logged_in? %>
       
-
       <% if admin_user? %>
       
         <li class="nav-item active">
@@ -46,11 +50,8 @@
             <%= link_to "Rejected posts", rejected_path, class: "dropdown-item" %>
             <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
           </div> 
-
         </li>
-        <li class="nav-item active">
-          <%= link_to "User Homepage", user_path(current_user), class: "nav-link" %>
-        </li>
+        
         <li class="nav-item active">
           <%= link_to "Create Post", new_post_path, class: "nav-link" %>
         </li>
