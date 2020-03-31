@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <% if logged_in? %>
     <%= link_to "#{current_user.name}'s Homepage", user_path(current_user), class: "navbar-brand" %>
   <% else %>
@@ -67,10 +67,16 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+        <% Category.all.each do |category| %>
+          <%= link_to category.name, '#' , class: "dropdown-item"%>
+        <% end %>
         </div>
       </li>
+
+      <form class="form-inline">
+        <input type="text" class="form-control mr-sm-2" placeholder="Search">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
 
       <li class="nav-item active">
         <%= link_to "Log In", login_path, class: "nav-link" %>
