@@ -35,4 +35,9 @@ class Post < ApplicationRecord
     validates :city, presence: true, 
                      length: {maximum: 50, minimum: 1},
                      format: {with: VALID_CITY_REGEX}   
+
+
+
+
+    scope :filter_by_category, -> (category_id) { where category_id: category_id }
 end

@@ -63,18 +63,20 @@
 
       <li class="nav-item dropdown nav-item active">
         <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Choose Category
+          <span id="title">Choose Category</span>
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <% Category.all.each do |category| %>
-          <%= link_to category.name, '#' , class: "dropdown-item"%>
-        <% end %>
+          <% Category.all.each do |category| %>
+            <a id="category"><%= link_to category.name, root_path(:category_id => category.id) , class: "dropdown-item"%></a>
+          <% end %>
         </div>
       </li>
 
+
       <form class="form-inline">
-        <input type="text" class="form-control mr-sm-2" placeholder="Search">
+        <input type="text" class="form-control mr-sm-2" placeholder="Search ad by location">
+        <input type="text" class="form-control mr-sm-2" placeholder="Search ad by name">
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
 
