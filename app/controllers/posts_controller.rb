@@ -5,9 +5,16 @@ class PostsController < ApplicationController
     def index
         @category = Category.find_by(id: params[:category_id])
         
-        if params[:category_id]
-            @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
-            @posts = @posts.where(category_id: params[:category_id])
+        #if params[:category_id]
+        #    @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+        #    @posts = @posts.where(category_id: params[:category_id])
+        #else
+        #    @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+        #end 
+
+        if params[:ad_title]
+            @posts = Post.where(ad_title: params[:ad_title])
+            @posts = @posts.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         else
             @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         end 

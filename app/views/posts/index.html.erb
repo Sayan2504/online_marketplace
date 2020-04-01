@@ -3,16 +3,20 @@
         <div class="row">
 
             <div class="col-4">
-                <form class="form-inline">
-                <input type="text" class="form-control mr-sm-2" placeholder="Search ad by name">
-                <button type="submit" class="btn btn-primary mr-10">Search</button>
-                </form>
+                <div class="form-inline">
+                    <%= form_tag(posts_path, method: "get") do %>
+                        <%= text_field_tag :ad_title, params[:ad_title] %>
+                        <%= submit_tag "Search", :name => nil %>
+                    <% end %>
+                </div>
             </div>
+
+
 
             <div class="col-4 text-center">
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose Ad Category
+                        Choose Category
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <%= link_to "All Categories", posts_path , class: "dropdown-item"%>
@@ -22,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            
+  
             <div class="col-4">
                 <form class="form-inline">
                 <input type="text" class="form-control mr-sm-2" placeholder="Search ad by location">
@@ -45,4 +49,11 @@
   <% end %>
 <% else %>
   <%= render "layouts/form" %>
+<% end %>
+
+
+<% if params[:ad_title] %>
+    <%= render "layouts/form" %>
+<% else %>
+    <h2 class="text-center text-muted"> No posts in this category</h2>
 <% end %>
