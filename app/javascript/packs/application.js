@@ -19,4 +19,5 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+/* Set the width of the sidebar to 250px (show it) */
 
