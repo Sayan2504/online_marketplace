@@ -5,8 +5,8 @@
             <div class="col-4">
                 <div class="form-inline">
                     <%= form_tag(posts_path, method: "get") do %>
-                        <%= text_field_tag :ad_title, params[:ad_title] %>
-                        <%= submit_tag "Search", :name => nil %>
+                        <%= text_field_tag :ad_title, params[:ad_title], placeholder: "Search ad by name" %>
+                        <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
                     <% end %>
                 </div>
             </div>
@@ -27,29 +27,24 @@
                 </div>
             </div>
   
+
             <div class="col-4">
-                <form class="form-inline">
-                <input type="text" class="form-control mr-sm-2" placeholder="Search ad by location">
-                <button type="submit" class="btn btn-primary mr-10">Search</button>
-                </form>
+                <div class="form-inline">
+                    <%= form_tag(posts_path, method: "get") do %>
+                        <%= text_field_tag :location, params[:location], placeholder: "Search ad by location" %>
+                        <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>    
 </div>
 
 
-<% if params[:category_id] %>
-  <% if @category.posts.present? %>
-    <%= render "layouts/form" %>
-  <% else %>
-    <h2 class="text-center text-muted"> No posts in this category</h2>
-  <% end %>
-<% else %>
-  <%= render "layouts/form" %>
-<% end %>
 
 
-<% if params[:ad_title] %>
+
+<% if params[:location] %>
     <%= render "layouts/form" %>
 <% else %>
     <h2 class="text-center text-muted"> No posts in this category</h2>

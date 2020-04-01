@@ -13,6 +13,12 @@ class PostsController < ApplicationController
         if params[:ad_title]
             @posts = @posts.where("ad_title LIKE ?", params[:ad_title])
         end 
+
+        if params[:location]
+            @user = User.select(["id"]).where("location LIKE ?", params[:location])
+            @posts = Post.where(:user_id => @user.id)
+            @posts = @post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+        end 
     end     
 
     def show
