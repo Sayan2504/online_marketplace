@@ -1,3 +1,5 @@
+<% provide(:title, "Advertisements") %>
+
 <div class="jumbotron pt-4 pb-4">
     <div class="container">
         <div class="row">
@@ -44,8 +46,22 @@
 
 
 
-<% if params[:location] %>
-    <%= render "layouts/form" %>
-<% else %>
-    <%= render "layouts/form" %>
+<% if params[:category_id] %>
+    <% if @category.posts.present? %>
+        <%= render "layouts/form" %>
+    <% else %>
+        <h2 class="text-center text-muted mt-5"> No advertisements in this category</h2>
+    <% end %>
+<% elsif params[:ad_title] %>
+    <% if @ad_title.present? %>
+        <%= render "layouts/form" %>
+    <% else %>
+        <h2 class="text-center text-muted mt-5"> No advertisements with this name</h2>
+    <% end %>
+<% elsif params[:location] %>
+    <% if @location.present? %>
+        <%= render "layouts/form" %>
+    <% else %>
+        <h2 class="text-center text-muted mt-5"> No advertisements from this location</h2>
+    <% end %>
 <% end %>

@@ -34,6 +34,6 @@ class Post < ApplicationRecord
 
     validates :city, presence: true, 
                      length: {maximum: 50, minimum: 1},
-                     format: {with: VALID_CITY_REGEX}   
+                     format: {with: VALID_CITY_REGEX} 
   
 end

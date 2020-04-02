@@ -4,10 +4,10 @@ class PostsController < ApplicationController
     
     def index
         @category = Category.find_by(id: params[:category_id])
-        @user = User.find_by(location: params[:location])
         @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         
-        if params[:category_id]
+
+        if params[:category_id] 
             @posts = @posts.where(category_id: params[:category_id])
         end 
 
@@ -113,7 +113,4 @@ class PostsController < ApplicationController
     def set_post
         @post = Post.find(params[:id])
     end
-
-    
-
 end
