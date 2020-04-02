@@ -4,6 +4,7 @@ class PostsController < ApplicationController
     
     def index
         @category = Category.find_by(id: params[:category_id])
+        @user = User.find_by(location: params[:location])
         @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         
         if params[:category_id]
@@ -15,9 +16,7 @@ class PostsController < ApplicationController
         end 
 
         if params[:location]
-            @user = User.select(["id"]).where("location LIKE ?", params[:location])
-            @posts = Post.where(:user_id => @user.id)
-            @posts = @post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+            @posts = @posts.where("city LIKE ?", params[:location])
         end 
     end     
 
