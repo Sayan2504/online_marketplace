@@ -7,6 +7,15 @@
             <div class="col-4">
                 <div class="form-inline">
                     <%= form_tag(posts_path, method: "get") do %>
+
+                        <% if params[:category_id].present? %>
+                            <%= hidden_field_tag :category_id, params[:category_id] %>
+                        <% end %>
+
+                        <% if params[:location].present? %>
+                            <%= hidden_field_tag :location, params[:location] %>
+                        <% end %>
+
                         <%= text_field_tag :ad_title, params[:ad_title], placeholder: "Search ad by name" %>
                         <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
                     <% end %>
@@ -21,7 +30,7 @@
                         Choose Category
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <%= link_to "All Categories", posts_path , class: "dropdown-item"%>
+                        <%= link_to "All Categories", posts_path, class: "dropdown-item"%>
                         <% Category.all.each do |category| %>
                             <%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item"%>
                         <% end %>
@@ -33,6 +42,15 @@
             <div class="col-4">
                 <div class="form-inline">
                     <%= form_tag(posts_path, method: "get") do %>
+
+                        <% if params[:category_id].present? %>
+                            <%= hidden_field_tag :category_id, params[:category_id] %>
+                        <% end %>
+
+                        <% if params[:ad_title].present? %>
+                            <%= hidden_field_tag :ad_title, params[:ad_title] %>
+                        <% end %>
+                        
                         <%= text_field_tag :location, params[:location], placeholder: "Search ad by location" %>
                         <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
                     <% end %>

@@ -12,6 +12,8 @@ class Post < ApplicationRecord
     has_many :reviews
     accepts_nested_attributes_for :post_attachments
 
+    
+
     validates :ad_title, presence: true, 
                          length: {maximum: 16, minimum: 2}, 
                          format: {with: VALID_TITLE_REGEX}
