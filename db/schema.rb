@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_201215) do
+ActiveRecord::Schema.define(version: 2020_04_02_075330) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2020_03_30_201215) do
     t.boolean "admin"
     t.string "provider"
     t.string "uid"
-    t.string "location"
   end
 
   add_foreign_key "posts", "users"
