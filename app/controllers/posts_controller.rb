@@ -4,6 +4,9 @@ class PostsController < ApplicationController
     
     def index
         @category = Category.find_by(id: params[:category_id])
+        @post_ad_title = Post.find_by(ad_title: params[:ad_title])
+        @post_city = Post.find_by(city: params[:location])
+
         @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         
 
