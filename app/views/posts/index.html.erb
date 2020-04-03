@@ -23,36 +23,26 @@
             </div>
 
 
-
-            <div class="col-4 text-center">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose Category
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <%= link_to "All Categories", posts_path, class: "dropdown-item"%>
-                        <% Category.all.each do |category| %>
-                            <%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item"%>
-                        <% end %>
-                    </div>
+        <div class="col-4 text-center">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Choose Category
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a><%= link_to "All Categories", posts_path , class: "dropdown-item"%></a>
+                    <% Category.all.each do |category| %>
+                        <a><%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item"%></a>
+                    <% end %>
                 </div>
             </div>
+        </div>
 
-            <div class="col-4 text-center">
-                <div class="form-group">
-                    <select class="form-control" id="sel1">
-                        <option value=""  hidden selected> Select category </option>
-                        <% Category.all.each do |category| %>
-                            <option>
-                                <%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item"%>
-                            </option>
-                        <% end %>
-                    </select>
-                </div> 
-            </div>
-
-            
-  
+        <script>
+            $(".dropdown-menu a").click(function(){
+                console.log($(this).text());
+                $(".btn").html($(this).text());
+            });
+        </script> 
 
             <div class="col-4">
                 <div class="form-inline">
