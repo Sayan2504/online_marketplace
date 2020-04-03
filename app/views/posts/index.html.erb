@@ -37,6 +37,21 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-4 text-center">
+                <div class="form-group">
+                    <select class="form-control" id="sel1">
+                        <option value=""  hidden selected> Select category </option>
+                        <% Category.all.each do |category| %>
+                            <option>
+                                <%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item"%>
+                            </option>
+                        <% end %>
+                    </select>
+                </div> 
+            </div>
+
+            
   
 
             <div class="col-4">
