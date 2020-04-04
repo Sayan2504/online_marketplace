@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-    before_action :set_format, only: [:show, :edit, :update, :destroy]
+    before_action :set_category, only: [:show, :edit, :update, :destroy]
 
     def index
         @categories = Category.all
@@ -26,7 +26,7 @@ class Admin::CategoriesController < ApplicationController
         params.require(:category).permit(:name)
     end
 
-    def set_format
+    def set_category
         @category = Category.find(params[:id])
     end
 end

@@ -1,19 +1,27 @@
 class PostsController < ApplicationController
     before_action :set_post, only: [:show]
 
-    
     def index
-        
-        @category_id = params[:category_id]
-        @category = Category.find_by(id: @category_id )
+        @post = Post.find_by(category_id: 0) #default value set
+
+        if params[:category_id].present?
+            @category = Category.find_by(id: params[:category_id][:id])
+        else
+            @category = Category.find_by(id: params[:category_id])
+        end
+
+
 
         @post_ad_title = Post.find_by(ad_title: params[:ad_title])
         @post_city = Post.find_by(city: params[:location])
 
+
+        
         @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         
-        if @category_id         
-            @posts = @posts.where(category_id: params[:category_id])
+        
+        if params[:category_id]        
+            @posts = @posts.where(category_id: params[:category_id][:id])
         end 
 
         if params[:ad_title]
@@ -36,6 +44,7 @@ class PostsController < ApplicationController
         @post = Post.new
         @post_attachment = @post.post_attachments.build
     end
+    
 
     def create
         @post = Post.new(post_params)

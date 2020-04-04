@@ -28,8 +28,6 @@ Rails.application.routes.draw do
   post "/approved", to: "posts#approve"
   post "/rejected", to: "posts#reject"
 
-  
-
 
 
 

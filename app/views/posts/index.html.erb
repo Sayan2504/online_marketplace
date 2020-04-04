@@ -1,7 +1,5 @@
 <% provide(:title, "Advertisements") %>
 
-<%= render "modal" %>
-
 <div class="jumbotron pt-4 pb-4">
     <div class="container">
         <div class="row">
@@ -24,20 +22,16 @@
                 </div>
             </div>
 
-
-        <div class="col-4 text-center">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Choose Category
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a><%= link_to "All Categories", posts_path , class: "dropdown-item" %></a>
-                    <% Category.all.each do |category| %>
-                        <a><%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item"%></a>
+            <div class="col-4">
+                <div class="form-inline">
+                    <%= form_tag(posts_path, method: "get") do %>
+                        
+                        <%= collection_select  :category_id, :id, Category.all, :id, :name, { prompt: "-- Select Category --" }, { class: "form-control", required: true } %>
+                        <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
+                        
                     <% end %>
                 </div>
             </div>
-        </div>
 
 
             <div class="col-4">

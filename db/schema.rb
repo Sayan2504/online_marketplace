@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_075330) do
+ActiveRecord::Schema.define(version: 2020_04_04_220120) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2020_04_02_075330) do
 
   create_table "posts", force: :cascade do |t|
     t.string "ad_title"
-    t.integer "category_id"
     t.text "ad_description"
     t.string "user_name"
     t.string "phone"
@@ -38,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_075330) do
     t.integer "user_id"
     t.string "approved_by", default: "null"
     t.string "detailed_ad_title"
+    t.integer "category_id", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
