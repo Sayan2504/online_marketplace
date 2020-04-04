@@ -3,14 +3,16 @@ class PostsController < ApplicationController
 
     
     def index
-        @category = Category.find_by(id: params[:category_id])
+        
+        @category_id = params[:category_id]
+        @category = Category.find_by(id: @category_id )
+
         @post_ad_title = Post.find_by(ad_title: params[:ad_title])
         @post_city = Post.find_by(city: params[:location])
 
         @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         
-
-        if params[:category_id] 
+        if @category_id         
             @posts = @posts.where(category_id: params[:category_id])
         end 
 
@@ -21,6 +23,7 @@ class PostsController < ApplicationController
         if params[:location]
             @posts = @posts.where("city LIKE ?", params[:location])
         end 
+
     end     
 
     def show

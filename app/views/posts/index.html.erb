@@ -1,5 +1,7 @@
 <% provide(:title, "Advertisements") %>
 
+<%= render "modal" %>
+
 <div class="jumbotron pt-4 pb-4">
     <div class="container">
         <div class="row">
@@ -29,20 +31,14 @@
                     Choose Category
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a><%= link_to "All Categories", posts_path , class: "dropdown-item", remote: true%></a>
+                    <a><%= link_to "All Categories", posts_path , class: "dropdown-item" %></a>
                     <% Category.all.each do |category| %>
-                        <a><%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item", remote: true %></a>
+                        <a><%= link_to category.name, posts_path(:category_id => category.id) , class: "dropdown-item"%></a>
                     <% end %>
                 </div>
             </div>
         </div>
 
-        <script>
-            $(".dropdown-menu a").click(function(){
-                console.log($(this).text());
-                $(".btn").html($(this).text());
-            });
-        </script> 
 
             <div class="col-4">
                 <div class="form-inline">
@@ -64,6 +60,7 @@
         </div>
     </div>    
 </div>
+
 
 
 
