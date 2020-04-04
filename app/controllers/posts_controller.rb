@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     def index
         @post = Post.find_by(category_id: 0) #default value set
 
-        if params[:category_id].present?
+        if params[:category_id]
             @category = Category.find_by(id: params[:category_id][:id])
         else
             @category = Category.find_by(id: params[:category_id])
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
         @post_city = Post.find_by(city: params[:location])
 
 
-        
+
         @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
         
         
