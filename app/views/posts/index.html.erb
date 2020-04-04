@@ -9,7 +9,7 @@
                     <%= form_tag(posts_path, method: "get") do %>
 
                         <% if params[:category_id] %>
-                            <%= hidden_field_tag :category_id[:id], params[:category_id][:id] %>
+                            <%= hidden_field_tag :id, params[:id] %>
                         <% end %>
 
                         <% if params[:location].present? %>
@@ -46,8 +46,8 @@
                 <div class="form-inline">
                     <%= form_tag(posts_path, method: "get") do %>
 
-                        <% if params[:category_id].present? %>
-                            <%= hidden_field_tag :category_id, params[:category_id] %>
+                        <% if params[:category_id] %>
+                        <%= hidden_field_tag :id, params[:id] %>
                         <% end %>
 
                         <% if params[:ad_title].present? %>
