@@ -1,70 +1,110 @@
 <% provide(:title, "Advertisements") %>
 
-<div class="jumbotron pt-4 pb-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="form-inline">
-                    <%= form_tag(posts_path, method: "get") do %>
+<div class="sticky-top">
+    <div class="jumbotron pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-inline">
+                        <%= form_tag(posts_path, method: "get") do %>
 
-                        <% if params[:category_id] %>
+                            <% if params[:category_id] %>
+                                <%= hidden_field_tag :id, params[:id] %>
+                            <% end %>
+
+                            <% if params[:location].present? %>
+                                <%= hidden_field_tag :location, params[:location] %>
+                            <% end %>
+
+                            <%= text_field_tag :ad_title, params[:ad_title], placeholder: "Search ad by name" %>
+                            <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
+                        <% end %>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-inline">
+                        <%= form_tag(posts_path, method: "get") do %>
+
+                            <% if params[:location].present? %>
+                                <%= hidden_field_tag :location, params[:location] %>
+                            <% end %>
+
+                            <% if params[:ad_title].present? %>
+                                <%= hidden_field_tag :ad_title, params[:ad_title] %>
+                            <% end %>
+                            
+                            <%= collection_select  :category_id, :id, Category.all, :id, :name,  { prompt: "Search ad by category" }, { class: "form-control" } %>
+                            <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
+                            
+                        <% end %>
+                    </div>
+                </div>
+
+
+                <div class="col-4">
+                    <div class="form-inline">
+                        <%= form_tag(posts_path, method: "get") do %>
+
+                            <% if params[:category_id] %>
                             <%= hidden_field_tag :id, params[:id] %>
-                        <% end %>
+                            <% end %>
 
-                        <% if params[:location].present? %>
-                            <%= hidden_field_tag :location, params[:location] %>
+                            <% if params[:ad_title].present? %>
+                                <%= hidden_field_tag :ad_title, params[:ad_title] %>
+                            <% end %>
+                            
+                            <%= text_field_tag :location, params[:location], placeholder: "Search ad by location" %>
+                            <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
                         <% end %>
-
-                        <%= text_field_tag :ad_title, params[:ad_title], placeholder: "Search ad by name" %>
-                        <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
-                    <% end %>
+                    </div>
                 </div>
             </div>
+        </div>    
+    </div>
+</div>
 
-            <div class="col-4">
-                <div class="form-inline">
-                    <%= form_tag(posts_path, method: "get") do %>
 
-                        <% if params[:location].present? %>
-                            <%= hidden_field_tag :location, params[:location] %>
+<% if params[:ad_title]  || params[:category_id] || params[:location]%>
+    <div class="jumbotron pt-4 pb-4 mt-1">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-4 text-center">
+                    <h5>
+                        <% if params[:ad_title] %>
+                            <% @posts.each do |post| %>
+                                <label><strong>Ad Title : </strong></label>
+                                <span><%= post.ad_title %></span>
+                            <% end %>     
                         <% end %>
-
-                        <% if params[:ad_title].present? %>
-                            <%= hidden_field_tag :ad_title, params[:ad_title] %>
-                        <% end %>
-                        
-                        <%= collection_select  :category_id, :id, Category.all, :id, :name,  { prompt: "Search ad by category" }, { class: "form-control" } %>
-                        <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
-                        
-                    <% end %>
+                    </h5>
                 </div>
-            </div>
 
-
-            <div class="col-4">
-                <div class="form-inline">
-                    <%= form_tag(posts_path, method: "get") do %>
-
+                <div class="col-4 text-center">
+                    <h5>
                         <% if params[:category_id] %>
-                        <%= hidden_field_tag :id, params[:id] %>
+                            <% @posts.each do |post| %>
+                                <label><strong>Category : </strong></label>
+                                <span><%= post.category.name %></span>
+                            <% end %>     
                         <% end %>
+                    </h5>
+                </div>
 
-                        <% if params[:ad_title].present? %>
-                            <%= hidden_field_tag :ad_title, params[:ad_title] %>
+                <div class="col-4 text-center">
+                    <h5>
+                        <% if params[:location] %>
+                            <% @posts.each do |post| %>
+                                <label><strong>Location : </strong></label>
+                                <span><%= post.city %></span>
+                            <% end %>     
                         <% end %>
-                        
-                        <%= text_field_tag :location, params[:location], placeholder: "Search ad by location" %>
-                        <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
-                    <% end %>
+                    </h5>
                 </div>
             </div>
         </div>
-    </div>    
-</div>
-
-<div class="jumbotron pt-4 pb-4 mt-1">
-    
-</div>
+    </div>
+<% end %>
 
 
 
