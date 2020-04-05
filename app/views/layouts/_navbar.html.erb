@@ -61,15 +61,9 @@
 
     <% else %>
     
-      <% if controller_name == "home" %>
+      <% if controller_name != "posts" %>
         <li class="nav-item active">
-          <%= link_to "See Advertisements", posts_path, class: "nav-link" %>
-        </li>
-      <% elsif controller_name == "posts" %>
-        <li class="nav-item active">
-          <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">
-            Search Ads
-          </a>
+          <%= link_to "Advertisements", posts_path, class: "nav-link" %>
         </li>
       <% end %>
 
