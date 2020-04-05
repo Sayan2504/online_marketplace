@@ -66,16 +66,14 @@
 
 
 <% if params[:ad_title]  || params[:category_id] || params[:location]%>
-    <div class="jumbotron pt-4 pb-4 mt-1">
+    <div class="jumbotron pt-4 pb-3 mt-1">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-4 text-center">
                     <h5>
                         <% if params[:ad_title] %>
-                            <% @posts.each do |post| %>
-                                <label><strong>Ad Title : </strong></label>
-                                <span><%= post.ad_title %></span>
-                            <% end %>     
+                            <label><strong>Ad Title : </strong></label>
+                            <span><%= params[:ad_title] %></span>  
                         <% end %>
                     </h5>
                 </div>
@@ -83,10 +81,8 @@
                 <div class="col-4 text-center">
                     <h5>
                         <% if params[:category_id] %>
-                            <% @posts.each do |post| %>
-                                <label><strong>Category : </strong></label>
-                                <span><%= post.category.name %></span>
-                            <% end %>     
+                            <label><strong>Category : </strong></label>
+                            <span><%= @category.name %></span>     
                         <% end %>
                     </h5>
                 </div>
@@ -94,10 +90,8 @@
                 <div class="col-4 text-center">
                     <h5>
                         <% if params[:location] %>
-                            <% @posts.each do |post| %>
-                                <label><strong>Location : </strong></label>
-                                <span><%= post.city %></span>
-                            <% end %>     
+                            <label><strong>Location : </strong></label>
+                            <span><%= params[:location] %></span>    
                         <% end %>
                     </h5>
                 </div>
@@ -118,7 +112,7 @@
     <% end %>
 
 <% elsif params[:ad_title] %>
-    <% if @post_ad_title %>
+    <% if @post_ad_title.present? %>
         <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
         <%= render "layouts/form" %>
     <% else %>
@@ -126,7 +120,15 @@
     <% end %>
 
 <% elsif params[:location] %>
-    <% if @post_city %>
+    <% if @post_city.present? %>
+        <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
+        <%= render "layouts/form" %>
+    <% else %>
+        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+    <% end %>
+
+<% elsif params[:ad_title] && params[:location] %>
+    <% if @post_ad_title.present? && @post_city.present?%>
         <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
         <%= render "layouts/form" %>
     <% else %>

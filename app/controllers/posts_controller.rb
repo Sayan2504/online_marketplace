@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
     def index
         @post = Post.find_by(category_id: 0) #default value set
-
         if params[:category_id]
             @category = Category.find_by(id: params[:category_id][:id])
         else
