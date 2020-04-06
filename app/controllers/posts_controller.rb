@@ -12,7 +12,6 @@ class PostsController < ApplicationController
         @post_city = Post.find_by(city: params[:location])
 
 
-
         @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city"]).where.not(approved_by: ['null', 'rejected'])
         
         if params[:category_id]        

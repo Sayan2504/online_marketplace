@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-light navbar-light">
   <% if logged_in? %>
-    <%= link_to "#{current_user.name}'s Homepage", user_path(current_user), class: "navbar-brand" %>
+
+    <% if admin_user? %>
+      <%= link_to "Admin Homepage", users_path, class: "navbar-brand" %>
+    <% else %>
+      <%= link_to "#{current_user.name}'s Homepage", user_path(current_user), class: "navbar-brand" %>
+    <% end %>
+
   <% else %>
     <%= link_to "Online Marketplace App", root_path, class: "navbar-brand ml-15" %>
   <% end %>
@@ -28,9 +34,6 @@
         </li>
         <li class="nav-item active">
           <%= link_to "Categories", admin_categories_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "Admin", users_path, class: "nav-link" %>
         </li>
         <li class="nav-item active">
           <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>

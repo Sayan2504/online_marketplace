@@ -176,12 +176,9 @@
 
 <% if params[:category_id] %>
     <% if @category.posts.present? %>
-        <% if @post_ad_title.present? || @post_city.present?%>
-            <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
-            <%= render "layouts/form" %>
-        <% else %>
-            <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-        <% end %>
+    
+        <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
+        <%= render "layouts/form" %>
     <% else %>
         <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
     <% end %>
