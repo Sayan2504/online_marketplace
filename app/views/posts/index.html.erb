@@ -8,10 +8,10 @@
                     <div class="form-inline">
                         <%= form_tag(posts_path, method: "get") do %>
 
-                            <% if params[:category_id] && (params[:ad_title] || params[:location]) %>
-                                <%= hidden_field_tag :category_id, params[:category_id] %>
-                            <% elsif params[:category_id] %>
-                                <%= hidden_field_tag :category_id, params[:category_id][:id] %>
+                            <% if params[:category_id].present? %>
+                                <% params[:category_id].each do |id,value| %>
+                                    <%= hidden_field_tag "category_id[#{id}]",value %> 
+                                <% end %>
                             <% end %>
 
                             <% if params[:location].present? %>
@@ -35,8 +35,7 @@
                             <% if params[:ad_title].present? %>
                                 <%= hidden_field_tag :ad_title, params[:ad_title] %>
                             <% end %>
-                            
-                            
+
                             <%= collection_select  :category_id, :id, Category.all, :id, :name, { prompt: "Search ad by category" }, { class: "form-control" } %>
                             <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
                             
@@ -49,10 +48,10 @@
                     <div class="form-inline">
                         <%= form_tag(posts_path, method: "get") do %>
 
-                            <% if params[:category_id] && (params[:ad_title] || params[:location]) %>
-                                <%= hidden_field_tag :category_id, params[:category_id] %>
-                            <% elsif params[:category_id] %>
-                                <%= hidden_field_tag :category_id, params[:category_id][:id] %>
+                            <% if params[:category_id].present? %>
+                                <% params[:category_id].each do |id,value| %>
+                                    <%= hidden_field_tag "category_id[#{id}]",value %> 
+                                <% end %>
                             <% end %>
 
                             <% if params[:ad_title].present? %>
@@ -78,7 +77,9 @@
                     <h5>
                         <% if params[:ad_title] %>
                             <label><strong>Ad Title : </strong></label>
-                            <span><%= params[:ad_title] %></span>  
+                            <span><%= params[:ad_title] %></span>
+                        <% else %>
+                            <span></span>
                         <% end %>
                     </h5>
                 </div>
@@ -87,7 +88,9 @@
                     <h5>
                         <% if params[:category_id] %>
                             <label><strong>Category : </strong></label>
-                            <span><%= @category.name %></span>     
+                            <span><%= @category.name %></span>
+                        <% else %>
+                            <span></span>   
                         <% end %>
                     </h5>
                 </div>
@@ -96,7 +99,9 @@
                     <h5>
                         <% if params[:location] %>
                             <label><strong>Location : </strong></label>
-                            <span><%= params[:location] %></span>    
+                            <span><%= params[:location] %></span>
+                        <% else %>
+                            <span></span>    
                         <% end %>
                     </h5>
                 </div>
@@ -132,21 +137,8 @@
         <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
     <% end %>
 
-<% elsif params[:ad_title] && params[:location] %>
-    <% if @post_ad_title.present? && @post_city.present?%>
-        <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
-        <%= render "layouts/form" %>
-    <% else %>
-        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-    <% end %>
-    
-<% elsif params[:ad_title] && params[:location] && params[:category_id] %>
-    <% if @post_ad_title.present? && @post_city.present? && @category.posts.present? %>
-        <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
-        <%= render "layouts/form" %>
-    <% else %>
-        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-    <% end %>
+
+
 <% else %>
     <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
     <%= render "layouts/form" %>                 
