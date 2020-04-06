@@ -70,6 +70,12 @@
         </li>
       <% end %>
 
+      <% if controller_name == "posts" %>
+        <li class="nav-item active">
+          <%= link_to "All Advertisements", posts_path, class: "nav-link" %>
+        </li>
+      <% end %>
+
       <li class="nav-item active">
         <%= link_to "Log In", login_path, class: "nav-link" %>
       </li>
