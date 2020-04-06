@@ -73,38 +73,99 @@
     <div class="jumbotron pt-4 pb-3 mt-1">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-4 text-center">
-                    <h5>
-                        <% if params[:ad_title] %>
-                            <label><strong>Ad Title : </strong></label>
-                            <span><%= params[:ad_title] %></span>
-                        <% else %>
-                            <span></span>
-                        <% end %>
-                    </h5>
-                </div>
 
-                <div class="col-4 text-center">
-                    <h5>
-                        <% if params[:category_id] %>
-                            <label><strong>Category : </strong></label>
-                            <span><%= @category.name %></span>
-                        <% else %>
-                            <span></span>   
-                        <% end %>
-                    </h5>
-                </div>
-
-                <div class="col-4 text-center">
-                    <h5>
+                <% if params[:ad_title] %>
+                    <% if params[:category_id] %>
                         <% if params[:location] %>
-                            <label><strong>Location : </strong></label>
-                            <span><%= params[:location] %></span>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
                         <% else %>
-                            <span></span>    
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_all" %>
                         <% end %>
-                    </h5>
-                </div>
+
+                    <% elsif params[:location] %>
+                        <% if params[:category_id] %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
+                        <% else %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_all" %>
+                            <%= render "ad_location_params" %>
+                        <% end %>
+
+                    <% else %>
+                        <%= render "ad_title_params" %>
+                        <%= render "ad_category_all" %>
+                        <%= render "ad_location_all" %>
+
+                    <% end %>
+                
+
+                <% elsif params[:category_id] %>
+                    <% if params[:ad_title] %>
+                        <% if params[:location] %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
+                        <% else %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_all" %>
+                        <% end %>
+
+                    <% elsif params[:location] %>
+                        <% if params[:ad_title] %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
+                        <% else %>
+                            <%= render "ad_title_all" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
+                        <% end %>
+
+                    <% else %>
+                        <%= render "ad_title_all" %>
+                        <%= render "ad_category_params" %>
+                        <%= render "ad_location_all" %>
+
+                    <% end %>
+
+                <% elsif params[:location] %>
+                    <% if params[:ad_title] %>
+                        <% if params[:category_id] %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
+                        <% else %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_all" %>
+                            <%= render "ad_location_params" %>
+                        <% end %>
+
+                    <% elsif params[:category_id] %>
+                        <% if params[:ad_title] %>
+                            <%= render "ad_title_params" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
+                        <% else %>
+                            <%= render "ad_title_all" %>
+                            <%= render "ad_category_params" %>
+                            <%= render "ad_location_params" %>
+                        <% end %>
+
+                    <% else %>
+                        <%= render "ad_title_all" %>
+                        <%= render "ad_category_all" %>
+                        <%= render "ad_location_params" %>
+
+                    <% end %>
+                <% end %>
+                
             </div>
         </div>
     </div>
