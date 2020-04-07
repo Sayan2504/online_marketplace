@@ -2,31 +2,45 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:show]
 
     def index
-        @post = Post.find_by(category_id: 0) #default value set
-        
+        @post = Post.find_by(category_id: 0) #default value set for post
+
+    #check whether the category is in database and matches the ad_title/location (if given)
         if params[:category_id]
-            @category = Category.find_by(id: params[:category_id][:id])
+            @category = Category.find_by(id: params[:category_id][:id])  
         end
 
-        @post_ad_title = Post.find_by(ad_title: params[:ad_title])
-        @post_city = Post.find_by(city: params[:location])
+    #messages for users based on posts on given filtration is present or not present
 
+        @post_ad_title = Post.select(["id"]).find_by(ad_title: params[:ad_title]) #check whether ad_title is in database
+        @post_city = Post.select(["id"]).find_by(city: params[:location]) #check whether location is in database
+        
+        if params[:category_id]
+            @post_category = Post.select(["id"]).find_by(category_id: params[:category_id][:id])
+        end
 
+    #Showing the thumbnails of posts
+         
+        #if no filtration given
         @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city"]).where.not(approved_by: ['null', 'rejected'])
         
+        #filtration based on category
         if params[:category_id]        
             @posts = @posts.where(category_id: params[:category_id][:id])
         end 
 
+        #filtration based on ad title
         if params[:ad_title]
             @posts = @posts.where("ad_title LIKE ?", params[:ad_title])
         end 
 
+        #filtration based on location
         if params[:location]
             @posts = @posts.where("city LIKE ?", params[:location])
         end 
 
     end     
+
+
 
     def show
         @user = current_user
