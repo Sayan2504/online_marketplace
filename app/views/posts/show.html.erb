@@ -5,7 +5,7 @@
     <div class="col-sm-6 col-md-9" style="left :140px">
       <h1 class="text-center"><%= @post.ad_title.upcase %></h1>
     </div>
-
+    
     <% if admin_user? %>
 
       <% if @post.approved_by == "null" %>
@@ -53,10 +53,11 @@
 
     <% elsif @post.approved_by != "null" or @post.approved_by != "rejected" %>
         <% if !logged_in? %>
-          <div class="col-xs-12 col-sm-3 md-6">
+          <div class="col-xs-6 col-sm-3 md-6">
             <div class="row btn-toolbar" style="display: block">
-              <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
-            </div>
+              <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-md btn-primary" %>
+              <%= link_to 'Buy Product', new_buyer_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-md btn-primary" %>
+              </div>
           </div>
         
         <% elsif @post.user_id != current_user.id %>

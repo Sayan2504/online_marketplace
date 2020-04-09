@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   post "/approved", to: "posts#approve"
   post "/rejected", to: "posts#reject"
 
+  #for buying
+  resources :buyers
+  post "/buyers_list", to: "buyers#buyers_list"
+  
 
 
 

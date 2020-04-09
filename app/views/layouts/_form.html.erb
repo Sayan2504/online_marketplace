@@ -15,49 +15,62 @@
                 <% end %>
               </div>
               
-              <div class="col-sm-8 align-item-center text-align-center pr-0 pl-0 pb-0">
+              <div class="col-sm-8 align-item-center text-align-center pr-0 pl-0 pb-0 pt-10">
                 <% if admin_user? %>
-                  <span style="text-align:center"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <span style="text-align: center"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
                 <% else %>
-                  <span style="text-align:center"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <span style="text-align: center"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
                 <% end %>
 
-                <% if logged_in? %>
                 
-                  <% if admin_user? %>
+                
+                <% if admin_user? %>
 
-                    <% if post.approved_by == "null" %>
-                      <div class="row ml-3" style="display: inline-block" >
-                        <%= link_to 'Approve',  {:controller => "ads",
+                  <% if post.approved_by == "null" %>
+                    <div class="row ml-3" style="display: inline-block" >
+                      <%= link_to 'Approve',  {:controller => "ads",
                                                 :action => "approve",
                                                 :id => post.id,
                                                 :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
 
-                        <%= link_to 'Reject',  {:controller => "ads",
+                      <%= link_to 'Reject',  {:controller => "ads",
                                               :action => "reject",
                                               :id => post.id,
                                               :decision => "false"}, method: 'post', class: "btn btn-md btn-secondary" %>
-                      </div>
+                    </div>
 
-                    <% elsif post.approved_by == "rejected" %>
-                      <div class="row ml-5" style="display: inline-block" >
+                  <% elsif post.approved_by == "rejected" %>
+                    <div class="row ml-5" style="display: inline-block" >
                         
-                        <%= link_to 'Approve',  {:controller => "ads",
+                      <%= link_to 'Approve',  {:controller => "ads",
                                                 :action => "approve",
                                                 :id => post.id,
                                                 :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
-                      </div>
+                    </div>
 
-                    <% else %>
-                      <div class="row ml-5" style="display: inline-block" >
+                  <% else %>
+                    <div class="row ml-5" style="display: inline-block">
 
-                        <%= link_to 'Reject',  {:controller => "ads",
+                      <%= link_to 'Reject',  {:controller => "ads",
                                             :action => "reject",
                                             :id => post.id,
                                             :decision => "false"}, method: 'post', class: "btn btn-md btn-secondary" %>
-                      </div>
-                    <% end %>
+                    </div>
                   <% end %>
+                <% end %>
+                
+
+                <% if logged_in? %>
+                  <div class="row ml-5" style="display: inline-block">
+                          
+                    <%= link_to 'Buyers list',  {:controller => "buyers",
+                                          :action => "buyers_list",
+                                          :id => post.id,
+                                          :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
+                  </div>
+
+                <% else %>
+                  
                 <% end %>
               </div>
             </div>
