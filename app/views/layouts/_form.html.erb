@@ -19,41 +19,44 @@
                 <% if admin_user? %>
                   <span style="text-align:center"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
                 <% else %>
-                  <span style="text-align:center"><h5 class="mt-3 "><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <span style="text-align:center"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
                 <% end %>
 
-                <% if admin_user? %>
+                <% if logged_in? %>
+                
+                  <% if admin_user? %>
 
-                  <% if post.approved_by == "null" %>
-                    <div class="row ml-3" style="display: inline-block" >
-                      <%= link_to 'Approve',  {:controller => "ads",
-                                              :action => "approve",
+                    <% if post.approved_by == "null" %>
+                      <div class="row ml-3" style="display: inline-block" >
+                        <%= link_to 'Approve',  {:controller => "ads",
+                                                :action => "approve",
+                                                :id => post.id,
+                                                :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
+
+                        <%= link_to 'Reject',  {:controller => "ads",
+                                              :action => "reject",
                                               :id => post.id,
-                                              :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
+                                              :decision => "false"}, method: 'post', class: "btn btn-md btn-secondary" %>
+                      </div>
 
-                      <%= link_to 'Reject',  {:controller => "ads",
+                    <% elsif post.approved_by == "rejected" %>
+                      <div class="row ml-5" style="display: inline-block" >
+                        
+                        <%= link_to 'Approve',  {:controller => "ads",
+                                                :action => "approve",
+                                                :id => post.id,
+                                                :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
+                      </div>
+
+                    <% else %>
+                      <div class="row ml-5" style="display: inline-block" >
+
+                        <%= link_to 'Reject',  {:controller => "ads",
                                             :action => "reject",
                                             :id => post.id,
                                             :decision => "false"}, method: 'post', class: "btn btn-md btn-secondary" %>
-                    </div>
-
-                  <% elsif post.approved_by == "rejected" %>
-                    <div class="row ml-5" style="display: inline-block" >
-                      
-                      <%= link_to 'Approve',  {:controller => "ads",
-                                              :action => "approve",
-                                              :id => post.id,
-                                              :decision => "true"}, method: 'post', class: "btn btn-md btn-primary" %>
-                    </div>
-
-                  <% else %>
-                    <div class="row ml-5" style="display: inline-block" >
-
-                      <%= link_to 'Reject',  {:controller => "ads",
-                                          :action => "reject",
-                                          :id => post.id,
-                                          :decision => "false"}, method: 'post', class: "btn btn-md btn-secondary" %>
-                    </div>
+                      </div>
+                    <% end %>
                   <% end %>
                 <% end %>
               </div>

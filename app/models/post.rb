@@ -10,6 +10,8 @@ class Post < ApplicationRecord
 
     has_many :post_attachments
     has_many :reviews
+    has_and_belongs_to_many :buyers
+
     accepts_nested_attributes_for :post_attachments
 
     
