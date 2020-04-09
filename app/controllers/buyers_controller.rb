@@ -14,7 +14,7 @@ class BuyersController < ApplicationController
 
         if @user.present?
             if @buyer_user.present?
-                flash[:warning] = "You already have a buying request for this post"
+                flash[:warning] = "You already have a buying request for this post. You need not request again"
                 redirect_to post_path(@buyer.post_id)
             else
                 if @buyer.save

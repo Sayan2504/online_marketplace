@@ -57,7 +57,7 @@
             <div class="row btn-toolbar" style="display: block">
               <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-md btn-primary" %>
               <%= link_to 'Buy Product', new_buyer_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-md btn-primary" %>
-              </div>
+            </div>
           </div>
         
         <% elsif @post.user_id != current_user.id %>
