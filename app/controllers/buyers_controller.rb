@@ -8,7 +8,18 @@ class BuyersController < ApplicationController
 
     def create
         @buyer = Buyer.new(buyer_params)
-
+        @buyer_id = User.select(["email"]).find_by(email: @buyer.email)
+        if @buyer_id.present?
+            if @buyer.save
+                flash[:success] = "Your buying request has been send to the author of the post"
+                redirect_to post_path(@buyer.post_id)
+            else
+                render "new"
+            end
+        else
+            flash[:warning] = "Please register yourself before buying"
+            redirect_to signup_path
+        end
     end
 
     def buyers_list
