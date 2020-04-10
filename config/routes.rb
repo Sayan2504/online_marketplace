@@ -30,7 +30,8 @@ Rails.application.routes.draw do
 
   #for buying
   resources :buyers
-  post "/buyers_list", to: "buyers#buyers_list"
+  get "/sell", to: "buyers#selling" 
+  post "/sell", to: "buyers#sell"
   
 
 

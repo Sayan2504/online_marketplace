@@ -79,8 +79,12 @@
         <% if !params[:ad_title] %>
 
             <% if !params[:location] %>
-                <h2 class="text-center mt-2 mb-4"> Advertisements</h2>  
-                <%= render "layouts/form" %>
+                <% if @posts.present? %>
+                    <h2 class="text-center mt-2 mb-4"> Advertisements</h2>  
+                    <%= render "layouts/form" %>
+                <% else %>
+                    <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+                <% end %>
             <% else %>
 
                 <% if @post_city.present? %>

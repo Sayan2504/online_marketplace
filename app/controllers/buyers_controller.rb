@@ -1,5 +1,9 @@
 class BuyersController < ApplicationController
 
+    def index
+        @buyers = Buyer.select(["id","buyer_name","email","location","post_id"]).where(post_id: params[:post_id])
+    end
+
     def new
         @post = Post.find(params[:post_id])
         @user = @post.user
@@ -30,7 +34,10 @@ class BuyersController < ApplicationController
         end
     end
 
-    def buyers_list
+    def sell
+    end
+
+    def selling
     end
 
 
