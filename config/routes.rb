@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   resources :buyers
   post "/sell", to: "buyers#sell"
   get "/sell", to: "buyers#sell"
+
+  post "/bought", to: "buyers#bought"
+  get "/bought", to: "buyers#bought"
   
 
 

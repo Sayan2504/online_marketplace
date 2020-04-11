@@ -53,6 +53,14 @@ class BuyersController < ApplicationController
         end
     end
 
+    def bought
+        #@buyer = Buyer.find(id)
+        
+        
+        @posts = Post.where.not(buyer_id: 0)
+       # @posts = @posts.where(buyer_id: @buyer.id)
+    end
+
 
 
 
