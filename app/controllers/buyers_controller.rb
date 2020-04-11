@@ -15,22 +15,27 @@ class BuyersController < ApplicationController
         @buyer = Buyer.new(buyer_params)
         @user = User.select(["email", "name"]).find_by(email: @buyer.email)
         @post = Post.select(["id", "ad_title"]).find_by(id: @buyer.post_id)
-        @buyer_user = Buyer.select(["email"]).find_by(email: @buyer.email)
+
+        @buyer_user = Buyer.where(post_id: @buyer.post_id)
+        @buyer_user = @buyer_user.find_by(email: @buyer.email)
+        
         
         @user_author = @buyer.user
 
         if @user.present?
-            if @buyer_user.present?
-                flash[:warning] = "You already have a buying request for this post. You need not request again"
-                redirect_to post_path(@buyer.post_id)
-            else
-                if @buyer.save
-                    flash[:success] = "Your buying request has been send to the author of the post #{@user_author.name}"
+            
+                if @buyer_user.present?
+                    flash[:warning] = "You already have a buying request for this post. You need not request again"
                     redirect_to post_path(@buyer.post_id)
                 else
-                    render "new"
+                    if @buyer.save
+                        flash[:success] = "Your buying request has been send to the author of the post #{@user_author.name}"
+                        redirect_to post_path(@buyer.post_id)
+                    else
+                        render "new"
+                    end
                 end
-            end
+            
         else
             flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
             redirect_to signup_path
@@ -46,9 +51,6 @@ class BuyersController < ApplicationController
                 redirect_to request.referrer
             end
         end
-    end
-
-    def selling
     end
 
 

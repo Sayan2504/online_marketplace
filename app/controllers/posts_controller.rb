@@ -21,8 +21,9 @@ class PostsController < ApplicationController
     #Showing the thumbnails of posts
          
         #if no filtration given
-        @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city"]).where.not(approved_by: ['null', 'rejected'])
-        
+        @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city", "buyer_id"]).where.not(approved_by: ['null', 'rejected'])
+        @posts = @posts.where(buyer_id: 0)
+
         #filtration based on category
         if params[:category_id]        
             @posts = @posts.where(category_id: params[:category_id][:id])

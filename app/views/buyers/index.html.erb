@@ -1,5 +1,7 @@
 <% provide(:title, "Buyers") %>
 
+
+<% if @buyers.present? %> 
 <section class="table-header mb-3">
   <div class="row">
     <div class="col-sm-12 col-md-6">
@@ -20,9 +22,9 @@
   </thead>
 
   <tbody>
-    <% @buyers.each do |buyer| %>
+    <% @buyers.each_with_index do |buyer,index| %>
       <tr>
-        <td><%= link_to buyer.id, buyer_path(buyer) %></td>
+        <td><%= link_to index+1, buyer_path(buyer) %></td>
         <td><%= buyer.buyer_name %></td>
         <td><%= buyer.location %></td>
         <td><%= buyer.email %></td>
@@ -39,7 +41,7 @@
         <% else %>
 
           <% if buyer.id == @post.buyer_id %>  
-            <td><%= link_to 'Product Sold', buyers_path, class: "btn btn-md btn-primary disabled" %></td>
+            <td><%= link_to "Sold to #{buyer.buyer_name}", buyers_path, class: "btn btn-md btn-primary disabled" %></td>
           <% else %>
             <td></td>
           <% end %>
@@ -50,7 +52,9 @@
     <% end %>
   </tbody>
 
-  <tbody>
-    
-  </tbody>
+  
 </table>
+
+<% else %>
+<h2 class="text-center text-muted mt-5"> No one has requested to buy this product yet</h2>
+<% end %>
