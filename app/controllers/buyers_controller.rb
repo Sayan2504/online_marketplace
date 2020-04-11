@@ -15,6 +15,8 @@ class BuyersController < ApplicationController
         @user = User.select(["email", "name"]).find_by(email: @buyer.email)
         @post = Post.select(["id", "ad_title"]).find_by(id: @buyer.post_id)
         @buyer_user = Buyer.select(["email"]).find_by(email: @buyer.email)
+        
+        @user_author = @buyer.user
 
         if @user.present?
             if @buyer_user.present?
@@ -22,7 +24,7 @@ class BuyersController < ApplicationController
                 redirect_to post_path(@buyer.post_id)
             else
                 if @buyer.save
-                    flash[:success] = "Your buying request has been send to the author of the post #{@user.name}"
+                    flash[:success] = "Your buying request has been send to the author of the post #{@user_author.name}"
                     redirect_to post_path(@buyer.post_id)
                 else
                     render "new"
