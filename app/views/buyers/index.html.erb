@@ -26,7 +26,26 @@
         <td><%= buyer.buyer_name %></td>
         <td><%= buyer.location %></td>
         <td><%= buyer.email %></td>
-        <td><%= link_to 'Sell Product', sell_path, class: "btn btn-md btn-primary" %></td>
+
+        <% if @post.buyer_id == 0 %>
+         
+          <td><%= link_to 'Sell Product',  {:controller => "buyers",
+                                            :action => "sell",
+                                            :id => buyer.id,
+                                            :decision => "true"}, method: 'post', 
+                                            class: "btn btn-md btn-primary",
+                                            data: { disable_with: "Selling..."  } %>
+          </td>
+        <% else %>
+
+          <% if buyer.id == @post.buyer_id %>  
+            <td><%= link_to 'Product Sold', buyers_path, class: "btn btn-md btn-primary disabled" %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>

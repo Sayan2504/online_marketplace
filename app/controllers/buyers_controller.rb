@@ -2,6 +2,7 @@ class BuyersController < ApplicationController
 
     def index
         @buyers = Buyer.select(["id","buyer_name","email","location","post_id"]).where(post_id: params[:post_id])
+        @post = Post.find_by(id: params[:post_id])
     end
 
     def new
@@ -37,6 +38,14 @@ class BuyersController < ApplicationController
     end
 
     def sell
+        @buyer = Buyer.find_by(id: params[:id])
+        @post = Post.find_by(id: @buyer.post_id)
+        if params[:decision] == "true"
+            if @post.buyer_id == 0
+                @post.update(buyer_id: @buyer.id)
+                redirect_to request.referrer
+            end
+        end
     end
 
     def selling
