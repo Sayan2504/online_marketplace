@@ -5,24 +5,38 @@ class BuyersController < ApplicationController
         @post = Post.find_by(id: params[:post_id])
     end
 
+
+
+
     def new
         @post = Post.find(params[:post_id])
         @user = @post.user
         @buyer = Buyer.new
     end
 
-    def create
-        @buyer = Buyer.new(buyer_params)
-        @user = User.select(["email", "name"]).find_by(email: @buyer.email)
-        @post = Post.select(["id", "ad_title"]).find_by(id: @buyer.post_id)
 
-        @buyer_user = Buyer.where(post_id: @buyer.post_id)
+
+
+
+    def create
+        @buyer = Buyer.new(buyer_params) #creating new buyer
+        @user = User.select(["email", "name"]).find_by(email: @buyer.email) #checking if user is registered or not
+        @post = Post.select(["id", "ad_title", "user_id"]).find_by(id: @buyer.post_id) #getting the post for which buyer request is being sent
+
+        @user_email = @post.user
+
+    #checking if buyer has already requested or not
+        @buyer_user = Buyer.where(post_id: @buyer.post_id)  
         @buyer_user = @buyer_user.find_by(email: @buyer.email)
         
-        
+    #getting the author of the post   
         @user_author = @buyer.user
-
-        if @user.present?
+   
+        if @user.email == @user_email.email
+            flash[:warning] = "You cannot put a buying request to your own advertisement"
+            redirect_to post_path(@buyer.post_id)
+        else
+            if @user.present?
             
                 if @buyer_user.present?
                     flash[:warning] = "You already have a buying request for this post. You need not request again"
@@ -36,11 +50,14 @@ class BuyersController < ApplicationController
                     end
                 end
             
-        else
-            flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
-            redirect_to signup_path
+            else
+                flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
+                redirect_to signup_path
+            end
         end
     end
+
+
 
     def sell
         @buyer = Buyer.find_by(id: params[:id])
@@ -53,10 +70,16 @@ class BuyersController < ApplicationController
         end
     end
 
+
+
+
     def bought
         @buyer = Buyer.where(email: current_user.email)
         @posts = Post.where(buyer_id: @buyer.ids)
     end
+
+
+
 
     def sold
         @buyer = Buyer.where(user_id: current_user.id)
