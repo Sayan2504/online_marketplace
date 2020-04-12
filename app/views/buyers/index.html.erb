@@ -24,7 +24,7 @@
   <tbody>
     <% @buyers.each_with_index do |buyer,index| %>
       <tr>
-        <td><%= link_to index+1, buyer_path(buyer) %></td>
+        <td><%= index+1 %></td>
         <td><%= buyer.buyer_name %></td>
         <td><%= buyer.location %></td>
         <td><%= buyer.email %></td>
