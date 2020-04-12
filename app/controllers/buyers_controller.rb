@@ -54,7 +54,8 @@ class BuyersController < ApplicationController
     end
 
     def bought
-        
+        @buyer = Buyer.where(email: current_user.email)
+        @posts = Post.where(buyer_id: @buyer.ids)
     end
 
     def sold
