@@ -32,29 +32,32 @@ class BuyersController < ApplicationController
     #getting the author of the post   
         @user_author = @buyer.user
    
-        if @user.email == @user_email.email
-            flash[:warning] = "You cannot put a buying request to your own advertisement"
-            redirect_to post_path(@buyer.post_id)
-        else
-            if @user.present?
-            
+        
+        if @user.present?
+            if @user.email == @user_email.email
+                flash[:warning] = "You cannot put a buying request to your own advertisement"
+                redirect_to post_path(@buyer.post_id)
+            else
                 if @buyer_user.present?
                     flash[:warning] = "You already have a buying request for this post. You need not request again"
                     redirect_to post_path(@buyer.post_id)
                 else
                     if @buyer.save
+                        BuyerMailer.buying_request(@buyer, @user_email, @post).deliver_now
+                        BuyerMailer.buying_request_sent(@buyer, @user_email, @post).deliver_now
                         flash[:success] = "Your buying request has been send to the author of the post #{@user_author.name}"
                         redirect_to post_path(@buyer.post_id)
                     else
                         render "new"
                     end
                 end
-            
-            else
-                flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
-                redirect_to signup_path
             end
+            
+        else
+            flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
+            redirect_to signup_path
         end
+        
     end
 
 
@@ -62,7 +65,12 @@ class BuyersController < ApplicationController
     def sell
         @buyer = Buyer.find_by(id: params[:id])
         @post = Post.find_by(id: @buyer.post_id)
+        @user = @post.user
+
         if params[:decision] == "true"
+            BuyerMailer.sell(@buyer, @post, @user).deliver_now
+            BuyerMailer.bought(@buyer, @post, @user).deliver_now
+
             if @post.buyer_id == 0
                 @post.update(buyer_id: @buyer.id)
                 redirect_to request.referrer

@@ -1,54 +1,36 @@
 
-
-
     <% if params[:category_id] %>
         <% if @category.posts.present? %>
-            <% if !params[:ad_title] %>
+            <% @posts.each do |post| %>
+                <% if post.buyer_id == 0 %>
+                    <% if !params[:ad_title] %>
 
-                <% if !params[:location] %>
-                    <h2 class="text-center mt-2 mb-4"> Advertisements</h2>  
-                    <%= render "layouts/form" %>
-                <% else %>
-
-                    <% if @post_city.present? %>
-
-                        <% if @post_category.id == @post_city.id %>
-                            <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
+                        <% if !params[:location] %>
+                            <h2 class="text-center mt-2 mb-4"> Advertisements</h2>  
                             <%= render "layouts/form" %>
                         <% else %>
-                            <h2 class="text-center text-muted mt-5"> No Advertisements</h2> 
-                        <% end %>
 
-                    <% else %>
-                        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-                    <% end %>
-
-                <% end %>
-
-            <% elsif params[:ad_title] %>
-
-                <% if !params[:location] %>
-                    <% if @post_ad_title.present? %>
-
-                        <% if @post_category.id == @post_ad_title.id %>
-                            <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
-                            <%= render "layouts/form" %>
-                        <% else %>
-                            <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-                        <% end %>
-
-                    <% else %>
-                        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-                    <% end %>
-
-                <% else %>
-
-                    <% if @post_city.present? %>
-                        <% if @post_ad_title.present? %>
-
-                            <% if @post_category.id == @post_ad_title.id %>
+                            <% if @post_city.present? %>
 
                                 <% if @post_category.id == @post_city.id %>
+                                    <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
+                                    <%= render "layouts/form" %>
+                                <% else %>
+                                    <h2 class="text-center text-muted mt-5"> No Advertisements</h2> 
+                                <% end %>
+
+                            <% else %>
+                                <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+                            <% end %>
+
+                        <% end %>
+
+                    <% elsif params[:ad_title] %>
+
+                        <% if !params[:location] %>
+                            <% if @post_ad_title.present? %>
+
+                                <% if @post_category.id == @post_ad_title.id %>
                                     <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
                                     <%= render "layouts/form" %>
                                 <% else %>
@@ -60,16 +42,37 @@
                             <% end %>
 
                         <% else %>
-                            <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+
+                            <% if @post_city.present? %>
+                                <% if @post_ad_title.present? %>
+
+                                    <% if @post_category.id == @post_ad_title.id %>
+
+                                        <% if @post_category.id == @post_city.id %>
+                                            <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
+                                            <%= render "layouts/form" %>
+                                        <% else %>
+                                            <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+                                        <% end %>
+
+                                    <% else %>
+                                        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+                                    <% end %>
+
+                                <% else %>
+                                    <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+                                <% end %>
+                            <% else %>
+                                <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+                            <% end %>
+
                         <% end %>
-                    <% else %>
-                        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+
                     <% end %>
-
+                <% else %>
+                    <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
                 <% end %>
-
             <% end %>
-
         <% else %>
             <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
         <% end %>
@@ -143,6 +146,7 @@
     
 
     
+
 
 
 

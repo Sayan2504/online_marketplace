@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Hello <%= @buyer.buyer_name %></h3>
+    <p>
+       Your request for buying <strong><%= @post.ad_title %></strong> has been sent to the author <strong><%= @user.name %></strong>
+    </p>
+    <p>
+        You will get <strong><%= @post.ad_title %> once <%= @user.name %></strong> approves your request
+    </p>
+    <p>You can contact the author via <%= @user.email %></p>
+
+    
+
+    <br><br><p>Thanks and Regards,</p>
+    <p>Sayan Sinha,</p>
+    <p>Sayan Online Marketplace</p>
+  </body>
+</html>

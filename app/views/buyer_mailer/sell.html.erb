@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Hello <%= @user.name %></h3>
+    <p>
+       Your post: <strong><%= @post.ad_title %></strong> has been successfully sold to <strong><%= @buyer.buyer_name %></strong> from <strong><%= @buyer.location %></strong>
+    </p>
+    
+    <p>You can contact the buyer via <%= @buyer.email %></p>
+
+    <br><br><p>Thanks and Regards,</p>
+    <p>Sayan Sinha,</p>
+    <p>Sayan Online Marketplace</p>
+  </body>
+</html>

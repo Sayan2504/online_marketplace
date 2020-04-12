@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Hello <%= @user.name %></h3>
+    <p>
+       Your post: <strong><%= @post.ad_title %></strong> has got a buying request
+    </p>
+    <p>
+        <strong><%= @buyer.buyer_name %></strong> from <strong><%= @buyer.location %></strong> wants to buy <storng><%= @post.ad_title %></strong>
+    </p>
+    <p>You can contact the buyer via <%= @buyer.email %></p>
+
+    <p> Please check the <strong>Buyers list</strong> in your post </p>
+
+    <br><br><p>Thanks and Regards,</p>
+    <p>Sayan Sinha,</p>
+    <p>Sayan Online Marketplace</p>
+  </body>
+</html>

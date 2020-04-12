@@ -22,7 +22,7 @@ class PostsController < ApplicationController
          
         #if no filtration given
         @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city", "buyer_id"]).where.not(approved_by: ['null', 'rejected'])
-        @posts = @posts.where(buyer_id: 0)
+        @posts = @posts.where(buyer_id: 0) #only posts that are not sold
 
         #filtration based on category
         if params[:category_id]        
@@ -138,3 +138,4 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
     end
 end
+
