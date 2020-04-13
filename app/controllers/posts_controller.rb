@@ -2,7 +2,6 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:show]
 
     def index
-        @post = Post.find_by(category_id: 0) #default value set for post
 
     #check whether the category is in database and matches the ad_title/location (if given)
         if params[:category_id]
@@ -11,8 +10,8 @@ class PostsController < ApplicationController
 
     #messages for users based on posts on given filtration is present or not present
 
-        @post_ad_title = Post.select(["id"]).find_by(ad_title: params[:ad_title]) #check whether ad_title is in database
-        @post_city = Post.select(["id"]).find_by(city: params[:location]) #check whether location is in database
+        @post_ad_title = Post.select(["id","buyer_id"]).find_by(ad_title: params[:ad_title]) #check whether ad_title is in database
+        @post_city = Post.select(["id", "buyer_id"]).find_by(city: params[:location]) #check whether location is in database
         
         if params[:category_id]
             @post_category = Post.select(["id"]).find_by(category_id: params[:category_id][:id])
@@ -22,7 +21,7 @@ class PostsController < ApplicationController
          
         #if no filtration given
         @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city", "buyer_id"]).where.not(approved_by: ['null', 'rejected'])
-        @posts = @posts.where(buyer_id: 0) #only posts that are not sold
+        @posts = @posts.where(buyer_id: nil) #only posts that are not sold
 
         #filtration based on category
         if params[:category_id]        
@@ -138,4 +137,5 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
     end
 end
+
 

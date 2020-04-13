@@ -29,7 +29,7 @@
         <td><%= buyer.location %></td>
         <td><%= buyer.email %></td>
 
-        <% if @post.buyer_id == 0 %>
+        <% if @post.buyer_id == nil %>
          
           <td><%= link_to 'Sell Product',  {:controller => "buyers",
                                             :action => "sell",

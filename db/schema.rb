@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_203204) do
+ActiveRecord::Schema.define(version: 2020_04_13_215112) do
 
   create_table "buyers", force: :cascade do |t|
     t.string "buyer_name"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_203204) do
     t.string "approved_by", default: "null"
     t.string "detailed_ad_title"
     t.integer "category_id", default: 0
-    t.integer "buyer_id", default: 0
+    t.integer "buyer_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

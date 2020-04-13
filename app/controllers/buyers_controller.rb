@@ -71,7 +71,7 @@ class BuyersController < ApplicationController
             BuyerMailer.sell(@buyer, @post, @user).deliver_now
             BuyerMailer.bought(@buyer, @post, @user).deliver_now
 
-            if @post.buyer_id == 0
+            if @post.buyer_id == nil
                 @post.update(buyer_id: @buyer.id)
                 redirect_to request.referrer
             end
