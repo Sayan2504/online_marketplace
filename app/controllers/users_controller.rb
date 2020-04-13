@@ -11,21 +11,30 @@ class UsersController < ApplicationController
         redirect_to root_path
         return
       end
-        
-      @user = User.new
+      
+      @user = User.new({email: params[:buyer_email], name: params[:buyer_name]})
     end
 
     def create
       @user = User.new(user_params)
-    
+      
       if @user.save
-        log_in(@user)
-        flash[:success] = "You have successfully signed up"
-        UserMailer.welcome_email(@user).deliver_now
-        if admin_user?
-          redirect_to users_path
+        if params[:buying_redirection].present?
+
+          flash[:success] = "You have successfully registered yourself. Now you can put your buying request"
+          UserMailer.welcome_email(@user).deliver_now
+          redirect_to new_buyer_path({ post_id: @post.id, user_id: @post.user.id })
         else
-          redirect_to user_path(@user)
+
+          log_in(@user)
+          flash[:success] = "You have successfully signed up"
+          UserMailer.welcome_email(@user).deliver_now
+          if admin_user?
+            redirect_to users_path
+          else
+            redirect_to user_path(@user)
+          end
+
         end
       else
         flash[:warning] = "You already have an account" 
