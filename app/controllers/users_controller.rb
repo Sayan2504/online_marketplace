@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         return
       end
       
-      @user = User.new({buyer_post_id: params[:buyer_post_id]})
+      @user = User.new({buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name]})
     end
 
     def create
@@ -20,7 +20,8 @@ class UsersController < ApplicationController
 
       if @user.buyer_post_id.present?
         if @user.save
-          flash[:success] = "You have successfully signed up.put"
+          flash[:success] = "You have successfully registered. Now you can put your buying request with the credentials."
+          UserMailer.welcome_email(@user).deliver_now
           redirect_to new_buyer_path({post_id: @user.buyer_post_id})
         end
         
