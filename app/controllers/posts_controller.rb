@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
         #filtration based on ad title
         if params[:ad_title]
-            @posts = @posts.where("ad_title LIKE ?", params[:ad_title])
+            @posts = @posts.where("ad_title LIKE ?", "%#{params[:ad_title]}%")
         end 
 
         #filtration based on location
