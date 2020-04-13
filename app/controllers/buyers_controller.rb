@@ -55,7 +55,7 @@ class BuyersController < ApplicationController
             
         else
             flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
-            redirect_to signup_path(buyer_email: @buyer.email, buyer_name: @buyer.buyer_name)
+            redirect_to signup_path(buyer_post_id: @buyer.post_id)
         end
         
     end

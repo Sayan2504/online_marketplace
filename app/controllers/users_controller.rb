@@ -12,19 +12,20 @@ class UsersController < ApplicationController
         return
       end
       
-      @user = User.new({email: params[:buyer_email], name: params[:buyer_name]})
+      @user = User.new({buyer_post_id: params[:buyer_post_id]})
     end
 
     def create
       @user = User.new(user_params)
-      
-      if @user.save
-        if params[:buying_redirection].present?
 
-          flash[:success] = "You have successfully registered yourself. Now you can put your buying request"
-          UserMailer.welcome_email(@user).deliver_now
-          redirect_to new_buyer_path({ post_id: @post.id, user_id: @post.user.id })
-        else
+      if @user.buyer_post_id.present?
+        if @user.save
+          flash[:success] = "You have successfully signed up.put"
+          redirect_to new_buyer_path({post_id: @user.buyer_post_id})
+        end
+        
+      else
+        if @user.save
 
           log_in(@user)
           flash[:success] = "You have successfully signed up"
@@ -32,13 +33,14 @@ class UsersController < ApplicationController
           if admin_user?
             redirect_to users_path
           else
-            redirect_to user_path(@user)
+            redirect_to user_path(@user) 
           end
 
+        else
+          flash[:warning] = "You already have an account" 
+          render "new"
         end
-      else
-        flash[:warning] = "You already have an account" 
-        render "new"
+        
       end
     end
 
@@ -74,7 +76,7 @@ class UsersController < ApplicationController
     private
     
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :provider, :uid)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :provider, :uid, :buyer_post_id)
     end
 
     def set_user

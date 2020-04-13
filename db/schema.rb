@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_204621) do
+ActiveRecord::Schema.define(version: 2020_04_13_203204) do
 
   create_table "buyers", force: :cascade do |t|
     t.string "buyer_name"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_204621) do
     t.boolean "admin"
     t.string "provider"
     t.string "uid"
+    t.integer "buyer_post_id"
   end
 
   add_foreign_key "posts", "users"

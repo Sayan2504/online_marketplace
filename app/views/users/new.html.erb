@@ -31,7 +31,7 @@
             <%= f.password_field :password_confirmation, class: "form-control", required: true, autocomplete: :off, placeholder: "Password Confirmation", minlength: 6 %>
           </div>
 
-          <%= f.hidden_field :buying_redirection, value: "buying_redirection" %>
+          <%= f.hidden_field :buyer_post_id, {:value => params[:buyer_post_id]} %>
 
           <br>
 
