@@ -347,7 +347,7 @@
                     <% if registered == true %>
                       <%= link_to 'Send Message', new_buyer_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-md btn-primary" %> 
                     <% else %>
-                      <button type="button" class="btn btn-md btn-primary" disabled>Unregistered User</button>
+                      <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered User</button>
                     <% end %>
                   </div>
 
