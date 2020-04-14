@@ -2,7 +2,7 @@
 
 <section class="table-header mb-3">
   <div class="row">
-    <div class="col-sm-6 col-md-9" style="left :140px">
+    <div class="col-6" style="left :280px">
       <h1 class="text-center"><%= @post.ad_title.upcase %></h1>
     </div>
     
@@ -54,18 +54,19 @@
     <% elsif @post.approved_by != "null" or @post.approved_by != "rejected" %>
         <% if logged_in? %>
 
-          <div class="col-xs-6 col-sm-3 md-6">
+          <div class="col-6 text-right">
             <div class="row btn-toolbar" style="display: block">
               <%= link_to 'Buyers list', buyers_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
+              <%= link_to 'Reply to author', buyers_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
             </div>
           </div>
 
         <% else %>
 
-          <div class="col-xs-6 col-sm-3 md-6">
+          <div class="col-6 text-right">
             <div class="row btn-toolbar" style="display: block">
-              <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-md btn-primary" %>
-              <%= link_to 'Buy Product', new_buyer_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-md btn-primary" %>
+              <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
+              <%= link_to 'Buy Product', new_buyer_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
             </div>
           </div>
 
@@ -264,43 +265,86 @@
 
       <% else %>
         <% if r.approved_by != "null" %>
+          <% if !logged_in? %>
+          
+            <div class="col-xs-12 col-sm-9 ">
+              <div class="card card-body justify-content-flex-center">
+                <div class="row">
+                  <div class="col-sm-9">
+                    <div class="post-details-row mb-2">
+                      <label><strong>Name : </strong></label>
+                      <span><%= r.name %></span>
+                    </div>
 
-          <div class="col-xs-12 col-sm-9 ">
-            <div class="card card-body justify-content-flex-center">
-              <div class="row">
-                <div class="col-sm-9">
-                  <div class="post-details-row mb-2">
-                    <label><strong>Name : </strong></label>
-                    <span><%= r.name %></span>
+                    <div class="post-details-row">
+                      <label><strong>Review : </strong></label>
+                      <span><%= r.review %></span>
+                    </div>
                   </div>
 
-                  <div class="post-details-row">
-                    <label><strong>Review : </strong></label>
-                    <span><%= r.review %></span>
-                  </div>
-                </div>
-
-                <div class="col-sm-3 mt-3">
-                  <div class="rating" id="star_rating">
-                    <% if r.rating == "1" %>
-                      <%= render "1_rating" %>
-                    <% elsif r.rating == "2" %>
-                      <%= render "2_rating" %>
-                    <% elsif r.rating == "3" %>
-                      <%= render "3_rating" %>
-                    <% elsif r.rating == "4" %>
-                      <%= render "4_rating" %>
-                    <% elsif r.rating == "5" %>
-                      <%= render "5_rating" %>
-                    <% end %>
+                  <div class="col-sm-3 mt-3">
+                    <div class="rating" id="star_rating">
+                      <% if r.rating == "1" %>
+                        <%= render "1_rating" %>
+                      <% elsif r.rating == "2" %>
+                        <%= render "2_rating" %>
+                      <% elsif r.rating == "3" %>
+                        <%= render "3_rating" %>
+                      <% elsif r.rating == "4" %>
+                        <%= render "4_rating" %>
+                      <% elsif r.rating == "5" %>
+                        <%= render "5_rating" %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          
+          <% else %>
 
-          <% no_review_message = true %>
+            <div class="col-xs-12 col-sm-12 ">
+              <div class="card card-body justify-content-flex-center">
+                <div class="row">
+                  <div class="col-sm-7">
+                    <div class="post-details-row mb-2">
+                      <label><strong>Name : </strong></label>
+                      <span><%= r.name %></span>
+                    </div>
+
+                    <div class="post-details-row">
+                      <label><strong>Review : </strong></label>
+                      <span><%= r.review %></span>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2 mt-2">
+                    <div class="rating" id="star_rating">
+                      <% if r.rating == "1" %>
+                        <%= render "1_rating" %>
+                      <% elsif r.rating == "2" %>
+                        <%= render "2_rating" %>
+                      <% elsif r.rating == "3" %>
+                        <%= render "3_rating" %>
+                      <% elsif r.rating == "4" %>
+                        <%= render "4_rating" %>
+                      <% elsif r.rating == "5" %>
+                        <%= render "5_rating" %>
+                      <% end %>
+                    </div>
+                  </div>
+                  
+                  <div class="col-sm-3 mt-2 text-center">
+                    <%= link_to 'Send Message', new_buyer_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-md btn-primary" %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            
+            <% no_review_message = true %>
   
+          <% end %> 
         <% end %>
       <% end %>
     <% end %>
