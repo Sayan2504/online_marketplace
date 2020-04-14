@@ -5,7 +5,9 @@ class PostsController < ApplicationController
 
     #check whether the category is in database and matches the ad_title/location (if given)
         if params[:category_id]
-            @category = Category.find_by(id: params[:category_id][:id])  
+            @category = Category.find_by(id: params[:category_id][:id])
+            @post_unsold = Post.where(category_id: params[:category_id][:id])
+            @post_unsold = @post_unsold.find_by(buyer_id: nil)
         end
 
     #messages for users based on posts on given filtration is present or not present
@@ -35,7 +37,7 @@ class PostsController < ApplicationController
 
         #filtration based on location
         if params[:location]
-            @posts = @posts.where("city LIKE ?", params[:location])
+            @posts = @posts.where("city LIKE ?", "#{params[:location]}%")
         end 
 
     end     
