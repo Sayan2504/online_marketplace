@@ -48,6 +48,9 @@ class PostsController < ApplicationController
         @user = current_user
         @post_attachments = @post.post_attachments.all
         @reviews = @post.reviews.all
+        
+        @user_email = User.all
+       
     end
 
     def new
