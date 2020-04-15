@@ -193,7 +193,7 @@
                     <% end %>
 
                     <% if registered == true %>
-                      <%= link_to 'Send Message', message_path({post_id: @post.id, sender_id: @user.id, receiver_id: r.id}), class: "btn btn-md btn-primary" %> 
+                      <%= link_to 'Send Message', new_message_path({post_id: @post.id, sender_id: @user.id, receiver_id: r.id}), class: "btn btn-md btn-primary" %> 
                     <% else %>
                       <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered User</button>
                     <% end %>

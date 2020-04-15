@@ -2,7 +2,7 @@
   <h1 class="text-center">Chatting</h1>
     <div class="well" id="chatbox" style="height: 250px; border: solid 1px #222222; oerflow-y: scroll">
         <% @messages.each do |message| %>
-            <%= render "message", messsage: message %>
+            <%= render 'message', message: message %>
         <% end %>
     </div>
 
@@ -10,7 +10,7 @@
         <div class="input-group mb-3 mt-3">
             <%= f.text_field :body, placeholder: "Say something...", class: "form-control" %>
             <div class="input-group-append">
-                <%= f.submit "Send", class: "btn btn-primary" %>
+                <%= f.submit "Send", class: "btn btn-secondary" %>
             </div>
         </div>
     <% end %> 

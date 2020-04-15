@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   #for internal communication
   resources :messages
 
-
   #Admin section
   namespace :admin do
     resources :categories

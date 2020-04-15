@@ -6,6 +6,7 @@ class User < ApplicationRecord
     after_validation { self.email = self.email.downcase }
 
     has_many :posts
+    has_many :messages
     has_and_belongs_to_many :categories
     has_one :buyer
     has_many :post_attachments, through: :posts

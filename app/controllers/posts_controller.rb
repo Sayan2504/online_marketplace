@@ -130,7 +130,10 @@ class PostsController < ApplicationController
         end
     end
     
-
+    #def chat
+    #    @messages = Message.all
+    #    @message = Message.new
+    #end
 
     private
 
