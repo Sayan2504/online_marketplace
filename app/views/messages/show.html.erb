@@ -1,2 +1,17 @@
-<h1>Messages#show</h1>
-<p>Find me in app/views/messages/show.html.erb</p>
+<div class="jumbotron">
+  <h1 class="text-center">Chatting</h1>
+    <div class="well" id="chatbox" style="height: 250px; border: solid 1px #222222; oerflow-y: scroll">
+        <% @messages.each do |message| %>
+            <%= render "message", messsage: message %>
+        <% end %>
+    </div>
+
+    <%= form_with model: @message do |f| %>
+        <div class="input-group mb-3 mt-3">
+            <%= f.text_field :body, placeholder: "Say something...", class: "form-control" %>
+            <div class="input-group-append">
+                <%= f.submit "Send", class: "btn btn-primary" %>
+            </div>
+        </div>
+    <% end %> 
+<div>
