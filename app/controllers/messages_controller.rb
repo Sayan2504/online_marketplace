@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   
   def new
-    @messages = Message.all
+    @messages = Message.where(user_id: params[:sender_id])
     @message = Message.new
   end
 
@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
     @message.save
+    
   end
 
 

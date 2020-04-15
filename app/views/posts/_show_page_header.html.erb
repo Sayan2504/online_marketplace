@@ -55,7 +55,7 @@
           <div class="col-6 text-right">
             <div class="row btn-toolbar" style="display: block">
               <%= link_to 'Buyers list', buyers_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
-              <%= link_to 'Reply to message', new_message_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
+              <%= link_to 'Reply to message', new_message_path({ post_id: @post.id, sender_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
             </div>
           </div>
 
