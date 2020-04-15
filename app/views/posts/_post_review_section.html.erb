@@ -1,0 +1,249 @@
+<section class="container">            
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-9">
+      <h1 class="text-center">Reviews</h1>
+    </div>
+  </div>
+
+  <% no_review_message = false %>
+
+  <div class = "row justify-content-center">
+    <% @reviews.each do |r| %>
+      
+      <% if admin_user? %>
+        <% if r.approved_by == "null" %>
+         
+          <div class="col-xs-12 col-sm-9 ">
+            <div class="card card-body justify-content-flex-center">
+              <div class="row">
+                <div class="col-sm-7">
+                  <div class="post-details-row mb-2">
+                    <label><strong>Name : </strong></label>
+                    <span><%= r.name %></span>
+                  </div>
+
+                  <div class="post-details-row">
+                    <label><strong>Review : </strong></label>
+                    <span><%= r.review %></span>
+                  </div>
+                </div>
+
+
+                <div class="col-sm-3 mt-3">
+                  <div class="rating" id="star_rating">
+                    <% if r.rating == "1" %>
+                      <%= render "1_rating" %>
+                    <% elsif r.rating == "2" %>
+                      <%= render "2_rating" %>
+                    <% elsif r.rating == "3" %>
+                      <%= render "3_rating" %>
+                    <% elsif r.rating == "4" %>
+                      <%= render "4_rating" %>
+                    <% elsif r.rating == "5" %>
+                      <%= render "5_rating" %>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="col-sm-2 mt-3">
+                  <div class="post-details-row">
+                    <%= link_to 'Approve',  {:controller => "posts",
+                                            :action => "rapprove",
+                                            :id => r.id,
+                                            :decision => "true"}, method: 'post', 
+                                            class: "btn btn-md btn-primary",
+                                            data: { disable_with: "Approving..."  } %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+          
+
+        <% else %>
+
+          <div class="col-xs-12 col-sm-9 ">
+            <div class="card card-body justify-content-flex-center">
+              <div class="row">
+                <div class="col-sm-7">
+                  <div class="post-details-row mb-2">
+                    <label><strong>Name : </strong></label>
+                    <span><%= r.name %></span>
+                  </div>
+
+                  <div class="post-details-row">
+                    <label><strong>Review : </strong></label>
+                    <span><%= r.review %></span>
+                  </div>
+                </div>
+
+                <div class="col-sm-3 mt-3">
+                  <div class="rating" id="star_rating">
+                    <% if r.rating == "1" %>
+                      <%= render "1_rating" %>
+                    <% elsif r.rating == "2" %>
+                      <%= render "2_rating" %>
+                    <% elsif r.rating == "3" %>
+                      <%= render "3_rating" %>
+                    <% elsif r.rating == "4" %>
+                      <%= render "4_rating" %>
+                    <% elsif r.rating == "5" %>
+                      <%= render "5_rating" %>
+                    <% end %>
+                  </div>
+                </div>
+
+
+                <div class="col-sm-2 mt-3">
+                  <div class="post-details-row">
+                    <button type="button" class="btn btn-md btn-primary" disabled>Approved</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+
+        <% no_review_message = true %>
+        
+
+      <% else %>
+        <% if r.approved_by != "null" %>
+          <% if !logged_in? %>
+          
+            <div class="col-xs-12 col-sm-9 ">
+              <div class="card card-body justify-content-flex-center">
+                <div class="row">
+                  <div class="col-sm-9">
+                    <div class="post-details-row mb-2">
+                      <label><strong>Name : </strong></label>
+                      <span><%= r.name %></span>
+                    </div>
+
+                    <div class="post-details-row">
+                      <label><strong>Review : </strong></label>
+                      <span><%= r.review %></span>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 mt-3">
+                    <div class="rating" id="star_rating">
+                      <% if r.rating == "1" %>
+                        <%= render "1_rating" %>
+                      <% elsif r.rating == "2" %>
+                        <%= render "2_rating" %>
+                      <% elsif r.rating == "3" %>
+                        <%= render "3_rating" %>
+                      <% elsif r.rating == "4" %>
+                        <%= render "4_rating" %>
+                      <% elsif r.rating == "5" %>
+                        <%= render "5_rating" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <% else %>
+
+            <div class="col-xs-12 col-sm-12 ">
+              <div class="card card-body justify-content-flex-center">
+                <div class="row">
+                  <div class="col-sm-7">
+                    <div class="post-details-row mb-2">
+                      <label><strong>Name : </strong></label>
+                      <span><%= r.name %></span>
+                    </div>
+
+                    <div class="post-details-row">
+                      <label><strong>Review : </strong></label>
+                      <span><%= r.review %></span>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2 mt-2">
+                    <div class="rating" id="star_rating">
+                      <% if r.rating == "1" %>
+                        <%= render "1_rating" %>
+                      <% elsif r.rating == "2" %>
+                        <%= render "2_rating" %>
+                      <% elsif r.rating == "3" %>
+                        <%= render "3_rating" %>
+                      <% elsif r.rating == "4" %>
+                        <%= render "4_rating" %>
+                      <% elsif r.rating == "5" %>
+                        <%= render "5_rating" %>
+                      <% end %>
+                    </div>
+                  </div>
+                  
+                  <div class="col-sm-3 mt-2 text-center">
+                    <% registered = false %>
+
+                    <% @user_email.each do |u| %>
+                      <% if u.email == r.email %>
+                        <% registered = true %>
+                        <% break %>
+                      <% end %>
+                    <% end %>
+
+                    <% if registered == true %>
+                      <%= link_to 'Send Message', message_path({post_id: @post.id, sender_id: @user.id, receiver_id: r.id}), class: "btn btn-md btn-primary" %> 
+                    <% else %>
+                      <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered User</button>
+                    <% end %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            
+            <% no_review_message = true %>
+  
+          <% end %> 
+        <% end %>
+      <% end %>
+    <% end %>
+  
+
+
+
+
+    <% if no_review_message == false %>
+      <div class="col-xs-12 col-sm-12 ">
+        <% if admin_user? %>
+
+          <% if @post.approved_by == "null" %>
+            <h2 class="text-center text-muted mt-2"> Reviews can be given by users once this post will be approved</h2>
+          <% elsif @post.approved_by == "rejected" %>
+            <h2 class="text-center text-muted mt-2"> This post is currently rejected</h2>
+          <% else %>
+            <h2 class="text-center text-muted mt-2"> No reviews on this post</h2>
+          <% end %>
+
+        <% else %>
+
+          <% if @post.approved_by == "null" %>
+            <h2 class="text-center text-muted mt-2"> Reviews can be given after this post will be approved by Admin</h2>
+          <% elsif @post.approved_by == "rejected" %>
+            <h2 class="text-center text-muted mt-2"> Rejected Post cannot have reviews </h2>
+          <% else %>
+            <h2 class="text-center text-muted mt-2"> No reviews on this post</h2>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+</section>
+
+ 
+        
+
+
+

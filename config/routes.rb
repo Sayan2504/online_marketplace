@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/index'
+  get 'messages/show'
   root "home#index"
 
   #fr authentication
@@ -39,7 +41,8 @@ Rails.application.routes.draw do
   post "/sold", to: "buyers#sold"
   get "/sold", to: "buyers#sold"
   
-
+  #for internal communication
+  resources :messages
 
 
   #Admin section

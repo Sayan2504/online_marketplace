@@ -1,0 +1,57 @@
+<section class="container">
+  <div class="row justify-content-center"> 
+  <% if @post.post_attachments.present? %>
+    <% @post_attachments.each do |p| %>
+      <div class="col-xs-10 col-sm-3 md-3">
+        <%= image_tag (p.photo_url.to_s), :size => "250x250" %>
+      </div>
+    <% end %>
+  <% else %>
+  <%= image_tag ("default.png"), :size => "250x250" %>
+  <% end %>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="container">            
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-12 md-6 mt-4">
+      <div class="card card-header">
+        <div class="post-details-row mb-4">
+          <label><strong>Advertisement : </strong></label>
+          <span><%= @post.detailed_ad_title %></span>
+        </div>
+
+        <div class="post-details-row mb-4">
+          <label><strong>Description : </strong></label>
+          <span><%= @post.ad_description %></span>
+        </div>
+
+        <div class="post-details-row mb-4">
+          <label><strong>Advertiser : </strong></label>
+          <span><%= @post.user_name %></span>
+        </div>
+
+        <div class="post-details-row mb-4">
+          <label><strong>Contact : </strong></label>
+          <span><%= @post.phone %></span>
+        </div>
+
+        <div class="post-details-row">
+          <label><strong>Location : </strong></label>
+          <span><%= @post.city %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

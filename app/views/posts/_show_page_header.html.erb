@@ -1,0 +1,75 @@
+<section class="table-header mb-3">
+  <div class="row">
+    <div class="col-6" style="left :280px">
+      <h1 class="text-center"><%= @post.ad_title.upcase %></h1>
+    </div>
+    
+    <% if admin_user? %>
+
+      <% if @post.approved_by == "null" %>
+        <div class="col-6 text-center">
+          <div class="row btn-toolbar" style="display: block">
+            <%= link_to 'Approve',  {:controller => "posts",
+                                    :action => "approve",
+                                    :id => @post.id,
+                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-primary" %>
+        
+            <%= link_to 'Reject',  {:controller => "posts",
+                                  :action => "reject",
+                                  :id => @post.id,
+                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-secondary" %>
+          </div>
+        </div>
+
+      <% elsif @post.approved_by == "rejected" %>
+        <div class="col-6">
+          <div class="row btn-toolbar text-center" style="display: block">
+            <%= link_to 'Approve',  {:controller => "posts",
+                                    :action => "approve",
+                                    :id => @post.id,
+                                    :decision => "true"}, method: 'post', class: "btn btn-lg btn-primary" %>
+          </div>
+        </div>
+
+      <% else %>
+        <div class="col-6">
+          <div class="row btn-toolbar text-center" style="display: block">
+            <%= link_to 'Reject',  {:controller => "posts",
+                                  :action => "reject",
+                                  :id => @post.id,
+                                  :decision => "false"}, method: 'post', class: "btn btn-lg btn-secondary" %>
+          </div>
+        </div>
+      <% end %>
+
+
+
+
+
+
+
+
+    <% elsif @post.approved_by != "null" or @post.approved_by != "rejected" %>
+        <% if logged_in? %>
+
+          <div class="col-6 text-right">
+            <div class="row btn-toolbar" style="display: block">
+              <%= link_to 'Buyers list', buyers_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
+              <%= link_to 'Reply to message', messages_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
+            </div>
+          </div>
+
+        <% else %>
+
+          <div class="col-6 text-right">
+            <div class="row btn-toolbar" style="display: block">
+              <%= link_to 'Write review', new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
+              <%= link_to 'Buy Product', new_buyer_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
+            </div>
+          </div>
+
+        <% end %>
+    <% end %>
+   
+  </div>
+</section>
