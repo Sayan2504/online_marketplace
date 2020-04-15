@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2 class="text-center">Chatting</h1>
+  <h2 class="text-center">Chatting </h1>
     <div class="well" id="chatbox" style="height: 250px; border: solid 1px #222222; overflow-y: scroll">
         <% @messages.each do |message| %>
             <%= render 'message', message: message %>
@@ -9,13 +9,13 @@
     <%= form_with model: @message do |f| %>
         <%= render "shared/error_messages", object: @message %>
         <div class="input-group mt-3">
-            <%= f.text_field :body, placeholder: "Type a message", class: "form-control" %>
+            <%= f.text_field :body, placeholder: "Type a message", class: "form-control", id: "body_input"%>
             <div class="input-group-append">
                 <%= f.submit "Send", class: "btn btn-secondary" %>
             </div>
 
             <%= f.hidden_field :post_id, value: @post.id %>
-            
+
         </div>
     <% end %> 
 <div>
