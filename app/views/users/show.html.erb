@@ -11,9 +11,12 @@
 <% if @posts.present? %>  
     <section class="table-header mb-3">
       <div class="row">
-          <div class="col-sm-12 col-md-12">
+          <div class="col-10 text-center" style="left :90px">
             <h1 class="text-center">Your Posts</h1>
           </div>
+          <div class="col-2 text-right">
+            <%= link_to 'Reply to message', new_message_path, class: "btn btn-md btn-primary" %>
+          </div> 
       </div>
     </section>
     
