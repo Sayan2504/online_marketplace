@@ -3,7 +3,6 @@ import consumer from "./consumer"
 consumer.subscriptions.create("ChatChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
-    console.log("hello)");
   },
 
   disconnected() {
@@ -12,8 +11,19 @@ consumer.subscriptions.create("ChatChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    var messages = $('#chatbox');
-    messages.append(data['message']);
-    messages.scrollTop(messages[0].scrollHeight);
+    $('#chatbox').append('<div class="message">' + data.body + '</div>');  
+
+    $('#body_input').val('');   
+
+
+    $(document).ready(function(){
+        var messages = $('#chatbox');
+
+        function init (){
+            messages.scrollTop(messages[0].scrollHeight);
+        }
+
+        window.setTimeout(init, 50);
+    });
   }
 });

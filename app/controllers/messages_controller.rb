@@ -22,7 +22,10 @@ class MessagesController < ApplicationController
     #@message.post = @posts_current_user
 
     #saving based on params received from form
-    @message.save
+    if @message.save
+      ActionCable.server.broadcast 'chat_channel',
+                                    content: @message.body
+    end
     
   end
 
