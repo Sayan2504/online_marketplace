@@ -54,3 +54,6 @@
           document.getElementById('star_5').classList.add('activated');
         }
       });  
+
+
+      console.log("custom js file loaded");
