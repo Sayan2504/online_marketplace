@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
     #saving based on params received from form
     if @message.save
       ActionCable.server.broadcast 'chat_channel',
-                                    content: @message.body
+                                    body: render_message(@message)
     end
     
   end
@@ -32,6 +32,15 @@ class MessagesController < ApplicationController
 
   private
 
+  def render_message(message)
+    MessagesController.render(
+      partial: 'message',
+      locals: {
+        message: message
+      }
+    )
+  end
+  
   def message_params
     params.require(:message).permit(:body, :post_id)
   end
