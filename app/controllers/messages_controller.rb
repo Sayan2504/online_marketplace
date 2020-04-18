@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
 
     #populating the post_id field in messages table 
     @message.post = Post.find_by(id: @message.post_id)
-
+    @message.receiver_id = params[:receiver_id]
     #@message.receiver_id = receiver_id
     #saving based on params received from form
     @message.save
@@ -27,14 +27,6 @@ class MessagesController < ApplicationController
 
   private
 
-  def render_message(message)
-    MessagesController.render(
-      partial: 'message',
-      locals: {
-        message: message
-      }
-    )
-  end
   
   def message_params
     params.require(:message).permit(:body, :post_id, :receiver_id)
