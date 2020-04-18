@@ -10,9 +10,16 @@
         <%= render "shared/error_messages", object: @message %>
         <div class="input-group mt-3">
             <%= f.text_field :body, placeholder: "Type a message", autofocus: true, class: "form-control", id: "body_input"%>
+            
+            
+            <%= f.hidden_field :post_id, value: @post.id %>
+            
             <div class="input-group-append">
                 <%= f.submit "Send", class: "btn btn-secondary" %>
             </div>
+
+            
+            
         </div>
     <% end %> 
 <div>
