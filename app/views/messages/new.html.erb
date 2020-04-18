@@ -9,7 +9,7 @@
     <%= form_with model: @message do |f| %>
         <%= render "shared/error_messages", object: @message %>
         <div class="input-group mt-3">
-            <%= f.text_field :body, placeholder: "Type a message", class: "form-control", id: "body_input"%>
+            <%= f.text_field :body, placeholder: "Type a message", autofocus: true, class: "form-control", id: "body_input"%>
             <div class="input-group-append">
                 <%= f.submit "Send", class: "btn btn-secondary" %>
             </div>

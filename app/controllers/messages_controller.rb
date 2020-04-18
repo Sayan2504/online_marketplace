@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  
+
   def new
     @messages = Message.all
     #showing the chat thread
@@ -17,16 +17,15 @@ class MessagesController < ApplicationController
     @message.user = current_user #populating the user_id field in messages table
 
     #populating the post_id field in messages table
-    #@posts_current_user = current_user.posts
-    #@posts_current_user = @posts_current_user.find_by(id: @message.post_id)
-    #@message.post = @posts_current_user
+    @posts_current_user = current_user.posts
+    @posts_current_user = @posts_current_user.find_by(id: @message.post_id)
+    @message.post = @posts_current_user
 
     #saving based on params received from form
     if @message.save
-      ActionCable.server.broadcast 'chat_channel',
+      ActionCable.server.broadcast "chat_channel",
                                     body: render_message(@message)
     end
-    
   end
 
 

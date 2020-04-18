@@ -8,11 +8,16 @@
 
 <% provide(:title, current_user.name) %>
 
-<% if @posts.present? %>  
-    <section class="table-header mb-3">
+ 
+    <section class="container ">
       <div class="row">
           <div class="col-10 text-center" style="left :90px">
-            <h1 class="text-center">Your Posts</h1>
+            <% if @posts.present? %> 
+              <h1 class="text-center">Your Posts</h1>
+              <%= render "layouts/form" %>
+            <% else %>
+              <h2 class="text-center text-muted mt-5"> You have no approved posts now </h2>
+            <% end %>
           </div>
           <div class="col-2 text-right">
             <%= link_to 'Reply to message', new_message_path, class: "btn btn-md btn-primary" %>
@@ -20,7 +25,5 @@
       </div>
     </section>
     
-    <%= render "layouts/form" %>
-<% else %>
-      <h2 class="text-center text-muted mt-5"> You have no approved posts now </h2>
-<% end %>
+    
+
