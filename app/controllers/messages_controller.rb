@@ -1,14 +1,16 @@
 class MessagesController < ApplicationController
 
   def new
-    @messages = Message.all
+    #@messages = Message.all
     #showing the chat thread
-    #@messages = Message.where(post_id: params[:post_id]) #filtering based on the post for a particular message in chat
+    @receiver = User.find(params[:receiver_id])
+    @messages = Message.where(receiver_id: current_user.id, user_id: @receiver.id).or (Message.where(user_id: current_user.id, receiver_id: @receiver.id)) #filtering based on the post for a particular message in chat
+
+    @messages = @messages.order("created_at ASC")
     #@messages = @messages.where(receiver_id: params[:receiver_id])
 
     #getting the params to be used during create
-    @post = Post.find(params[:post_id]) #finding the post based on url params
-    #@receiver = User.find(params[:receiver_id])
+    #@post = Post.find(params[:post_id]) #finding the post based on url params
     @message = Message.new  #rendering a new message
   end
 
@@ -18,8 +20,8 @@ class MessagesController < ApplicationController
 
     #populating the post_id field in messages table 
     @message.post = Post.find_by(id: @message.post_id)
-    @message.receiver_id = params[:receiver_id]
-    #@message.receiver_id = receiver_id
+    @message.receiver_id = User.find(@message.receiver_id).id
+    #@message.receiver_id = params[:receiver_id
     #saving based on params received from form
     @message.save
   end

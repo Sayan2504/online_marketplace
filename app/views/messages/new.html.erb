@@ -11,15 +11,13 @@
         <div class="input-group mt-3">
             <%= f.text_field :body, placeholder: "Type a message", autofocus: true, class: "form-control", id: "body_input"%>
             
-            
-            <%= f.hidden_field :post_id, value: @post.id %>
+            <%= f.hidden_field :receiver_id, value: params[:receiver_id] %>
+            <%= f.hidden_field :post_id, value: params[:post_id] %>
             
             <div class="input-group-append">
                 <%= f.submit "Send", class: "btn btn-secondary" %>
             </div>
 
-            
-            
         </div>
     <% end %> 
 <div>
