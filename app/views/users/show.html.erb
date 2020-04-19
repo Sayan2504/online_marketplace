@@ -1,3 +1,5 @@
+<%= render "messages/notification_center", notifications: @notifications %>
+
 <div class="jumbotron jumbotron-fluid bg-dark text-white">
   <div class="container text-center">
     <h1 class="display-4">Welcome <%= current_user.name %></h1>
@@ -8,7 +10,6 @@
 
 <% provide(:title, current_user.name) %>
 
- 
     <section class="container ">
       <div class="row">
           <div class="col-10 text-center" style="left :90px">

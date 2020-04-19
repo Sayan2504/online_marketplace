@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
+  before_action :set_notifications
 
   def index
+    
   end
 
   def new
@@ -32,6 +34,9 @@ class MessagesController < ApplicationController
 
   private
 
+  def set_notifications
+    @notifications = Message.all.reverse
+  end 
   
   def message_params
     params.require(:message).permit(:body, :post_id, :receiver_id)

@@ -43,12 +43,10 @@
 
       <% else %>
         <li class="nav-item active">
-          <%= link_to "Products Sold", sold_path, class: "nav-link" %>
-        </li>
-
-        <li class="nav-item active">
-          <%= link_to "Products Bought", bought_path, class: "nav-link" %>
-        </li>
+          <a href="#", id="open_notification" style="margin-right:15px">
+            <%= render 'messages/counter', counter: @notifications.count %>
+          </a>
+        </li>  
 
         <li class="nav-item dropdown nav-item active">
           <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,6 +56,8 @@
             <%= link_to "Edit credentials", edit_user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Unchecked posts", unchecked_path, class: "dropdown-item" %>
             <%= link_to "Rejected posts", rejected_path, class: "dropdown-item" %>
+            <%= link_to "Products Sold", sold_path, class: "dropdown-item" %>
+            <%= link_to "Products Bought", bought_path, class: "dropdown-item" %>
             <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
           </div> 
         </li>

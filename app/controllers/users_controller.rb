@@ -62,6 +62,7 @@ class UsersController < ApplicationController
 
     def show
       @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+      @notifications = Message.all.reverse
     end
 
     def unchecked

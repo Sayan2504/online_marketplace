@@ -6,13 +6,4 @@ class MessageBroadcastJob < ApplicationJob
     ActionCable.server.broadcast "chat_channel_#{message.receiver_id}", body: body
   end
 
-  private
-  # def render_message(message)
-  #   MessagesController.render(
-  #     partial: 'message',
-  #     locals: {
-  #       message: message
-  #     }
-  #   )
-  # end
 end
