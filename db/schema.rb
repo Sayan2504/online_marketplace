@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_04_18_150839) do
 
-  create_table "buyers", force: :cascade do |t|
+  create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "buyer_name"
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
@@ -22,24 +22,24 @@ ActiveRecord::Schema.define(version: 2020_04_18_150839) do
     t.string "location"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "post_id"
+    t.bigint "post_id"
     t.integer "receiver_id"
     t.index ["post_id"], name: "index_messages_on_post_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "post_attachments", force: :cascade do |t|
+  create_table "post_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "post_id"
     t.string "photo"
     t.datetime "created_at", precision: 6, null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_150839) do
     t.integer "user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "ad_title"
     t.text "ad_description"
     t.string "user_name"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_150839) do
     t.string "city"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "approved_by", default: "null"
     t.string "detailed_ad_title"
     t.integer "category_id", default: 0
@@ -63,22 +63,22 @@ ActiveRecord::Schema.define(version: 2020_04_18_150839) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "approved_by", default: "null"
-    t.integer "post_id"
+    t.bigint "post_id"
     t.string "email"
     t.string "location"
     t.string "rating"
     t.index ["post_id"], name: "index_reviews_on_post_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name", limit: 255, null: false
-    t.string "email", limit: 255, null: false
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"

@@ -55,21 +55,7 @@
           <div class="col-6 text-right">
             <div class="row btn-toolbar" style="display: block">
               <%= link_to 'Buyers list', buyers_path({ post_id: @post.id, user_id: @post.user.id }), class: "btn btn-lg btn-primary" %>
-              
-              <% registered = false %>
-              <% @reviews.each do |r| %>
-                  <% @user_email.each do |u| %>
-                    <% if u.email == r.email %>
-                      <% registered = u.id %>
-                      <% break %>
-                    <% end %>
-                  <% end %>
-                    
-              <% end %>
-
-              <% if registered != false %>
-                <%= link_to 'Reply to message', new_message_path({ post_id: @post.id, sender_id: @post.user.id, receiver_id: registered }), class: "btn btn-lg btn-primary" %>
-              <% end %>
+              <%= link_to 'Reply to message', messages_path({ post_id: @post.id, sender_id: @post.user.id}), class: "btn btn-lg btn-primary" %>
             </div>
           </div>
 
