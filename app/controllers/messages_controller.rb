@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
   before_action :set_notifications
 
   def index
-    
   end
 
   def new
