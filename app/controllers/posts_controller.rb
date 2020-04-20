@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
+    
     before_action :set_post, only: [:show]
-    before_action :set_notifications
 
     def index
 
@@ -142,9 +142,7 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
     end
 
-    def set_notifications
-        @notifications = Message.all.reverse
-    end 
+     
 end
 
 

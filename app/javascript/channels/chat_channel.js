@@ -13,9 +13,12 @@ consumer.subscriptions.create("ChatChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    console.log(data.counter)
-    $('#notification-counter').text(data.counter)
-    $('#notificationList').prepend('<div class="message">' + data.body + '</div>');
+
+
+    //$('#notification-counter').text(data.counter)
+    //$('#notificationList').prepend('<div class="message">' + data.body + '</div>');
+
+    
     var messages = $('#chatbox');
     
     messages.append('<div class="message">' + data.body + '</div>');         

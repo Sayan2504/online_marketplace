@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_094345) do
+ActiveRecord::Schema.define(version: 2020_04_20_070133) do
 
   create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "buyer_name"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 2020_04_19_094345) do
     t.string "event"
     t.index ["post_id"], name: "index_messages_on_post_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "body"
+    t.integer "receiver_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sender_id"
   end
 
   create_table "post_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -82,7 +91,6 @@ ActiveRecord::Schema.define(version: 2020_04_19_094345) do
     t.string "email", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
     t.boolean "admin"
     t.string "provider"
     t.string "uid"

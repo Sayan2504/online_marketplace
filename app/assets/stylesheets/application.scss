@@ -1,0 +1,127 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ #notification-counter {
+    position: absolute;
+    right: 218px;
+   
+    background-color: rgb(212, 78, 3);
+    color: #fff;
+    border-radius: 3px;
+    padding: 1px 3px;
+    font: 8px Verdana;
+  }
+
+  ul.notificator {
+    display: inline-block;
+    float:right;
+    margin: 0;
+    li
+    {
+      position: relative;
+      list-style: none;
+   
+      i
+      {
+        color: #fff;
+      }
+    }
+  }
+
+  ul #notificationList
+{
+  li
+  {
+    position:relative;
+    border-bottom: #dddddd 3px solid;
+  }
+  span
+  {
+    color: #989494;
+    font-size: 8px;
+  }
+ 
+}
+
+#notificationsBody  ul
+{
+  padding-left: 2;
+}
+
+#notificationContainer
+{
+  background-color: #fff;
+  border: 1px solid rgba(100, 100, 100, .4);
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  overflow: visible;
+  position: absolute;
+  top: 50px;
+  margin-left: -253px;
+  width: 300px;
+  z-index: 1;
+  display: none;
+}
+
+#notificationContainer:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: transparent;
+    border: 10px solid black;
+    border-color: transparent transparent white;
+    margin-top: -20px;
+    margin-left: 258px;
+  }
+  
+  #notificationTitle
+  {
+    font-weight: bold;
+    padding: 8px;
+    font-size: 13px;
+    background-color: #f0f0f0;
+    position: relative;
+    z-index: 1;
+    width: 298px;
+    border-bottom: 1px solid #d44e03;
+    color: #d44e03;
+  }
+  
+  #notificationsBody
+  {
+    padding: 3px 0px 0px 0px !important;
+    min-height:300px;
+    max-height:300px;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+  }
+  
+  
+  #notificationFooter
+  {
+    background-color: #e9eaed;
+    text-align: center;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 12px;
+    border-top: 1px solid #dddddd;
+  }
+ 
+
+ 

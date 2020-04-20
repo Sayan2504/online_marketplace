@@ -42,7 +42,8 @@ Rails.application.routes.draw do
   get "/sold", to: "buyers#sold"
   
   #for internal communication
-  resources :messages
+  resources :messages #chat
+  resources :notifications #bell notification in account
 
   #Admin section
   namespace :admin do

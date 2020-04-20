@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
+  include NotificationsHelper
   before_action :set_notifications
+  
 
   def index
   end
@@ -7,8 +9,11 @@ class MessagesController < ApplicationController
   def new
     #showing the chat thread
     @receiver = User.find(params[:receiver_id]) 
-    @messages = Message.where(receiver_id: current_user.id, user_id: @receiver.id).or (Message.where(user_id: current_user.id, receiver_id: @receiver.id)) #Individual chat room created
+    @post = Post.find(params[:post_id])
 
+    #Individual chat room created based on user and post
+    @messages = Message.where(receiver_id: current_user.id, user_id: @receiver.id).or (Message.where(user_id: current_user.id, receiver_id: @receiver.id)) 
+    @messages = @messages.where(post_id: @post.id)
     @messages = @messages.order("created_at ASC") #chats ordered based on time of creation
    
 
@@ -28,13 +33,15 @@ class MessagesController < ApplicationController
 
     #saving based on params received from form
     @message.save
+      
+    
   end
 
 
   private
-
+ 
   def set_notifications
-    @notifications = Message.all.reverse
+    @notifications = Notification.all.reverse
   end 
   
   def message_params

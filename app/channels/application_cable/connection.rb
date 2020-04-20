@@ -3,7 +3,6 @@ module ApplicationCable
     identified_by :current_user
     def connect
       self.current_user = User.find_by(id: session["user_id"])
-      #logger.add_tags 'ActionCable', current_user.id
     end
 
     def session

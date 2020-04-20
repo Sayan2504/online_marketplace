@@ -43,9 +43,7 @@
 
       <% else %>
         <li class="nav-item active">
-          <a href="#", id="open_notification" style="margin-right:15px">
-            <%= render 'messages/counter', counter: @notifications.count %>
-          </a>
+          <%= render "notifications/notification_center", notifications: notification_view %>
         </li>  
 
         <li class="nav-item dropdown nav-item active">

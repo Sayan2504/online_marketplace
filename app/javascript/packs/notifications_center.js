@@ -13,7 +13,7 @@ $(document).ready(function()
     // hide notification center on click
     $(document).click(function()
     {
-        console.log("oooopen");
+        console.log("outside click");
         $("#notificationContainer").hide();
     });
  
@@ -21,8 +21,8 @@ $(document).ready(function()
     
     $('body').on('click','#notificationContainer', function()
     {
-        console.log("oooopennnn");
+        console.log("close");
         return false;
     });
-    console.log("hey");
+    console.log("ready");
 });
