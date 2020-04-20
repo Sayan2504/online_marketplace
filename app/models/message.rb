@@ -12,6 +12,6 @@ class Message < ApplicationRecord
     body = "[" + DateTime.parse(created_at.to_s).strftime("%a %I:%M %p") + "] New Message from #{sender.name} for the post #{post.ad_title}"
 
     Notification.create(sender_id: user_id, receiver_id: receiver_id, post_id: post_id, body: body)
-    NotificationBroadcastJob.perform_later(self, receiver)
+    NotificationBroadcastJob.perform_later(self, sender)
   }
 end

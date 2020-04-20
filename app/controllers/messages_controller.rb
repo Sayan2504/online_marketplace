@@ -3,9 +3,6 @@ class MessagesController < ApplicationController
   before_action :set_notifications
   
 
-  def index
-  end
-
   def new
     #showing the chat thread
     @receiver = User.find(params[:receiver_id]) 

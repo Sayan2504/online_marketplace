@@ -21,9 +21,9 @@
   </thead>
 
   <tbody>
-    <% @categories.each do |category| %>
+    <% @categories.each_with_index do |category, index| %>
       <tr>
-        <td><%= link_to category.id, admin_category_path(category) %></td>
+        <td><%= index+1 %></td>
         <td><%= category.name %></td>
       </tr>
     <% end %>

@@ -14,6 +14,6 @@ consumer.subscriptions.create("NotificationsChannel", {
 
     $('#notification-counter').text(data.counter)
     $('#notificationList').prepend('<div class="message">' + data.body + '</div>');
-
+    
   }
 });

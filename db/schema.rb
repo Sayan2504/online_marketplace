@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_070133) do
+ActiveRecord::Schema.define(version: 2020_04_20_222702) do
 
   create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "buyer_name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_070133) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sender_id"
+    t.string "unread", default: "true"
   end
 
   create_table "post_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_070133) do
     t.string "provider"
     t.string "uid"
     t.integer "buyer_post_id"
+    t.string "password_digest"
   end
 
   add_foreign_key "messages", "posts"

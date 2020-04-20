@@ -1,8 +1,9 @@
 class NotificationBroadcastJob < ApplicationJob
   queue_as :default
 
-  def perform(message, receiver)
-    get_counter = Notification.where.not(sender_id: receiver)
+  def perform(message, sender)
+    get_counter = Notification.where(receiver_id: message.receiver_id, unread: "true")
+    
     counter = get_counter.count
 
     sender = User.find(message.user_id)

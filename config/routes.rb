@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   #for internal communication
   resources :messages #chat
   resources :notifications #bell notification in account
+  post "/read_message", to: "notifications#read_message"
+  get "/read_message", to: "notifications#read_message"
 
   #Admin section
   namespace :admin do
