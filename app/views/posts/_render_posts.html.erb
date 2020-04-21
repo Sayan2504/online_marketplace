@@ -101,12 +101,8 @@
                 <% if @post_city.present? %>
                     <% if @post_city.buyer_id == nil %> 
 
-                        <% if @post_category.id == @post_city.id %>
-                            <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
-                            <%= render "layouts/form" %>
-                        <% else %>
-                            <h2 class="text-center text-muted mt-5"> No Advertisements</h2> 
-                        <% end %>
+                        <h2 class="text-center mt-2 mb-4"> Advertisements</h2>
+                        <%= render "layouts/form" %>
                         
                     <% else %>
                         <h2 class="text-center text-muted mt-5"> No Advertisements</h2>

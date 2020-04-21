@@ -1,7 +1,8 @@
 <ul class="notificator">
-  <a href="#", id="open_notification" style="margin-right:15px">
+  <div id="open_notification" style="margin-right:15px">
     <%= render 'notifications/counter', counter: notifications.count %>
-  </a>
+  </div>
+  
   <div id="notificationContainer">
     <div id="notificationTitle">Notifications</div>
         <div id="notificationsBody" class="notifications">
@@ -9,6 +10,6 @@
                 <%= render notifications %>
             </ul>
         </div>
-    <div id="notificationFooter"></div>
+    <div id="notificationFooter"><%= link_to "Show details", notifications_path %></div>
   </div>
 </ul>
