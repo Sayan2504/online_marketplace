@@ -202,10 +202,11 @@
                 </div>
               </div>
             </div>
-            
-            <% no_review_message = true %>
-  
+           
           <% end %> 
+           
+          <% no_review_message = true %>
+           
         <% end %>
       <% end %>
     <% end %>
@@ -227,7 +228,7 @@
           <% end %>
 
         <% else %>
-
+          
           <% if @post.approved_by == "null" %>
             <h2 class="text-center text-muted mt-2"> Reviews can be given after this post will be approved by Admin</h2>
           <% elsif @post.approved_by == "rejected" %>
@@ -235,6 +236,7 @@
           <% else %>
             <h2 class="text-center text-muted mt-2"> No reviews on this post</h2>
           <% end %>
+
         <% end %>
       </div>
     <% end %>
