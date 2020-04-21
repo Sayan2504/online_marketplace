@@ -1,3 +1,30 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.ad{
+    color:black; 
+    margin-top:-260px; 
+    font-size:60px;
+    transform: rotate(-1deg);
+}
+
+.categories{
+    color:white;
+    font-size:60px;
+    background-color: black;
+    border: 1px solid #008000;
+    margin-bottom:-35px;
+    margin-left: 205px;
+    width: 515px;
+}
+
+.categories2{
+    color:white;
+    font-size:60px;
+    background-color: black;
+    border: 1px solid #008000;
+    margin-bottom:300px;
+    margin-left: 205px;
+    width: 540px;
+}

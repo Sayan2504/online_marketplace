@@ -5,7 +5,7 @@
 <section class="table-header mb-3">
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <h3>Buyers List</h3>
+      <h3 class="heading">Buyers List</h3>
     </div>
   </div>
 </section>
@@ -24,10 +24,10 @@
   <tbody>
     <% @buyers.each_with_index do |buyer,index| %>
       <tr>
-        <td><%= index+1 %></td>
-        <td><%= buyer.buyer_name %></td>
-        <td><%= buyer.location %></td>
-        <td><%= buyer.email %></td>
+        <td class="heading"><%= index+1 %></td>
+        <td class="heading"><%= buyer.buyer_name %></td>
+        <td class="heading"><%= buyer.location %></td>
+        <td class="heading"><%= buyer.email %></td>
 
         <% if @post.buyer_id == nil %>
          

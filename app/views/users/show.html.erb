@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid bg-dark text-white">
+<div class="jumbotron jumbotron-fluid bg-light text-dark">
   <div class="container text-center">
     <h1 class="display-4">Welcome <%= current_user.name %></h1>
     <p class="lead">Enjoy our platform to buy or sell items of various categories</p>
@@ -12,7 +12,7 @@
       <div class="row">
           <div class="col-10 text-center" style="left :90px">
             <% if @posts.present? %> 
-              <h1 class="text-center">Your Posts</h1>
+              <h1 class="text-center heading">Your Posts</h1>
               <%= render "layouts/form" %>
             <% else %>
               <h2 class="text-center text-muted mt-5"> You have no approved posts now </h2>
