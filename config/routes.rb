@@ -13,13 +13,15 @@ Rails.application.routes.draw do
 
 
   #fb authentication
+  resources :socials
   get "auth/:provider/callback", to: "sessions#fb_google_create"
 
-  resources :socials
+  
 
   #for reviews
-  post "rapproved", to: "posts#rapprove" 
   resources :reviews
+  post "rapproved", to: "posts#rapprove" 
+  
 
   resources :users
 
@@ -43,6 +45,7 @@ Rails.application.routes.draw do
   
   #for internal communication
   resources :messages #chat
+  
   resources :notifications #bell notification in account
   post "/read_message", to: "notifications#read_message"
   get "/read_message", to: "notifications#read_message"

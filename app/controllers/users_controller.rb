@@ -38,7 +38,7 @@ class UsersController < ApplicationController
           end
 
         else
-          flash[:warning] = "You already have an account" 
+          flash[:warning] = "You already have an account/Your credentials are not valid" 
           render "new"
         end
         
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     end
 
     def show
-      @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+      @posts = @user.posts.where.not(approved_by: ['null', 'rejected'])
     end
 
     def unchecked
