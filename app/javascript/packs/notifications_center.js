@@ -4,7 +4,6 @@ $( document ).on('turbolinks:load', function()
     
     $('body').on('click','#open_notification', function()
     {
-        console.log("open");
         $("#notificationContainer").fadeToggle(300);
         $("#notification_count").fadeOut("fast");
         return false;
@@ -13,7 +12,6 @@ $( document ).on('turbolinks:load', function()
     // hide notification center on click
     $(document).click(function()
     {
-        console.log("outside click");
         $("#notificationContainer").hide();
     });
  
@@ -21,8 +19,6 @@ $( document ).on('turbolinks:load', function()
     
     $('body').on('click','#notificationContainer', function()
     {
-        console.log("close");
         return false;
     });
-    console.log("ready");
 });
