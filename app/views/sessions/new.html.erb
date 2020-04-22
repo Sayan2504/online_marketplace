@@ -24,16 +24,16 @@
 
           <%= f.submit "Log in", class: "btn btn-primary", data: { disable_with: "Logging..." } %>
           
-          <span style="float:right;" class="btn btn-md btn-primary">
+          <span class="btn btn-md btn-secondary signup-link-in-login-page">
             <%= link_to "Signup", signup_path, style: "color: #FFFFFF;" %>
           </span>
-          <span style="float:right; padding-right:10px; padding-top:5px;">New User?</span>
+          <span class="signup-link-in-login-page-text">New User?</span>
 
-          <span style="margin-top:10px; margin-right:5px">
+          <span class="fb-login">
             <%= link_to "auth/facebook" do %><%= image_tag('facebook.png', :size => "55x40") %><% end %>
           </span>
 
-          <span style="margin-top:10px; margin-right:5px; margin-left:-10px">
+          <span class="google-login">
             <%= link_to "auth/google_oauth2" do %><%= image_tag('google_logo.png', :size => "50x45") %><% end %>
           </span>
 

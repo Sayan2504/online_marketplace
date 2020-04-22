@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h2 class="text-center">Chat with <%= @receiver.name %> for the post <%= @post.ad_title %></h1>
-    <div class="well" id="chatbox" style="height: 250px; border: solid 1px #222222; overflow-y: scroll">
+    <div class="well" id="chatbox">
         <% @messages.each do |message| %>
             <%= render 'message', message: message %>
         <% end %>
@@ -8,6 +8,7 @@
 
     <%= form_with model: @message do |f| %>
         <%= render "shared/error_messages", object: @message %>
+
         <div class="input-group mt-3">
             <%= f.text_field :body, placeholder: "Type a message", autofocus: true, class: "form-control", id: "body_input"%>
             

@@ -1,14 +1,14 @@
 <div class="jumbotron jumbotron-fluid bg-light text-dark">
   <div class="container text-center">
     <div class="row">
-      <div class="col-9 text-center" style="left :140px">
+      <div class="col-9 text-center user-homepage-heading">
         <h1 class="display-4">Welcome <%= current_user.name %></h1>
       </div>
       <div class="col-3 text-right">
         <%= link_to 'Unread messages', notifications_path, class: "btn btn-lg btn-primary" %>
       </div>
     </div>
-    <p class="lead" style="left :90px">Enjoy our platform to buy or sell items of various categories</p>    
+    <p class="lead user-homepage-text">Enjoy our platform to buy or sell items of various categories</p>    
   </div>
 </div>
 

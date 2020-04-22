@@ -1,3 +1,24 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.signup-link-in-login-page{
+  float:right;
+}
+
+.signup-link-in-login-page-text{
+  float:right; 
+  padding-right:10px; 
+  padding-top:5px;
+}
+
+.fb-login{
+  margin-top:10px; 
+  margin-right:5px
+}
+
+.google-login{
+  margin-top:10px; 
+  margin-right:5px; 
+  margin-left:-10px
+}

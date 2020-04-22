@@ -15,14 +15,20 @@
  *= require_self
  */
 
+
+//whole website background 
  #background{
   background: navy;
   }
 
+
+//All headings and texts  
   .heading{
     color:white;
   }
 
+
+//bell icon in the accounts navbar
  #notification-counter {
     position: absolute;
     right: 218px;
@@ -129,6 +135,16 @@
     padding: 8px;
     font-size: 12px;
     border-top: 1px solid #dddddd;
+  }
+
+
+
+
+
+//post title in the thumbnails
+
+  .post-ad-title{
+    text-align: center;
   }
  
 
