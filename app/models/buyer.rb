@@ -10,16 +10,16 @@ class Buyer < ApplicationRecord
   after_validation { self.location = self.location.squish }
 
   validates :buyer_name,  presence: true, 
-                    length: { maximum: 255 },
+                    length: { maximum: 30, minimum: 2 },
                     format: { with: VALID_NAME_AND_LOCATION_REGEX }
 
   validates :email, presence: true, 
-                    length: { maximum: 255 }, 
+                    length: { maximum: 40, minimum: 2 }, 
                     uniqueness: { case_sensitive: false }, 
                     format: { with: VALID_EMAIL_REGEX }
 
   validates :location, presence: true, 
-                    length: { maximum: 255 }, 
+                    length: { maximum: 30, minimum: 2 }, 
                     uniqueness: { case_sensitive: false }, 
                     format: { with: VALID_NAME_AND_LOCATION_REGEX }
 end
