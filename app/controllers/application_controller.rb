@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-    include SessionsHelper
-    include NotificationsHelper
-
+  include SessionsHelper
+  include NotificationsHelper
 end
