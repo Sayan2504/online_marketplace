@@ -11,11 +11,13 @@ class ReviewsController < ApplicationController
     
     def create
         @review = Review.new(review_params)
+        @review.post_id = Post.find_by(id: @review.post_id).id
         if @review.save
             flash[:success] = "Your review is send to admin for approval. You can see it once admin approves it"
             redirect_to post_path(@review.post_id)
         else
-            render "new"
+            flash[:danger] = "Invalid credentials"
+            redirect_to new_review_path({ post_id: @review.post_id })
         end
     end
 

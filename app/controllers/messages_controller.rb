@@ -18,6 +18,8 @@ class MessagesController < ApplicationController
     @message = Message.new  #rendering a new message
   end
 
+
+  
   def create
     @message = Message.new(message_params)
     @message.user = current_user #populating the user_id field in messages table
