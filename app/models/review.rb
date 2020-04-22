@@ -6,6 +6,7 @@ class Review < ApplicationRecord
 
   after_validation { self.email = self.email.downcase }
   after_validation { self.name = self.name.squish }
+  after_validation { self.location = self.location.squish }
 
   validates :name,  presence: true, 
                     length: { maximum: 255 },

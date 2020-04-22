@@ -22,8 +22,10 @@ class UsersController < ApplicationController
         if @user.save
           flash[:success] = "You have successfully registered. Now you can put your buying request with the credentials."
           UserMailer.welcome_email(@user).deliver_now
-          redirect_to new_buyer_path({post_id: @user.buyer_post_id})
+        else
+          flash[:danger] = "Invalid Name format. Name cannot only contain alphabets"
         end
+        redirect_to new_buyer_path({ post_id: @user.buyer_post_id })
         
       else
         if @user.save
