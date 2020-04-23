@@ -25,7 +25,6 @@ class BuyersController < ApplicationController
     #getting the author of the post   
     @user_author = @buyer.user
    
-        
     if @user.present?
       if @user.email == @user_email.email
         flash[:warning] = "You cannot put a buying request to your own advertisement"
