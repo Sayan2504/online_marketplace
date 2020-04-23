@@ -5,9 +5,9 @@ class PostsController < ApplicationController
   def index
     #check whether the category is in database and matches the ad_title/location (if given)
     if params[:category_id]
-        @category = Category.find_by(id: params[:category_id][:id])
-        @post_unsold = Post.where(category_id: params[:category_id][:id])
-        @post_unsold = @post_unsold.find_by(buyer_id: nil)
+      @category = Category.find_by(id: params[:category_id][:id])
+      @post_unsold = Post.where(category_id: params[:category_id][:id])
+      @post_unsold = @post_unsold.find_by(buyer_id: nil)
     end
 
     #messages for users based on posts on given filtration is present or not present
@@ -15,28 +15,30 @@ class PostsController < ApplicationController
     @post_city = Post.select(["id", "buyer_id"]).find_by(city: params[:location]) #check whether location is in database
     
     if params[:category_id]
-        @post_category = Post.select(["id"]).find_by(category_id: params[:category_id][:id])
+      @post_category = Post.select(["id"]).find_by(category_id: params[:category_id][:id])
     end
 
     #Showing the thumbnails of posts
          
     #if no filtration given
     @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city", "buyer_id"]).where.not(approved_by: ['null', 'rejected'])
-    @posts = @posts.where(buyer_id: nil) #only posts that are not sold
+    @posts = @posts.where(buyer_id: nil) #only posts that are not sold yet
 
     #filtration based on category
     if params[:category_id]        
-        @posts = @posts.where(category_id: params[:category_id][:id])
+      @posts = @posts.where(category_id: params[:category_id][:id])
     end 
 
     #filtration based on ad title
     if params[:ad_title]
-        @posts = @posts.where("ad_title LIKE ?", "%#{params[:ad_title]}%")
+      @posts = @posts.where("ad_title LIKE ?", "%#{params[:ad_title]}%")
+    else
+      @posts = @posts
     end 
 
     #filtration based on location
     if params[:location]
-        @posts = @posts.where("city LIKE ?", "#{params[:location]}%")
+      @posts = @posts.where("city LIKE ?", "#{params[:location]}%")
     end 
 
   end     
@@ -79,15 +81,15 @@ class PostsController < ApplicationController
     @user = @post_unique.user
         
     if params[:decision] == "true"
-        PostMailer.post_approved(@post_unique, @user).deliver_now
-        
-        @post.update(approved_by: current_user.name)
-        flash[:success] = "This post has been approved by Admin"
-        redirect_to admin_approved_path 
+      PostMailer.post_approved(@post_unique, @user).deliver_now
+      
+      @post.update(approved_by: current_user.name)
+      flash[:success] = "This post has been approved by Admin"
+      redirect_to admin_approved_path 
     else
-        @post.update(approved_by: "rejected")
-        flash[:danger] = "This post has been rejected by Admin"
-        redirect_to admin_rejected_path
+      @post.update(approved_by: "rejected")
+      flash[:danger] = "This post has been rejected by Admin"
+      redirect_to admin_rejected_path
     end
   end
 
@@ -98,15 +100,15 @@ class PostsController < ApplicationController
 
     if params[:decision] == "false"
 
-        PostMailer.post_rejected(@post_unique, @user).deliver_now
+      PostMailer.post_rejected(@post_unique, @user).deliver_now
 
-        @post.update(approved_by: "rejected")
-        flash[:danger] = "This post has been rejected by Admin"
-        redirect_to admin_rejected_path
+      @post.update(approved_by: "rejected")
+      flash[:danger] = "This post has been rejected by Admin"
+      redirect_to admin_rejected_path
     else
-        @post.update(approved_by: current_user.name)
-        flash[:success] = "This post has been approved by Admin"
-        redirect_to admin_approved_path
+      @post.update(approved_by: current_user.name)
+      flash[:success] = "This post has been approved by Admin"
+      redirect_to admin_approved_path
     end
   end
 
@@ -118,10 +120,10 @@ class PostsController < ApplicationController
     @user = @post.user
     
     if params[:decision] == "true"
-        PostMailer.review(@user, @review_unique, @post).deliver_now
-        @review.update(approved_by: current_user.name)
-        flash[:success] = "This review has been approved by Admin"
-        redirect_to request.referrer
+      PostMailer.review(@user, @review_unique, @post).deliver_now
+      @review.update(approved_by: current_user.name)
+      flash[:success] = "This review has been approved by Admin"
+      redirect_to request.referrer
     end
   end
 
@@ -129,11 +131,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-      params.require(:post).permit(:ad_title, :detailed_ad_title, :category_id, :ad_description, :user_name, :phone, :city, post_attachments_attributes: [:id, :post_id, :photo])
+    params.require(:post).permit(:ad_title, :detailed_ad_title, :category_id, :ad_description, :user_name, :phone, :city, post_attachments_attributes: [:id, :post_id, :photo])
   end
 
   def set_post
-      @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
     
 end
