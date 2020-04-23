@@ -2,58 +2,58 @@
 
 
 <% if @buyers.present? %> 
-<section class="table-header mb-3">
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <h3 class="heading">Buyers List</h3>
+  <section class="table-header mb-3">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h3 class="heading">Buyers List</h3>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<table class="table table-hover" width="100%">
-  <thead class="thead-light">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @buyers.each_with_index do |buyer,index| %>
+  <table class="table table-hover" width="100%">
+    <thead class="thead-light">
       <tr>
-        <td class="heading"><%= index+1 %></td>
-        <td class="heading"><%= buyer.buyer_name %></td>
-        <td class="heading"><%= buyer.location %></td>
-        <td class="heading"><%= buyer.email %></td>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
 
-        <% if @post.buyer_id == nil %>
-         
-          <td>
-            <%= link_to 'Sell Product',  
-            {:controller => "buyers",
-            :action => "sell",
-            :id => buyer.id,
-            :decision => "true"}, method: 'post', 
-            class: "btn btn-md btn-primary",
-            data: { disable_with: "Selling..."  } %>
-          </td>
-        <% else %>
+    <tbody>
+      <% @buyers.each_with_index do |buyer,index| %>
+        <tr>
+          <td class="heading"><%= index+1 %></td>
+          <td class="heading"><%= buyer.buyer_name %></td>
+          <td class="heading"><%= buyer.location %></td>
+          <td class="heading"><%= buyer.email %></td>
 
-          <% if buyer.id == @post.buyer_id %>  
-            <td><%= link_to "Sold to #{buyer.buyer_name}", buyers_path, class: "btn btn-md btn-primary disabled" %></td>
+          <% if @post.buyer_id == nil %>
+          
+            <td>
+              <%= link_to 'Sell Product',  
+              {:controller => "buyers",
+              :action => "sell",
+              :id => buyer.id,
+              :decision => "true"}, method: 'post', 
+              class: "btn btn-md btn-primary",
+              data: { disable_with: "Selling..."  } %>
+            </td>
           <% else %>
-            <td></td>
+
+            <% if buyer.id == @post.buyer_id %>  
+              <td><%= link_to "Sold to #{buyer.buyer_name}", buyers_path, class: "btn btn-md btn-primary disabled" %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+
           <% end %>
 
-        <% end %>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <% else %>
   <h2 class="text-center text-muted mt-5"> No one has requested to buy this product yet</h2>

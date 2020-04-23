@@ -33,7 +33,7 @@ class User < ApplicationRecord
       uid: auth['uid'],
       name: auth['info']['name'],
       email: auth['info']['email'],
-      password: '11111111',
+      password: '11111111'
     )
   end
 end

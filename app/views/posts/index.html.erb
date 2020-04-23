@@ -36,7 +36,7 @@
                 <%= hidden_field_tag :ad_title, params[:ad_title] %>
               <% end %>
 
-              <%= collection_select  :category_id, :id, Category.all, :id, :name, {selected: "", disabled: "", prompt: "Select ad by category"}, { class: "form-control" } %>
+              <%= collection_select  :category_id, :id, Category.all, :id, :name, { selected: "", disabled: "", prompt: "Select ad by category" }, { class: "form-control" } %>
               <%= submit_tag "Search", :name => nil, class:"btn btn-primary" %>
                 
             <% end %>
