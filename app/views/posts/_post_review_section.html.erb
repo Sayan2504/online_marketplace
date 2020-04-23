@@ -30,19 +30,7 @@
 
 
                 <div class="col-sm-3 mt-3">
-                  <div class="rating" id="star_rating">
-                    <% if r.rating == "1" %>
-                      <%= render "1_rating" %>
-                    <% elsif r.rating == "2" %>
-                      <%= render "2_rating" %>
-                    <% elsif r.rating == "3" %>
-                      <%= render "3_rating" %>
-                    <% elsif r.rating == "4" %>
-                      <%= render "4_rating" %>
-                    <% elsif r.rating == "5" %>
-                      <%= render "5_rating" %>
-                    <% end %>
-                  </div>
+                  <%= render "rating_view", r: r %>
                 </div>
 
                 <div class="col-sm-2 mt-3">
@@ -83,21 +71,8 @@
                 </div>
 
                 <div class="col-sm-3 mt-3">
-                  <div class="rating" id="star_rating">
-                    <% if r.rating == "1" %>
-                      <%= render "1_rating" %>
-                    <% elsif r.rating == "2" %>
-                      <%= render "2_rating" %>
-                    <% elsif r.rating == "3" %>
-                      <%= render "3_rating" %>
-                    <% elsif r.rating == "4" %>
-                      <%= render "4_rating" %>
-                    <% elsif r.rating == "5" %>
-                      <%= render "5_rating" %>
-                    <% end %>
-                  </div>
+                  <%= render "rating_view", r: r %>
                 </div>
-
 
                 <div class="col-sm-2 mt-3">
                   <div class="post-details-row">
@@ -133,19 +108,7 @@
                   </div>
 
                   <div class="col-sm-3 mt-3">
-                    <div class="rating" id="star_rating">
-                      <% if r.rating == "1" %>
-                        <%= render "1_rating" %>
-                      <% elsif r.rating == "2" %>
-                        <%= render "2_rating" %>
-                      <% elsif r.rating == "3" %>
-                        <%= render "3_rating" %>
-                      <% elsif r.rating == "4" %>
-                        <%= render "4_rating" %>
-                      <% elsif r.rating == "5" %>
-                        <%= render "5_rating" %>
-                      <% end %>
-                    </div>
+                    <%= render "rating_view", r: r %>
                   </div>
                 </div>
               </div>
@@ -169,19 +132,7 @@
                   </div>
 
                   <div class="col-sm-2 mt-2">
-                    <div class="rating" id="star_rating">
-                      <% if r.rating == "1" %>
-                        <%= render "1_rating" %>
-                      <% elsif r.rating == "2" %>
-                        <%= render "2_rating" %>
-                      <% elsif r.rating == "3" %>
-                        <%= render "3_rating" %>
-                      <% elsif r.rating == "4" %>
-                        <%= render "4_rating" %>
-                      <% elsif r.rating == "5" %>
-                        <%= render "5_rating" %>
-                      <% end %>
-                    </div>
+                    <%= render "rating_view", r: r %>
                   </div>
                   
                   <div class="col-sm-3 mt-2 text-center">

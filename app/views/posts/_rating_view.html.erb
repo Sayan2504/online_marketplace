@@ -1,0 +1,13 @@
+<div class="rating" id="star_rating">
+  <% if r.rating == "1" %>
+    <%= render "1_rating" %>
+  <% elsif r.rating == "2" %>
+    <%= render "2_rating" %>
+  <% elsif r.rating == "3" %>
+    <%= render "3_rating" %>
+  <% elsif r.rating == "4" %>
+    <%= render "4_rating" %>
+  <% elsif r.rating == "5" %>
+    <%= render "5_rating" %>
+  <% end %>
+</div>
