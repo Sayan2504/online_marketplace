@@ -1,10 +1,6 @@
 class SessionsController < ApplicationController
   before_action :set_user, only: :create
   
-  def new
-  end
-  
-
   def create
     if @user&.authenticate(params[:session][:password])
       log_in(@user)
@@ -21,7 +17,17 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    return unless logged_in?
 
+    log_out
+    flash[:danger] = "User has been successfully logged out."
+    redirect_to root_path
+  end
+
+  def new
+  end
+  
   def fb_google_create
     auth = request.env["omniauth.auth"]
     session[:omniauth] = auth.except('extra')
@@ -31,18 +37,6 @@ class SessionsController < ApplicationController
     redirect_to user_path(user)
   end
 
-
-
-  def destroy
-    return unless logged_in?
-
-    log_out
-    flash[:danger] = "User has been successfully logged out."
-    redirect_to root_path
-  end
-  
-  
-  
   private
 
   def set_user

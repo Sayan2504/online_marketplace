@@ -1,17 +1,5 @@
 class Admin::AdsController < ApplicationController
     
-  def unchecked
-    @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
-  end
-
-  def rejected
-    @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
-  end
-
-  def approved 
-    @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
-  end
-
   def approve
     @post = Post.where(id: params[:id])
     @post_unique = @post.first
@@ -31,6 +19,10 @@ class Admin::AdsController < ApplicationController
     end  
   end
 
+  def approved 
+    @posts = Post.select(["approved_by", "id", "ad_title"]).where.not(approved_by: ['null', 'rejected'])
+  end
+
   def reject
     @post = Post.where(id: params[:id])
     @post_unique = @post.first
@@ -48,4 +40,12 @@ class Admin::AdsController < ApplicationController
       redirect_to admin_approved_path
     end
   end  
+
+  def rejected
+    @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
+  end
+
+  def unchecked
+    @posts = Post.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
+  end
 end

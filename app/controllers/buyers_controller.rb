@@ -1,14 +1,8 @@
 class BuyersController < ApplicationController
 
-  def index
-    @buyers = Buyer.select(["id","buyer_name","email","location","post_id"]).where(post_id: params[:post_id])
-    @post = Post.find_by(id: params[:post_id])
-  end
-
-  def new
-    @post = Post.find(params[:post_id])
-    @user = @post.user
-    @buyer = Buyer.new
+  def bought
+    @buyer = Buyer.where(email: current_user.email)
+    @posts = Post.where(buyer_id: @buyer.ids)
   end
 
   def create
@@ -51,7 +45,16 @@ class BuyersController < ApplicationController
     end      
   end
 
+  def index
+    @buyers = Buyer.select(["id","buyer_name","email","location","post_id"]).where(post_id: params[:post_id])
+    @post = Post.find_by(id: params[:post_id])
+  end
 
+  def new
+    @post = Post.find(params[:post_id])
+    @user = @post.user
+    @buyer = Buyer.new
+  end
 
   def sell
     @buyer = Buyer.find_by(id: params[:id])
@@ -69,24 +72,10 @@ class BuyersController < ApplicationController
     end
   end
 
-
-
-
-  def bought
-      @buyer = Buyer.where(email: current_user.email)
-      @posts = Post.where(buyer_id: @buyer.ids)
-  end
-
-
-
-
   def sold
-      @buyer = Buyer.where(user_id: current_user.id)
-      @posts = Post.where(buyer_id: @buyer.ids)
+    @buyer = Buyer.where(user_id: current_user.id)
+    @posts = Post.where(buyer_id: @buyer.ids)
   end 
-
-
-
 
   private
 

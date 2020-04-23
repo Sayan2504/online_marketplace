@@ -1,14 +1,6 @@
 class Admin::CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @categories = Category.all
-  end 
-
-  def new
-    @category = Category.new
-  end
-
   def create
     @category = Category.new(category_params)
 
@@ -18,6 +10,14 @@ class Admin::CategoriesController < ApplicationController
     else
         render "new"
     end
+  end
+
+  def index
+    @categories = Category.all
+  end 
+
+  def new
+    @category = Category.new
   end
 
   private

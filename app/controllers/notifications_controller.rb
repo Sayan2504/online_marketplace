@@ -19,6 +19,7 @@ class NotificationsController < ApplicationController
       end
     end
   end
+  
 end
 
 

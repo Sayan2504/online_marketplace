@@ -1,20 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
-  def index
-    @posts = Post.all
-  end
-
-  def new
-    if logged_in?
-      flash[:warning] = "You have already logged in."
-      redirect_to root_path
-      return
-    end
-    
-    @user = User.new({buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name]})
-  end
-
   def create
     @user = User.new(user_params)
 
@@ -50,15 +36,23 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def update
-    @user = User.find(params[:id])
-    
-    if @user.update(user_params)
-      flash[:success] = "Email/Password has been successfully updated"
-      redirect_to user_path(@user)
-    else
-      render 'edit'
+  def index
+    @posts = Post.all
+  end
+
+  def new
+    if logged_in?
+      flash[:warning] = "You have already logged in."
+      redirect_to root_path
+      return
     end
+    
+    @user = User.new({buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name]})
+  end
+
+  def rejected
+    @user = current_user
+    @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
   end
 
   def show
@@ -70,18 +64,25 @@ class UsersController < ApplicationController
     @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
   end
 
-  def rejected
-    @user = current_user
-    @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
+  def update
+    @user = User.find(params[:id])
+    
+    if @user.update(user_params)
+      flash[:success] = "Email/Password has been successfully updated"
+      redirect_to user_path(@user)
+    else
+      render 'edit'
+    end
   end
-  
+
   private
   
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :provider, :uid, :buyer_post_id)
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
 end
