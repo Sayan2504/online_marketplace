@@ -19,7 +19,7 @@ class BuyersController < ApplicationController
     @user_email = @post.user
 
     #checking if buyer has already requested or not
-    @buyer_user = Buyer.where(post_id: @buyer.post_id)  
+    @buyer_user = Buyer.where(post_id: @buyer.post_id)
     @buyer_user = @buyer_user.find_by(email: @buyer.email)
         
     #getting the author of the post   
