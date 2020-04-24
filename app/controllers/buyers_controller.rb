@@ -7,8 +7,8 @@ class BuyersController < ApplicationController
 
   def create
     @buyer = Buyer.new(buyer_params) #creating new buyer
-    @user = User.select(["email", "name"]).find_by(email: @buyer.email) #checking if user is registered or not
-    @post = Post.select(["id", "ad_title", "user_id"]).find_by(id: @buyer.post_id) #getting the post for which buyer request is being sent
+    @user = User.find_by(email: @buyer.email) #checking if user is registered or not
+    @post = Post.find_by(id: @buyer.post_id) #getting the post for which buyer request is being sent
 
     @user_email = @post.user
 
@@ -46,7 +46,7 @@ class BuyersController < ApplicationController
   end
 
   def index
-    @buyers = Buyer.select(["id","buyer_name","email","location","post_id"]).where(post_id: params[:post_id])
+    @buyers = Buyer.where(post_id: params[:post_id])
     @post = Post.find_by(id: params[:post_id])
   end
 

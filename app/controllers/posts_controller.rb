@@ -46,17 +46,17 @@ class PostsController < ApplicationController
     end
 
     #messages for users based on posts on given filtration is present or not present
-    @post_ad_title = Post.select(["id","buyer_id"]).find_by(ad_title: params[:ad_title]) #check whether ad_title is in database
-    @post_city = Post.select(["id", "buyer_id"]).find_by(city: params[:location]) #check whether location is in database
+    @post_ad_title = Post.find_by(ad_title: params[:ad_title]) #check whether ad_title is in database
+    @post_city = Post.find_by(city: params[:location]) #check whether location is in database
     
     if params[:category_id]
-      @post_category = Post.select(["id"]).find_by(category_id: params[:category_id][:id])
+      @post_category = Post.find_by(category_id: params[:category_id][:id])
     end
 
     #Showing the thumbnails of posts
          
     #if no filtration given
-    @posts = Post.select(["approved_by", "id", "ad_title", "category_id", "city", "buyer_id"]).where.not(approved_by: ['null', 'rejected'])
+    @posts = Post.where.not(approved_by: ['null', 'rejected'])
     @posts = @posts.where(buyer_id: nil) #only posts that are not sold yet
 
     #filtration based on category
