@@ -1,7 +1,7 @@
 <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
   <div class="card">
     <div class="card-body">
-      <%= form_for [:admin, @category], :html=> { :multipart=> true} do |f| %>
+      <%= form_for [:admin, @category], html: { multipart: true } do |f| %>
         <%= render "shared/error_messages", object: @category %>
 
         <div class="form-group">

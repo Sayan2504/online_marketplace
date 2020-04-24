@@ -12,7 +12,7 @@
 
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label "category" %>
-            <%= f.collection_select  :category_id, Category.all, :id, :name, { prompt: "-- Select Category --" },{class: "form-control scroll"} %>
+            <%= f.collection_select  :category_id, Category.all, :id, :name, { prompt: "-- Select Category --" },{ class: "form-control scroll" } %>
           </div>
         </div>
 
@@ -40,7 +40,7 @@
             <%= f.fields_for :post_attachments do |p| %>
               <div class="field">
                 <%= p.label :photo %><br>
-                <%= p.file_field :photo, :multiple => true, name: "post_attachments[photo][]" %>
+                <%= p.file_field :photo, multiple: true, name: "post_attachments[photo][]" %>
               </div>
             <% end %>
           </div>

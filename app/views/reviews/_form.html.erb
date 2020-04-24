@@ -1,7 +1,7 @@
 <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
   <div class="card">
     <div class="card-body">
-      <%= form_for @review, :html=> { :multipart=> true} do |f| %>
+      <%= form_for @review, html: { multipart: true } do |f| %>
         <%= render "shared/error_messages", object: @review %>
 
         <div class="form-group">
@@ -27,19 +27,19 @@
           
           <div class="rating">
             <label for="star5" title="Excellent!" id="star_5" class="check5">5 Stars</label>
-            <%= f.radio_button :rating, 5, :id => "star5" %>
+            <%= f.radio_button :rating, 5, id: "star5" %>
 
             <label for="star4" title="Good!" id="star_4" class="check4">4 Stars</label>
-            <%= f.radio_button :rating, 4, :id => "star4" %> 
+            <%= f.radio_button :rating, 4, id: "star4" %> 
              
             <label for="star3" title="Average!" id="star_3" class="check3">3 Stars</label>
-            <%= f.radio_button :rating, 3, :id => "star3" %>
+            <%= f.radio_button :rating, 3, id: "star3" %>
             
             <label for="star2" title="Poor!" id="star_2" class="check2">2 Stars</label>
-            <%= f.radio_button :rating, 2, :id => "star2" %> 
+            <%= f.radio_button :rating, 2, id: "star2" %> 
              
             <label for="star1" title="Very Poor!" id="star_1" class="check1">1 Stars</label>
-            <%= f.radio_button :rating, 1, :id => "star1" %>
+            <%= f.radio_button :rating, 1, id: "star1" %>
 
           </div>
         </div>

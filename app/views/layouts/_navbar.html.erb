@@ -4,7 +4,7 @@
     <% if admin_user? %>
       <%= link_to "Admin Homepage", users_path, class: "navbar-brand" %>
     <% else %>
-      <%= link_to "#{current_user.name}'s Homepage", user_path(current_user), class: "navbar-brand" %>
+      <%= link_to "#{ current_user.name }'s Homepage", user_path(current_user), class: "navbar-brand" %>
     <% end %>
 
   <% else %>

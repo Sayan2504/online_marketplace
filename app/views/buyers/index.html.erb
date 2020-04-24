@@ -32,18 +32,12 @@
           <% if @post.buyer_id == nil %>
           
             <td>
-              <%= link_to 'Sell Product',  
-              {:controller => "buyers",
-              :action => "sell",
-              :id => buyer.id,
-              :decision => "true"}, method: 'post', 
-              class: "btn btn-md btn-primary",
-              data: { disable_with: "Selling..."  } %>
+              <%= link_to 'Sell Product', { controller: "buyers", action: "sell", id: buyer.id, decision: "true" }, method: 'post', class: "btn btn-md btn-primary", data: { disable_with: "Selling..."  } %>
             </td>
           <% else %>
 
             <% if buyer.id == @post.buyer_id %>  
-              <td><%= link_to "Sold to #{buyer.buyer_name}", buyers_path, class: "btn btn-md btn-primary disabled" %></td>
+              <td><%= link_to "Sold to #{ buyer.buyer_name }", buyers_path, class: "btn btn-md btn-primary disabled" %></td>
             <% else %>
               <td></td>
             <% end %>

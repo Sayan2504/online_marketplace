@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     if @post.save
       if params[:post_attachments].present?
         params[:post_attachments]['photo'].each do |a|
-          @post_attachment = @post.post_attachments.create(:photo => a, :post_id => @post.id, :user_id => current_user.id)
+          @post_attachment = @post.post_attachments.create(photo: a, post_id: @post.id, user_id: current_user.id)
         end
       end
       flash[:success] = "Post has been successfully created"
@@ -66,14 +66,14 @@ class PostsController < ApplicationController
 
     #filtration based on ad title
     if params[:ad_title]
-      @posts = @posts.where("ad_title LIKE ?", "%#{params[:ad_title]}%")
+      @posts = @posts.where("ad_title LIKE ?", "%#{ params[:ad_title] }%")
     else
       @posts = @posts
     end 
 
     #filtration based on location
     if params[:location]
-      @posts = @posts.where("city LIKE ?", "#{params[:location]}%")
+      @posts = @posts.where("city LIKE ?", "#{ params[:location] }%")
     end
   end     
 
@@ -121,19 +121,7 @@ class PostsController < ApplicationController
       redirect_to admin_approved_path
     end
   end
-  def rapprove
-    @review = Review.where(id: params[:id])
-    @review_unique = @review.first
-    @post = @review_unique.post
-    @user = @post.user
-    
-    if params[:decision] == "true"
-      PostMailer.review(@user, @review_unique, @post).deliver_now
-      @review.update(approved_by: current_user.name)
-      flash[:success] = "This review has been approved by Admin"
-      redirect_to request.referrer
-    end
-  end
+  
   private
 
   def post_params

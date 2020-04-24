@@ -47,12 +47,12 @@ class UsersController < ApplicationController
       return
     end
     
-    @user = User.new({buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name]})
+    @user = User.new({ buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name] })
   end
 
   def rejected
     @user = current_user
-    @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='rejected'")
+    @posts = @user.posts.where("approved_by='rejected'")
   end
 
   def show
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
   def unchecked
     @user = current_user
-    @posts = @user.posts.select(["approved_by", "id", "ad_title"]).where("approved_by='null'")
+    @posts = @user.posts.where("approved_by='null'")
   end
 
   def update

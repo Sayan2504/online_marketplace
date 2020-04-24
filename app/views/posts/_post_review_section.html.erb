@@ -35,7 +35,7 @@
 
                 <div class="col-sm-2 mt-3">
                   <div class="post-details-row">
-                    <%= link_to 'Approve', {:controller => "posts", :action => "rapprove", :id => r.id, :decision => "true"}, method: 'post', class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
+                    <%= link_to 'Approve', { controller: "posts", action: "rapprove", id: r.id, decision: "true"}, method: 'post', class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@
                     <% end %>
 
                     <% if registered != false %>
-                      <%= link_to 'Send Message', new_message_path({post_id: @post.id, sender_id: @user.id, receiver_id: registered}), class: "btn btn-md btn-primary" %> 
+                      <%= link_to 'Send Message', new_message_path({ post_id: @post.id, sender_id: @user.id, receiver_id: registered }), class: "btn btn-md btn-primary" %> 
                     <% else %>
                       <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered User</button>
                     <% end %>
