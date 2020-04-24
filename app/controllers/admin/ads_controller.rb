@@ -42,10 +42,10 @@ class Admin::AdsController < ApplicationController
   end  
 
   def rejected
-    @posts = Post.where("approved_by='rejected'")
+    @posts = Post.where(approved_by: "rejected")
   end
 
   def unchecked
-    @posts = Post.where("approved_by='null'")
+    @posts = Post.where(approved_by: "null")
   end
 end

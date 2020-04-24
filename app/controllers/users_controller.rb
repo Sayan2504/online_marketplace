@@ -52,16 +52,16 @@ class UsersController < ApplicationController
 
   def rejected
     @user = current_user
-    @posts = @user.posts.where("approved_by='rejected'")
+    @posts = @user.posts.where(approved_by: "rejected")
   end
 
   def show
-    @posts = @user.posts.where.not(approved_by: ['null', 'rejected'])
+    @posts = @user.posts.where.not(approved_by: ["null", "rejected"])
   end
 
   def unchecked
     @user = current_user
-    @posts = @user.posts.where("approved_by='null'")
+    @posts = @user.posts.where(approved_by: "null")
   end
 
   def update
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
       flash[:success] = "Email/Password has been successfully updated"
       redirect_to user_path(@user)
     else
-      render 'edit'
+      render "edit"
     end
   end
 

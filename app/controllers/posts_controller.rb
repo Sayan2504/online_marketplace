@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     
     if @post.save
       if params[:post_attachments].present?
-        params[:post_attachments]['photo'].each do |a|
+        params[:post_attachments]["photo"].each do |a|
           @post_attachment = @post.post_attachments.create(photo: a, post_id: @post.id, user_id: current_user.id)
         end
       end
@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     #Showing the thumbnails of posts
          
     #if no filtration given
-    @posts = Post.where.not(approved_by: ['null', 'rejected'])
+    @posts = Post.where.not(approved_by: ["null", "rejected"])
     @posts = @posts.where(buyer_id: nil) #only posts that are not sold yet
 
     #filtration based on category
