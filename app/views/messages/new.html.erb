@@ -4,7 +4,7 @@
   <h2 class="text-center">Chat with <%= @receiver.name %> for the post <%= @post.ad_title %></h1>
   <div class="well" id="chatbox">
     <% @messages.each do |message| %>
-      <%= render 'message', message: message %>
+      <%= render "message", message: message %>
     <% end %>
   </div>
 

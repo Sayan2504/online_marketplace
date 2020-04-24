@@ -1,9 +1,9 @@
-$('#body_input').val('');   
+$("#body_input").val('');   
 
-$('#chatbox').append("<%= j render @message %>");
+$("#chatbox").append("<%= j render @message %>");
 
 $(document).ready(function(){
-  var messages = $('#chatbox');
+  var messages = $("#chatbox");
 
   function init (){
     messages.scrollTop(messages[0].scrollHeight);

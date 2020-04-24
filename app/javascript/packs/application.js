@@ -8,7 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("actioncable")
-require('jquery')
+require("jquery")
 
 //= require jquery3
 //= require popper

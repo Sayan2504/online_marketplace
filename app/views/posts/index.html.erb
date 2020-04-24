@@ -54,7 +54,7 @@
 
               <% if params[:category_id].present? %>
                 <% params[:category_id].each do |id,value| %>
-                  <%= hidden_field_tag "category_id[#{id}]",value %> 
+                  <%= hidden_field_tag "category_id[#{ id }]",value %> 
                 <% end %>
               <% end %>
 

@@ -32,7 +32,7 @@
           <% if @post.buyer_id == nil %>
           
             <td>
-              <%= link_to 'Sell Product', { controller: "buyers", action: "sell", id: buyer.id, decision: "true" }, method: 'post', class: "btn btn-md btn-primary", data: { disable_with: "Selling..."  } %>
+              <%= link_to "Sell Product", { controller: "buyers", action: "sell", id: buyer.id, decision: "true" }, method: "post", class: "btn btn-md btn-primary", data: { disable_with: "Selling..."  } %>
             </td>
           <% else %>
 
