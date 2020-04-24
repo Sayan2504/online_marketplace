@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     @message.user = current_user #populating the user_id field in messages table
 
     #populating the post_id field in messages table 
-    @message.post = Post.find_by(id: @message.post_id)
+    @message.post = Post.find(@message.post_id)
 
     #populating the receiver_id field in messages table 
     @message.receiver_id = User.find(@message.receiver_id).id

@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   def index
     #check whether the category is in database and matches the ad_title/location (if given)
     if params[:category_id]
-      @category = Category.find_by(id: params[:category_id][:id])
+      @category = Category.find(params[:category_id][:id])
       @post_unsold = Post.where(category_id: params[:category_id][:id])
       @post_unsold = @post_unsold.find_by(buyer_id: nil)
     end
