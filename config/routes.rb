@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   #for reviews
   resources :reviews
-  post "rapproved", to: "posts#rapprove" 
+  get "/approve_review", to: "posts#approve_review"
+  post "/approve_review", to: "posts#approve_review"
   
 
   resources :users
@@ -29,8 +30,12 @@ Rails.application.routes.draw do
   resources :posts
   get "/unchecked",  to: "users#unchecked"
   get "/rejected",  to: "users#rejected"
-  post "/approved", to: "posts#approve"
-  post "/rejected", to: "posts#reject"
+  get "/approve", to: "posts#approve"
+  post "/approve", to: "posts#approve"
+  get "/reject", to: "posts#reject"
+  post "/reject", to: "posts#reject"
+  
+  
 
   #for buying
   resources :buyers
@@ -47,18 +52,21 @@ Rails.application.routes.draw do
   resources :messages #chat
   
   resources :notifications #bell notification in account
-  post "/read_message", to: "notifications#read_message"
   get "/read_message", to: "notifications#read_message"
+  post "/read_message", to: "notifications#read_message"
+  
 
   #Admin section
   namespace :admin do
     resources :categories
 
-    get "/unchecked",  to: "ads#unchecked"
-    post "/approved", to: "ads#approve"
-    post "/rejected", to: "ads#reject"
+    get "/approve", to: "ads#approve"
+    post "/approve", to: "ads#approve"
+    get "/reject", to: "ads#reject"
+    post "/reject", to: "ads#reject"
     get "/approved",  to: "ads#approved"
     get "/rejected",  to: "ads#rejected"
+    get "/unchecked",  to: "ads#unchecked"
   end
 
 

@@ -89,7 +89,7 @@ class PostsController < ApplicationController
     @user_email = User.all  
   end
 
-  def rapprove
+  def approve_review
     @review = Review.where(id: params[:id])
     @review_unique = @review.first
     @post = @review_unique.post
@@ -99,7 +99,7 @@ class PostsController < ApplicationController
       PostMailer.review(@user, @review_unique, @post).deliver_now
       @review.update(approved_by: current_user.name)
       flash[:success] = "This review has been approved by Admin"
-      redirect_to request.referrer
+      redirect_to post_path(@post)
     end
   end
 

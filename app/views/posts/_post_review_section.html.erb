@@ -35,7 +35,7 @@
 
                 <div class="col-sm-2 mt-3">
                   <div class="post-details-row">
-                    <%= link_to 'Approve', { controller: "posts", action: "rapprove", id: r.id, decision: "true"}, method: 'post', class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
+                    <%= link_to "Approve", approve_review_path({ id: r.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
                   </div>
                 </div>
               </div>
