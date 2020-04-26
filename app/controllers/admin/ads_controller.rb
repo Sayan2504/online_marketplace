@@ -7,18 +7,18 @@ class Admin::AdsController < ApplicationController
     if params[:decision] == "true"
         PostMailer.post_approved(@post_unique, @user).deliver_now
 
-        @post.update(approved_by: current_user.name)
+        @post.admin_post_approval(current_user.name)
         flash[:success] = "This post has been approved by Admin"
         redirect_to admin_approved_path
     else
-        @post.update(approved_by: "rejected")
+        @post.admin_post_approval("rejected")
         flash[:danger] = "This post has been rejected by Admin"
         redirect_to admin_rejected_path
     end  
   end
 
   def approved 
-    @posts = Post.where.not(approved_by: ['null', 'rejected'])
+    @posts = Post.admin_post_approved_state
   end
 
   def reject
@@ -27,22 +27,22 @@ class Admin::AdsController < ApplicationController
     if params[:decision] == "false"
       PostMailer.post_rejected(@post_unique, @user).deliver_now
       
-      @post.update(approved_by: "rejected")
+      @post.admin_post_approval("rejected")
       flash[:danger] = "This post has been rejected by Admin"
       redirect_to admin_rejected_path
     else
-      @post.update(approved_by: current_user.name)
+      @post.admin_post_approval(current_user.name)
       flash[:success] = "This post has been approved by Admin"
       redirect_to admin_approved_path
     end
   end  
 
   def rejected
-    @posts = Post.where(approved_by: "rejected")
+    @posts = Post.admin_post_state("rejected")
   end
 
   def unchecked
-    @posts = Post.where(approved_by: "null")
+    @posts = Post.admin_post_state("null")
   end
 
   private

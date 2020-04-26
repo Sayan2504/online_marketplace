@@ -49,15 +49,15 @@ class UsersController < ApplicationController
   end
 
   def rejected
-    @posts = @user.posts.where(approved_by: "rejected")
+    @posts = @user.posts.admin_post_state("rejected")
   end
 
   def show
-    @posts = @user.posts.where.not(approved_by: ["null", "rejected"])
+    @posts = @user.posts.admin_post_approved_state
   end
 
   def unchecked
-    @posts = @user.posts.where(approved_by: "null")
+    @posts = @user.posts.admin_post_state("null")
   end
 
   def update

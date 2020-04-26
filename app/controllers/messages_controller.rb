@@ -22,8 +22,8 @@ class MessagesController < ApplicationController
     @post = Post.find(params[:post_id])
 
     #Individual chat room created based on user and post
-    @messages = Message.where(receiver_id: current_user.id, user_id: @receiver.id).or (Message.where(user_id: current_user.id, receiver_id: @receiver.id)) 
-    @messages = @messages.where(post_id: @post.id)
+    @messages = Message.receiver_side(current_user.id, @receiver.id).or (Message.sender_side(current_user.id, @receiver.id)) 
+    @messages = @messages.message_post_id(@post.id)
     @messages = @messages.order("created_at ASC").includes(:user) #chats ordered based on time of creation
    
     #getting the params to be used during create

@@ -8,11 +8,11 @@ class PostsController < ApplicationController
     if params[:decision] == "true"
       PostMailer.post_approved(@post_unique, @user).deliver_now
       
-      @post.update(approved_by: current_user.name)
+      @post.admin_post_approval(current_user.name)
       flash[:success] = "This post has been approved by Admin"
       redirect_to admin_approved_path 
     else
-      @post.update(approved_by: "rejected")
+      @post.admin_post_approval("rejected")
       flash[:danger] = "This post has been rejected by Admin"
       redirect_to admin_rejected_path
     end
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     
     if params[:decision] == "true"
       PostMailer.review(@user, @review_unique, @post).deliver_now
-      @review.update(approved_by: current_user.name)
+      @review.admin_review_approval(current_user.name)
       flash[:success] = "This review has been approved by Admin"
       redirect_to post_path(@post)
     end
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     #check whether the category is in database and matches the ad_title/location (if given)
     if params[:category_id]
       @category = Category.find(params[:category_id][:id])
-      @post_unsold = Post.where(category_id: params[:category_id][:id]).where(buyer_id: nil)
+      @post_unsold = Post.post_category(params[:category_id][:id]).post_unsold
     end
 
     #messages for users based on posts on given filtration is present or not present
@@ -68,22 +68,22 @@ class PostsController < ApplicationController
     #Showing the thumbnails of posts
          
     #if no filtration given
-    @posts = Post.where.not(approved_by: ["null", "rejected"])
-    @posts = @posts.where(buyer_id: nil) #only posts that are not sold yet
+    @posts = Post.admin_post_approved_state
+    @posts = @posts.post_unsold #only posts that are not sold yet
 
     #filtration based on category
     if params[:category_id]        
-      @posts = @posts.where(category_id: params[:category_id][:id])
+      @posts = @posts.post_category(params[:category_id][:id])
     end 
 
     #filtration based on ad title
     if params[:ad_title]
-      @posts = @posts.where("ad_title LIKE ?", "%#{ params[:ad_title] }%")
+      @posts = @posts.post_ad_title(params[:ad_title])
     end 
 
     #filtration based on location
     if params[:location]
-      @posts = @posts.where("city LIKE ?", "#{ params[:location] }%")
+      @posts = @posts.post_city(params[:location])
     end
   end     
 
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
   end
     
   def show
-    @user = current_user
+    @user = @post.user
     @post_attachments = @post.post_attachments.all
     @reviews = @post.reviews.all
     @user_email = User.all  
@@ -106,11 +106,11 @@ class PostsController < ApplicationController
 
       PostMailer.post_rejected(@post_unique, @user).deliver_now
 
-      @post.update(approved_by: "rejected")
+      @post.admin_post_approval("rejected")
       flash[:danger] = "This post has been rejected by Admin"
       redirect_to admin_rejected_path
     else
-      @post.update(approved_by: current_user.name)
+      @post.admin_post_approval(current_user.name)
       flash[:success] = "This post has been approved by Admin"
       redirect_to admin_approved_path
     end

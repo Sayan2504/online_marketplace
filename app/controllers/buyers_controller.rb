@@ -2,8 +2,8 @@ class BuyersController < ApplicationController
   before_action :set_post, only: [:index, :new]
 
   def bought
-    @buyer = Buyer.where(email: current_user.email)
-    @posts = Post.where(buyer_id: @buyer.ids)
+    @buyer = Buyer.buyer_email(current_user.email)
+    @posts = Post.product_bought(@buyer.ids)
   end
 
   def create
@@ -14,7 +14,7 @@ class BuyersController < ApplicationController
     @user_email = @post.user
 
     #checking if buyer has already requested or not
-    @buyer_user = Buyer.where(post_id: @buyer.post_id)
+    @buyer_user = Buyer.buyer_post_id(@buyer.post_id)
     @buyer_user = @buyer_user.find_by(email: @buyer.email)
         
     #getting the author of the post   
@@ -47,8 +47,7 @@ class BuyersController < ApplicationController
   end
 
   def index
-    @buyers = Buyer.where(post_id: params[:post_id])
-    
+    @buyers = Buyer.buyer_post_id(params[:post_id])
   end
 
   def new
@@ -73,8 +72,8 @@ class BuyersController < ApplicationController
   end
 
   def sold
-    @buyer = Buyer.where(user_id: current_user.id)
-    @posts = Post.where(buyer_id: @buyer.ids)
+    @buyer = Buyer.buyer_user_id(current_user.id)
+    @posts = Post.product_bought(@buyer.ids)
   end 
 
   private

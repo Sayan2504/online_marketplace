@@ -10,5 +10,7 @@ class Review < ApplicationRecord
 
   validates :name,  presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_NAME_AND_LOCATION_REGEX }
   validates :email, presence: true, length: { maximum: 40, minimum: 2 }, format: { with: VALID_EMAIL_REGEX }
-  validates :location, presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_NAME_AND_LOCATION_REGEX }              
+  validates :location, presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_NAME_AND_LOCATION_REGEX }
+  
+  scope :admin_review_approval, ->(value) { update(approved_by: value) }
 end
