@@ -12,8 +12,8 @@ class Buyer < ApplicationRecord
   validates :buyer_name, presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_NAME_AND_LOCATION_REGEX }
   validates :email, presence: true, length: { maximum: 40, minimum: 2 }, format: { with: VALID_EMAIL_REGEX }
   validates :location, presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_NAME_AND_LOCATION_REGEX }
-  validates :post_id, presence: true, length: { maximum: 10, minimum: 1 }
-  validates :user_id, presence: true, length: { maximum: 10, minimum: 1 }
+  validates :post_id, presence: true
+  validates :user_id, presence: true
 
   scope :buyer_email, ->(email_id) { where(email: email_id) }
   scope :buyer_post_id, ->(value) { where(post_id: value) }

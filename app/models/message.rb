@@ -7,7 +7,10 @@ class Message < ApplicationRecord
   scope :message_post_id, ->(value) { where(post_id: value) }
   scope :order_messages, -> { order("created_at ASC") }
 
-  validates :body  presence: true, length: { minimum: 1 }
+  validates :body,  presence: true, length: { minimum: 1 }
+  validates :post_id, presence: true
+  validates :user_id, presence: true
+  validates :receiver_id, presence: true
 
   after_create_commit{
     MessageBroadcastJob.perform_later(self)

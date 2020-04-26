@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
         flash[:success] = "Your review is send to admin for approval. You can see it once admin approves it"
         redirect_to post_path(@review.post_id)
     else
-        flash[:danger] = "Invalid credentials"
+        flash[:danger] = "Invalid credentials/blank fields"
         redirect_to new_review_path({ post_id: @review.post_id })
     end
   end

@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   VALID_PHONE_REGEX = /\A[1-9]{0,3}-[6-9]{1}[0-9]{9}\z/i.freeze
   VALID_CITY_REGEX = /\A[A-Za-z]{1}[\sA-Za-z]*\z/i.freeze
 
-  belongs_to :user, optional: true
+  belongs_to :user
   belongs_to :category
 
   has_many :post_attachments
@@ -20,6 +20,8 @@ class Post < ApplicationRecord
   validates :user_name, presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_USERNAME_REGEX }
   validates :phone, presence: true, length: { maximum: 15, minimum: 10 }, format: { with: VALID_PHONE_REGEX }
   validates :city,  presence: true, length: { maximum: 50, minimum: 1 }, format: { with: VALID_CITY_REGEX }
+  validates :user_id, presence: true
+
   
   scope :admin_post_approval, ->(value) { update(approved_by: value) }
   scope :admin_post_state, ->(state) { where(approved_by: state) }

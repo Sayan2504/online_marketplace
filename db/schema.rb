@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_205731) do
+ActiveRecord::Schema.define(version: 2020_04_26_225235) do
 
   create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -29,62 +29,58 @@ ActiveRecord::Schema.define(version: 2020_04_26_205731) do
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.text "body"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "post_id"
-    t.integer "receiver_id"
-    t.string "event"
-    t.index ["post_id"], name: "index_messages_on_post_id"
+    t.text "body", null: false
+    t.bigint "post_id", null: false
+    t.integer "receiver_id", null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "body"
-    t.integer "receiver_id"
-    t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "sender_id"
     t.string "unread", default: "true"
+    t.string "body", null: false
+    t.integer "post_id", null: false
+    t.integer "receiver_id", null: false
+    t.integer "sender_id", null: false
   end
 
   create_table "post_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "post_id"
     t.string "photo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "ad_title"
-    t.text "ad_description"
-    t.string "user_name"
-    t.string "phone"
-    t.string "city"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.string "approved_by", default: "null"
-    t.string "detailed_ad_title"
     t.integer "category_id", default: 0
+    t.string "ad_title", null: false
+    t.text "ad_description", null: false
+    t.string "user_name", null: false
+    t.string "phone", null: false
+    t.string "city", null: false
+    t.bigint "user_id", null: false
+    t.string "detailed_ad_title", null: false
     t.integer "buyer_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "approved_by", default: "null"
-    t.bigint "post_id"
-    t.string "email"
-    t.string "location"
-    t.string "rating"
-    t.index ["post_id"], name: "index_reviews_on_post_id"
+    t.string "name", null: false
+    t.text "review", null: false
+    t.bigint "post_id", null: false
+    t.string "email", null: false
+    t.string "location", null: false
+    t.string "rating", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -92,15 +88,12 @@ ActiveRecord::Schema.define(version: 2020_04_26_205731) do
     t.string "email", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "admin"
     t.string "provider"
     t.string "uid"
-    t.integer "buyer_post_id"
     t.string "password_digest"
+    t.boolean "admin"
+    t.integer "buyer_post_id"
   end
 
-  add_foreign_key "messages", "posts"
   add_foreign_key "messages", "users"
-  add_foreign_key "posts", "users"
-  add_foreign_key "reviews", "posts"
 end
