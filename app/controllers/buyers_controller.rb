@@ -1,4 +1,5 @@
 class BuyersController < ApplicationController
+  before_action :set_post, only: [:index, :new]
 
   def bought
     @buyer = Buyer.where(email: current_user.email)
@@ -47,11 +48,10 @@ class BuyersController < ApplicationController
 
   def index
     @buyers = Buyer.where(post_id: params[:post_id])
-    @post = Post.find(params[:post_id])
+    
   end
 
   def new
-    @post = Post.find(params[:post_id])
     @user = @post.user
     @buyer = Buyer.new
   end
@@ -81,5 +81,9 @@ class BuyersController < ApplicationController
 
   def buyer_params
     params.require(:buyer).permit(:buyer_name, :user_id, :post_id, :email, :location)
+  end
+
+  def set_post
+    @post = Post.find(params[:post_id])
   end
 end

@@ -8,10 +8,10 @@
   <% no_review_message = false %>
 
   <div class="row justify-content-center">
-    <% @reviews.each do |r| %>
+    <% @reviews.each do |review| %>
       
       <% if admin_user? %>
-        <% if r.approved_by == "null" %>
+        <% if review.approved_by == "null" %>
          
           <div class="col-xs-12 col-sm-9 ">
             <div class="card card-body justify-content-flex-center">
@@ -19,23 +19,23 @@
                 <div class="col-sm-7">
                   <div class="post-details-row mb-2">
                     <label><strong>Name : </strong></label>
-                    <span><%= r.name %></span>
+                    <span><%= review.name %></span>
                   </div>
 
                   <div class="post-details-row">
                     <label><strong>Review : </strong></label>
-                    <span><%= r.review %></span>
+                    <span><%= review.review %></span>
                   </div>
                 </div>
 
 
                 <div class="col-sm-3 mt-3">
-                  <%= render "rating_view", r: r %>
+                  <%= render "rating_view", review: review %>
                 </div>
 
                 <div class="col-sm-2 mt-3">
                   <div class="post-details-row">
-                    <%= link_to "Approve", approve_review_path({ id: r.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
+                    <%= link_to "Approve", approve_review_path({ id: review.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
                   </div>
                 </div>
               </div>
@@ -53,17 +53,17 @@
                 <div class="col-sm-7">
                   <div class="post-details-row mb-2">
                     <label><strong>Name : </strong></label>
-                    <span><%= r.name %></span>
+                    <span><%= review.name %></span>
                   </div>
 
                   <div class="post-details-row">
                     <label><strong>Review : </strong></label>
-                    <span><%= r.review %></span>
+                    <span><%= review.review %></span>
                   </div>
                 </div>
 
                 <div class="col-sm-3 mt-3">
-                  <%= render "rating_view", r: r %>
+                  <%= render "rating_view", review: review %>
                 </div>
 
                 <div class="col-sm-2 mt-3">
@@ -81,7 +81,7 @@
         
 
       <% else %>
-        <% if r.approved_by != "null" %>
+        <% if review.approved_by != "null" %>
           <% if !logged_in? %>
           
             <div class="col-xs-12 col-sm-9">
@@ -90,17 +90,17 @@
                   <div class="col-sm-9">
                     <div class="post-details-row mb-2">
                       <label><strong>Name : </strong></label>
-                      <span><%= r.name %></span>
+                      <span><%= review.name %></span>
                     </div>
 
                     <div class="post-details-row">
                       <label><strong>Review : </strong></label>
-                      <span><%= r.review %></span>
+                      <span><%= review.review %></span>
                     </div>
                   </div>
 
                   <div class="col-sm-3 mt-3">
-                    <%= render "rating_view", r: r %>
+                    <%= render "rating_view", review: review %>
                   </div>
                 </div>
               </div>
@@ -114,24 +114,24 @@
                   <div class="col-sm-7">
                     <div class="post-details-row mb-2">
                       <label><strong>Name : </strong></label>
-                      <span><%= r.name %></span>
+                      <span><%= review.name %></span>
                     </div>
 
                     <div class="post-details-row">
                       <label><strong>Review : </strong></label>
-                      <span><%= r.review %></span>
+                      <span><%= review.review %></span>
                     </div>
                   </div>
 
                   <div class="col-sm-2 mt-2">
-                    <%= render "rating_view", r: r %>
+                    <%= render "rating_view", review: review %>
                   </div>
                   
                   <div class="col-sm-3 mt-2 text-center">
                     <% registered = false %>
 
                     <% @user_email.each do |u| %>
-                      <% if u.email == r.email %>
+                      <% if u.email == review.email %>
                         <% registered = u.id %>
                         <% break %>
                       <% end %>

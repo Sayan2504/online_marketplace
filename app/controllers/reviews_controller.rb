@@ -12,10 +12,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def index
-    @reviews = Review.all
-  end 
-
   def new
     @post = Post.find(params[:post_id])
     @review = Review.new

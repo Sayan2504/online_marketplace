@@ -1,5 +1,4 @@
 class Admin::CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def create
     @category = Category.new(category_params)
@@ -24,9 +23,5 @@ class Admin::CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name)
-  end
-
-  def set_category
-    @category = Category.find(params[:id])
   end
 end

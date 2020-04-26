@@ -1,5 +1,5 @@
 <div class="rating" id="star_rating">
-  <% if r.rating == "1" %>
+  <% if review.rating == "1" %>
     <label for="star5" id="star_5" class="check5">5 Stars</label>
     <%= radio_button :rating, 5, id: "star5" %>
             
@@ -15,7 +15,7 @@
     <label for="star1" id="star_1" class="activated">1 Stars</label>
     <%= radio_button :rating, 1, id: "star1" %>
   
-  <% elsif r.rating == "2" %>
+  <% elsif review.rating == "2" %>
     <label for="star5" id="star_5" class="check5">5 Stars</label>
     <%= radio_button :rating, 5, id: "star5" %>
             
@@ -31,7 +31,7 @@
     <label for="star1" id="star_1" class="activated">1 Stars</label>
     <%= radio_button :rating, 1, id: "star1" %>
 
-  <% elsif r.rating == "3" %>
+  <% elsif review.rating == "3" %>
     <label for="star5" id="star_5" class="check5">5 Stars</label>
     <%= radio_button :rating, 5, id: "star5" %>
             
@@ -47,7 +47,7 @@
     <label for="star1" id="star_1" class="activated">1 Stars</label>
     <%= radio_button :rating, 1, id: "star1" %>
 
-  <% elsif r.rating == "4" %>
+  <% elsif review.rating == "4" %>
     <label for="star5" id="star_5" class="check5">5 Stars</label>
     <%= radio_button :rating, 5, id: "star5" %>
             
@@ -63,7 +63,7 @@
     <label for="star1" id="star_1" class="activated">1 Stars</label>
     <%= radio_button :rating, 1, id: "star1" %>
 
-  <% elsif r.rating == "5" %>
+  <% elsif review.rating == "5" %>
     <label for="star5" id="star_5" class="activated">5 Stars</label>
     <%= radio_button :rating, 5, id: "star5" %>
             

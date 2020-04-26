@@ -1,8 +1,7 @@
 class Admin::AdsController < ApplicationController
+  before_action :set_post, only: [:approve, :reject]
     
   def approve
-    @post = Post.where(id: params[:id])
-    @post_unique = @post.first
     @user = @post_unique.user
 
     if params[:decision] == "true"
@@ -11,7 +10,6 @@ class Admin::AdsController < ApplicationController
         @post.update(approved_by: current_user.name)
         flash[:success] = "This post has been approved by Admin"
         redirect_to admin_approved_path
-        
     else
         @post.update(approved_by: "rejected")
         flash[:danger] = "This post has been rejected by Admin"
@@ -24,8 +22,6 @@ class Admin::AdsController < ApplicationController
   end
 
   def reject
-    @post = Post.where(id: params[:id])
-    @post_unique = @post.first
     @user = @post_unique.user
 
     if params[:decision] == "false"
@@ -47,5 +43,12 @@ class Admin::AdsController < ApplicationController
 
   def unchecked
     @posts = Post.where(approved_by: "null")
+  end
+
+  private
+    
+  def set_post
+    @post = Post.where(id: params[:id])
+    @post_unique = @post.first
   end
 end

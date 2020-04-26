@@ -1,9 +1,8 @@
 class PostsController < ApplicationController  
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: [:approve, :reject, :show]
+  before_action :set_post_unique, only: [:approve, :reject]
 
   def approve
-    @post = Post.where(id: params[:id])
-    @post_unique = @post.first
     @user = @post_unique.user
         
     if params[:decision] == "true"
@@ -16,6 +15,20 @@ class PostsController < ApplicationController
       @post.update(approved_by: "rejected")
       flash[:danger] = "This post has been rejected by Admin"
       redirect_to admin_rejected_path
+    end
+  end
+
+  def approve_review
+    @review = Review.where(id: params[:id])
+    @review_unique = @review.first
+    @post = @review_unique.post
+    @user = @post.user
+    
+    if params[:decision] == "true"
+      PostMailer.review(@user, @review_unique, @post).deliver_now
+      @review.update(approved_by: current_user.name)
+      flash[:success] = "This review has been approved by Admin"
+      redirect_to post_path(@post)
     end
   end
 
@@ -41,8 +54,7 @@ class PostsController < ApplicationController
     #check whether the category is in database and matches the ad_title/location (if given)
     if params[:category_id]
       @category = Category.find(params[:category_id][:id])
-      @post_unsold = Post.where(category_id: params[:category_id][:id])
-      @post_unsold = @post_unsold.find_by(buyer_id: nil)
+      @post_unsold = Post.where(category_id: params[:category_id][:id]).where(buyer_id: nil)
     end
 
     #messages for users based on posts on given filtration is present or not present
@@ -67,8 +79,6 @@ class PostsController < ApplicationController
     #filtration based on ad title
     if params[:ad_title]
       @posts = @posts.where("ad_title LIKE ?", "%#{ params[:ad_title] }%")
-    else
-      @posts = @posts
     end 
 
     #filtration based on location
@@ -89,23 +99,7 @@ class PostsController < ApplicationController
     @user_email = User.all  
   end
 
-  def approve_review
-    @review = Review.where(id: params[:id])
-    @review_unique = @review.first
-    @post = @review_unique.post
-    @user = @post.user
-    
-    if params[:decision] == "true"
-      PostMailer.review(@user, @review_unique, @post).deliver_now
-      @review.update(approved_by: current_user.name)
-      flash[:success] = "This review has been approved by Admin"
-      redirect_to post_path(@post)
-    end
-  end
-
   def reject
-    @post = Post.where(id: params[:id])
-    @post_unique = @post.first
     @user = @post_unique.user
 
     if params[:decision] == "false"
@@ -132,6 +126,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def set_post_unique
+    @post = Post.where(id: params[:id])
+    @post_unique = @post.first
+  end
 end
 
 

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:edit, :rejected, :show, :unchecked, :update]
 
   def create
     @user = User.new(user_params)
@@ -33,11 +33,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def index
-    @posts = Post.all
   end
 
   def new
@@ -51,7 +49,6 @@ class UsersController < ApplicationController
   end
 
   def rejected
-    @user = current_user
     @posts = @user.posts.where(approved_by: "rejected")
   end
 
@@ -60,13 +57,10 @@ class UsersController < ApplicationController
   end
 
   def unchecked
-    @user = current_user
     @posts = @user.posts.where(approved_by: "null")
   end
 
   def update
-    @user = User.find(params[:id])
-    
     if @user.update(user_params)
       flash[:success] = "Email/Password has been successfully updated"
       redirect_to user_path(@user)
@@ -78,7 +72,7 @@ class UsersController < ApplicationController
   private
   
   def set_user
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def user_params
