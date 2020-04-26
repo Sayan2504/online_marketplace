@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
   def read_message
     @sender_id = User.find(params[:sender_id])
     @receiver_id = User.find(params[:receiver_id])
-    @post_id = Post.find(params[:post_id])
+    @post_id = Post.find_post_id(params[:post_id])
 
     @notification = Notification.find(params[:id])
 

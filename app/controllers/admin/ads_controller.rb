@@ -48,7 +48,7 @@ class Admin::AdsController < ApplicationController
   private
     
   def set_post
-    @post = Post.where(id: params[:id])
+    @post = Post.where_post_id(params[:id])
     @post_unique = @post.first
   end
 end

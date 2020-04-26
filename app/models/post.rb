@@ -4,7 +4,6 @@ class Post < ApplicationRecord
   VALID_PHONE_REGEX = /\A[1-9]{0,3}-[6-9]{1}[0-9]{9}\z/i.freeze
   VALID_CITY_REGEX = /\A[A-Za-z]{1}[\sA-Za-z]*\z/i.freeze
 
-  
   belongs_to :user, optional: true
   belongs_to :category
 
@@ -30,4 +29,6 @@ class Post < ApplicationRecord
   scope :post_ad_title, ->(title) { where("ad_title LIKE ?", "%#{ title }%") }
   scope :post_city, ->(name) { where("city LIKE ?", "#{ name }%") }
   scope :product_bought, ->(buying_product_id) { where(buyer_id: buying_product_id) }
+  scope :update_buyer, ->(value) { update(buyer_id: value) }
+  scope :where_post_id, ->(id) { where(id: id) }
 end

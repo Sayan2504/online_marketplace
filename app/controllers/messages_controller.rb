@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
     #Individual chat room created based on user and post
     @messages = Message.receiver_side(current_user.id, @receiver.id).or (Message.sender_side(current_user.id, @receiver.id)) 
     @messages = @messages.message_post_id(@post.id)
-    @messages = @messages.order("created_at ASC").includes(:user) #chats ordered based on time of creation
+    @messages = @messages.order_messages.includes(:user) #chats ordered based on time of creation
    
     #getting the params to be used during create
     @message = Message.new  #rendering a new message
@@ -39,5 +39,4 @@ class MessagesController < ApplicationController
   def set_notifications
     @notifications = Notification.all.reverse
   end 
-  
 end

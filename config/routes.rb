@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'messages/show'
   root "home#index"
 
-  #fr authentication
+  #for authentication
   delete "/logout", to: "sessions#destroy"
 
   get "/login",   to: "sessions#new"
@@ -52,7 +52,6 @@ Rails.application.routes.draw do
   resources :messages #chat
   
   resources :notifications #bell notification in account
-  get "/read_message", to: "messages#new"
   post "/read_message", to: "notifications#read_message"
   
 
