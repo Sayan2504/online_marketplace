@@ -3,7 +3,7 @@ class BuyersController < ApplicationController
 
   def bought
     @buyer = Buyer.buyer_email(current_user.email)
-    @posts = Post.product_bought(@buyer.ids)
+    @posts = Post.product_bought_sold(@buyer.ids)
   end
 
   def create
@@ -73,7 +73,7 @@ class BuyersController < ApplicationController
 
   def sold
     @buyer = Buyer.buyer_user_id(current_user.id)
-    @posts = Post.product_bought(@buyer.ids)
+    @posts = Post.product_bought_sold(@buyer.ids)
   end 
 
   private

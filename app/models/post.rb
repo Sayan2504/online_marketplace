@@ -28,7 +28,7 @@ class Post < ApplicationRecord
   scope :post_unsold, -> { where(buyer_id: nil) }
   scope :post_ad_title, ->(title) { where("ad_title LIKE ?", "%#{ title }%") }
   scope :post_city, ->(name) { where("city LIKE ?", "#{ name }%") }
-  scope :product_bought, ->(buying_product_id) { where(buyer_id: buying_product_id) }
+  scope :product_bought_sold, ->(product_id) { where(buyer_id: product_id) }
   scope :update_buyer, ->(value) { update(buyer_id: value) }
   scope :where_post_id, ->(id) { where(id: id) }
 end
