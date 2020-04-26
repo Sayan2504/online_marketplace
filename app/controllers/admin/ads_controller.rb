@@ -18,7 +18,7 @@ class Admin::AdsController < ApplicationController
   end
 
   def approved 
-    @posts = Post.admin_post_approved_state.post_unsold
+    @posts = Post.admin_post_approved_state
   end
 
   def reject
@@ -38,11 +38,11 @@ class Admin::AdsController < ApplicationController
   end  
 
   def rejected
-    @posts = Post.admin_post_state("rejected").post_unsold
+    @posts = Post.admin_post_state("rejected")
   end
 
   def unchecked
-    @posts = Post.admin_post_state("null").post_unsold
+    @posts = Post.admin_post_state("null")
   end
 
   private
