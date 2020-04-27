@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_074008) do
+ActiveRecord::Schema.define(version: 2020_04_27_075345) do
 
   create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_074008) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "post_id"
     t.string "event"
+    t.integer "receiver_id"
     t.index ["post_id"], name: "index_messages_on_post_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
