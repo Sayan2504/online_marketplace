@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
       redirect_to post_path(@review.post_id)
     else
       flash[:danger] = "Invalid credentials/blank fields"
-      redirect_to new_review_path({ post_id: @review.post_id })
+      redirect_to new_review_path( { post_id: @review.post_id } )
     end
   end
 

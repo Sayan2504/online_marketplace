@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       redirect_to root_path
       return
     end
-    @user = User.new({ buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name] })
+    @user = User.new( { buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name] } )
   end
 
   def rejected

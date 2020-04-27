@@ -13,7 +13,7 @@ class NotificationsController < ApplicationController
     if params[:decision] == "true"
       if @notification.unread == "true"
         @notification.update(unread: "false")
-        redirect_to new_message_path({ post_id: @post_id.id, sender_id: @receiver_id.id, receiver_id: @sender_id.id })
+        redirect_to new_message_path( { post_id: @post_id.id, sender_id: @receiver_id.id, receiver_id: @sender_id.id } )
       end
     end
   end

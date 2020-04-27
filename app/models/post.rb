@@ -14,12 +14,12 @@ class Post < ApplicationRecord
 
   accepts_nested_attributes_for :post_attachments
 
-  validates :ad_title,  presence: true, length: { maximum: 16, minimum: 2 }, format: { with: VALID_AD_REGEX }
-  validates :detailed_ad_title,  presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_AD_REGEX }
+  validates :ad_title,  presence: true, length: { maximum: 16, minimum: 2 } , format: { with: VALID_AD_REGEX }
+  validates :detailed_ad_title,  presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_AD_REGEX }
   validates :ad_description,  presence: true, length: { maximum: 255, minimum: 2 }
-  validates :user_name, presence: true, length: { maximum: 30, minimum: 2 }, format: { with: VALID_USERNAME_REGEX }
-  validates :phone, presence: true, length: { maximum: 15, minimum: 10 }, format: { with: VALID_PHONE_REGEX }
-  validates :city,  presence: true, length: { maximum: 50, minimum: 1 }, format: { with: VALID_CITY_REGEX }
+  validates :user_name, presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_USERNAME_REGEX }
+  validates :phone, presence: true, length: { maximum: 15, minimum: 10 } , format: { with: VALID_PHONE_REGEX }
+  validates :city,  presence: true, length: { maximum: 50, minimum: 1 } , format: { with: VALID_CITY_REGEX }
   validates :user_id, presence: true
 
   scope :admin_post_approval, ->(value) { update(approved_by: value) }

@@ -27,7 +27,7 @@
           <td class="heading"><%= buyer.email %></td>
           <% if @post.buyer_id == nil %>
             <td>
-              <%= link_to "Sell Product", sell_path({ id: buyer.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Selling..."  } %>
+              <%= link_to "Sell Product", sell_path( { id: buyer.id, decision: "true" } ), class: "btn btn-md btn-primary", data: { disable_with: "Selling..."  } %>
             </td>
           <% else %>
             <% if buyer.id == @post.buyer_id %>  

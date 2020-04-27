@@ -22,16 +22,16 @@
                   <% if post.buyer_id == nil %>
                     <% if post.approved_by == "null" %>
                       <div class="row ml-3" style="display: inline-block" >
-                        <%= link_to "Approve", admin_approve_path({ id: post.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
-                        <%= link_to "Reject", admin_reject_path({ id: post.id, decision: "false" }), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..."  } %>
+                        <%= link_to "Approve", admin_approve_path( { id: post.id, decision: "true" } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
+                        <%= link_to "Reject", admin_reject_path( { id: post.id, decision: "false" } ), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..."  } %>
                       </div>
                     <% elsif post.approved_by == "rejected" %>
                       <div class="row ml-5" style="display: inline-block" >
-                        <%= link_to "Approve", admin_approve_path({ id: post.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
+                        <%= link_to "Approve", admin_approve_path( { id: post.id, decision: "true" } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
                       </div>
                     <% else %>
                       <div class="row ml-5" style="display: inline-block">
-                        <%= link_to "Reject", admin_reject_path({ id: post.id, decision: "false" }), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..."  } %>
+                        <%= link_to "Reject", admin_reject_path( { id: post.id, decision: "false" } ), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..."  } %>
                       </div>
                     <% end %>
                   <% else %>

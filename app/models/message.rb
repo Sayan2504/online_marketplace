@@ -12,7 +12,7 @@ class Message < ApplicationRecord
   validates :user_id, presence: true
   validates :receiver_id, presence: true
 
-  after_create_commit{
+  after_create_commit {
     MessageBroadcastJob.perform_later(self)
     sender = User.find(self.user_id)
     post = Post.find(self.post_id)
