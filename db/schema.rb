@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_075345) do
+ActiveRecord::Schema.define(version: 2020_04_27_083415) do
 
   create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -29,14 +29,12 @@ ActiveRecord::Schema.define(version: 2020_04_27_075345) do
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.text "body"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "post_id"
-    t.string "event"
-    t.integer "receiver_id"
-    t.index ["post_id"], name: "index_messages_on_post_id"
+    t.text "body", null: false
+    t.bigint "post_id", null: false
+    t.integer "receiver_id", null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -97,6 +95,5 @@ ActiveRecord::Schema.define(version: 2020_04_27_075345) do
     t.integer "buyer_post_id"
   end
 
-  add_foreign_key "messages", "posts"
   add_foreign_key "messages", "users"
 end
