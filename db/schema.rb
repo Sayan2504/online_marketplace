@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_225235) do
+ActiveRecord::Schema.define(version: 2020_04_27_074008) do
 
   create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(version: 2020_04_26_225235) do
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.text "body"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "body", null: false
-    t.bigint "post_id", null: false
-    t.integer "receiver_id", null: false
+    t.bigint "post_id"
+    t.string "event"
+    t.index ["post_id"], name: "index_messages_on_post_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_225235) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "approved_by", default: "null"
     t.integer "category_id", default: 0
+    t.integer "buyer_id"
     t.string "ad_title", null: false
     t.text "ad_description", null: false
     t.string "user_name", null: false
@@ -68,7 +70,6 @@ ActiveRecord::Schema.define(version: 2020_04_26_225235) do
     t.string "city", null: false
     t.bigint "user_id", null: false
     t.string "detailed_ad_title", null: false
-    t.integer "buyer_id"
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -88,12 +89,13 @@ ActiveRecord::Schema.define(version: 2020_04_26_225235) do
     t.string "email", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin"
     t.string "provider"
     t.string "uid"
     t.string "password_digest"
-    t.boolean "admin"
     t.integer "buyer_post_id"
   end
 
+  add_foreign_key "messages", "posts"
   add_foreign_key "messages", "users"
 end

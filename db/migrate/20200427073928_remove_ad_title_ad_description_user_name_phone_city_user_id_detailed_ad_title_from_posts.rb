@@ -1,4 +1,4 @@
-class RemoveAdTitleAdDescriptionUserNamePhoneCityUserIdDetailedAdTitleBuyerIdFromPosts < ActiveRecord::Migration[6.0]
+class RemoveAdTitleAdDescriptionUserNamePhoneCityUserIdDetailedAdTitleFromPosts < ActiveRecord::Migration[6.0]
   def change
 
     remove_column :posts, :ad_title, :string
@@ -14,7 +14,5 @@ class RemoveAdTitleAdDescriptionUserNamePhoneCityUserIdDetailedAdTitleBuyerIdFro
     remove_column :posts, :user_id, :bigint
 
     remove_column :posts, :detailed_ad_title, :string
-
-    remove_column :posts, :buyer_id, :integer
   end
 end
