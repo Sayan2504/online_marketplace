@@ -8,7 +8,6 @@
       </div>
     </div>
   </section>
-
   <table class="table table-hover" width="100%">
     <thead class="thead-light">
       <tr>
@@ -17,9 +16,7 @@
         <th></th>
       </tr>
     </thead>
-
     <tbody>
-    
       <% @notifications.each_with_index do |notification,index| %>
         <tr>
           <% if notification.unread == "true" %>
@@ -29,10 +26,8 @@
           <% end %>
         </tr>
       <% end %>
-
     </tbody>
   </table>
-
 <% else %>
   <h2 class="text-center text-muted mt-5"> No unread messages</h2>
 <% end %>

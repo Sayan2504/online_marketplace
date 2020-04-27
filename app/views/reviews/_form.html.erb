@@ -3,28 +3,21 @@
     <div class="card-body">
       <%= form_for @review, html: { multipart: true } do |f| %>
         <%= render "shared/error_messages", object: @review %>
-
         <div class="form-group">
           <%= f.label :name , "Name:" %>
           <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your name" %>
         </div>
-
         <div class="form-group">
           <%= f.label :email , "Email id:" %>
           <%= f.email_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id" %>
         </div>
-
         <div class="form-group">
           <%= f.label :location , "Location:" %>
           <%= f.text_field :location, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your address" %>
         </div>
-
         <%= f.hidden_field :post_id, value: @post.id %>
-        
         <div class="form-group">
           <div>Rate and Review the post: </div>
-
-          
           <div class="rating">
             <label for="star5" title="Excellent!" id="star_5" class="check5">5 Stars</label>
             <%= f.radio_button :rating, 5, id: "star5" %>
@@ -40,20 +33,12 @@
              
             <label for="star1" title="Very Poor!" id="star_1" class="check1">1 Stars</label>
             <%= f.radio_button :rating, 1, id: "star1" %>
-
           </div>
         </div>
-
-      
-
         <div class="form-group">
           <%= f.text_area :review, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Write your review", maxlength: 255 %>
         </div>
-        
-
-
         <div class="form-row">
-
           <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-12">
             <%= link_to "Cancel", post_path(@post), class: "btn btn-light btn-xs-block" %>
             <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs-block", data: { disable_with: "Submitting..." } %>

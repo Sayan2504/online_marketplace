@@ -7,17 +7,14 @@
         <div class="col-4">
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
-
               <% if params[:category_id].present? %>
                 <% params[:category_id].each do |id,value| %>
                   <%= hidden_field_tag "category_id[#{ id }]",value %> 
                 <% end %>
               <% end %>
-
               <% if params[:location].present? %>
                 <%= hidden_field_tag :location, params[:location] %>
               <% end %>
-              
               <% if params[:ad_title].present? %>
                 <%= text_field_tag :ad_title, params[:ad_title], placeholder: "Search ad by name" %>
               <% else %>
@@ -27,41 +24,31 @@
             <% end %>
           </div>
         </div>
-
         <div class="col-4">
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
-
               <% if params[:location].present? %>
                 <%= hidden_field_tag :location, params[:location] %>
               <% end %>
-
               <% if params[:ad_title].present? %>
                 <%= hidden_field_tag :ad_title, params[:ad_title] %>
               <% end %>
-
               <%= collection_select  :category_id, :id, Category.all, :id, :name, { selected: "", disabled: "", prompt: "Select ad by category" }, { class: "form-control" } %>
-              <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
-                
+              <%= submit_tag "Search", name: nil, class: "btn btn-primary" %> 
             <% end %>
           </div>
         </div>
-
-
         <div class="col-4">
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
-
               <% if params[:category_id].present? %>
                 <% params[:category_id].each do |id,value| %>
                   <%= hidden_field_tag "category_id[#{ id }]",value %> 
                 <% end %>
               <% end %>
-
               <% if params[:ad_title].present? %>
                 <%= hidden_field_tag :ad_title, params[:ad_title] %>
               <% end %>
-              
               <% if params[:location].present? %>
                 <%= text_field_tag :location, params[:location], placeholder: "Search ad by location" %>
               <% else %>
@@ -81,7 +68,6 @@
   <div class="jumbotron pt-4 pb-3 mt-1">
     <div class="container">
       <div class="row justify-content-center">
-
         <% if params[:ad_title] %>
           <% if params[:category_id] %>
             <% if params[:location] %>
@@ -93,7 +79,6 @@
               <%= render "ad_category_params" %>
               <%= render "ad_location_all" %>
             <% end %>
-
           <% elsif params[:location] %>
             <% if params[:category_id] %>
               <%= render "ad_title_params" %>
@@ -104,15 +89,11 @@
               <%= render "ad_category_all" %>
               <%= render "ad_location_params" %>
             <% end %>
-
           <% else %>
             <%= render "ad_title_params" %>
             <%= render "ad_category_all" %>
             <%= render "ad_location_all" %>
-
           <% end %>
-      
-
         <% elsif params[:category_id] %>
           <% if params[:ad_title] %>
             <% if params[:location] %>
@@ -124,7 +105,6 @@
               <%= render "ad_category_params" %>
               <%= render "ad_location_all" %>
             <% end %>
-
           <% elsif params[:location] %>
             <% if params[:ad_title] %>
               <%= render "ad_title_params" %>
@@ -135,14 +115,11 @@
               <%= render "ad_category_params" %>
               <%= render "ad_location_params" %>
             <% end %>
-
           <% else %>
             <%= render "ad_title_all" %>
             <%= render "ad_category_params" %>
             <%= render "ad_location_all" %>
-
           <% end %>
-
         <% elsif params[:location] %>
           <% if params[:ad_title] %>
               <% if params[:category_id] %>
@@ -154,7 +131,6 @@
                   <%= render "ad_category_all" %>
                   <%= render "ad_location_params" %>
               <% end %>
-
           <% elsif params[:category_id] %>
               <% if params[:ad_title] %>
                   <%= render "ad_title_params" %>
@@ -165,17 +141,14 @@
                   <%= render "ad_category_params" %>
                   <%= render "ad_location_params" %>
               <% end %>
-
           <% else %>
               <%= render "ad_title_all" %>
               <%= render "ad_category_all" %>
               <%= render "ad_location_params" %>
-
           <% end %>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
-
 <%= render "render_posts" %>

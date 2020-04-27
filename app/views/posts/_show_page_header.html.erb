@@ -3,7 +3,6 @@
     <div class="col-6 post-ad-title-show-page">
       <h1 class="text-center heading"><%= @post.ad_title.upcase %></h1>
     </div>
-    
     <% if admin_user? %>
       <% if @post.buyer_id == nil %>
         <% if @post.approved_by == "null" %>
@@ -13,14 +12,12 @@
               <%= link_to "Reject", admin_reject_path({ id: @post.id, decision: "false" }), class: "btn btn-lg btn-secondary", data: { disable_with: "Rejecting..."  } %>
             </div>
           </div>
-
         <% elsif @post.approved_by == "rejected" %>
           <div class="col-6">
             <div class="row btn-toolbar text-center" style="display: block">
               <%= link_to "Approve", admin_approve_path({ id: @post.id, decision: "true" }), class: "btn btn-lg btn-primary", data: { disable_with: "Approving..."  } %>
             </div>
           </div>
-
         <% else %>
           <div class="col-6">
             <div class="row btn-toolbar text-center" style="display: block">
@@ -35,14 +32,6 @@
           </div>
         </div>
       <% end %>
-
-
-
-
-
-
-
-
     <% elsif @post.approved_by != "null" or @post.approved_by != "rejected" %>
         <% if logged_in? %>
           <% if current_user.id == @user.id %>
@@ -53,18 +42,14 @@
                 </div>
               </div>
           <% end %>
-
         <% else %>
-
           <div class="col-6 text-right">
             <div class="row btn-toolbar" style="display: block">
               <%= link_to "Write review", new_review_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
               <%= link_to "Buy Product", new_buyer_path({ post_id: @post.id }), class: "btn btn-lg btn-primary" %>
             </div>
           </div>
-
         <% end %>
     <% end %>
-   
   </div>
 </section>

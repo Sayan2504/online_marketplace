@@ -7,19 +7,13 @@ class BuyersController < ApplicationController
   end
 
   def create
-    @buyer = Buyer.new(buyer_params) #creating new buyer
-    @user = User.find_by(email: @buyer.email) #checking if user is registered or not
-    @post = Post.find(@buyer.post_id) #getting the post for which buyer request is being sent
-
+    @buyer = Buyer.new(buyer_params)
+    @user = User.find_by(email: @buyer.email)
+    @post = Post.find(@buyer.post_id)
     @user_email = @post.user
-
-    #checking if buyer has already requested or not
     @buyer_user = Buyer.buyer_post_id(@buyer.post_id)
-    @buyer_user = @buyer_user.find_by(email: @buyer.email)
-        
-    #getting the author of the post   
+    @buyer_user = @buyer_user.find_by(email: @buyer.email)  
     @user_author = @buyer.user
-   
     if @user.present?
       if @user.email == @user_email.email
         flash[:warning] = "You cannot put a buying request to your own advertisement"
@@ -38,8 +32,7 @@ class BuyersController < ApplicationController
             render "new"
           end
         end
-      end
-        
+      end 
     else
       flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
       redirect_to signup_path(buyer_post_id: @buyer.post_id, email: @buyer.email)
@@ -59,11 +52,9 @@ class BuyersController < ApplicationController
     @buyer = Buyer.find(params[:id])
     @post = Post.find(@buyer.post_id)
     @user = @post.user
-
     if params[:decision] == "true"
       BuyerMailer.sell(@buyer, @post, @user).deliver_now
       BuyerMailer.bought(@buyer, @post, @user).deliver_now
-
       if @post.buyer_id == nil
         @post.update(buyer_id: @buyer.id)
         redirect_to request.referrer

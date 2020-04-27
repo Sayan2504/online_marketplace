@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
       else
         redirect_to user_path(@user)
       end
-
     else
       flash.now[:danger] = "Email/Password combination is incorrect."
       render "new"
@@ -19,7 +18,6 @@ class SessionsController < ApplicationController
 
   def destroy
     return unless logged_in?
-
     log_out
     flash[:danger] = "User has been successfully logged out."
     redirect_to root_path

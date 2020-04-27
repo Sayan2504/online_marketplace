@@ -1,6 +1,5 @@
 <% provide(:title, "Buyers") %>
 
-
 <% if @buyers.present? %> 
   <section class="table-header mb-3">
     <div class="row">
@@ -9,7 +8,6 @@
       </div>
     </div>
   </section>
-
   <table class="table table-hover" width="100%">
     <thead class="thead-light">
       <tr>
@@ -20,7 +18,6 @@
         <th></th>
       </tr>
     </thead>
-
     <tbody>
       <% @buyers.each_with_index do |buyer,index| %>
         <tr>
@@ -28,27 +25,21 @@
           <td class="heading"><%= buyer.buyer_name %></td>
           <td class="heading"><%= buyer.location %></td>
           <td class="heading"><%= buyer.email %></td>
-
           <% if @post.buyer_id == nil %>
-          
             <td>
               <%= link_to "Sell Product", sell_path({ id: buyer.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Selling..."  } %>
             </td>
           <% else %>
-
             <% if buyer.id == @post.buyer_id %>  
               <td><%= link_to "Sold to #{ buyer.buyer_name }", buyers_path, class: "btn btn-md btn-primary disabled" %></td>
             <% else %>
               <td></td>
             <% end %>
-
           <% end %>
-
         </tr>
       <% end %>
     </tbody>
   </table>
-
 <% else %>
   <h2 class="text-center text-muted mt-5"> No one has requested to buy this product yet</h2>
 <% end %>

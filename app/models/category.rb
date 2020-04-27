@@ -1,5 +1,4 @@
 class Category < ApplicationRecord
-
   VALID_CATEGORY_REGEX = /\A[A-Za-z]{1}[\sA-Za-z]*\z/i.freeze
 
   has_and_belongs_to_many :users

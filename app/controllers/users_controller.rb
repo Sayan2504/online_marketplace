@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.buyer_post_id.present?
       if @user.save
         flash[:success] = "You have successfully registered. Now you can put your buying request with the credentials."
@@ -11,11 +10,9 @@ class UsersController < ApplicationController
       else
         flash[:danger] = "Invalid Name format. Name cannot only contain alphabets"
       end
-      redirect_to new_buyer_path({ post_id: @user.buyer_post_id })
-      
+      redirect_to new_buyer_path({ post_id: @user.buyer_post_id }) 
     else
       if @user.save
-
         log_in(@user)
         flash[:success] = "You have successfully signed up"
         UserMailer.welcome_email(@user).deliver_now
@@ -24,7 +21,6 @@ class UsersController < ApplicationController
         else
           redirect_to user_path(@user) 
         end
-
       else
         flash[:warning] = "You already have an account/Your credentials are not valid" 
         render "new"
@@ -44,7 +40,6 @@ class UsersController < ApplicationController
       redirect_to root_path
       return
     end
-    
     @user = User.new({ buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name] })
   end
 

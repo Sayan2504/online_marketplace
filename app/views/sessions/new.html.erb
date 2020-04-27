@@ -4,41 +4,31 @@
   <div class="col-sm-12">
     <h3 class="text-center heading">Log in</h3>
   </div>
-
   <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
     <div class="card">
       <div class="card-body">
-        
         <%= form_for :session, url: login_path do |f| %>
           <div class="form-group">
             <%= f.label :email, "Email Address" %>
             <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Email Address", maxlength: 100 %>
           </div>
-
           <div class="form-group">
             <%= f.label :password %>
             <%= f.password_field :password, class: "form-control", required: true, placeholder: "Password", minlength: 6 %>
           </div>
-
           <br>
-
           <%= f.submit "Log in", class: "btn btn-primary", data: { disable_with: "Logging..." } %>
-          
           <span class="btn btn-md btn-secondary signup-link-in-login-page">
             <%= link_to "Signup", signup_path, style: "color: #FFFFFF;" %>
           </span>
           <span class="signup-link-in-login-page-text">New User?</span>
-
           <span class="fb-login">
             <%= link_to "auth/facebook" do %><%= image_tag("facebook.png", size: "55x40") %><% end %>
           </span>
-
           <span class="google-login">
             <%= link_to "auth/google_oauth2" do %><%= image_tag("google_logo.png", size: "50x45") %><% end %>
           </span>
-
         <% end %>
-
       </div>
     </div>
   </div>

@@ -22,7 +22,6 @@ class Post < ApplicationRecord
   validates :city,  presence: true, length: { maximum: 50, minimum: 1 }, format: { with: VALID_CITY_REGEX }
   validates :user_id, presence: true
 
-  
   scope :admin_post_approval, ->(value) { update(approved_by: value) }
   scope :admin_post_state, ->(state) { where(approved_by: state) }
   scope :admin_post_approved_state, -> { where.not(approved_by: ['null', 'rejected']) }

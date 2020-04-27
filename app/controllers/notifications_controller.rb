@@ -9,9 +9,7 @@ class NotificationsController < ApplicationController
     @sender_id = User.find(params[:sender_id])
     @receiver_id = User.find(params[:receiver_id])
     @post_id = Post.find(params[:post_id])
-
     @notification = Notification.find(params[:id])
-
     if params[:decision] == "true"
       if @notification.unread == "true"
         @notification.update(unread: "false")
@@ -19,7 +17,6 @@ class NotificationsController < ApplicationController
       end
     end
   end
-  
 end
 
 

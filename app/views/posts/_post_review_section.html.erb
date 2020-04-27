@@ -4,15 +4,11 @@
       <h1 class="text-center heading">Reviews</h1>
     </div>
   </div>
-
   <% no_review_message = false %>
-
   <div class="row justify-content-center">
     <% @reviews.each do |review| %>
-      
       <% if admin_user? %>
         <% if review.approved_by == "null" %>
-         
           <div class="col-xs-12 col-sm-9 ">
             <div class="card card-body justify-content-flex-center">
               <div class="row">
@@ -21,18 +17,14 @@
                     <label><strong>Name : </strong></label>
                     <span><%= review.name %></span>
                   </div>
-
                   <div class="post-details-row">
                     <label><strong>Review : </strong></label>
                     <span><%= review.review %></span>
                   </div>
                 </div>
-
-
                 <div class="col-sm-3 mt-3">
                   <%= render "rating_view", review: review %>
                 </div>
-
                 <div class="col-sm-2 mt-3">
                   <div class="post-details-row">
                     <%= link_to "Approve", approve_review_path({ id: review.id, decision: "true" }), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
@@ -41,12 +33,7 @@
               </div>
             </div>
           </div>
-
-        
-          
-
         <% else %>
-
           <div class="col-xs-12 col-sm-9 ">
             <div class="card card-body justify-content-flex-center">
               <div class="row">
@@ -55,17 +42,14 @@
                     <label><strong>Name : </strong></label>
                     <span><%= review.name %></span>
                   </div>
-
                   <div class="post-details-row">
                     <label><strong>Review : </strong></label>
                     <span><%= review.review %></span>
                   </div>
                 </div>
-
                 <div class="col-sm-3 mt-3">
                   <%= render "rating_view", review: review %>
                 </div>
-
                 <div class="col-sm-2 mt-3">
                   <div class="post-details-row">
                     <button type="button" class="btn btn-md btn-primary" disabled>Approved</button>
@@ -74,16 +58,11 @@
               </div>
             </div>
           </div>
-
         <% end %>
-
         <% no_review_message = true %>
-        
-
       <% else %>
         <% if review.approved_by != "null" %>
           <% if !logged_in? %>
-          
             <div class="col-xs-12 col-sm-9">
               <div class="card card-body justify-content-flex-center">
                 <div class="row">
@@ -92,22 +71,18 @@
                       <label><strong>Name : </strong></label>
                       <span><%= review.name %></span>
                     </div>
-
                     <div class="post-details-row">
                       <label><strong>Review : </strong></label>
                       <span><%= review.review %></span>
                     </div>
                   </div>
-
                   <div class="col-sm-3 mt-3">
                     <%= render "rating_view", review: review %>
                   </div>
                 </div>
               </div>
             </div>
-          
           <% elsif current_user.id == @user.id %>
-
             <div class="col-xs-12 col-sm-12">
               <div class="card card-body justify-content-flex-center">
                 <div class="row">
@@ -116,40 +91,32 @@
                       <label><strong>Name : </strong></label>
                       <span><%= review.name %></span>
                     </div>
-
                     <div class="post-details-row">
                       <label><strong>Review : </strong></label>
                       <span><%= review.review %></span>
                     </div>
                   </div>
-
                   <div class="col-sm-2 mt-2">
                     <%= render "rating_view", review: review %>
                   </div>
-                  
                   <div class="col-sm-3 mt-2 text-center">
                     <% registered = false %>
-
                     <% @user_email.each do |u| %>
                       <% if u.email == review.email %>
                         <% registered = u.id %>
                         <% break %>
                       <% end %>
                     <% end %>
-
                     <% if registered != false %>
                       <%= link_to "Send Message", new_message_path({ post_id: @post.id, sender_id: @user.id, receiver_id: registered }), class: "btn btn-md btn-primary" %> 
                     <% else %>
                       <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered User</button>
                     <% end %>
                   </div>
-
                 </div>
               </div>
             </div>
-          
           <% else %>
-          
             <div class="col-xs-12 col-sm-9">
               <div class="card card-body justify-content-flex-center">
                 <div class="row">
@@ -158,36 +125,25 @@
                       <label><strong>Name : </strong></label>
                       <span><%= review.name %></span>
                     </div>
-
                     <div class="post-details-row">
                       <label><strong>Review : </strong></label>
                       <span><%= review.review %></span>
                     </div>
                   </div>
-
                   <div class="col-sm-3 mt-3">
                     <%= render "rating_view", review: review %>
                   </div>
                 </div>
               </div>
             </div>
-           
           <% end %> 
-           
           <% no_review_message = true %>
-           
         <% end %>
       <% end %>
     <% end %>
-  
-
-
-
-
     <% if no_review_message == false %>
       <div class="col-xs-12 col-sm-12">
         <% if admin_user? %>
-
           <% if @post.approved_by == "null" %>
             <h2 class="text-center text-muted mt-2"> Reviews can be given by users once this post will be approved</h2>
           <% elsif @post.approved_by == "rejected" %>
@@ -195,9 +151,7 @@
           <% else %>
             <h2 class="text-center text-muted mt-2"> No reviews on this post</h2>
           <% end %>
-
         <% else %>
-          
           <% if @post.approved_by == "null" %>
             <h2 class="text-center text-muted mt-2"> Reviews can be given after this post will be approved by Admin</h2>
           <% elsif @post.approved_by == "rejected" %>
@@ -205,11 +159,9 @@
           <% else %>
             <h2 class="text-center text-muted mt-2"> No reviews on this post</h2>
           <% end %>
-
         <% end %>
       </div>
     <% end %>
-
   </div>
 </section>
 

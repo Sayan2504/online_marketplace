@@ -4,45 +4,35 @@
   <div class="col-sm-12">
     <h3 class="text-center heading">Sign Up</h3>
   </div>
-
   <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
     <div class="card">
       <div class="card-body">
         <%= form_for @user, url: signup_path do |f| %>
           <%= render "shared/error_messages", object: @user %>
-
           <div class="form-group">
             <%= f.label :name %>
             <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Name", maxlength: 255 %>
           </div>
-
           <div class="form-group">
             <%= f.label :email, "Email Address" %>
             <%= f.email_field :email, class: "form-control", required: true, autocomplete: :off, placeholder: "Email Address", maxlength: 255 %>
           </div>
-
           <div class="form-group">
             <%= f.label :password %>
             <%= f.password_field :password, class: "form-control", required: true, autocomplete: :off, placeholder: "Password", minlength: 6 %>
           </div>
-
           <div class="form-group">
             <%= f.label :password_confirmation, "Password Confirmation" %>
             <%= f.password_field :password_confirmation, class: "form-control", required: true, autocomplete: :off, placeholder: "Password Confirmation", minlength: 6 %>
           </div>
-
           <%= f.hidden_field :buyer_post_id, {:value => params[:buyer_post_id]} %>
-
           <br>
-
           <div class="form-group">
             <%= f.submit "Sign Up", class: "btn btn-primary", data: { disable_with: "Signing Up..." } %>
-            
             <span class="btn btn-md btn-secondary login-link-in-signup-page">
               <%= link_to "Login", login_path, style: "color: #FFFFFF;" %>
             </span>
             <span class="login-link-in-signup-page-text">Already have an account?</span>
-
           </div>
         <% end %>
       </div>
