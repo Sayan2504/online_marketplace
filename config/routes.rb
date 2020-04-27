@@ -26,14 +26,12 @@ Rails.application.routes.draw do
   post "/reject", to: "posts#reject"
 
   resources :buyers
-  post "/sell", to: "buyers#sell"
   get "/sell", to: "buyers#sell"
-
-  post "/bought", to: "buyers#bought"
+  post "/sell", to: "buyers#sell"
   get "/bought", to: "buyers#bought"
-
-  post "/sold", to: "buyers#sold"
+  post "/bought", to: "buyers#bought"
   get "/sold", to: "buyers#sold"
+  post "/sold", to: "buyers#sold"
   
   resources :messages
   
