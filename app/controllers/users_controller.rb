@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts.admin_post_approved_state
+    @posts = @user.posts.admin_post_approved_state.post_unsold
   end
 
   def unchecked
