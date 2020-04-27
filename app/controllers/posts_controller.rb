@@ -1,5 +1,5 @@
 class PostsController < ApplicationController  
-  before_action :set_post, only: [:approve, :reject, :show]
+  before_action :set_post, only: [:show]
   before_action :set_post_unique, only: [:approve, :reject]
 
   def approve
