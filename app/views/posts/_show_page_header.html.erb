@@ -35,6 +35,13 @@
                   <%= link_to "Unread messages", notifications_path( { post_id: @post.id, sender_id: @post.user.id } ), class: "btn btn-lg btn-primary" %>
                 </div>
               </div>
+          <% else %>
+            <div class="col-6 text-right">
+              <div class="row btn-toolbar" style="display: block">
+                <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-lg btn-primary" %>
+                <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-lg btn-primary" %>
+              </div>
+            </div>
           <% end %>
         <% else %>
           <div class="col-6 text-right">

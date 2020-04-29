@@ -7,6 +7,10 @@
         <div class="col-4">
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
+              <% if params[:user_id].present? && params[:decision].present? %>
+                <%= hidden_field_tag :location, params[:user_id] %>
+                <%= hidden_field_tag :location, params[:decision] %>
+              <% end %>
               <% if params[:category_id].present? %>
                 <% params[:category_id].each do |id,value| %>
                   <%= hidden_field_tag "category_id[#{ id }]",value %> 
@@ -27,6 +31,10 @@
         <div class="col-4">
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
+              <% if params[:user_id].present? && params[:decision].present? %>
+                <%= hidden_field_tag :location, params[:user_id] %>
+                <%= hidden_field_tag :location, params[:decision] %>
+              <% end %>
               <% if params[:location].present? %>
                 <%= hidden_field_tag :location, params[:location] %>
               <% end %>
@@ -41,6 +49,10 @@
         <div class="col-4">
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
+              <% if params[:user_id].present? && params[:decision].present? %>
+                <%= hidden_field_tag :location, params[:user_id] %>
+                <%= hidden_field_tag :location, params[:decision] %>
+              <% end %>
               <% if params[:category_id].present? %>
                 <% params[:category_id].each do |id,value| %>
                   <%= hidden_field_tag "category_id[#{ id }]",value %> 

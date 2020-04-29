@@ -51,6 +51,13 @@ class PostsController < ApplicationController
     @posts = @posts.post_unsold.includes(:category)
     @post_ad_title = Post.post_ad_title(params[:ad_title])
     @post_city = Post.post_city(params[:location])
+    if params[:user_id]
+      if params[:decision] == "true"
+        @posts = @posts.where(user_id: params[:user_id])
+      else 
+        @posts = @posts.where.not(user_id: params[:user_id])
+      end
+    end 
     if params[:category_id]
       @category = Category.find(params[:category_id][:id])
       @post_unsold = Post.post_category(params[:category_id][:id]).post_unsold
