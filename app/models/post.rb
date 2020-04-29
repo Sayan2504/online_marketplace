@@ -19,7 +19,7 @@ class Post < ApplicationRecord
   validates :ad_description,  presence: true, length: { maximum: 255, minimum: 2 }
   validates :user_name, presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_USERNAME_REGEX }
   validates :phone, presence: true, length: { maximum: 15, minimum: 10 } , format: { with: VALID_PHONE_REGEX }
-  validates :city,  presence: true, length: { maximum: 50, minimum: 1 } , format: { with: VALID_CITY_REGEX }
+  validates :city,  presence: true, length: { maximum: 14, minimum: 1 } , format: { with: VALID_CITY_REGEX }
   validates :user_id, presence: true
 
   scope :admin_post_approval, ->(value) { update(approved_by: value) }
@@ -27,8 +27,8 @@ class Post < ApplicationRecord
   scope :admin_post_approved_state, -> { where.not(approved_by: ['null', 'rejected']) }
   scope :post_category, ->(category) { where(category_id: category) }
   scope :post_unsold, -> { where(buyer_id: nil) }
-  scope :post_ad_title, ->(title) { where("ad_title LIKE ?", "%#{ title }%") }
-  scope :post_city, ->(name) { where("city LIKE ?", "#{ name }%") }
+  scope :post_ad_title, ->(title) { where("ad_title LIKE ?", "%#{title}%") }
+  scope :post_city, ->(name) { where("city LIKE ?", "%#{name}%") }
   scope :product_bought_sold, ->(product_id) { where(buyer_id: product_id) }
   scope :update_buyer, ->(value) { update(buyer_id: value) }
   scope :where_post_id, ->(id) { where(id: id) }

@@ -48,15 +48,13 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.admin_post_approved_state
-    @posts = @posts.post_unsold
-    @post_ad_title = Post.find_by(ad_title: params[:ad_title])
-    @post_city = Post.find_by(city: params[:location])
+    @posts = @posts.post_unsold.includes(:category)
+    @post_ad_title = Post.post_ad_title(params[:ad_title])
+    @post_city = Post.post_city(params[:location])
     if params[:category_id]
       @category = Category.find(params[:category_id][:id])
       @post_unsold = Post.post_category(params[:category_id][:id]).post_unsold
-    end
-    if params[:category_id]
-      @post_category = Post.find_by(category_id: params[:category_id][:id])
+      @post_category = Post.post_category(params[:category_id][:id])
     end
     if params[:category_id]        
       @posts = @posts.post_category(params[:category_id][:id])

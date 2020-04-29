@@ -20,7 +20,13 @@
                     <span class="post-ad-title"><h5 class="mt-3"><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
                   <% end %>
                 <% else %>
-                  <span class="post-ad-title"><h5 class="mt-3"><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <% if controller_name == "posts" %>
+                    <span class="post-ad-title"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                    <span class="post-ad-title"><p><strong>Category:</strong><%= post.category.name %></p></span>
+                    <span class="post-ad-title"><p><strong>Location:</strong><%= post.city %></p></span>
+                  <% else %>
+                    <span class="post-ad-title"><h5 class="mt-3"><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <% end %>
                 <% end %>
                 <% if admin_user? %>
                   <% if post.buyer_id == nil %>
