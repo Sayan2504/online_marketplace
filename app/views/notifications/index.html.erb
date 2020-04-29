@@ -22,7 +22,7 @@
           <% if notification.unread == "true" %>
             <td class="heading"><%= index+1 %></td>
             <td class="heading"><%= notification.body %></td>
-            <td><%= link_to "Open Chat", {:controller => "notifications", :action => "read_message", :id => notification.id, :sender_id => notification.sender_id, :receiver_id => notification.receiver_id, :post_id => notification.post_id, :decision => "true"} , method: "post", class: "btn btn-md btn-primary", data: { disable_with: "Opening Chat..."  } %></td>
+            <td><%= link_to "Open Chat", { controller: "notifications", action: "read_message", id: notification.id, sender_id: notification.sender_id, receiver_id: notification.receiver_id, post_id: notification.post_id, decision: "true" } , method: "post", class: "btn btn-md btn-primary", data: { disable_with: "Opening Chat..."  } %></td>
           <% end %>
         </tr>
       <% end %>
