@@ -18,12 +18,6 @@
               <%= link_to "Approve", admin_approve_path( { id: @post.id, decision: "true" } ), class: "btn btn-lg btn-primary", data: { disable_with: "Approving..."  } %>
             </div>
           </div>
-        <% else %>
-          <div class="col-6">
-            <div class="row btn-toolbar text-center" style="display: block">
-              <%= link_to "Reject", admin_reject_path( { id: @post.id, decision: "false" } ), class: "btn btn-lg btn-secondary", data: { disable_with: "Rejecting..."  } %>
-            </div>
-          </div>
         <% end %>
       <% else %>
         <div class="col-6">

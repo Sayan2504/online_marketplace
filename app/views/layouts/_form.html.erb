@@ -14,7 +14,11 @@
               </div>
               <div class="col-sm-8 align-item-center text-align-center pr-0 pl-0 pb-0">
                 <% if admin_user? %>
-                  <span class="post-ad-title"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <% if post.approved_by == "null" || post.approved_by == "rejected" %>
+                    <span class="post-ad-title"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <% else %>
+                    <span class="post-ad-title"><h5 class="mt-3"><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                  <% end %>
                 <% else %>
                   <span class="post-ad-title"><h5 class="mt-3"><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
                 <% end %>
@@ -28,10 +32,6 @@
                     <% elsif post.approved_by == "rejected" %>
                       <div class="row ml-5" style="display: inline-block" >
                         <%= link_to "Approve", admin_approve_path( { id: post.id, decision: "true" } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
-                      </div>
-                    <% else %>
-                      <div class="row ml-5" style="display: inline-block">
-                        <%= link_to "Reject", admin_reject_path( { id: post.id, decision: "false" } ), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..."  } %>
                       </div>
                     <% end %>
                   <% else %>
