@@ -57,13 +57,13 @@ class PostsController < ApplicationController
       @post_category = Post.post_category(params[:category_id][:id])
     end
     if params[:category_id]        
-      @posts = @posts.post_category(params[:category_id][:id])
+      @posts = @posts.post_category(params[:category_id][:id]).includes(:category)
     end 
     if params[:ad_title]
-      @posts = @posts.post_ad_title(params[:ad_title])
+      @posts = @posts.post_ad_title(params[:ad_title]).includes(:category)
     end 
     if params[:location]
-      @posts = @posts.post_city(params[:location])
+      @posts = @posts.post_city(params[:location]).includes(:category)
     end
   end     
 
