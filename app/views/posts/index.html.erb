@@ -8,8 +8,8 @@
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
               <% if params[:user_id].present? && params[:decision].present? %>
-                <%= hidden_field_tag :location, params[:user_id] %>
-                <%= hidden_field_tag :location, params[:decision] %>
+                <%= hidden_field_tag :user_id, params[:user_id] %>
+                <%= hidden_field_tag :decision, params[:decision] %>
               <% end %>
               <% if params[:category_id].present? %>
                 <% params[:category_id].each do |id,value| %>
@@ -32,8 +32,8 @@
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
               <% if params[:user_id].present? && params[:decision].present? %>
-                <%= hidden_field_tag :location, params[:user_id] %>
-                <%= hidden_field_tag :location, params[:decision] %>
+                <%= hidden_field_tag :user_id, params[:user_id] %>
+                <%= hidden_field_tag :decision, params[:decision] %>
               <% end %>
               <% if params[:location].present? %>
                 <%= hidden_field_tag :location, params[:location] %>
@@ -50,8 +50,8 @@
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
               <% if params[:user_id].present? && params[:decision].present? %>
-                <%= hidden_field_tag :location, params[:user_id] %>
-                <%= hidden_field_tag :location, params[:decision] %>
+                <%= hidden_field_tag :user_id, params[:user_id] %>
+                <%= hidden_field_tag :decision, params[:decision] %>
               <% end %>
               <% if params[:category_id].present? %>
                 <% params[:category_id].each do |id,value| %>

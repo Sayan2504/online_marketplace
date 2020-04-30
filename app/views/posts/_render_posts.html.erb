@@ -3,7 +3,7 @@
     <% if !params[:ad_title] %>
       <% if !params[:location] %>
         <% if @post_unsold.present? %>
-          <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2> 
+          <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>
         <% else %>
           <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
         <% end %>  
@@ -14,7 +14,7 @@
           <% @post_city.each do |post_city| %>
             <% @post_category.each do |post_category| %>
               <% if post_category.id == post_city.id %>
-                <%= category_city = true %>
+                <% category_city = true %>
                 <% break %>
               <% end %>
             <% end %>
