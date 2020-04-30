@@ -83,9 +83,9 @@
         <% if params[:ad_title] %>
           <% if params[:category_id] %>
             <% if params[:location] %>
-              <%= render "ad_title_params" %>
-              <%= render "ad_category_params" %>
-              <%= render "ad_location_params" %>
+                <%= render "ad_title_params" %>
+                <%= render "ad_category_params" %>
+                <%= render "ad_location_params" %>
             <% else %>
               <%= render "ad_title_params" %>
               <%= render "ad_category_params" %>
@@ -163,4 +163,5 @@
     </div>
   </div>
 <% end %>
+
 <%= render "render_posts" %>

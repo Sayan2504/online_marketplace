@@ -1,0 +1,35 @@
+<% if params[:user_id] %>
+  <% if params[:decision] == "true" %>
+    <% yourpost = false %>
+    <% @myposts.each do |mypost| %>
+      <% @post_ad_title.each do |post_ad_title| %>
+        <% if mypost.id == post_ad_title.id %>
+          <% yourpost = true %>
+          <% break %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if yourpost == true %>
+      <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>
+    <% else %>
+      <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+    <% end %>
+  <% else %>
+    <% otherpost = false %>
+    <% @othersposts.each do |otherspost| %>
+      <% @post_ad_title.each do |post_ad_title| %>
+        <% if otherspost.id == post_ad_title.id %>
+          <% otherpost = true %>
+          <% break %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if otherpost == true %>
+      <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>
+    <% else %>
+      <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+    <% end %>
+  <% end %>
+<% else %>
+  <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>     
+<% end %>

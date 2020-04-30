@@ -53,9 +53,11 @@ class PostsController < ApplicationController
     @post_city = Post.post_city(params[:location])
     if params[:user_id]
       if params[:decision] == "true"
-        @posts = @posts.where(user_id: params[:user_id])
-      else 
-        @posts = @posts.where.not(user_id: params[:user_id])
+        @myposts = Post.users_post(params[:user_id])
+        @posts = @posts.users_post(params[:user_id])
+      else
+        @othersposts = Post.others_post(params[:user_id])
+        @posts = @posts.others_post(params[:user_id])
       end
     end 
     if params[:category_id]

@@ -1,0 +1,36 @@
+<% category_ad_title = false %>
+<% @post_ad_title.each do |post_ad_title| %>
+  <% @post_category.each do |post_category| %>
+    <% if post_category.id == post_ad_title.id %>
+      <% if params[:user_id] %>
+        <% if params[:decision] == "true" %>
+          <% @myposts.each do |mypost| %>
+            <% if mypost.id == post_category.id %>
+              <% if mypost.id == post_ad_title.id %>
+                <% category_ad_title = true %>
+                <% break %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% @othersposts.each do |otherspost| %>
+            <% if otherspost.id == post_category.id %>
+              <% if otherspost.id == post_ad_title.id %>
+                <% category_ad_title = true %>
+                <% break %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% category_ad_title = true %>
+        <% break %>   
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if category_ad_title == true %>
+  <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>
+<% else %>
+  <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+<% end %>

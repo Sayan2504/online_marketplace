@@ -32,4 +32,6 @@ class Post < ApplicationRecord
   scope :product_bought_sold, ->(product_id) { where(buyer_id: product_id) }
   scope :update_buyer, ->(value) { update(buyer_id: value) }
   scope :where_post_id, ->(id) { where(id: id) }
+  scope :users_post, ->(id) { where(user_id: id) }
+  scope :others_post, ->(id) { where.not(user_id: id) }
 end

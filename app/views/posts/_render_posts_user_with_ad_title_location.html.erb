@@ -1,0 +1,36 @@
+<% ad_title_city = false %>
+<% @post_ad_title.each do |post_ad_title| %>
+  <% @post_city.each do |post_city| %>
+    <% if post_ad_title.id == post_city.id %>
+      <% if params[:user_id] %>
+        <% if params[:decision] == "true" %>
+          <% @myposts.each do |mypost| %>
+            <% if mypost.id == post_ad_title.id %>
+              <% if mypost.id == post_city.id %>
+                <% ad_title_city = true %>
+                <% break %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% @othersposts.each do |otherspost| %>
+            <% if otherspost.id == post_ad_title.id %>
+              <% if otherspost.id == post_city.id %>
+                <% ad_title_city = true %>
+                <% break %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% category_city = true %>
+        <% break %>   
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if ad_title_city == true %>
+  <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>
+<% else %>
+  <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+<% end %>
