@@ -1,4 +1,16 @@
-<% provide(:title, "Advertisements") %>
+<% if params[:user_id].present? %>
+  <% if params[:decision] == "true" %>
+    <% provide(:title, "Your Advertisements") %>
+  <% else %>
+    <% provide(:title, "Other Advertisements") %>
+  <% end %>
+<% else %>
+  <% if logged_in?%>
+    <% provide(:title, "All Advertisements") %> 
+  <% else %>
+    <% provide(:title, "Advertisements") %>
+  <% end %>
+<% end %>   
 
 <div class="sticky-top">
   <div class="jumbotron pt-4 pb-4">
