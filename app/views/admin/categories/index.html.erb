@@ -15,6 +15,8 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
+      <th></th>
+      
     </tr>
   </thead>
   <tbody>
@@ -22,6 +24,14 @@
       <tr>
         <td class="heading"><%= index+1 %></td>
         <td class="heading"><%= category.name %></td>
+        <td class="edit-delete-category">
+          <%= link_to "Edit Category", edit_admin_category_path(category), class: "btn btn-sm btn-primary", title: "Edit category" %>
+          <% if !category.posts.present? %>
+            <%= link_to "Delete Category", admin_category_path(category), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", title: "No posts, Delete?" %>
+          <% else %>
+            <button type="button" class="btn btn-sm btn-secondary" disabled>Delete Category</button>  
+          <% end %>
+        </td>  
       </tr>
     <% end %>
   </tbody>
