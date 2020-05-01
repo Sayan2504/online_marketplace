@@ -30,23 +30,19 @@
                 <% else %>
                   <button type="button" class="btn btn-md btn-primary" disabled>Approved</button>
                 <% end %>
-              <% else %>
-                <% if review.approved_by != "null" %>
-                  <% if logged_in? %>
-                    <% if current_user.id == @user.id %>
-                      <% registered = false %>
-                      <% @user_email.each do |u| %>
-                        <% if u.email == review.email %>
-                          <% registered = u.id %>
-                          <% break %>
-                        <% end %>
-                      <% end %>
-                      <% if registered != false %>
-                        <%= link_to "Send Message", new_message_path( { post_id: @post.id, sender_id: @user.id, receiver_id: registered } ), class: "btn btn-md btn-primary" %> 
-                      <% else %>
-                        <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered</button>
-                      <% end %>
-                    <% end %> 
+              <% elsif review.approved_by != "null" %>
+                <% if logged_in? && current_user.id == @user.id %>
+                  <% registered = false %>
+                  <% @user_email.each do |u| %>
+                    <% if u.email == review.email %>
+                      <% registered = u.id %>
+                      <% break %>
+                    <% end %>
+                  <% end %>
+                  <% if registered != false %>
+                    <%= link_to "Send Message", new_message_path( { post_id: @post.id, sender_id: @user.id, receiver_id: registered } ), class: "btn btn-md btn-primary" %> 
+                  <% else %>
+                    <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered</button>
                   <% end %>
                 <% end %>
               <% end %>
