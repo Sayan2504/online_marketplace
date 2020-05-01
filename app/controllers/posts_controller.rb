@@ -49,8 +49,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.admin_post_approved_state
     @posts = @posts.post_unsold.includes(:category)
-    @post_ad_title = Post.post_ad_title(params[:ad_title])
-    @post_city = Post.post_city(params[:location])
+    @post_ad_title = Post.post_ad_title(params[:ad_title]).post_unsold
+    @post_city = Post.post_city(params[:location]).post_unsold
     if params[:user_id]
       if params[:decision] == "true"
         @myposts = Post.users_post(params[:user_id])
