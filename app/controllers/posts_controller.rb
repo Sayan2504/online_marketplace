@@ -83,7 +83,8 @@ class PostsController < ApplicationController
     @user = @post.user
     @post_attachments = @post.post_attachments.all
     @reviews = @post.reviews.all
-    @user_email = User.all  
+    @user_email = User.all 
+    @buyer_user = Buyer.buyer_post_id(@post.id) 
   end
 
   def reject

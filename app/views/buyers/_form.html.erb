@@ -8,8 +8,12 @@
           <%= f.text_field :buyer_name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your name", maxlength: 255 %>
         </div>
         <div class="form-group">
-          <%= f.label :email , "Email id:" %>
-          <%= f.email_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id", maxlength: 255 %>
+          <% if logged_in? %>
+            <%= f.hidden_field :email, value: current_user.email %>
+          <% else %>
+            <%= f.label :email , "Email id:" %>
+            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id", maxlength: 255 %>
+          <% end %>
         </div>
         <div class="form-group">
           <%= f.label :location , "Location:" %>

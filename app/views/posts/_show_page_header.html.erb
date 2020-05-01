@@ -39,7 +39,18 @@
             <div class="col-6 text-right">
               <div class="row btn-toolbar" style="display: block">
                 <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-lg btn-primary" %>
-                <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-lg btn-primary" %>
+                <% requested = false %>
+                <% @buyer_user.each do |buyer_user| %>
+                  <% if buyer_user.email == current_user.email %>
+                    <% requested = true %>
+                    <% break %>
+                  <% end %>
+                <% end %>
+                <% if requested == true %>
+                  <button type="button" class="btn btn-lg btn-primary" disabled>Buying Request Pending</button>
+                <% else %>
+                  <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-lg btn-primary" %>
+                <% end %>    
               </div>
             </div>
           <% end %>
