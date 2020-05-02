@@ -18,9 +18,7 @@
           </div>
           <br>
           <%= f.submit "Log in", class: "btn btn-primary", data: { disable_with: "Logging..." } %>
-          <span class="btn btn-md btn-secondary signup-link-in-login-page">
-            <%= link_to "Signup", signup_path, style: "color: #FFFFFF;" %>
-          </span>
+          <span><%= link_to "Signup", signup_path, class: "btn btn-md btn-secondary signup-link-in-login-page" %></span>
           <span class="signup-link-in-login-page-text">New User?</span>
           <span class="fb-login">
             <%= link_to "auth/facebook" do %><%= image_tag("facebook.png", size: "55x40") %><% end %>

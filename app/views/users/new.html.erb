@@ -29,9 +29,7 @@
           <br>
           <div class="form-group">
             <%= f.submit "Sign Up", class: "btn btn-primary", data: { disable_with: "Signing Up..." } %>
-            <span class="btn btn-md btn-secondary login-link-in-signup-page">
-              <%= link_to "Login", login_path, style: "color: #FFFFFF;" %>
-            </span>
+            <span><%= link_to "Login", login_path, class: "btn btn-md btn-secondary login-link-in-signup-page" %></span>
             <span class="login-link-in-signup-page-text">Already have an account?</span>
           </div>
         <% end %>
