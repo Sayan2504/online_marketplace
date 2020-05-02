@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="form-inline">
+          <div class="form-inline justify-content-center">
             <%= form_tag(posts_path, method: "get") do %>
               <% if params[:user_id].present? && params[:decision].present? %>
                 <%= hidden_field_tag :user_id, params[:user_id] %>
@@ -54,9 +54,9 @@
                 <%= hidden_field_tag :ad_title, params[:ad_title] %>
               <% end %>
               <% if params[:category_id].present? %>
-              <%= collection_select :category_id, :id, Category.all, :id, :name, { selected: params[:category_id][:id], disabled: "", prompt: "Select ad by category" } , { class: "form-control" } %> 
+                <%= collection_select :category_id, :id, Category.all, :id, :name, { selected: params[:category_id][:id], prompt: "Select ad by category" } , { class: "form-control" } %> 
               <% else %>
-              <%= collection_select :category_id, :id, Category.all, :id, :name, { selected: "", disabled: "", prompt: "Select ad by category" } , { class: "form-control" } %>
+                <%= collection_select :category_id, :id, Category.all, :id, :name, { selected: "" , disabled: "", prompt: "Select ad by category" } , { class: "form-control" } %>
               <% end %>
               <%= submit_tag "Search", name: nil, class: "btn btn-primary" %> 
             <% end %>

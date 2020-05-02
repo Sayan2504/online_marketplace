@@ -55,6 +55,7 @@ class BuyersController < ApplicationController
     if params[:decision] == "true"
       BuyerMailer.sell(@buyer, @post, @user).deliver_now
       BuyerMailer.bought(@buyer, @post, @user).deliver_now
+      flash[:success] = "This product has been successfully sold to #{ @buyer.buyer_name }"
       if @post.buyer_id == nil
         @post.update(buyer_id: @buyer.id)
         redirect_to request.referrer

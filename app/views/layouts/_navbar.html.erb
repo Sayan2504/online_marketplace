@@ -51,10 +51,10 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="adminDropdown">
               <%= link_to "Edit credentials", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Unchecked posts", unchecked_path, class: "dropdown-item" %>
-              <%= link_to "Rejected posts", rejected_path, class: "dropdown-item" %>
-              <%= link_to "Products Sold", sold_path, class: "dropdown-item" %>
-              <%= link_to "Products Bought", bought_path, class: "dropdown-item" %>
+              <%= link_to "Unchecked posts", unchecked_users_path, class: "dropdown-item" %>
+              <%= link_to "Rejected posts", rejected_users_path, class: "dropdown-item" %>
+              <%= link_to "Products Sold", sold_buyers_path, class: "dropdown-item" %>
+              <%= link_to "Products Bought", bought_buyers_path, class: "dropdown-item" %>
               <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
             </div> 
           </li>

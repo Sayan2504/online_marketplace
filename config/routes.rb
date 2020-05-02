@@ -1,46 +1,14 @@
 Rails.application.routes.draw do
-  get 'messages/index'
-  get 'messages/show'
   root "home#index"
-  delete "/logout", to: "sessions#destroy"
   get "/login",   to: "sessions#new"
   post "/login",  to: "sessions#create"
   get "/signup",  to: "users#new"
   post "/signup", to: "users#create"
-
-  resources :socials
+  delete "/logout", to: "sessions#destroy"
   get "auth/:provider/callback", to: "sessions#fb_google_create"
-
-  resources :reviews
-  get "/approve_review", to: "posts#approve_review"
-  post "/approve_review", to: "posts#approve_review"
-  
-  resources :users
-
-  resources :posts
-  get "/unchecked",  to: "users#unchecked"
-  get "/rejected",  to: "users#rejected"
-  get "/approve", to: "posts#approve"
-  post "/approve", to: "posts#approve"
-  get "/reject", to: "posts#reject"
-  post "/reject", to: "posts#reject"
-
-  resources :buyers
-  get "/sell", to: "buyers#sell"
-  post "/sell", to: "buyers#sell"
-  get "/bought", to: "buyers#bought"
-  post "/bought", to: "buyers#bought"
-  get "/sold", to: "buyers#sold"
-  post "/sold", to: "buyers#sold"
-  
-  resources :messages
-  
-  resources :notifications
-  post "/read_message", to: "notifications#read_message"
   
   namespace :admin do
     resources :categories
-
     get "/approve", to: "ads#approve"
     post "/approve", to: "ads#approve"
     get "/reject", to: "ads#reject"
@@ -50,5 +18,36 @@ Rails.application.routes.draw do
     get "/unchecked",  to: "ads#unchecked"
   end
 
+  resources :buyers, only: [:create, :new, :index] do
+    member do
+      get "sell"
+      post "sell"
+    end  
+    collection do
+      get "bought"
+      post "bought"
+      get "sold"
+      post "sold"
+    end
+  end 
+  resources :messages, only: [:new, :create]
+  resources :notifications, only: :index do
+    post "read_message", on: :member
+  end
+  resources :posts, only: [:show, :create, :new, :index] do
+    member do
+      post "approve"
+      post "reject"
+      get "approve_review"
+      post "approve_review"
+    end 
+  end    
+  resources :reviews, only: [:new, :create]
+  resources :users do
+    collection do
+      get "unchecked"
+      get "rejected"
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
