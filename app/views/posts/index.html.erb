@@ -32,9 +32,9 @@
                 <%= hidden_field_tag :location, params[:location] %>
               <% end %>
               <% if params[:ad_title].present? %>
-                <%= text_field_tag :ad_title, params[:ad_title], placeholder: "Search ad by name" %>
+                <%= text_field_tag :ad_title, params[:ad_title], placeholder: "Search ad by name", title: "Search by advertisement name" %>
               <% else %>
-                <%= text_field_tag :ad_title, params[:ad_title], required: true, placeholder: "Search ad by name" %>
+                <%= text_field_tag :ad_title, params[:ad_title], required: true, placeholder: "Search ad by name", title: "Search by advertisement name" %>
               <% end %>
               <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
             <% end %>
@@ -78,9 +78,9 @@
                 <%= hidden_field_tag :ad_title, params[:ad_title] %>
               <% end %>
               <% if params[:location].present? %>
-                <%= text_field_tag :location, params[:location], placeholder: "Search ad by location" %>
+                <%= text_field_tag :location, params[:location], placeholder: "Search ad by location", title: "Search by advertisement location" %>
               <% else %>
-                <%= text_field_tag :location, params[:location], required: true, placeholder: "Search ad by location" %>
+                <%= text_field_tag :location, params[:location], required: true, placeholder: "Search ad by location", title: "Search by advertisement location" %>
               <% end %>
               <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
             <% end %>

@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top">
   <% if logged_in? %>
     <% if admin_user? %>
-      <%= link_to "Admin Homepage", users_path, class: "navbar-brand" %>
+      <%= link_to "Admin Homepage", users_path, class: "navbar-brand", title: "Move to Admin Homepage" %>
     <% else %>
-      <%= link_to "#{ current_user.name }'s Homepage", user_path(current_user), class: "navbar-brand" %>
+      <%= link_to "#{ current_user.name }'s Homepage", user_path(current_user), class: "navbar-brand", title: "Move to #{ current_user.name }'s Homepage" %>
     <% end %>
   <% else %>
-    <%= link_to "Online Marketplace App", root_path, class: "navbar-brand ml-15" %>
+    <%= link_to "Online Marketplace App", root_path, class: "navbar-brand ml-15", title: "Move to Application Homepage" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -17,19 +17,19 @@
       <% if logged_in? %>
         <% if admin_user? %>
           <li class="nav-item active">
-            <%= link_to "Approved Posts", admin_approved_path, class: "nav-link" %>
+            <%= link_to "Approved Posts", admin_approved_path, class: "nav-link", title: "See the posts approved by you" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Unchecked Posts", admin_unchecked_path, class: "nav-link" %>
+            <%= link_to "Unchecked Posts", admin_unchecked_path, class: "nav-link", title: "Watch out the unchecked posts" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Rejected posts", admin_rejected_path, class: "nav-link" %>
+            <%= link_to "Rejected posts", admin_rejected_path, class: "nav-link", title: "See the posts rejected by you" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Categories", admin_categories_path, class: "nav-link" %>
+            <%= link_to "Categories", admin_categories_path, class: "nav-link", title: "See the categories created by you" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+            <%= link_to "Logout", logout_path, method: :delete, class: "nav-link", title: "logout from your account" %>
           </li>
         <% else %>
           <li class="nav-item active pl-10">
@@ -40,9 +40,9 @@
               Advertisements
             </a>
             <div class="dropdown-menu" aria-labelledby="adminDropdown">
-              <%= link_to "All Advertisements", posts_path, class: "dropdown-item" %>
-              <%= link_to "Your Advertisements", posts_path( { user_id: current_user.id, decision: "true" } ), class: "dropdown-item" %>
-              <%= link_to "Other Advertisements", posts_path( { user_id: current_user.id, decision: "false" } ), class: "dropdown-item" %>
+              <%= link_to "All Advertisements", posts_path, class: "dropdown-item", title: "See all Advertisements" %>
+              <%= link_to "Your Advertisements", posts_path( { user_id: current_user.id, decision: "true" } ), class: "dropdown-item", title: "See your Advertisements" %>
+              <%= link_to "Other Advertisements", posts_path( { user_id: current_user.id, decision: "false" } ), class: "dropdown-item", title: "See others Advertisements" %>
             </div> 
           </li>
           <li class="nav-item dropdown nav-item active">
@@ -50,34 +50,34 @@
               Options
             </a>
             <div class="dropdown-menu" aria-labelledby="adminDropdown">
-              <%= link_to "Edit credentials", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Unchecked posts", unchecked_users_path, class: "dropdown-item" %>
-              <%= link_to "Rejected posts", rejected_users_path, class: "dropdown-item" %>
-              <%= link_to "Products Sold", sold_buyers_path, class: "dropdown-item" %>
-              <%= link_to "Products Bought", bought_buyers_path, class: "dropdown-item" %>
-              <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
+              <%= link_to "Edit credentials", edit_user_path(current_user), class: "dropdown-item", title: "Edit your Email id/Password" %>
+              <%= link_to "Unchecked posts", unchecked_users_path, class: "dropdown-item", title: "See your posts unchecked by admin" %>
+              <%= link_to "Rejected posts", rejected_users_path, class: "dropdown-item", title: "See your posts rejected by admin" %>
+              <%= link_to "Products Sold", sold_buyers_path, class: "dropdown-item", title: "See the products you have sold" %>
+              <%= link_to "Products Bought", bought_buyers_path, class: "dropdown-item", title: "See the products you have bought" %>
+              <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item", title: "logout from your account" %>
             </div> 
           </li>
           <li class="nav-item active">
-            <%= link_to "Create Post", new_post_path, class: "nav-link" %>
+            <%= link_to "Create Post", new_post_path, class: "nav-link", title: "Create a new post" %>
           </li>
         <% end %>
       <% else %>
         <% if controller_name != "posts" %>
           <li class="nav-item active">
-            <%= link_to "Advertisements", posts_path, class: "nav-link" %>
+            <%= link_to "Advertisements", posts_path, class: "nav-link", title: "See all Advertisments" %>
           </li>
         <% end %>
         <% if controller_name == "posts" %>
           <li class="nav-item active">
-            <%= link_to "All Advertisements", posts_path, class: "nav-link" %>
+            <%= link_to "All Advertisements", posts_path, class: "nav-link", title: "See all Advertisments" %>
           </li>
         <% end %>
         <li class="nav-item active">
-          <%= link_to "Log In", login_path, class: "nav-link" %>
+          <%= link_to "Log In", login_path, class: "nav-link", title: "Log in into your account" %>
         </li>
         <li class="nav-item active">
-          <%= link_to "Sign Up", signup_path, class: "nav-link" %>
+          <%= link_to "Sign Up", signup_path, class: "nav-link", title: "Create new account" %>
         </li>
       <% end %>
     </ul>

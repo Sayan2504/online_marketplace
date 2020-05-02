@@ -26,7 +26,7 @@
             <div class="col-sm-2 mt-3">
               <% if admin_user? %>
                 <% if review.approved_by == "null" %>
-                  <%= link_to "Approve", approve_review_post_path( { id: review.id, decision: "true" } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  } %>
+                  <%= link_to "Approve", approve_review_post_path( { id: review.id, decision: "true" } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  }, title: "Approve this review" %>
                 <% else %>
                   <button type="button" class="btn btn-md btn-primary" disabled>Approved</button>
                 <% end %>
@@ -40,7 +40,7 @@
                     <% end %>
                   <% end %>
                   <% if registered != false %>
-                    <%= link_to "Send Message", new_message_path( { post_id: @post.id, sender_id: @user.id, receiver_id: registered } ), class: "btn btn-md btn-primary" %> 
+                    <%= link_to "Send Message", new_message_path( { post_id: @post.id, sender_id: @user.id, receiver_id: registered } ), class: "btn btn-md btn-primary", title: "Send message to #{ review.name }" %> 
                   <% else %>
                     <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered</button>
                   <% end %>

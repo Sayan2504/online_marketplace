@@ -11,25 +11,25 @@
           <%= render "shared/error_messages", object: @user %>
           <div class="form-group">
             <%= f.label :name %>
-            <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Name", maxlength: 255 %>
+            <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Name", maxlength: 255, title: "Enter Your Name" %>
           </div>
           <div class="form-group">
             <%= f.label :email, "Email Address" %>
-            <%= f.email_field :email, class: "form-control", required: true, autocomplete: :off, placeholder: "Email Address", maxlength: 255 %>
+            <%= f.email_field :email, class: "form-control", required: true, autocomplete: :off, placeholder: "Email Address", maxlength: 255, title: "Enter your email id" %>
           </div>
           <div class="form-group">
             <%= f.label :password %>
-            <%= f.password_field :password, class: "form-control", required: true, autocomplete: :off, placeholder: "Password", minlength: 6 %>
+            <%= f.password_field :password, class: "form-control", required: true, autocomplete: :off, placeholder: "Password", minlength: 6, title: "Enter New password" %>
           </div>
           <div class="form-group">
             <%= f.label :password_confirmation, "Password Confirmation" %>
-            <%= f.password_field :password_confirmation, class: "form-control", required: true, autocomplete: :off, placeholder: "Password Confirmation", minlength: 6 %>
+            <%= f.password_field :password_confirmation, class: "form-control", required: true, autocomplete: :off, placeholder: "Password Confirmation", minlength: 6, title: "Confirm your password" %>
           </div>
           <%= f.hidden_field :buyer_post_id, { value: params[:buyer_post_id] } %>
           <br>
           <div class="form-group">
-            <%= f.submit "Sign Up", class: "btn btn-primary", data: { disable_with: "Signing Up..." } %>
-            <span><%= link_to "Login", login_path, class: "btn btn-md btn-secondary login-link-in-signup-page" %></span>
+            <%= f.submit "Sign Up", class: "btn btn-primary", data: { disable_with: "Signing Up..." }, title: "Create Account" %>
+            <span><%= link_to "Login", login_path, class: "btn btn-md btn-secondary login-link-in-signup-page", title: "Aready an user? login with your credentials" %></span>
             <span class="login-link-in-signup-page-text">Already have an account?</span>
           </div>
         <% end %>
