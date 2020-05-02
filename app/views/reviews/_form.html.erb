@@ -5,19 +5,19 @@
         <%= render "shared/error_messages", object: @review %>
         <div class="form-group">
           <%= f.label :name , "Name:" %>
-          <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your name", title: "Enter your Name" %>
+          <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your name", title: "Enter your Name", maxlength: 30, minlength: 2 %>
         </div>
         <div class="form-group">
           <% if logged_in? %>
             <%= f.hidden_field :email, value: current_user.email %>
           <% else %>
             <%= f.label :email , "Email id:" %>
-            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id", maxlength: 255, title: "Enter your email id" %>
+            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id", title: "Enter your email id", maxlength: 40, minlength: 5 %>
           <% end %>
         </div>
         <div class="form-group">
           <%= f.label :location , "Location:" %>
-          <%= f.text_field :location, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your address", title: "Enter your location" %>
+          <%= f.text_field :location, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your address", title: "Enter your location", maxlength: 30, minlength: 2 %>
         </div>
         <%= f.hidden_field :post_id, value: @post.id %>
         <div class="form-group">
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.text_area :review, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Write your review", maxlength: 255, title: "Enter your Review about the post #{ @post.ad_title.upcase }" %>
+          <%= f.text_area :review, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Write your review", title: "Enter your Review about the post #{ @post.ad_title.upcase }", maxlength: 255, minlength: 1 %>
         </div>
         <div class="form-row">
           <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-12">

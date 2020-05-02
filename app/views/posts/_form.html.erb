@@ -6,7 +6,7 @@
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :ad_title, "Ad Title" %>
-            <%= f.text_field :ad_title, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Maximum 16 characters", title: "Type an title for the post" %>
+            <%= f.text_field :ad_title, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Maximum 16 characters", title: "Type an title for the post", maxlength: 16, minlength: 2 %>
           </div>
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label "category" %>
@@ -16,19 +16,19 @@
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-12">
             <%= f.label :detailed_ad_title, "Detailed Ad Title" %>
-            <%= f.text_field :detailed_ad_title, rows: "4", class: "form-control", required: true, autocomplete: :off, placeholder: "If no extra details, retype the Ad title", title: "Type the title for the post in detail" %>
+            <%= f.text_field :detailed_ad_title, rows: "4", class: "form-control", required: true, autocomplete: :off, placeholder: "If no extra details, retype the Ad title", title: "Type the title for the post in detail", maxlength: 30, minlength: 2 %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-12">
             <%= f.label :ad_description, "Ad Description" %>
-            <%= f.text_area :ad_description, rows: "4", class: "form-control", required: true, autocomplete: :off, placeholder: "Description about the advertisement", title: "Type the description about the post" %>
+            <%= f.text_area :ad_description, rows: "4", class: "form-control", required: true, autocomplete: :off, placeholder: "Description about the advertisement", title: "Type the description about the post", maxlength: 255, minlength: 2 %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :user_name, "Username" %>
-            <%= f.text_field :user_name, class: "form-control", required: true, autocomplete: :off, placeholder: "Will display with the advertisement", title: "Type an username for the post" %>
+            <%= f.text_field :user_name, class: "form-control", required: true, autocomplete: :off, placeholder: "Will display with the advertisement", title: "Type an username for the post", maxlength: 30, minlength: 2 %>
           </div>
           <div class="form-group col-sm-12 col-md-6">
             <%= f.fields_for :post_attachments do |p| %>
@@ -42,11 +42,11 @@
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :phone, "Phone number" %>
-            <%= f.text_field :phone, class: "form-control", required: true, autocomplete: :off, placeholder: "(country code)-(10 digit mobile number)", title: "Enter your contact number" %>
+            <%= f.text_field :phone, class: "form-control", required: true, autocomplete: :off, placeholder: "(country code)-(10 digit mobile number)", title: "Enter your contact number(country code is optional)", maxlength: 15, minlength: 10 %>
           </div>
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :city, "City" %>
-            <%= f.text_field :city, class: "form-control", required: true, autocomplete: :off, placeholder: "Maximum 14 characters", title: "Enter your location" %>
+            <%= f.text_field :city, class: "form-control", required: true, autocomplete: :off, placeholder: "Maximum 14 characters", title: "Enter your location", maxlength: 14, minlength: 1 %>
           </div>
         </div>
         <div class="form-row">

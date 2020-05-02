@@ -10,11 +10,11 @@
         <%= form_for :session, url: login_path do |f| %>
           <div class="form-group">
             <%= f.label :email, "Email Address" %>
-            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Email Address", maxlength: 100, title: "Enter your email id" %>
+            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Email Address", title: "Enter your email id", maxlength: 40, minlength: 5 %>
           </div>
           <div class="form-group">
             <%= f.label :password %>
-            <%= f.password_field :password, class: "form-control", required: true, placeholder: "Password", minlength: 6, title: "Enter your password" %>
+            <%= f.password_field :password, class: "form-control", required: true, placeholder: "Password", title: "Enter your password", maxlength: 30, minlength: 6 %>
           </div>
           <br>
           <%= f.submit "Log in", class: "btn btn-primary", data: { disable_with: "Logging..." }, title: "Log in with your credentials" %>
