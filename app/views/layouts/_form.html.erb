@@ -21,9 +21,11 @@
                   <% end %>
                 <% else %>
                   <% if controller_name == "posts" %>
-                    <span class="post-ad-title"><h5><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
+                    <span class="post-ad-title"><h5><%= link_to post.ad_title.upcase, post_path(post) %></h5></span>
                     <span class="post-ad-title"><p><strong>Category:</strong><%= post.category.name %></p></span>
                     <span class="post-ad-title"><p><strong>Location:</strong><%= post.city %></p></span>
+                  <% elsif controller_name == "users" && post.buyer_id != nil && post.approved_by != ["null", "rejected"] %>
+                    <span class="post-ad-title"><h5><%= link_to post.ad_title.upcase, post_path(post) %></h5></span>
                   <% else %>
                     <span class="post-ad-title"><h5 class="mt-3"><%= link_to post.ad_title.upcase,  post_path(post) %></h5></span>
                   <% end %>
@@ -45,6 +47,12 @@
                       <button type="button" class="btn btn-md btn-secondary" disabled>Product Sold</button>
                     </div>
                   <% end %>
+                <% else %>
+                  <% if controller_name == "users" && post.buyer_id != nil && post.approved_by != ["null", "rejected"] %>
+                    <div class="row" style="display: inline-block">
+                      <button type="button" class="btn btn-md btn-secondary" disabled>Product Sold</button>
+                    </div> 
+                  <% end %>   
                 <% end %>
               </div>
             </div>
