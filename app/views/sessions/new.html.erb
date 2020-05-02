@@ -10,7 +10,7 @@
         <%= form_for :session, url: login_path do |f| %>
           <div class="form-group">
             <%= f.label :email, "Email Address" %>
-            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Email Address", title: "Enter your email id", maxlength: 40, minlength: 5 %>
+            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Email Address", title: "Enter your email id", maxlength: 80, minlength: 5 %>
           </div>
           <div class="form-group">
             <%= f.label :password %>

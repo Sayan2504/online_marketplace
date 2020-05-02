@@ -10,7 +10,7 @@ class Review < ApplicationRecord
   after_validation { self.review = self.review.squish }
 
   validates :name,  presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_NAME_AND_LOCATION_REGEX }
-  validates :email, presence: true, length: { maximum: 40, minimum: 5 } , format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, length: { maximum: 80, minimum: 5 } , format: { with: VALID_EMAIL_REGEX }
   validates :location, presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_NAME_AND_LOCATION_REGEX }
   validates :review, presence: true, length: { minimum: 1 }
   validates :rating, presence: true

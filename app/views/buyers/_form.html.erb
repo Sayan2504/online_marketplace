@@ -12,7 +12,7 @@
             <%= f.hidden_field :email, value: current_user.email %>
           <% else %>
             <%= f.label :email , "Email id:" %>
-            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id", title: "Enter your email id", maxlength: 40, minlength: 5 %>
+            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your email id", title: "Enter your email id", maxlength: 80, minlength: 5 %>
           <% end %>
         </div>
         <div class="form-group">

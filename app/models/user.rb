@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :reviews, through: :posts
 
   validates :name, presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_NAME_REGEX }
-  validates :email, presence: true, length: { maximum: 40, minimum: 5 } , uniqueness: { case_sensitive: false } , format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, length: { maximum: 80, minimum: 5 } , uniqueness: { case_sensitive: false } , format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { maximum: 30, minimum: 6 } , on: :create          
   validates :admin, default: false
 
