@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   VALID_AD_REGEX = /\A[\s\w\d]+[\s\d\w()]*\z/i.freeze
   VALID_USERNAME_REGEX = /\A[\s\w\d]+[\w\d\s_]*\z/i.freeze
   VALID_PHONE_REGEX = /\A[1-9]{0,3}-[6-9]{1}[0-9]{9}\z/i.freeze
-  VALID_CITY_REGEX = /\A[\sA-Za-z]{1}[\sA-Za-z]*\z/i.freeze
+  VALID_CITY_REGEX = /\A[\sA-Za-z]*\z/i.freeze
 
   belongs_to :user
   belongs_to :category
