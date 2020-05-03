@@ -6,7 +6,7 @@
     <% if admin_user? %>
       <% if @post.buyer_id == nil %>
         <% if @post.approved_by == "null" %>
-          <div class="col-6 text-center">
+          <div class="col-6 text-right">
             <div class="row btn-toolbar" style="display: block">
               <%= link_to "Approve", admin_approve_path( { id: @post.id, decision: "true" } ), class: "btn btn-lg btn-primary", data: { disable_with: "Approving..." }, title: "Approve this post #{ @post.ad_title.upcase }" %>
               <%= link_to "Reject", admin_reject_path( { id: @post.id, decision: "false" } ), class: "btn btn-lg btn-secondary", data: { disable_with: "Rejecting..." }, title: "Reject this post #{ @post.ad_title.upcase }" %>

@@ -42,7 +42,7 @@
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :phone, "Phone number" %>
-            <%= f.text_field :phone, class: "form-control", required: true, autocomplete: :off, placeholder: "(country code)-(10 digit mobile number)", title: "Enter your contact number(country code is optional)", maxlength: 15, minlength: 10 %>
+            <%= f.text_field :phone, class: "form-control", required: true, autocomplete: :off, placeholder: "(country code)-(10 digit mobile number)", title: "Enter your contact number(country code follwed by - is mandatory)", maxlength: 15, minlength: 10 %>
           </div>
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :city, "City" %>

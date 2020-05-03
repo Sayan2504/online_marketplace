@@ -1,0 +1,13 @@
+<div class="col-sm-7">
+  <div class="post-details-row mb-2">
+    <label><strong>Name : </strong></label>
+    <span><%= review.name %></span>
+  </div>
+  <div class="post-details-row">
+    <label><strong>Review : </strong></label>
+    <span><%= review.review %></span>
+  </div>
+</div>
+<div class="col-sm-3 mt-3">
+  <%= render "rating_view", review: review %>
+</div>
