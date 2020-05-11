@@ -1,12 +1,12 @@
 class BuyerMailer < ApplicationMailer
-  default :from => "Online Marketplace"
+  default from: "Online Marketplace"
 
   def buying_request(buyer, user, post)
     @buyer = buyer
     @user = user
     @post = post
 
-    mail(:to => @user.email, :subject => "Your post has a new buying request")
+    mail(to: @user.email, subject: "Your post has a new buying request")
   end
 
   def buying_request_sent(buyer, user, post)
@@ -14,7 +14,7 @@ class BuyerMailer < ApplicationMailer
     @user = user
     @post = post
 
-    mail(:to => @buyer.email, :subject => "Your buying request has been sent")
+    mail(to: @buyer.email, subject: "Your buying request has been sent")
   end
 
   def sell(buyer, post, user)
@@ -22,7 +22,7 @@ class BuyerMailer < ApplicationMailer
     @user = user
     @post = post
 
-    mail(:to => @user.email, :subject => "Your product has been sold")
+    mail(to: @user.email, subject: "Your product has been sold")
   end
 
   def bought(buyer, post, user)
@@ -30,6 +30,6 @@ class BuyerMailer < ApplicationMailer
     @user = user
     @post = post
 
-    mail(:to => @buyer.email, :subject => "Your buying request has been approved")
+    mail(to: @buyer.email, subject: "Your buying request has been approved")
   end
 end
