@@ -40,7 +40,7 @@ Rails.application.routes.draw do
       post "reject"
       get "approve_review"
       post "approve_review"
-    end 
+    end  
   end    
   resources :reviews, only: [:new, :create]
   resources :users do
