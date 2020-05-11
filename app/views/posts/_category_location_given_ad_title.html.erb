@@ -1,0 +1,7 @@
+<% if params[:category_id] %>
+  <%= render "ad_category_params" %>
+  <%= render "location_given_category" %>
+<% else %>
+  <%= render "ad_category_all" %>
+  <%= render "location_given_category" %>
+<% end %>

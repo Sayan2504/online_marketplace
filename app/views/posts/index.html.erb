@@ -118,38 +118,10 @@
       <div class="row justify-content-center">
         <% if params[:ad_title].present? %>
           <%= render "ad_title_params" %>
-          <% if params[:category_id] %>
-            <%= render "ad_category_params" %>
-            <% if params[:location].present? %>
-             <%= render "ad_location_params" %>
-            <% else %>
-              <%= render "ad_location_all" %>
-            <% end %>
-          <% else %>
-            <%= render "ad_category_all" %>
-            <% if params[:location].present? %>
-             <%= render "ad_location_params" %>
-            <% else %>
-              <%= render "ad_location_all" %>
-            <% end %>
-          <% end %>
+          <%= render "category_location_given_ad_title" %>
         <% else %>    
           <%= render "ad_title_all" %>
-          <% if params[:category_id] %>
-            <%= render "ad_category_params" %>
-            <% if params[:location].present? %>
-             <%= render "ad_location_params" %>
-            <% else %>
-              <%= render "ad_location_all" %>
-            <% end %>
-          <% else %>
-            <%= render "ad_category_all" %>
-            <% if params[:location].present? %>
-             <%= render "ad_location_params" %>
-            <% else %>
-              <%= render "ad_location_all" %>
-            <% end %>
-          <% end %>
+          <%= render "category_location_given_ad_title" %>
         <% end %>  
       </div>
     </div>
