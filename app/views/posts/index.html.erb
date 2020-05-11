@@ -92,6 +92,10 @@
           <div class="col-12">
             <div class="form-inline justify-content-center">
               <%= form_tag(posts_path, method: "get") do %>
+                <% if params[:user_id].present? && params[:decision].present? %>
+                  <%= hidden_field_tag :user_id, params[:user_id] %>
+                  <%= hidden_field_tag :decision, params[:decision] %>
+                <% end %>
                 <% if params[:ad_title].present? %>
                   <%= hidden_field_tag :ad_title, params[:ad_title] %>
                 <% end %>
