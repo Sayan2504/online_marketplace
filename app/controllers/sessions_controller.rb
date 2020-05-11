@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
     session[:omniauth] = auth.except('extra')
     user = User.sign_in_from_omniauth(auth)
     log_in(user)
+    UserMailer.welcome_email_social(user).deliver_now
     flash[:success] = "You have successfully logged in"
     redirect_to user_path(user)
   end
