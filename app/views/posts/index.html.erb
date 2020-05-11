@@ -95,51 +95,41 @@
   <div class="jumbotron pt-4 pb-3 mt-1">
     <div class="container">
       <div class="row justify-content-center">
-        <% if params[:category_id] %>
-          <% if params[:ad_title].present? %>
+        <% if params[:ad_title].present? %>
+          <%= render "ad_title_params" %>
+          <% if params[:category_id] %>
+            <%= render "ad_category_params" %>
             <% if params[:location].present? %>
-              <%= render "ad_title_params" %>
-              <%= render "ad_category_params" %>
-              <%= render "ad_location_params" %>
+             <%= render "ad_location_params" %>
             <% else %>
-              <%= render "ad_title_params" %>
-              <%= render "ad_category_params" %>
               <%= render "ad_location_all" %>
             <% end %>
           <% else %>
+            <%= render "ad_category_all" %>
             <% if params[:location].present? %>
-              <%= render "ad_title_all" %>
-              <%= render "ad_category_params" %>
-              <%= render "ad_location_params" %>
+             <%= render "ad_location_params" %>
             <% else %>
-              <%= render "ad_title_all" %>
-              <%= render "ad_category_params" %>
               <%= render "ad_location_all" %>
             <% end %>
           <% end %>
-        <% elsif !params[:category_id] %>
-          <% if params[:ad_title].present? %>
+        <% else %>    
+          <%= render "ad_title_all" %>
+          <% if params[:category_id] %>
+            <%= render "ad_category_params" %>
             <% if params[:location].present? %>
-              <%= render "ad_title_params" %>
-              <%= render "ad_category_all" %>
-              <%= render "ad_location_params" %>
+             <%= render "ad_location_params" %>
             <% else %>
-              <%= render "ad_title_params" %>
-              <%= render "ad_category_all" %>
               <%= render "ad_location_all" %>
             <% end %>
           <% else %>
+            <%= render "ad_category_all" %>
             <% if params[:location].present? %>
-              <%= render "ad_title_all" %>
-              <%= render "ad_category_all" %>
-              <%= render "ad_location_params" %>
+             <%= render "ad_location_params" %>
             <% else %>
-              <%= render "ad_title_all" %>
-              <%= render "ad_category_all" %>
               <%= render "ad_location_all" %>
             <% end %>
           <% end %>
-        <% end %>
+        <% end %>  
       </div>
     </div>
   </div>
