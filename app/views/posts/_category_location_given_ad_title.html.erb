@@ -1,4 +1,4 @@
-<% if params[:category_id] %>
+<% if params[:category_id] && !params[:category_id][:id].blank? %>
   <%= render "ad_category_params" %>
   <%= render "location_given_category" %>
 <% else %>
