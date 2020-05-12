@@ -5,20 +5,16 @@
       <% if params[:user_id] %>
         <% if params[:decision] == "true" %>
           <% @myposts.each do |mypost| %>
-            <% if mypost.id == post_ad_title.id %>
-              <% if mypost.id == post_city.id %>
-                <% ad_title_city = true %>
-                <% break %>
-              <% end %>
+            <% if mypost.id == post_ad_title.id && mypost.id == post_city.id%>
+              <% ad_title_city = true %>
+              <% break %>
             <% end %>
           <% end %>
         <% else %>
           <% @othersposts.each do |otherspost| %>
-            <% if otherspost.id == post_ad_title.id %>
-              <% if otherspost.id == post_city.id %>
-                <% ad_title_city = true %>
-                <% break %>
-              <% end %>
+            <% if otherspost.id == post_ad_title.id && otherspost.id == post_city.id %>
+              <% ad_title_city = true %>
+              <% break %>
             <% end %>
           <% end %>
         <% end %>

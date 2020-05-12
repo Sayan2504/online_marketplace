@@ -5,20 +5,16 @@
       <% if params[:user_id] %>
         <% if params[:decision] == "true" %>
           <% @myposts.each do |mypost| %>
-            <% if mypost.id == post_category.id %>
-              <% if mypost.id == post_ad_title.id %>
-                <% category_ad_title = true %>
-                <% break %>
-              <% end %>
+            <% if mypost.id == post_category.id && mypost.id == post_ad_title.id %>
+              <% category_ad_title = true %>
+              <% break %>
             <% end %>
           <% end %>
         <% else %>
           <% @othersposts.each do |otherspost| %>
-            <% if otherspost.id == post_category.id %>
-              <% if otherspost.id == post_ad_title.id %>
-                <% category_ad_title = true %>
-                <% break %>
-              <% end %>
+            <% if otherspost.id == post_category.id && otherspost.id == post_ad_title.id %>
+              <% category_ad_title = true %>
+              <% break %>
             <% end %>
           <% end %>
         <% end %>

@@ -2,38 +2,26 @@
 <% @post_category.each do |post_category| %>
   <% @post_ad_title.each do |post_ad_title| %>
     <% @post_city.each do |post_city| %>
-      <% if post_category.id == post_ad_title.id %>
-        <% if post_category.id == post_city.id %>
-          <% if post_ad_title.id == post_city.id %>
-            <% if params[:user_id] %>
-              <% if params[:decision] == "true" %>
-                <% @myposts.each do |mypost| %>
-                  <% if mypost.id == post_category.id %>
-                    <% if mypost.id == post_ad_title.id %>
-                      <% if mypost.id == post_city.id %>
-                        <% category_city_ad_title = true %>
-                        <% break %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <% @othersposts.each do |otherspost| %>
-                  <% if otherspost.id == post_category.id %>
-                    <% if otherspost.id == post_ad_title.id %>
-                      <% if otherspost.id == post_city.id %>
-                        <% category_city_ad_title = true %>
-                        <% break %>
-                      <% end %> 
-                    <% end %>
-                  <% end %>
-                <% end %>
+      <% if post_category.id == post_ad_title.id && post_category.id == post_city.id && post_ad_title.id == post_city.id %>
+        <% if params[:user_id] %>
+          <% if params[:decision] == "true" %>
+            <% @myposts.each do |mypost| %>
+              <% if mypost.id == post_category.id && mypost.id == post_ad_title.id && mypost.id == post_city.id %>
+                <% category_city_ad_title = true %>
+                <% break %>
               <% end %>
-            <% else %>
-              <% category_city_ad_title = true %>
-              <% break %>   
+            <% end %>
+          <% else %>
+            <% @othersposts.each do |otherspost| %>
+              <% if otherspost.id == post_category.id && otherspost.id == post_ad_title.id && otherspost.id == post_city.id %>
+                <% category_city_ad_title = true %>
+                <% break %>
+              <% end %>
             <% end %>
           <% end %>
+        <% else %>
+          <% category_city_ad_title = true %>
+          <% break %>   
         <% end %>
       <% end %>
     <% end %>
