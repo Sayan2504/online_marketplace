@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   after_validation { self.phone = self.phone.squish }
   after_validation { self.city = self.city.squish }
 
-  validates :ad_title,  presence: true, length: { maximum: 16, minimum: 2 } , format: { with: VALID_AD_REGEX }
+  validates :ad_title,  presence: true, length: { maximum: 14, minimum: 2 } , format: { with: VALID_AD_REGEX }
   validates :detailed_ad_title,  presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_AD_REGEX }
   validates :ad_description,  presence: true, length: { maximum: 255, minimum: 2 }
   validates :user_name, presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_USERNAME_REGEX }
