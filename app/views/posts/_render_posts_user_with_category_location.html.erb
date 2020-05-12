@@ -5,7 +5,7 @@
       <% if params[:user_id] %>
         <% if params[:decision] == "true" %>
           <% @myposts.each do |mypost| %>
-            <% if mypost.id == post_category.id && mypost.id == post_city.id%>
+            <% if mypost.id == post_category.id && mypost.id == post_city.id %>
               <% category_city = true %>
               <% break %>
             <% end %>
