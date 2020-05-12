@@ -1,84 +1,49 @@
-<% if params[:category_id] %>  
-  <% if @category.posts.present? %>  
-    <% if !params[:ad_title] %>
-      <% if !params[:location] %>
-        <% if @post_unsold.present? %>
-          <%= render "render_posts_user_with_category" %>    
-        <% end %>  
-        <%= render "layouts/form" %>
-      <% else %>
-        <% if @post_city.present? %>
-          <%= render "render_posts_user_with_category_location" %>
-        <% else %>
-          <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-        <% end %>
-        <%= render "layouts/form" %>
-      <% end %>
-    <% elsif params[:ad_title] %>
-      <% if !params[:location] %>
-        <% if @post_ad_title.present? %>
-          <%= render "render_posts_user_with_category_ad_title" %>
-        <% else %>
-          <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-        <% end %>
-        <%= render "layouts/form" %>
-      <% else %>
-        <% if @post_city.present? %>
-          <% if @post_ad_title.present? %>
-            <%= render "render_posts_user_with_category_city_ad_title" %>
-          <% else %>
-            <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-          <% end %>
-        <% else %>
-          <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-        <% end %>
-        <%= render "layouts/form" %>
-      <% end %>
-    <% end %>  
-  <% else %>
-    <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+<% if params[:category_id] && @category.posts.present? %>  
+  <% if !params[:ad_title] %>
+    <% if !params[:location] && @post_unsold.present? %>
+      <%= render "render_posts_user_with_category" %>    
+      <%= render "layouts/form" %>
+    <% elsif params[:location] && @post_city.present? %>
+      <%= render "render_posts_user_with_category_location" %>
+      <%= render "layouts/form" %>
+    <% else %>
+      <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+    <% end %>
+  <% elsif params[:ad_title] %>
+    <% if !params[:location] && @post_ad_title.present? %>
+      <%= render "render_posts_user_with_category_ad_title" %>
+      <%= render "layouts/form" %>
+    <% elsif params[:location] && @post_city.present? && @post_ad_title.present? %>
+      <%= render "render_posts_user_with_category_city_ad_title" %>
+      <%= render "layouts/form" %>
+    <% else %>
+      <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
+    <% end %>
   <% end %>  
 <% elsif !params[:category_id] %>
   <% if !params[:ad_title] %>
-    <% if !params[:location] %>
-      <% if @posts.present? %>
-        <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>  
-      <% else %>
-        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-      <% end %>
+    <% if !params[:location] && @posts.present? %>
+      <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>  
       <%= render "layouts/form" %>
+    <% elsif params[:location] && @post_city.present? %>
+      <%= render "render_posts_user_with_location" %>
+      <%= render "layouts/form" %> 
     <% else %>
-      <% if @post_city.present? %>
-        <%= render "render_posts_user_with_location" %> 
-      <% else %>
-        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-      <% end %>
-      <%= render "layouts/form" %>
+      <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
     <% end %>
   <% elsif params[:ad_title] %>
-    <% if !params[:location] %>
-      <% if @post_ad_title.present? %>
-        <%= render "render_posts_user_with_ad_title" %> 
-      <% else %>
-        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-      <% end %>
+    <% if !params[:location] && @post_ad_title.present? %>
+      <%= render "render_posts_user_with_ad_title" %> 
+      <%= render "layouts/form" %>
+    <% elsif params[:location] && @post_city.present? && @post_ad_title.present? %>
+      <%= render "render_posts_user_with_ad_title_location" %>
       <%= render "layouts/form" %>
     <% else %>
-      <% if @post_city.present? %>
-        <% if @post_ad_title.present? %>
-          <%= render "render_posts_user_with_ad_title_location" %>
-        <% else %>
-          <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-        <% end %>
-      <% else %>
-        <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
-      <% end %>
-      <%= render "layouts/form" %>
+      <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
     <% end %>
   <% end %>
 <% else %>
-  <h2 class="text-center mt-2 mb-4 heading"> Advertisements</h2>
-  <%= render "layouts/form" %>
+  <h2 class="text-center text-muted mt-5"> No Advertisements</h2>
 <% end %>
 
  

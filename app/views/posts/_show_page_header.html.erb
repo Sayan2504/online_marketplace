@@ -1,7 +1,7 @@
 <section class="table-header mb-3">
   <div class="row">
     <div class="col-6 post-ad-title-show-page">
-      <h1 class="text-center heading"><%= @post.ad_title.upcase %></h1>
+      <h2 class="text-center heading"><%= @post.ad_title.upcase %></h2>
     </div>
     <% if admin_user? %>
       <% if @post.buyer_id == nil %>
@@ -31,15 +31,15 @@
         <% if current_user.id == @user.id %>
             <div class="col-6 text-right">
               <div class="row btn-toolbar" style="display: block">
-                <%= link_to "Buyers list", buyers_path( { post_id: @post.id, user_id: @post.user.id } ), class: "btn btn-lg btn-primary", title: "See the list of pending buying requests for #{ @post.ad_title.upcase }" %>
-                <%= link_to "Unread messages", notifications_path( { post_id: @post.id, sender_id: @post.user.id } ), class: "btn btn-lg btn-primary", title: "See the list of unread messages for #{ @post.ad_title.upcase }" %>
+                <%= link_to "Buyers list", buyers_path( { post_id: @post.id, user_id: @post.user.id } ), class: "btn btn-md btn-primary", title: "See the list of pending buying requests for #{ @post.ad_title.upcase }" %>
+                <%= link_to "Unread messages", notifications_path( { post_id: @post.id, sender_id: @post.user.id } ), class: "btn btn-md btn-primary", title: "See the list of unread messages for #{ @post.ad_title.upcase }" %>
               </div>
             </div>
         <% else %>
           <div class="col-6 text-right">
             <div class="row btn-toolbar" style="display: block">
               <% if @post.buyer_id == nil %>
-                <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-lg btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
+                <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
                 <% requested = false %>
                 <% @buyer_user.each do |buyer_user| %>
                   <% if buyer_user.email == current_user.email %>
@@ -48,9 +48,9 @@
                   <% end %>
                 <% end %>
                 <% if requested == true %>
-                  <button type="button" class="btn btn-lg btn-primary" disabled>Buying Request Pending</button>
+                  <button type="button" class="btn btn-md btn-primary" disabled>Buying Request Pending</button>
                 <% else %>
-                  <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-lg btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
+                  <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
                 <% end %>
               <% end %>      
             </div>
