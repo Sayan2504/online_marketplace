@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :post, aliases: [:review1, :review2, :review3] do
+  factory :post, aliases: [:post1, :post2, :post3] do
     ad_title { "Something" }
     detailed_ad_title  { "something" }
     ad_description { "something" }
