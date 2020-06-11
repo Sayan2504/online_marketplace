@@ -13,31 +13,24 @@ RSpec.describe Category, type: :model do
       it "category having a name is valid" do
         expect(category).to be_valid
       end
-
       it "category having no name is invalid" do
         expect(category_invalid_name).not_to be_valid
       end 
-      
       it "category having name of length within 2 and 14 characters is valid" do
         expect(category).to be_valid
       end
-
       it "category not having name of length within 2 and 14 characters is invalid" do
         expect(category_invalid_length).not_to be_valid
       end 
-      
       it "category having unique name is valid" do
         expect(category_duplicate.name).not_to eq(category.name)
       end
-
       it "category not having unique name is invalid" do
         expect(category_invalid_uniqueness.name).to eq(category.name)
       end
-      
       it "category containing name with uppercase, lowercase letters and blank spaces is valid" do
         expect(category).to be_valid
       end
-
       it "category containing name with digits or special characters is invalid" do
         expect(category_invalid_format).not_to be_valid
       end
