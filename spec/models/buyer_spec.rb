@@ -19,7 +19,7 @@ RSpec.describe Buyer, type: :model do
         buyer = create(:buyer2)
         expect(buyer).to be_valid
       end
-      it "buyer not having name of length within 2 and 14 characters is invalid" do
+      it "buyer not having name of length within 2 and 30 characters is invalid" do
         expect(buyer_invalid_length).not_to be_valid
       end 
       it "buyer containing name with uppercase, lowercase letters and blank spaces is valid" do
