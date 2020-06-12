@@ -88,4 +88,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many :post_attachments }
     it { is_expected.to have_many :reviews }
   end  
+
+  context "has_secure_password" do
+    it { is_expected.to have_secure_password }
+  end
 end

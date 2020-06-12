@@ -179,4 +179,8 @@ RSpec.describe Post, type: :model do
     it { is_expected.to have_many :messages }
     it { is_expected.to have_and_belong_to_many :buyers }
   end
+
+  context "macro" do
+    it { is_expected.to accept_nested_attributes_for :post_attachments }
+  end  
 end
