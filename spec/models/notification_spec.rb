@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
   subject {
-    Notification.new(body: "Something", post_id: 1, sender_id: 1, receiver_id: 2)
+    described_class.new(body: "Something", post_id: 1, sender_id: 1, receiver_id: 2)
   }
   context "validations" do
     describe ".body" do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Review, type: :model do
   subject {
-    Review.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1)
+    described_class.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1)
   }
   context "validations" do
     describe ".name" do

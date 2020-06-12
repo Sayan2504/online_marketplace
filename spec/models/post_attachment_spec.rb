@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PostAttachment, type: :model do
   subject {
-    PostAttachment.new(post_id: 1, user_id: 1)
+    described_class.new(post_id: 1, user_id: 1)
   }
   context "validations" do
     describe "#post_id" do

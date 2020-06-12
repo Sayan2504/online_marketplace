@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
   subject {
-    Category.new(name: "Furniture")
+    described_class.new(name: "Furniture")
   }
   context "validations" do
     describe ".name" do
