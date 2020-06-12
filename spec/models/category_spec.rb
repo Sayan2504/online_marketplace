@@ -40,11 +40,7 @@ RSpec.describe Category, type: :model do
   end
 
   context "associations" do
-    it "one category can have many user posts and many category can belong to a common particular user post" do
-      expect(Category.reflect_on_association(:users).macro).to eq :has_and_belongs_to_many
-    end
-    it "one category can have many posts" do
-      expect(Category.reflect_on_association(:posts).macro).to eq :has_many
-    end
+    it { is_expected.to have_and_belong_to_many :users }
+    it { is_expected.to have_many :posts }
   end 
 end

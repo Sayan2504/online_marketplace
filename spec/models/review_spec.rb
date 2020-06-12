@@ -135,9 +135,6 @@ RSpec.describe Review, type: :model do
   end
 
   context "associations" do
-    it "one review belongs to a particular post" do
-      expect(Review.reflect_on_association(:post).macro).to eq :belongs_to
-    end
+    it { is_expected.to belong_to :post }
   end  
-
 end

@@ -172,23 +172,11 @@ RSpec.describe Post, type: :model do
   end
 
   context "associations" do
-    it "one post belongs to a particular user" do
-      expect(Post.reflect_on_association(:user).macro).to eq :belongs_to
-    end
-    it "one post belongs to a particular category" do
-      expect(Post.reflect_on_association(:category).macro).to eq :belongs_to
-    end
-    it "one post can have many attchments" do
-      expect(Post.reflect_on_association(:post_attachments).macro).to eq :has_many
-    end
-    it "one post can have many reviews" do
-      expect(Post.reflect_on_association(:reviews).macro).to eq :has_many
-    end
-    it "one post can have many messages" do
-      expect(Post.reflect_on_association(:messages).macro).to eq :has_many
-    end
-    it "one post can have many buyers and many posts can belong to a common particular buyer" do
-      expect(Post.reflect_on_association(:buyers).macro).to eq :has_and_belongs_to_many
-    end
+    it { is_expected.to belong_to :user }
+    it { is_expected.to belong_to :category }
+    it { is_expected.to have_many :post_attachments }
+    it { is_expected.to have_many :reviews }
+    it { is_expected.to have_many :messages }
+    it { is_expected.to have_and_belong_to_many :buyers }
   end
 end
