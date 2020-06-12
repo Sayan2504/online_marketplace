@@ -28,7 +28,6 @@ class Post < ApplicationRecord
   validates :city,  presence: true, length: { maximum: 14, minimum: 1 } , format: { with: VALID_CITY_REGEX }
   validates :user_id, presence: true
 
-  scope :admin_post_approval, ->(value) { update(approved_by: value) }
   scope :admin_post_state, ->(state) { where(approved_by: state) }
   scope :admin_post_approved_state, -> { where.not(approved_by: ['null', 'rejected']) }
   scope :post_category, ->(category) { where(category_id: category) }
@@ -36,8 +35,11 @@ class Post < ApplicationRecord
   scope :post_ad_title, ->(title) { where("ad_title LIKE ?", "%#{title}%") }
   scope :post_city, ->(name) { where("city LIKE ?", "%#{name}%") }
   scope :product_bought_sold, ->(product_id) { where(buyer_id: product_id) }
-  scope :update_buyer, ->(value) { update(buyer_id: value) }
   scope :where_post_id, ->(id) { where(id: id) }
   scope :users_post, ->(id) { where(user_id: id) }
-  scope :others_post, ->(id) { where.not(user_id: id) }
+  scope :others_post, ->(id) { where.not(user_id: id) }  
+
+  def self.admin_post_approval(value)
+    update(approved_by: value)
+  end
 end

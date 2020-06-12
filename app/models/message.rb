@@ -5,7 +5,6 @@ class Message < ApplicationRecord
   scope :sender_side, ->(sender_id, receiver_id) { where(user_id: sender_id, receiver_id: receiver_id) }
   scope :receiver_side, ->(sender_id, receiver_id) { where(receiver_id: sender_id, user_id: receiver_id) }
   scope :message_post_id, ->(value) { where(post_id: value) }
-  scope :order_messages, -> { order("created_at ASC") }
 
   after_validation { self.body = self.body.squish }
 
@@ -13,6 +12,10 @@ class Message < ApplicationRecord
   validates :post_id, presence: true
   validates :user_id, presence: true
   validates :receiver_id, presence: true
+
+  def self.order_messages
+    order("created_at ASC")
+  end
 
   after_create_commit {
     MessageBroadcastJob.perform_later(self)

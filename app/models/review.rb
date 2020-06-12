@@ -16,5 +16,7 @@ class Review < ApplicationRecord
   validates :rating, presence: true
   validates :post_id, presence: true
 
-  scope :admin_review_approval, ->(value) { update(approved_by: value) }
+  def self.admin_review_approval(value)
+    update(approved_by: value)
+  end
 end

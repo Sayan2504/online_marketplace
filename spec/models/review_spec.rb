@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Review, type: :model do
   subject {
-    described_class.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1)
+    described_class.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1, approved_by: "null")
   }
   context "validations" do
     describe ".name" do
@@ -106,11 +106,8 @@ RSpec.describe Review, type: :model do
     end
 
     describe "#rating" do
-      let(:review) { Review.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1) }
-      let(:review_invalid_rating) { Review.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "", post_id: 1) }
-      
       it "review having a rating is valid" do
-        subject = create(:post1)
+        subject = create(:post)
         expect(subject).to be_valid
       end
       it "review having no rating is invalid" do
@@ -120,11 +117,8 @@ RSpec.describe Review, type: :model do
     end
 
     describe "#post_id" do
-      let(:review) { Review.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1) }
-      let(:review_missing_post_id) { Review.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5") }
-      
       it "review associated with a post is valid" do
-        subject = create(:post1)
+        subject = create(:post)
         expect(subject).to be_valid
       end
       it "review not associated with a post is invalid" do
@@ -137,4 +131,18 @@ RSpec.describe Review, type: :model do
   context "associations" do
     it { is_expected.to belong_to :post }
   end  
+
+  context "scopes" do
+    describe "#admin_review_approval" do
+      it "Review approved by 'anyone' is valid" do
+        subject.approved_by = "anyone"
+        subject = create(:post)
+        expect(subject).to be_valid
+      end
+      it "Review approved by 'nil' is invalid" do
+        subject.approved_by = nil
+        expect(subject).not_to be_valid
+      end
+    end
+  end
 end
