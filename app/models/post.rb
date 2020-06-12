@@ -6,7 +6,6 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
-
   has_many :post_attachments
   has_many :reviews
   has_many :messages

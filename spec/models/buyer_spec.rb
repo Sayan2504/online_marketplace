@@ -115,4 +115,13 @@ RSpec.describe Buyer, type: :model do
       end
     end
   end  
+
+  context "associations" do
+    it "one buyer can have many posts and many buyers can belong to a common particular post" do
+      expect(Buyer.reflect_on_association(:posts).macro).to eq :has_and_belongs_to_many
+    end
+    it "one buyer should be one particular user" do
+      expect(Buyer.reflect_on_association(:user).macro).to eq :belongs_to
+    end
+  end 
 end

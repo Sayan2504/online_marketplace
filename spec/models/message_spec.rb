@@ -62,4 +62,13 @@ RSpec.describe Message, type: :model do
       end
     end
   end  
+
+  context "associations" do
+    it "one message belongs to a particular user" do
+      expect(Message.reflect_on_association(:user).macro).to eq :belongs_to
+    end
+    it "one message belongs to a particular post" do
+      expect(Message.reflect_on_association(:post).macro).to eq :belongs_to
+    end
+  end 
 end

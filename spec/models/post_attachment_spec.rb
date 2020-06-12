@@ -28,4 +28,10 @@ RSpec.describe PostAttachment, type: :model do
       end
     end
   end  
+
+  context "associations" do
+    it "one post attachment belongs to a particular post" do
+      expect(PostAttachment.reflect_on_association(:post).macro).to eq :belongs_to
+    end
+  end  
 end

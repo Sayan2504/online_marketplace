@@ -81,4 +81,25 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  context "associations" do
+    it "one user can have many posts" do
+      expect(User.reflect_on_association(:posts).macro).to eq :has_many
+    end 
+    it "one user can have many messages" do
+      expect(User.reflect_on_association(:messages).macro).to eq :has_many
+    end
+    it "one user post can have many post categories and many users can belong to a common particular post category" do
+      expect(User.reflect_on_association(:categories).macro).to eq :has_and_belongs_to_many
+    end
+    it "one user should be one particular buyer" do
+      expect(User.reflect_on_association(:buyer).macro).to eq :has_one
+    end
+    it "one user can have many posts each of which can have many post attachments" do
+      expect(User.reflect_on_association(:post_attachments).macro).to eq :has_many
+    end
+    it "one user can have many posts each of which can have many reviews" do
+      expect(User.reflect_on_association(:reviews).macro).to eq :has_many
+    end   
+  end  
 end
