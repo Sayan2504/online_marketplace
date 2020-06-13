@@ -62,4 +62,47 @@ RSpec.describe Message, type: :model do
     it { is_expected.to belong_to :user }
     it { is_expected.to belong_to :post }
   end 
+
+  context "scopes" do
+    describe ".sender_side" do
+      it "Message with the correct sender and correct receiver on the sender's side is valid" do
+        subject.user_id = 1
+        subject.receiver_id = 2
+        expect([subject.user_id]).to include(1)
+        expect([subject.receiver_id]).to include(2)
+      end
+      it "Message with the wrong sender or wrong receiver on the sender's side is valid" do
+        subject.user_id = 4
+        subject.receiver_id = 3
+        expect([subject.user_id]).not_to include(1)
+        expect([subject.receiver_id]).not_to include(2)
+      end
+    end
+
+    describe ".receiver_side" do
+      it "Message with the correct sender and correct receiver on the receiver's side is valid" do
+        subject.user_id = 2
+        subject.receiver_id = 1
+        expect([subject.user_id]).to include(2)
+        expect([subject.receiver_id]).to include(1)
+      end
+      it "Message with the wrong sender or wrong receiver on the receiver's side is valid" do
+        subject.user_id = 3
+        subject.receiver_id = 4
+        expect([subject.user_id]).not_to include(2)
+        expect([subject.receiver_id]).not_to include(1)
+      end
+    end
+
+    describe ".message_post_id" do
+      it "Message associated with the correct post on both side is valid" do
+        subject.post_id = 1
+        expect([subject.post_id]).to include(1)
+      end
+      it "Message associated with the wrong post on both side is valid" do
+        subject.post_id = 2
+        expect([subject.post_id]).not_to include(1)
+      end
+    end
+  end
 end
