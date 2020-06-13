@@ -199,11 +199,113 @@ RSpec.describe Post, type: :model do
   end
 
   context "scopes" do
-    describe ".post_unsold" do
-      let(:post1) { Post.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1) }
+    describe ".admin_post_state" do
+      it "posts either unchecked or rejected are valid" do
+        subject.approved_by = "rejected"
+        expect(subject.approved_by).to include("rejected")
+      end
+      it "posts neither unchecked nor rejected are invalid" do
+        subject.approved_by = "approved"
+        expect(subject.approved_by).not_to include("null", "rejected")
+      end  
+    end
 
-      it "Post not containing any buyer id is unsold" do
-        expect([post1.buyer_id]).to include(nil)
+    describe ".admin_post_approved_state" do
+      it "posts approved by admin are valid" do
+        subject.approved_by = "Admin"
+        expect(subject.approved_by).not_to include("null", "rejected")
+      end
+      it "posts not approved by admin and hence either null or rejected are invalid" do
+        subject.approved_by = "null"
+        expect(subject.approved_by).to include("null")
+      end  
+    end
+
+    describe ".post_category" do
+      it "posts belonging to the correct category are valid" do
+        subject.category_id = 1
+        expect([subject.category_id]).to include(1)
+      end
+      it "posts not belonging to the correct category are invalid" do
+        subject.category_id = 2
+        expect([subject.category_id]).not_to include(1)
+      end  
+    end
+
+    describe ".post_unsold" do
+      it "posts not containing any buyer id and hence unsold are valid" do
+        subject.buyer_id = nil
+        expect([subject.buyer_id]).to include(nil)
+      end
+      it "posts containing a buyer id and hence sold are invalid" do
+        subject.buyer_id = 1
+        expect([subject.buyer_id]).not_to include(nil)
+      end  
+    end
+
+    describe ".post_ad_title" do
+      it "posts with the correct ad title as a whole or as a keyword are valid" do
+        subject.ad_title = "title something here"
+        expect(subject.ad_title).to include("something")
+      end
+      it "posts with the wrong ad title as a whole or as a keyword are invalid" do
+        subject.ad_title = "title someone here"
+        expect(subject.ad_title).not_to include("something")
+      end  
+    end
+
+    describe ".post_city" do
+      it "posts with the correct city name as a whole or as a keyword are valid" do
+        subject.city = "title someplace here"
+        expect(subject.city).to include("someplace")
+      end
+      it "posts with the wrong city name as a whole or as a keyword are invalid" do
+        subject.city = "title place here"
+        expect(subject.city).not_to include("someplace")
+      end  
+    end
+
+    describe ".product_bought_sold" do
+      it "posts containing a buyer id and hence sold are valid" do
+        subject.buyer_id = 1
+        expect([subject.buyer_id]).to include(1)
+      end
+      it "posts not containing any buyer id and hence unsold are invalid" do
+        subject.buyer_id = nil
+        expect([subject.buyer_id]).not_to include(1)
+      end  
+    end
+
+    describe ".where_post_id" do
+      it "posts having the correct id are valid" do
+        subject.id = 1
+        expect([subject.id]).to include(1)
+      end
+      it "posts having the wrong id are invalid" do
+        subject.id = 2
+        expect([subject.id]).not_to include(1)
+      end  
+    end
+
+    describe ".users_post" do
+      it "posts having the current user's id are valid" do
+        subject.user_id = 1
+        expect([subject.user_id]).to include(1)
+      end
+      it "posts not having the current user's id are invalid" do
+        subject.user_id = 2
+        expect([subject.user_id]).not_to include(1)
+      end  
+    end
+
+    describe ".others_post" do
+      it "posts not having the current user's id and hence having other user's id are valid" do
+        subject.user_id = 2
+        expect([subject.user_id]).not_to include(1)
+      end
+      it "posts not having other user's id  and hence having the current user's id are invalid" do
+        subject.user_id = 1
+        expect([subject.user_id]).to include(1)
       end  
     end
   end
