@@ -15,7 +15,6 @@ RSpec.describe PostAttachment, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#user_id" do
       it "post attachment having a sender is valid" do
         subject = create(:post1)

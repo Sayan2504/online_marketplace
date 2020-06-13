@@ -31,7 +31,6 @@ RSpec.describe Buyer, type: :model do
         expect(subject).not_to be_valid
       end
     end 
-    
     describe ".email" do
       it "buyer having an email is valid" do
         subject = create(:user1)
@@ -58,7 +57,6 @@ RSpec.describe Buyer, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe ".location" do
       it "buyer having a location is valid" do
         subject = create(:user1)
@@ -85,7 +83,6 @@ RSpec.describe Buyer, type: :model do
         expect(subject).not_to be_valid
       end
     end 
-
     describe "#post_id" do
       it "buyer associated with a post is valid" do
         subject = create(:user1)
@@ -96,7 +93,6 @@ RSpec.describe Buyer, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#user_id" do
       it "buyer associated with an user is valid" do
         subject = create(:user1)
@@ -125,7 +121,6 @@ RSpec.describe Buyer, type: :model do
         expect(subject.email).not_to include("someone@gmail.com")
       end
     end
-
     describe ".buyer_post_id" do
       it "Buyer associated with the correct post is valid" do
         subject.post_id = 1
@@ -136,7 +131,6 @@ RSpec.describe Buyer, type: :model do
         expect([subject.post_id]).not_to include(1)
       end
     end
-    
     describe ".buyer_user_id" do
       it "Buyer with the correct user id is valid" do
         subject.user_id = 1

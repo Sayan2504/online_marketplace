@@ -31,7 +31,6 @@ RSpec.describe Post, type: :model do
         expect(subject).not_to be_valid
       end
     end 
-
     describe ".detailed_ad_title" do
       it "post having a detailed title is valid" do
         subject = create(:user1)
@@ -58,7 +57,6 @@ RSpec.describe Post, type: :model do
         expect(subject).not_to be_valid
       end
     end
-    
     describe ".ad_description" do
       it "post having an ad description is valid" do
         subject = create(:user1)
@@ -77,7 +75,6 @@ RSpec.describe Post, type: :model do
         expect(subject).not_to be_valid
       end 
     end
-
     describe ".user_name" do
       it "post having a user name is valid" do
         subject = create(:user1)
@@ -104,7 +101,6 @@ RSpec.describe Post, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe ".phone" do
       it "post having a contact number is valid" do
         subject = create(:user1)
@@ -131,7 +127,6 @@ RSpec.describe Post, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe ".city" do
       it "post having a city name is valid" do
         subject = create(:user1)
@@ -158,7 +153,6 @@ RSpec.describe Post, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#user_id" do
       it "post associated with an user is valid" do
         subject = create(:user1)
@@ -209,7 +203,6 @@ RSpec.describe Post, type: :model do
         expect(subject.approved_by).not_to include("null", "rejected")
       end  
     end
-
     describe ".admin_post_approved_state" do
       it "posts approved by admin are valid" do
         subject.approved_by = "Admin"
@@ -220,7 +213,6 @@ RSpec.describe Post, type: :model do
         expect(subject.approved_by).to include("null")
       end  
     end
-
     describe ".post_category" do
       it "posts belonging to the correct category are valid" do
         subject.category_id = 1
@@ -231,7 +223,6 @@ RSpec.describe Post, type: :model do
         expect([subject.category_id]).not_to include(1)
       end  
     end
-
     describe ".post_unsold" do
       it "posts not containing any buyer id and hence unsold are valid" do
         subject.buyer_id = nil
@@ -242,7 +233,6 @@ RSpec.describe Post, type: :model do
         expect([subject.buyer_id]).not_to include(nil)
       end  
     end
-
     describe ".post_ad_title" do
       it "posts with the correct ad title as a whole or as a keyword are valid" do
         subject.ad_title = "title something here"
@@ -253,7 +243,6 @@ RSpec.describe Post, type: :model do
         expect(subject.ad_title).not_to include("something")
       end  
     end
-
     describe ".post_city" do
       it "posts with the correct city name as a whole or as a keyword are valid" do
         subject.city = "title someplace here"
@@ -264,7 +253,6 @@ RSpec.describe Post, type: :model do
         expect(subject.city).not_to include("someplace")
       end  
     end
-
     describe ".product_bought_sold" do
       it "posts containing a buyer id and hence sold are valid" do
         subject.buyer_id = 1
@@ -275,7 +263,6 @@ RSpec.describe Post, type: :model do
         expect([subject.buyer_id]).not_to include(1)
       end  
     end
-
     describe ".where_post_id" do
       it "posts having the correct id are valid" do
         subject.id = 1
@@ -286,7 +273,6 @@ RSpec.describe Post, type: :model do
         expect([subject.id]).not_to include(1)
       end  
     end
-
     describe ".users_post" do
       it "posts having the current user's id are valid" do
         subject.user_id = 1
@@ -297,7 +283,6 @@ RSpec.describe Post, type: :model do
         expect([subject.user_id]).not_to include(1)
       end  
     end
-
     describe ".others_post" do
       it "posts not having the current user's id and hence having other user's id are valid" do
         subject.user_id = 2

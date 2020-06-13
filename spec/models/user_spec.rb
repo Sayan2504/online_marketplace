@@ -28,7 +28,6 @@ RSpec.describe User, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe ".email" do
       let(:user_duplicate) { User.new(name: "Someone", email: "some@gmail.com", password: "11111111") }
       let(:user_invalid_uniqueness) { User.new(name: "Someone", email: "someone@gmail.com", password: "11111111") }
@@ -61,7 +60,6 @@ RSpec.describe User, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#password" do
       it "user having a password is valid" do
         expect(subject).to be_valid

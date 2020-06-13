@@ -23,7 +23,6 @@ RSpec.describe Message, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#post_id" do
       it "message associated with a post is valid" do
         subject = create(:post1)
@@ -34,7 +33,6 @@ RSpec.describe Message, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#user_id" do
       it "message having a sender is valid" do
         subject = create(:post1)
@@ -45,7 +43,6 @@ RSpec.describe Message, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#receiver_id" do
       it "message having a receiver is valid" do
         subject = create(:post1)
@@ -78,7 +75,6 @@ RSpec.describe Message, type: :model do
         expect([subject.receiver_id]).not_to include(2)
       end
     end
-
     describe ".receiver_side" do
       it "Message with the correct sender and correct receiver on the receiver's side is valid" do
         subject.user_id = 2
@@ -93,7 +89,6 @@ RSpec.describe Message, type: :model do
         expect([subject.receiver_id]).not_to include(1)
       end
     end
-
     describe ".message_post_id" do
       it "Message associated with the correct post on both side is valid" do
         subject.post_id = 1

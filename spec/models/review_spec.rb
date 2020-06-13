@@ -31,7 +31,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
     end
-    
     describe ".email" do
       it "review having a email is valid" do
         subject = create(:post1)
@@ -58,7 +57,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe ".location" do
       it "review having a reviewer location is valid" do
         subject = create(:post1)
@@ -85,7 +83,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe ".review" do
       it "review having a content is valid" do
         subject = create(:post1)
@@ -104,7 +101,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#rating" do
       it "review having a rating is valid" do
         subject = create(:post)
@@ -115,7 +111,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#post_id" do
       it "review associated with a post is valid" do
         subject = create(:post)

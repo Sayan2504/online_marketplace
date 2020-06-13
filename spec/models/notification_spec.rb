@@ -23,7 +23,6 @@ RSpec.describe Notification, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#post_id" do
       it "notification associated with a post is valid" do
         subject = create(:post1)
@@ -34,7 +33,6 @@ RSpec.describe Notification, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#sender_id" do
       it "notification having a sender is valid" do
         subject = create(:post1)
@@ -45,7 +43,6 @@ RSpec.describe Notification, type: :model do
         expect(subject).not_to be_valid
       end
     end
-
     describe "#receiver_id" do
       it "notification having a receiver is valid" do
         subject = create(:post1)
