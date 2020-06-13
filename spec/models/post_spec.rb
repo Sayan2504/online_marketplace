@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   subject {
-    described_class.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1, approved_by: "null" )
+    described_class.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1)
   }
   context "validations" do
     describe ".ad_title" do
@@ -195,6 +195,16 @@ RSpec.describe Post, type: :model do
         subject.approved_by = nil
         expect(subject).not_to be_valid
       end
+    end
+  end
+
+  context "scopes" do
+    describe ".post_unsold" do
+      let(:post1) { Post.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1) }
+
+      it "Post not containing any buyer id is unsold" do
+        expect([post1.buyer_id]).to include(nil)
+      end  
     end
   end
 end
