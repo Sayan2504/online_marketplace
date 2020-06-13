@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   subject {
-    described_class.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1, )
+    described_class.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1, approved_by: "null" )
   }
   context "validations" do
     describe ".ad_title" do
@@ -184,8 +184,8 @@ RSpec.describe Post, type: :model do
     it { is_expected.to accept_nested_attributes_for :post_attachments }
   end  
 
-  context "scopes" do
-    describe "#admin_post_approval" do
+  context "methods" do
+    describe ".admin_post_approval" do
       it "Review approved by 'anyone' is valid" do
         subject.approved_by = "anyone"
         subject = create(:post)

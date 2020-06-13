@@ -132,8 +132,8 @@ RSpec.describe Review, type: :model do
     it { is_expected.to belong_to :post }
   end  
 
-  context "scopes" do
-    describe "#admin_review_approval" do
+  context "methods" do
+    describe ".admin_review_approval" do
       it "Review approved by 'anyone' is valid" do
         subject.approved_by = "anyone"
         subject = create(:post)

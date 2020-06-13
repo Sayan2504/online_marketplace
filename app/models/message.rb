@@ -13,10 +13,6 @@ class Message < ApplicationRecord
   validates :user_id, presence: true
   validates :receiver_id, presence: true
 
-  def self.order_messages
-    order("created_at ASC")
-  end
-
   after_create_commit {
     MessageBroadcastJob.perform_later(self)
     sender = User.find(self.user_id)
