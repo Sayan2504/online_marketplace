@@ -13,7 +13,9 @@ class Message < ApplicationRecord
   validates :user_id, presence: true
   validates :receiver_id, presence: true
 
-  after_create_commit {
+  after_create_commit :message_notification_job
+    
+  def message_notification_job
     MessageBroadcastJob.perform_later(self)
     sender = User.find(self.user_id)
     post = Post.find(self.post_id)
@@ -21,5 +23,5 @@ class Message < ApplicationRecord
     body = "[" + DateTime.parse(created_at.to_s).strftime("%a %I:%M %p") + "] New Message from #{sender.name} for the post #{post.ad_title}"
     Notification.create(sender_id: user_id, receiver_id: receiver_id, post_id: post_id, body: body)
     NotificationBroadcastJob.perform_later(self, sender)
-  }
+  end  
 end

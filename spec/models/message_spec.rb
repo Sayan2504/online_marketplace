@@ -60,6 +60,10 @@ RSpec.describe Message, type: :model do
     it { is_expected.to belong_to :post }
   end 
 
+  context "callbacks" do
+    it { is_expected.to callback(:message_notification_job).after(:commit) }
+  end
+
   context "scopes" do
     describe ".sender_side" do
       it "Message with the correct sender and correct receiver on the sender's side is valid" do
