@@ -7,12 +7,10 @@ class PostsController < ApplicationController
     if params[:decision] == "true"
       PostMailer.post_approved(@post_unique, @user).deliver_now
       @post.admin_post_approval(current_user.name)
-      flash[:success] = "This post has been approved by Admin"
-      redirect_to admin_approved_path 
+      redirect_to admin_approved_path, flash: { success: "This post has been approved by Admin" }
     else
       @post.admin_post_approval("rejected")
-      flash[:danger] = "This post has been rejected by Admin"
-      redirect_to admin_rejected_path
+      redirect_to admin_rejected_path, flash: { danger: "This post has been rejected by Admin" }
     end
   end
 
@@ -24,8 +22,7 @@ class PostsController < ApplicationController
     if params[:decision] == "true"
       PostMailer.review(@user, @review_unique, @post).deliver_now
       @review.admin_review_approval(current_user.name)
-      flash[:success] = "This review has been approved by Admin"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), flash: { success: "This review has been approved by Admin" }
     end
   end
 
@@ -38,8 +35,7 @@ class PostsController < ApplicationController
           @post_attachment = @post.post_attachments.create(photo: a, post_id: @post.id, user_id: current_user.id)
         end
       end
-      flash[:success] = "Post has been successfully created"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), flash: { success: "Post has been successfully created" }
     else
       @post_attachment = @post.post_attachments.build
       render "new"
@@ -92,12 +88,10 @@ class PostsController < ApplicationController
     if params[:decision] == "false"
       PostMailer.post_rejected(@post_unique, @user).deliver_now
       @post.admin_post_approval("rejected")
-      flash[:danger] = "This post has been rejected by Admin"
-      redirect_to admin_rejected_path
+      redirect_to admin_rejected_path, flash: { danger: "This post has been rejected by Admin" }
     else
       @post.admin_post_approval(current_user.name)
-      flash[:success] = "This post has been approved by Admin"
-      redirect_to admin_approved_path
+      redirect_to admin_approved_path, flash: { success: "This post has been approved by Admin" }
     end
   end
   

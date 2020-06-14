@@ -4,8 +4,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = "Category has been successfully created"
-      redirect_to admin_categories_path
+      redirect_to admin_categories_path, flash: { success: "Category has been successfully created" }
     else
       render "new"
     end
@@ -13,8 +12,7 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     if @category.delete
-      flash[:danger] = "Category has been successfully deleted"
-      redirect_to admin_categories_path
+      redirect_to admin_categories_path, flash: { danger: "Category has been successfully deleted" }
     end  
   end
 
@@ -34,8 +32,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:success] = "Category has been successfully updated"
-      redirect_to admin_categories_path
+      redirect_to admin_categories_path, flash: { success: "Category has been successfully updated" }
     else
       render "edit"
     end

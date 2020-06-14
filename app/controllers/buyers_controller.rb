@@ -16,26 +16,22 @@ class BuyersController < ApplicationController
     @user_author = @buyer.user
     if @user.present?
       if @user.email == @user_email.email
-        flash[:warning] = "You cannot put a buying request to your own advertisement"
-        redirect_to post_path(@buyer.post_id)
+        redirect_to post_path(@buyer.post_id), flash: { warning: "You cannot put a buying request to your own advertisement" }
       else
         if @buyer_user.present?
-          flash[:warning] = "You already have a buying request for this post. You need not request again"
-          redirect_to post_path(@buyer.post_id)
+          redirect_to post_path(@buyer.post_id), flash: { warning: "You already have a buying request for this post. You need not request again" }
         else
           if @buyer.save
             BuyerMailer.buying_request(@buyer, @user_email, @post).deliver_now
             BuyerMailer.buying_request_sent(@buyer, @user_email, @post).deliver_now
-            flash[:success] = "Your buying request has been send to the author of the post #{@user_author.name}"
-            redirect_to post_path(@buyer.post_id)
+            redirect_to post_path(@buyer.post_id), flash: { success: "Your buying request has been send to the author of the post #{ @user_author.name }" }
           else
             render "new"
           end
         end
       end 
     else
-      flash[:warning] = "Please register yourself before buying #{@post.ad_title}"
-      redirect_to signup_path(buyer_post_id: @buyer.post_id, email: @buyer.email)
+      redirect_to signup_path(buyer_post_id: @buyer.post_id, email: @buyer.email), flash: { warning: "Please register yourself before buying #{ @post.ad_title }" }
     end      
   end
 
@@ -55,10 +51,9 @@ class BuyersController < ApplicationController
     if params[:decision] == "true"
       BuyerMailer.sell(@buyer, @post, @user).deliver_now
       BuyerMailer.bought(@buyer, @post, @user).deliver_now
-      flash[:success] = "This product has been successfully sold to #{ @buyer.buyer_name }"
       if @post.buyer_id == nil
         @post.update(buyer_id: @buyer.id)
-        redirect_to request.referrer
+        redirect_to request.referrer, flash: { success: "This product has been successfully sold to #{ @buyer.buyer_name }" }
       end
     end
   end

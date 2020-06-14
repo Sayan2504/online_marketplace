@@ -5,24 +5,22 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.buyer_post_id.present?
       if @user.save
-        flash[:success] = "You have successfully registered. Now you can put your buying request with the credentials."
         UserMailer.welcome_email(@user).deliver_now
+        redirect_to new_buyer_path({ post_id: @user.buyer_post_id }), flash: { success: "You have successfully registered. Now you can put your buying request with the credentials" }
       else
-        flash[:danger] = "Invalid Name format. Name cannot only contain alphabets"
+        redirect_to new_buyer_path({ post_id: @user.buyer_post_id }), flash: { danger: "Invalid Name format. Name cannot only contain alphabets" }
       end
-      redirect_to new_buyer_path({ post_id: @user.buyer_post_id }) 
     else
       if @user.save
         log_in(@user)
-        flash[:success] = "You have successfully signed up"
         UserMailer.welcome_email(@user).deliver_now
         if admin_user?
-          redirect_to users_path
+          redirect_to users_path, flash: { success: "You have successfully signed up" }
         else
-          redirect_to user_path(@user) 
+          redirect_to user_path(@user), flash: { success: "You have successfully signed up" } 
         end
       else
-        flash[:warning] = "You already have an account/Your credentials are not valid" 
+        flash.now[:danger] = "You already have an account/Your credentials are not valid"
         render "new"
       end
     end
@@ -36,8 +34,7 @@ class UsersController < ApplicationController
 
   def new
     if logged_in?
-      flash[:warning] = "You have already logged in."
-      redirect_to root_path
+      redirect_to root_path, flash: { warning: "You have already logged in" }
       return
     end
     @user = User.new( { buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name] } )
@@ -57,8 +54,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "Email/Password has been successfully updated"
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), flash: { success: "Email/Password has been successfully updated" }
     else
       render "edit"
     end

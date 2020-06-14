@@ -4,11 +4,10 @@ class SessionsController < ApplicationController
   def create
     if @user&.authenticate(params[:session][:password])
       log_in(@user)
-      flash[:success] = "You have successfully logged in"
       if admin_user?
-        redirect_to users_path
+        redirect_to users_path, flash: { success: "You have successfully logged in" }
       else
-        redirect_to user_path(@user)
+        redirect_to user_path(@user), flash: { success: "You have successfully logged in" }
       end
     else
       flash.now[:danger] = "Email/Password combination is incorrect."
@@ -19,8 +18,7 @@ class SessionsController < ApplicationController
   def destroy
     return unless logged_in?
     log_out
-    flash[:danger] = "User has been successfully logged out."
-    redirect_to root_path
+    redirect_to root_path, flash: { danger: "User has been successfully logged out" }
   end
 
   def new
@@ -31,8 +29,7 @@ class SessionsController < ApplicationController
     session[:omniauth] = auth.except('extra')
     user = User.sign_in_from_omniauth(auth)
     log_in(user)
-    flash[:success] = "You have successfully logged in"
-    redirect_to user_path(user)
+    redirect_to user_path(user), flash: { success: "You have successfully logged in" }
   end
 
   private

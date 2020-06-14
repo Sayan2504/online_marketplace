@@ -4,11 +4,9 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.post_id = Post.find(@review.post_id).id
     if @review.save
-      flash[:success] = "Your review is send to admin for approval. You can see it once admin approves it"
-      redirect_to post_path(@review.post_id)
+      redirect_to post_path(@review.post_id), flash: { success: "Your review is send to admin for approval. You can see it once admin approves it" }
     else
-      flash[:danger] = "Invalid credentials/blank fields"
-      redirect_to new_review_path( { post_id: @review.post_id } )
+      redirect_to new_review_path( { post_id: @review.post_id } ), flash: { danger: "Invalid credentials/blank fields" }
     end
   end
 

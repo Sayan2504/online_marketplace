@@ -6,12 +6,10 @@ class Admin::AdsController < ApplicationController
     if params[:decision] == "true"
       PostMailer.post_approved(@post_unique, @user).deliver_now
       @post.admin_post_approval(current_user.name)
-      flash[:success] = "This post has been approved by Admin"
-      redirect_to admin_approved_path
+      redirect_to admin_approved_path, flash: { success: "This post has been approved by Admin" }
     else
       @post.admin_post_approval("rejected")
-      flash[:danger] = "This post has been rejected by Admin"
-      redirect_to admin_rejected_path
+      redirect_to admin_rejected_path, flash: { danger: "This post has been rejected by Admin" }
     end  
   end
 
@@ -24,12 +22,10 @@ class Admin::AdsController < ApplicationController
     if params[:decision] == "false"
       PostMailer.post_rejected(@post_unique, @user).deliver_now
       @post.admin_post_approval("rejected")
-      flash[:danger] = "This post has been rejected by Admin"
-      redirect_to admin_rejected_path
+      redirect_to admin_rejected_path, flash: { danger: "This post has been rejected by Admin" }
     else
       @post.admin_post_approval(current_user.name)
-      flash[:success] = "This post has been approved by Admin"
-      redirect_to admin_approved_path
+      redirect_to admin_approved_path, flash: { success: "This post has been approved by Admin" }
     end
   end  
 
