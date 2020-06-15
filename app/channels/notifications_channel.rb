@@ -1,9 +1,9 @@
 class NotificationsChannel < ApplicationCable::Channel
-  def subscribed
+#  def subscribed
  #   stream_from "notification_channel_#{current_user.id}"
-  end
+#  end
 
-  def unsubscribed
+#  def unsubscribed
     # Any cleanup needed when channel is unsubscribed
-  end
+#  end
 end

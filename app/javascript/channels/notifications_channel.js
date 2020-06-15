@@ -1,4 +1,4 @@
-import consumer from "./consumer"
+/*import consumer from "./consumer"
 
 consumer.subscriptions.create("NotificationsChannel", {
   connected() {
@@ -16,4 +16,4 @@ consumer.subscriptions.create("NotificationsChannel", {
     $('#notificationList').prepend('<div class="message">' + data.body + '</div>');
     
   }
-});
+});*/

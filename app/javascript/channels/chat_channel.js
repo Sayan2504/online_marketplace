@@ -1,4 +1,4 @@
-import consumer from "./consumer"
+/*import consumer from "./consumer"
 
 
 consumer.subscriptions.create("ChatChannel", {
@@ -22,4 +22,4 @@ consumer.subscriptions.create("ChatChannel", {
     
   }
 
-});
+});*/
