@@ -14,13 +14,12 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: 
+  password: user
   socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
   database: online_marketplace_development
-  password: user
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,7 +27,6 @@ development:
 test:
   <<: *default
   database: online_marketplace_test
-  password: user
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -52,6 +50,6 @@ test:
 production:
   <<: *default
   database: online_marketplace_production
-  username: sayan2
-  password: 
+  username: online_marketplace
+  password: <%= ENV['ONLINE_MARKETPLACE_DATABASE_PASSWORD'] %> 
   
