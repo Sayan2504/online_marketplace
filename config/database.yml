@@ -50,5 +50,4 @@ test:
 production:
   <<: *default
   database: online_marketplace_production
-  DATABASE_URL="mysql2://sayan2:user@localhost/online_marketplace_production"
   url: <%= ENV['DATABASE_URL'] %>
