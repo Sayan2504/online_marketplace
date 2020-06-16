@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: online_marketplace_production
-  #username: online_marketplace
-  #password: <%= ENV['ONLINE_MARKETPLACE_DATABASE_PASSWORD'] %>
+  DATABASE_URL="mysql2://sayan2:user@localhost/online_marketplace_production"
+  url: <%= ENV['DATABASE_URL'] %>
