@@ -50,6 +50,6 @@ test:
 production:
   <<: *default
   database: online_marketplace_production
-  username: online_marketplace
+  username: sayan2
   password: <%= ENV['ONLINE_MARKETPLACE_DATABASE_PASSWORD'] %>
   
