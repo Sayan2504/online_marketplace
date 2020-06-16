@@ -50,4 +50,5 @@ test:
 production:
   <<: *default
   database: online_marketplace_production
+  advisory_locks: false
   
