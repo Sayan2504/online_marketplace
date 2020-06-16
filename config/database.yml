@@ -53,5 +53,6 @@ production:
   <<: *default
   database: online_marketplace_production
   username: sayan2
-  password: <%= ENV['ONLINE_MARKETPLACE_DATABASE_PASSWORD'] %>
+  password: 
+  advisory_locks: false
   
