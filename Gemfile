@@ -6,6 +6,7 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use mysql2 as the database for Active Record
+gem 'pg'
 gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
@@ -33,7 +34,6 @@ gem "bcrypt", "~> 3.1", ">= 3.1.13"
 gem 'carrierwave', '~> 2.0'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
