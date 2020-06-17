@@ -50,6 +50,3 @@ test:
 production:
   <<: *default
   database: online_marketplace_production
-  username: ENV['DATABASE_USERNAME']
-  password: ENV['DATABASE_PASSWORDs']
-  
