@@ -68,6 +68,11 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  config.imagekit={
+    private_key: "private_VbvuU3Uj4RoWxubWrrGbYHZVt34=",
+    public_key: "public_Q+Rnve5niUjLL4zXk6gM/p667zk=",
+    url_endpoint: "https://ik.imagekit.io/cwjyioc4s2"
+  }
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 

@@ -87,6 +87,11 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
+  config.imagekit={
+    private_key: "private_VbvuU3Uj4RoWxubWrrGbYHZVt34=",
+    public_key: "public_Q+Rnve5niUjLL4zXk6gM/p667zk=",
+    url_endpoint: "https://ik.imagekit.io/cwjyioc4s2"
+  }
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
