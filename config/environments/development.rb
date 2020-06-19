@@ -69,8 +69,8 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.imagekit={
-    private_key: "private_VbvuU3Uj4RoWxubWrrGbYHZVt34=",
-    public_key: "public_Q+Rnve5niUjLL4zXk6gM/p667zk=",
+    private_key: "private_1UDKjY7hjlec34d0xKMK8JZVUPA=",
+    public_key: "public_IvbMul6APf3L/XUCoFDxIGRUglc=",
     url_endpoint: "https://ik.imagekit.io/cwjyioc4s2"
   }
   # Raises error for missing translations.
