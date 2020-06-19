@@ -5,10 +5,6 @@ ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
-# Use postgresql as the database for Active Record in production
-gem 'pg'
-# Use mysql2 as the database for Active Record in development and testing
-gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -37,10 +33,13 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "factory_bot_rails"
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "pry-rails"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Use mysql2 as the database for Active Record in development and testing
+  gem 'mysql2', '>= 0.4.4'
+  #Use rspec and shoulda-matchers for testing
   gem 'rspec-rails', '~> 4.0.0'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
   gem 'shoulda-matchers'
@@ -61,6 +60,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :test do
+  # Use postgresql as the database for Active Record in production
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
