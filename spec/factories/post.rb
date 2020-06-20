@@ -8,7 +8,7 @@ FactoryBot.define do
     city { "somewhere" }
     user_id { 1 }
     user { create(:user1) }
-    category { create(:category) }
+    category { create(:categorynew) }
     approved_by { "admin" }
   end
 
@@ -20,7 +20,7 @@ FactoryBot.define do
     phone { "91-9876543210" }
     city { "somewhere" }
     user_id { 1 }
-    user { create(:user1) }
+    user { create(:admin2) }
     category { create(:category) }
     approved_by { "rejected" }
   end

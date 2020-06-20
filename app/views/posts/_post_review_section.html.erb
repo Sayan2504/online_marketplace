@@ -14,7 +14,7 @@
               <%= render "display_review_and_rating", review: review %>    
               <div class="col-sm-2 mt-3">
                 <% if review.approved_by == "null" %>
-                  <%= link_to "Approve", approve_review_post_path( { id: review.id, decision: "true" } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  }, title: "Approve this review" %>
+                  <%= link_to "Approve", approve_review_post_path( { id: review.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..."  }, title: "Approve this review" %>
                 <% else %>
                   <button type="button" class="btn btn-md btn-primary" disabled>Approved</button>
                 <% end %>

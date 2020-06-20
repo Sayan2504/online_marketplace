@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post_unique, only: [:approve, :reject]
 
   def approve
+    @post = Post.where_post_id(params[:id])
+    @post_unique = @post.first
     @user = @post_unique.user
     PostMailer.post_approved(@post_unique, @user).deliver_now
     @post.admin_post_approval(current_user.name)
@@ -14,11 +16,9 @@ class PostsController < ApplicationController
     @review_unique = @review.first
     @post = @review_unique.post
     @user = @post.user
-    if params[:decision] == "true"
-      PostMailer.review(@user, @review_unique, @post).deliver_now
-      @review.admin_review_approval(current_user.name)
-      redirect_to post_path(@post), flash: { success: "This review has been approved by Admin" }
-    end
+    PostMailer.review(@user, @review_unique, @post).deliver_now
+    @review.admin_review_approval(current_user.name)
+    redirect_to post_path(@post), flash: { success: "This review has been approved by Admin" }
   end
 
   def create
@@ -79,6 +79,8 @@ class PostsController < ApplicationController
   end
 
   def reject
+    @post = Post.where_post_id(params[:id])
+    @post_unique = @post.first
     @user = @post_unique.user
     PostMailer.post_rejected(@post_unique, @user).deliver_now
     @post.admin_post_approval("rejected")
