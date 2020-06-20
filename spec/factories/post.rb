@@ -10,6 +10,7 @@ FactoryBot.define do
     user { create(:user1) }
     category { create(:categorynew) }
     approved_by { "admin" }
+    buyer_id { 1 }
   end
 
   factory :postnew, class: Post do

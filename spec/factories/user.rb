@@ -11,10 +11,11 @@ FactoryBot.define do
     password { "11111111" }
   end
 
-  factory :admin, class: User do
+  factory :admin, aliases: [:user4], class: User do
     name { "Someone" }
     email { "admin@gmail.com" }
     password { "11111111" }
     admin { true }
+    buyer_post_id { 1 }
   end
 end

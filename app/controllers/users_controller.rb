@@ -41,18 +41,22 @@ class UsersController < ApplicationController
   end
 
   def rejected
+    @user = current_user
     @posts = @user.posts.admin_post_state("rejected")
   end
 
   def show
+    @user = current_user
     @posts = @user.posts.admin_post_approved_state
   end
 
   def unchecked
+    @user = current_user
     @posts = @user.posts.admin_post_state("null")
   end
 
   def update
+    @user = current_user
     if @user.update(user_params)
       redirect_to user_path(@user), flash: { success: "Email/Password has been successfully updated" }
     else
