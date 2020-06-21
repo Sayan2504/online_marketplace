@@ -47,6 +47,7 @@ RSpec.describe PostsController, type: :controller do
         allow(controller).to receive(:params).and_return(location: post.city)
         allow(controller).to receive(:params).and_return(category_id: post.category_id)
         allow(controller).to receive(:params).and_return(id: category.id)
+        expect(response).to have_http_status(:success)
         controller.send(:index)
       end
     end

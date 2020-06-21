@@ -22,10 +22,7 @@ RSpec.describe Admin::AdsController, type: :controller do
     describe ".approved" do
       it "returns the approved posts" do
         post = create(:post)
-        controller.send(:approved)
-      end
-      it "does not return the approved posts" do
-        post = create(:postnew)
+        expect(response).to have_http_status(:success)
         controller.send(:approved)
       end
     end
@@ -50,10 +47,7 @@ RSpec.describe Admin::AdsController, type: :controller do
     describe ".rejected" do
       it "returns the rejected posts" do
         post = create(:postnew)
-        controller.send(:rejected)
-      end
-      it "does not return the rejected posts" do
-        post = create(:post)
+        expect(response).to have_http_status(:success)
         controller.send(:rejected)
       end
     end
@@ -61,10 +55,7 @@ RSpec.describe Admin::AdsController, type: :controller do
     describe ".unchecked" do
       it "returns the unchecked posts" do
         post = create(:postnew2)
-        controller.send(:unchecked)
-      end
-      it "does not return the unchecked posts" do
-        post = create(:post)
+        expect(response).to have_http_status(:success)
         controller.send(:unchecked)
       end
     end

@@ -40,6 +40,7 @@ class BuyersController < ApplicationController
   end
 
   def new
+    @post = Post.find(params[:post_id])
     @user = @post.user
     @buyer = Buyer.new
   end

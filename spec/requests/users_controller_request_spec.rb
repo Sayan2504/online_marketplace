@@ -7,6 +7,7 @@ RSpec.describe UsersController, type: :controller do
       let(:post) { create(:post1) }
       it "shows the products rejected by admin" do
         allow(controller).to receive(:current_user).and_return(user)
+        expect(response).to have_http_status(:success)
         controller.send(:rejected)
       end
     end
@@ -16,6 +17,7 @@ RSpec.describe UsersController, type: :controller do
       let(:post) { create(:post1) }
       it "shows the products approved by admin" do
         allow(controller).to receive(:current_user).and_return(user)
+        expect(response).to have_http_status(:success)
         controller.send(:show)
       end
     end
@@ -25,6 +27,7 @@ RSpec.describe UsersController, type: :controller do
       let(:post) { create(:post1) }
       it "shows the products unchecked by admin" do
         allow(controller).to receive(:current_user).and_return(user)
+        expect(response).to have_http_status(:success)
         controller.send(:unchecked)
       end
     end

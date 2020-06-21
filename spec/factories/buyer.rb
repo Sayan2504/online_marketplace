@@ -4,7 +4,7 @@ FactoryBot.define do
     email { "someone@gmail.com" }
     location { "somewhere" }
     user_id { 1 }
-    post_id { 2 }
-    user { create(:user1) }
+    post_id { 1 }
+    user { create(:usernew) }
   end
 end

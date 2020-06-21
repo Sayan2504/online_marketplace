@@ -5,7 +5,7 @@
         <%= render "shared/error_messages", object: @category %>
         <div class="form-group">
           <%= f.label :name , "Category Name" %>
-          <%= f.text_field :name, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "e.g. Bikes, Books etc. (maximum 14 characters)", title: "Enter Category name", maxlength: 14, minlength: 2 %>
+          <%= f.text_field :name, class: "form-control category-name", autofocus: true, required: true, autocomplete: :off, placeholder: "e.g. Bikes, Books etc. (maximum 14 characters)", title: "Enter Category name", maxlength: 14, minlength: 2 %>
         </div>
         <div class="form-row">
           <div class="col-xs-12 order-2 order-sm-1 col-sm-3">
