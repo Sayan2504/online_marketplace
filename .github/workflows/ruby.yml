@@ -49,7 +49,7 @@ jobs:
           DB_PASSWORD: user 
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
-          gem install bundler --version 1.17.3
+          gem install bundler --version 2.1.4
           bundle install --jobs 4 --retry 3
           bundle exec rails db:prepare --trace
           
