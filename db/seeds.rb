@@ -2,7 +2,7 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 
-User.new({ :name => 'Sayan Sinha', :email => 'sinhasayan888@gmail.com', :password => 'adminpassword', :password_confirmation => 'adminpassword', :admin => 'true'}).save
+User.new({ name: 'Sayan Sinha', email: 'sinhasayan888@gmail.com', password: 'adminpassword', password_confirmation: 'adminpassword', admin: 'true'}).save
 
 
 
