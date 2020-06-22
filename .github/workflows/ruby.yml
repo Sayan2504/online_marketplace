@@ -8,6 +8,9 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: root
+          MYSQL_PASSWORD: user
+          MYSQL_DATABASE: online_marketplace
         ports:
           - 3306
         options: >-
@@ -41,7 +44,7 @@ jobs:
         run: |
           sudo apt-get install -y mysql-client libmysqlclient-dev
           sudo service mysql start
-          sudo mysql --host localhost --port ${{ job.services.mysql.ports[3306] }} -uroot -proot -e "SHOW GRANTS FOR 'root'@'localhost'"
+          sudo mysql --host localhost --port ${{ job.services.mysql.ports[3306] }} -uroot -puser -e "SHOW GRANTS FOR 'root'@'localhost'"
       
       - name: Bundle Install and Create DB
         env:
