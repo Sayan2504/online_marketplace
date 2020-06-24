@@ -62,7 +62,7 @@ group :test do
   gem 'webdrivers'
 end
 
-group :test do
+group :production do
   # Use postgresql as the database for Active Record in production
   gem 'pg'
 end
