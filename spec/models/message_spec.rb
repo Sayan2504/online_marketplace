@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  subject {
-    described_class.new(body: "Something", post_id: 1, user_id: 1, receiver_id: 2)
-  }
+  subject { described_class.new(body: "Something", post_id: 1, user_id: 1, receiver_id: 2) }
   context "validations" do
     describe ".body" do
       it "message having a content is valid" do

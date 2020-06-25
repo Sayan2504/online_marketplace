@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Buyer, type: :model do
-  subject {
-    described_class.new(buyer_name: "Someone", email: "someone@gmail.com", location: "somewhere", post_id: 1, user_id: 1)
-  }
+  subject { described_class.new(buyer_name: "Someone", email: "someone@gmail.com", location: "somewhere", post_id: 1, user_id: 1) }
   context "validations" do
     describe ".buyer_name" do
       it "buyer having a name is valid" do

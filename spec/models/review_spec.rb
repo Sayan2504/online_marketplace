@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  subject {
-    described_class.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1, approved_by: "null")
-  }
+  subject { described_class.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1, approved_by: "null") }
   context "validations" do
     describe ".name" do
       it "review having a reviewer name is valid" do

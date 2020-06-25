@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostAttachment, type: :model do
-  subject {
-    described_class.new(post_id: 1, user_id: 1)
-  }
+  subject { described_class.new(post_id: 1, user_id: 1) }
   context "validations" do
     describe "#post_id" do
       it "post attachment associated with a post is valid" do

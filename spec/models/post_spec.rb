@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  subject {
-    described_class.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1)
-  }
+  subject { described_class.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1) }
   context "validations" do
     describe ".ad_title" do
       it "post having a title is valid" do

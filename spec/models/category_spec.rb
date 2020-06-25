@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  subject {
-    described_class.new(name: "Furniture")
-  }
+  subject { described_class.new(name: "Furniture") }
   context "validations" do
     describe ".name" do
       let(:category_duplicate) { Category.new(name: "Books") }
