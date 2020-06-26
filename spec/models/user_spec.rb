@@ -78,8 +78,7 @@ RSpec.describe User, type: :model do
 
   context "associations" do
     it { is_expected.to have_many :posts }   
-    it { is_expected.to have_many :messages } 
-    it { is_expected.to have_and_belong_to_many :categories }  
+    it { is_expected.to have_many :messages }   
     it { is_expected.to have_one :buyer }
     it { is_expected.to have_many :post_attachments }
     it { is_expected.to have_many :reviews }

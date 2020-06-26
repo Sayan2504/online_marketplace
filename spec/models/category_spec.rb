@@ -38,7 +38,6 @@ RSpec.describe Category, type: :model do
   end
 
   context "associations" do
-    it { is_expected.to have_and_belong_to_many :users }
     it { is_expected.to have_many :posts }
   end 
 end
