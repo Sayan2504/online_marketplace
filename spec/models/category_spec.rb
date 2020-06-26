@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  subject { described_class.new(name: "Furniture") }
+  subject { create(:category) }
   context "validations" do
     describe ".name" do
-      let(:category_duplicate) { Category.new(name: "Books") }
-      let(:category_invalid_uniqueness) { Category.new(name: "Furniture") }
+      let(:category_duplicate) { create(:categorynew) }
       
       it "category having a name is valid" do
         expect(subject).to be_valid
@@ -25,7 +24,8 @@ RSpec.describe Category, type: :model do
         expect(category_duplicate.name).not_to eq(subject.name)
       end
       it "category not having unique name is invalid" do
-        expect(category_invalid_uniqueness.name).to eq(subject.name)
+        subject.name = "Someone again"
+        expect(category_duplicate.name).to eq(subject.name)
       end
       it "category containing name with uppercase, lowercase letters and blank spaces is valid" do
         expect(subject).to be_valid
