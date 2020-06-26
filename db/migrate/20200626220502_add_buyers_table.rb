@@ -2,7 +2,7 @@ class AddBuyersTable < ActiveRecord::Migration[6.0]
   def change
     create_table :buyers do |t|
       t.references :user, null: false, foreign_key: true
-      t.references :post, null: false, foreign_key: true
+      t.bigint "post_id", null: false
       t.string "buyer_name", null: false
       t.string "email", null: false
       t.string "location", null: false
