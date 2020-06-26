@@ -1,7 +1,7 @@
 class AddPostAttachmentsTable < ActiveRecord::Migration[6.0]
   def change
     create_table :post_attachments do |t|
-      t.integer "post_id", null: false
+      t.references :post, null: false, foreign_key: true
       t.integer "user_id", null: false
       t.string "photo"
       t.datetime "created_at", precision: 6, null: false

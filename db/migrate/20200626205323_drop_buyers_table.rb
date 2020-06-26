@@ -1,8 +1,8 @@
-class DropMessagesTable < ActiveRecord::Migration[6.0]
+class DropBuyersTable < ActiveRecord::Migration[6.0]
   def change
-    drop_table :messages do |t|
-      t.bigint "user_id", null: false
+    drop_table :buyers do |t|
       t.text "body", null: false
+      t.bigint "user_id", null: false
       t.bigint "post_id", null: false
       t.integer "receiver_id", null: false
       t.datetime "created_at", precision: 6, null: false
