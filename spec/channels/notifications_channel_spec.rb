@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe NotificationsChannel, type: :channel do
   let (:user1) { create(:user) }
-  
+
   before { stub_connection current_user: user1 }
   
   describe "#subscribed" do
