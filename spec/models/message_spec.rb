@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  subject { described_class.new(body: "Something", post_id: 1, user_id: 1, receiver_id: 2) }
+  let(:user1) { create(:user4) }
+  let(:user2) { create(:usernew) }
+  let(:post) { create(:post1) }
+  subject { described_class.new(body: "something", post_id: post.id, user_id: user1.id, receiver_id: user2.id) }
+  
   context "validations" do
     describe ".body" do
       it "message having a content is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "message having no content is invalid" do
@@ -13,7 +16,6 @@ RSpec.describe Message, type: :model do
         expect(subject).not_to be_valid
       end
       it "message having content with length of minimum 1 character is valid" do
-        subject = create(:post2)
         expect(subject).to be_valid
       end
       it "message not having content with length of minimum 1 character is invalid" do
@@ -23,7 +25,6 @@ RSpec.describe Message, type: :model do
     end
     describe "#post_id" do
       it "message associated with a post is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "message not associated with a post is invalid" do
@@ -33,7 +34,6 @@ RSpec.describe Message, type: :model do
     end
     describe "#user_id" do
       it "message having a sender is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "message not having a sender is invalid" do
@@ -43,7 +43,6 @@ RSpec.describe Message, type: :model do
     end
     describe "#receiver_id" do
       it "message having a receiver is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "message not having a receiver is invalid" do

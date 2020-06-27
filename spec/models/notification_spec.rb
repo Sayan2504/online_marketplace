@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
-  subject { described_class.new(body: "Something", post_id: 1, sender_id: 1, receiver_id: 2) }
+  let(:user1) { create(:user4) }
+  let(:user2) { create(:usernew) }
+  let(:post) { create(:post1) }
+  subject { described_class.new(body: "Something", post_id: post.id, sender_id: user1.id, receiver_id: user2.id) }
+
   context "validations" do
     describe ".body" do
       it "notification having a content is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "notification having no content is invalid" do
@@ -13,7 +16,6 @@ RSpec.describe Notification, type: :model do
         expect(subject).not_to be_valid
       end
       it "notification having content with length of minimum 1 character is valid" do
-        subject = create(:post2)
         expect(subject).to be_valid
       end
       it "notification not having content with length of minimum 1 character is invalid" do
@@ -23,7 +25,6 @@ RSpec.describe Notification, type: :model do
     end
     describe "#post_id" do
       it "notification associated with a post is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "notification not associated with a post is invalid" do
@@ -33,7 +34,6 @@ RSpec.describe Notification, type: :model do
     end
     describe "#sender_id" do
       it "notification having a sender is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "notification not having a sender is invalid" do
@@ -43,7 +43,6 @@ RSpec.describe Notification, type: :model do
     end
     describe "#receiver_id" do
       it "notification having a receiver is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "notification not having a receiver is invalid" do

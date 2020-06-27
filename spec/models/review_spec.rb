@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  subject { described_class.new(name: "Someone", email: "someone@gmail.com", location: "somewhere", review: "something", rating: "5", post_id: 1, approved_by: "null") }
+  subject { create(:review) }
+  
   context "validations" do
     describe ".name" do
       it "review having a reviewer name is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "review having no reviewer name is invalid" do
@@ -13,7 +13,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
       it "review having reviewer name of length within 2 and 30 characters is valid" do
-        subject = create(:post2)
         expect(subject).to be_valid
       end
       it "review not having reviewer name of length within 2 and 30 characters is invalid" do
@@ -21,7 +20,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end 
       it "review containing reviewer name with uppercase, lowercase letters and blank spaces is valid" do
-        subject = create(:post3)
         expect(subject).to be_valid
       end
       it "review containing reviewer name with digits or special characters is invalid" do
@@ -31,7 +29,6 @@ RSpec.describe Review, type: :model do
     end
     describe ".email" do
       it "review having a email is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "review having no email is invalid" do
@@ -39,7 +36,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
       it "review having email of length within 5 and 80 characters is valid" do
-        subject = create(:post2)
         expect(subject).to be_valid
       end
       it "review not having email of length within 5 and 80 characters is invalid" do
@@ -47,7 +43,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end 
       it "review containing email with the format ______@_____._____ is valid" do
-        subject = create(:post3)
         expect(subject).to be_valid
       end
       it "review not containing email with the format ______@_____._____ is invalid" do
@@ -57,7 +52,6 @@ RSpec.describe Review, type: :model do
     end
     describe ".location" do
       it "review having a reviewer location is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "review having no reviewer location is invalid" do
@@ -65,7 +59,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
       it "review having reviewer location of length within 2 and 30 characters is valid" do
-        subject = create(:post2)
         expect(subject).to be_valid
       end
       it "review not having reviewer location of length within 2 and 30 characters is invalid" do
@@ -73,7 +66,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end 
       it "review containing reviewer location with uppercase, lowercase letters and blank spaces is valid" do
-        subject = create(:post3)
         expect(subject).to be_valid
       end
       it "review containing reviewer location with digits or special characters is invalid" do
@@ -83,7 +75,6 @@ RSpec.describe Review, type: :model do
     end
     describe ".review" do
       it "review having a content is valid" do
-        subject = create(:post1)
         expect(subject).to be_valid
       end
       it "review having no content is invalid" do
@@ -91,7 +82,6 @@ RSpec.describe Review, type: :model do
         expect(subject).not_to be_valid
       end
       it "review having content with length of minimum 1 character is valid" do
-        subject = create(:post2)
         expect(subject).to be_valid
       end
       it "review not having content with length of minimum 1 character is invalid" do
@@ -101,7 +91,6 @@ RSpec.describe Review, type: :model do
     end
     describe "#rating" do
       it "review having a rating is valid" do
-        subject = create(:post)
         expect(subject).to be_valid
       end
       it "review having no rating is invalid" do
@@ -111,7 +100,6 @@ RSpec.describe Review, type: :model do
     end
     describe "#post_id" do
       it "review associated with a post is valid" do
-        subject = create(:post)
         expect(subject).to be_valid
       end
       it "review not associated with a post is invalid" do
@@ -129,12 +117,10 @@ RSpec.describe Review, type: :model do
     describe ".admin_review_approval" do
       it "Review approved by 'anyone' is valid" do
         subject.approved_by = "anyone"
-        subject = create(:post)
-        expect(subject).to be_valid
+        expect(subject.approved_by).not_to eq("null")
       end
       it "Review approved by 'nil' is invalid" do
-        subject.approved_by = nil
-        expect(subject).not_to be_valid
+        expect(subject.approved_by).to eq("null")
       end
     end
   end

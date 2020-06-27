@@ -45,7 +45,7 @@ RSpec.describe User, type: :model do
         expect(subject).not_to be_valid
       end 
       it "user having unique email is valid" do
-        expect(subject).not_to eq(subject.email)
+        expect(user_duplicate.email).not_to eq(subject.email)
       end
       it "user not having unique email is invalid" do
         expect(user_invalid_uniqueness.email).to eq(subject.email)
