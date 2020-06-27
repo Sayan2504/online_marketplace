@@ -15,6 +15,7 @@ jobs:
           --health-interval=10s 
           --health-timeout=5s 
           --health-retries=3
+      
       redis:
         image: redis
         ports: ['6379:6379']
@@ -23,9 +24,9 @@ jobs:
     steps:  
       - name: Setup ubuntu
         run: |
+          sudo apt-get update
           sudo apt-get install build-essential libcurl4-openssl-dev
           sudo apt-get install libz-dev libiconv-hook1 libiconv-hook-dev
-          sudo apt-get update
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
         with:
@@ -45,7 +46,7 @@ jobs:
       - name: Bundle Install and Create DB
         env:
           RAILS_ENV: test
-          DB_PASSWORD: user 
+          DB_PASSWORD: root 
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
           gem install bundler --version 2.1.4
