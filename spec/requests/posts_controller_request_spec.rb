@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
+  let(:post) { create(:post) }
+  let(:user) { create(:admin) }
+  let(:review) { create(:review) }
+  let(:category) { create(:category) }
+
   context "controller_methods" do
     describe ".approve" do
-      let(:post) { create(:post1) }
-      let(:user) { create(:usernew) }
       it "approves the post and adds it to the approved post section" do
         allow(controller).to receive(:params).and_return(id: post.id)
         allow(controller).to receive(:current_user).and_return(user)
@@ -20,10 +23,6 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe ".approve_review" do
-      let(:post) { create(:post) }
-      let(:user) { create(:admin) }
-      let(:review) { create(:review) }
-
       it "approves the review given on any post" do
         allow(controller).to receive(:params).and_return(id: review.id)
         allow(controller).to receive(:current_user).and_return(user)
@@ -39,9 +38,6 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe ".index" do
-      let(:post) { create(:post) }
-      let(:category) { create(:category) }
-
       it "shows all the posts based on categories, location or name" do
         allow(controller).to receive(:params).and_return(ad_title: post.ad_title)
         allow(controller).to receive(:params).and_return(location: post.city)
@@ -53,8 +49,6 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe ".reject" do
-      let(:post) { create(:postnew) }
-      let(:user) { create(:admin) }
       it "rejects the post and adds it to the rejected post section" do
         allow(controller).to receive(:params).and_return(id: post.id)
         allow(controller).to receive(:current_user).and_return(user)
