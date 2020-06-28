@@ -8,7 +8,7 @@
           null,
           1,
           null,
-          18,
+          11,
           null,
           1,
           null
@@ -38,12 +38,12 @@
           null,
           1,
           null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
           null,
           1,
           1,
@@ -77,8 +77,8 @@
           1,
           1,
           null,
-          1,
-          1,
+          31,
+          31,
           null,
           1,
           1,
@@ -187,6 +187,18 @@
           0,
           null,
           null,
+          null
+        ]
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/notification.rb": {
+        "lines": [
+          1,
+          11,
+          null,
+          1,
+          1,
+          1,
+          1,
           null
         ]
       },
@@ -309,20 +321,6 @@
           0,
           0,
           null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/notification.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          0,
           0,
           0,
           0,
@@ -1142,6 +1140,6 @@
         }
       }
     },
-    "timestamp": 1593337560
+    "timestamp": 1593355518
   }
 }
