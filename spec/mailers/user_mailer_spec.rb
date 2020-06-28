@@ -5,6 +5,7 @@ RSpec.describe UserMailer, type: :mailer do
   let(:user2) { User.new(name: "Someone", email: "someone2@gmail.com", password: "11111111") }
   let(:mail) { UserMailer.welcome_email(user1) }
 
+  #"welcome_email" mailer tests
   describe "#welcome_email_subject" do
     context "when correct subject rendered" do
       it "mail rendering the correct subject is valid" do
