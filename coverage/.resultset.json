@@ -77,8 +77,8 @@
           1,
           1,
           null,
-          1,
-          1,
+          9,
+          9,
           null,
           1,
           1,
@@ -190,46 +190,36 @@
           null
         ]
       },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/controllers/admin/ads_controller.rb": {
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/channels/chat_channel.rb": {
+        "lines": [
+          1,
+          1,
+          3,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/channels/application_cable/channel.rb": {
         "lines": [
           1,
           1,
           null,
+          null
+        ]
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/channels/notifications_channel.rb": {
+        "lines": [
           1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
           1,
-          0,
+          3,
           null,
           null,
           1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
           1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          0,
           null,
           null
         ]
@@ -577,16 +567,6 @@
         "branches": {
         }
       },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/channels/application_cable/channel.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
@@ -597,37 +577,6 @@
           0,
           null,
           0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/channels/notifications_channel.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/channels/chat_channel.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
           0,
           0,
           0,
@@ -888,6 +837,52 @@
         "branches": {
         }
       },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/controllers/admin/ads_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
       "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/controllers/admin/categories_controller.rb": {
         "lines": [
           0,
@@ -1139,6 +1134,6 @@
         }
       }
     },
-    "timestamp": 1593266680
+    "timestamp": 1593329180
   }
 }
