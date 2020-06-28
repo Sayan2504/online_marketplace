@@ -7,12 +7,12 @@ RSpec.describe PostAttachment, type: :model do
 
   #validation tests
   describe "#post_id_presence" do
-    context "post id present" do
+    context "when post id present" do
       it "post attachment associated with a post is valid" do
         expect(subject).to be_valid
       end
     end
-    context "post id not present" do
+    context "when post id not present" do
       it "post attachment not associated with a post is invalid" do
         subject.post_id = nil
         expect(subject).not_to be_valid
@@ -21,12 +21,12 @@ RSpec.describe PostAttachment, type: :model do
   end
 
   describe "#user_id_presence" do
-    context "user id present" do
+    context "when user id present" do
       it "post attachment associated with an user is valid" do
         expect(subject).to be_valid
       end
     end
-    context "user id not present" do
+    context "when user id not present" do
       it "post attachment not associated with an user is invalid" do
         subject.user_id = nil
         expect(subject).not_to be_valid

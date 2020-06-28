@@ -8,12 +8,12 @@ RSpec.describe Message, type: :model do
   
   #validation tests
   describe ".message_content_presence" do
-    context "message content present" do
+    context "when message content present" do
       it "message having a content is valid" do
         expect(subject).to be_valid
       end
     end
-    context "message content not present" do
+    context "when message content not present" do
       it "message having no content is invalid" do
         subject.body = ""
         expect(subject).not_to be_valid
@@ -22,12 +22,12 @@ RSpec.describe Message, type: :model do
   end
 
   describe ".message_content_length" do
-    context "valid message content length" do
+    context "with valid message content length" do
       it "message having content with length of minimum 1 character is valid" do
         expect(subject).to be_valid
       end
     end
-    context "invalid message content length" do
+    context "with invalid message content length" do
       it "message not having content with length of minimum 1 character is invalid" do
         subject.body = ""
         expect(subject).not_to be_valid
@@ -36,12 +36,12 @@ RSpec.describe Message, type: :model do
   end
 
   describe "#post_id_presence" do
-    context "post id present" do
+    context "when post id present" do
       it "message associated with a post is valid" do
         expect(subject).to be_valid
       end
     end
-    context "post id not present" do
+    context "when post id not present" do
       it "message not associated with a post is invalid" do
         subject.post_id = nil
         expect(subject).not_to be_valid
@@ -50,12 +50,12 @@ RSpec.describe Message, type: :model do
   end
 
   describe "#user_id_presence" do
-    context "sender id present" do
+    context "when sender id present" do
       it "message having a sender is valid" do
         expect(subject).to be_valid
       end
     end
-    context "sender id not present" do
+    context "when sender id not present" do
       it "message not having a sender is invalid" do
         subject.user_id = nil
         expect(subject).not_to be_valid
@@ -64,12 +64,12 @@ RSpec.describe Message, type: :model do
   end
 
   describe "#receiver_id_presence" do
-    context "receiver id present" do
+    context "when receiver id present" do
       it "message having a receiver is valid" do
         expect(subject).to be_valid
       end
     end
-    context "receiver id not present" do
+    context "when receiver id not present" do
       it "message not having a receiver is invalid" do
         subject.receiver_id = nil
         expect(subject).not_to be_valid
@@ -93,7 +93,7 @@ RSpec.describe Message, type: :model do
 
   #scope tests
   describe ".sender_side" do
-    context "valid data" do
+    context "with valid data" do
       it "Message with the correct sender and correct receiver on the sender's side is valid" do
         subject.user_id = 1
         subject.receiver_id = 2
@@ -101,7 +101,7 @@ RSpec.describe Message, type: :model do
         expect([subject.receiver_id]).to include(2)
       end
     end
-    context "invalid data" do
+    context "with invalid data" do
       it "Message with the wrong sender or wrong receiver on the sender's side is invalid" do
         subject.user_id = 4
         subject.receiver_id = 3
@@ -112,7 +112,7 @@ RSpec.describe Message, type: :model do
   end
 
   describe ".receiver_side" do
-    context "valid data" do
+    context "with valid data" do
       it "Message with the correct sender and correct receiver on the receiver's side is valid" do
         subject.user_id = 2
         subject.receiver_id = 1
@@ -120,7 +120,7 @@ RSpec.describe Message, type: :model do
         expect([subject.receiver_id]).to include(1)
       end
     end
-    context "invalid data" do
+    context "with invalid data" do
       it "Message with the wrong sender or wrong receiver on the receiver's side is invalid" do
         subject.user_id = 3
         subject.receiver_id = 4
@@ -131,13 +131,13 @@ RSpec.describe Message, type: :model do
   end
   
   describe ".message_post_id" do
-    context "valid data" do
+    context "with valid data" do
       it "Message associated with the correct post on both side is valid" do
         subject.post_id = 1
         expect([subject.post_id]).to include(1)
       end
     end
-    context "invalid data" do
+    context "with invalid data" do
       it "Message associated with the wrong post on both side is invalid" do
         subject.post_id = 2
         expect([subject.post_id]).not_to include(1)
