@@ -35,7 +35,7 @@ RSpec.describe Notification, type: :model do
     end
   end
 
-  describe "#post_id" do
+  describe "#post_id_presence" do
     context "post id present" do
       it "notification associated with a post is valid" do
         expect(subject).to be_valid
@@ -49,7 +49,7 @@ RSpec.describe Notification, type: :model do
     end
   end
 
-  describe "#sender_id" do
+  describe "#sender_id_presence" do
     context "sender id present" do
       it "notification having a sender is valid" do
         expect(subject).to be_valid
@@ -63,7 +63,7 @@ RSpec.describe Notification, type: :model do
     end
   end
 
-  describe "#receiver_id" do
+  describe "#receiver_id_presence" do
     context "receiver id present" do
       it "notification having a receiver is valid" do
         expect(subject).to be_valid

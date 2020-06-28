@@ -6,7 +6,7 @@ RSpec.describe PostAttachment, type: :model do
   subject { described_class.new(post_id: post.id, user_id: user.id) }
 
   #validation tests
-  describe "#post_id" do
+  describe "#post_id_presence" do
     context "post id present" do
       it "post attachment associated with a post is valid" do
         expect(subject).to be_valid
@@ -20,7 +20,7 @@ RSpec.describe PostAttachment, type: :model do
     end
   end
 
-  describe "#user_id" do
+  describe "#user_id_presence" do
     context "user id present" do
       it "post attachment associated with an user is valid" do
         expect(subject).to be_valid

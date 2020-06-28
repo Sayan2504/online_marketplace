@@ -130,7 +130,7 @@ RSpec.describe Buyer, type: :model do
     end
   end
 
-  describe "#post_id" do
+  describe "#post_id_presence" do
     context "post id present" do
       it "buyer associated with a post is valid" do
         expect(subject).to be_valid
@@ -144,7 +144,7 @@ RSpec.describe Buyer, type: :model do
     end
   end
 
-  describe "#user_id" do
+  describe "#user_id_presence" do
     context "user id present" do
       it "buyer associated with an user is valid" do
         expect(subject).to be_valid
