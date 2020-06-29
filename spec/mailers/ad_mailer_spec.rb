@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe AdMailer, type: :mailer do
   let(:post) { create(:post) }
-  let(:user1) { create(:userduplicate) }
-  let(:user2) { create(:usernew) }
+  let(:user1) { create(:user3) }
+  let(:user2) { create(:user2) }
   let(:post_approved_mail) { AdMailer.post_approved(post, user1) }
   let(:post_rejected_mail) { AdMailer.post_rejected(post, user1) }
 

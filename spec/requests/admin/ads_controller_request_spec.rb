@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Admin::AdsController, type: :controller do
   let(:post) { create(:post) }
-  let(:user) { create(:usernew) }
+  let(:user) { create(:user2) }
 
   describe ".approve" do
     context "when posts are approved" do

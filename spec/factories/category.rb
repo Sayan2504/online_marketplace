@@ -3,7 +3,7 @@ FactoryBot.define do
     name { "Someone" }
   end
 
-  factory :categorynew, class: Category do
+  factory :category3, class: Category do
     name { "Someone again" }
   end
 end

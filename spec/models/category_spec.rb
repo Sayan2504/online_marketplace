@@ -33,7 +33,7 @@ RSpec.describe Category, type: :model do
   end
 
   describe ".category_name_uniqueness" do
-    let(:category_duplicate) { create(:categorynew) }
+    let(:category_duplicate) { create(:category3) }
     context "with unique category name" do
       it "category having unique name is valid" do
         expect(category_duplicate.name).not_to eq(subject.name)

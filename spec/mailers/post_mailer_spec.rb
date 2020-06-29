@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe PostMailer, type: :mailer do
   let(:post) { create(:post) }
-  let(:user1) { create(:userduplicate) }
-  let(:user2) { create(:user5) }
+  let(:user1) { create(:user3) }
+  let(:user2) { create(:user4) }
   let(:review) { create(:review) }
   let(:review_mail) { PostMailer.review(user1, review, post) }
   let(:post_approved_mail) { PostMailer.post_approved(post, user1) }

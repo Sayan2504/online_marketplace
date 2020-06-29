@@ -5,7 +5,7 @@ FactoryBot.define do
     location { "somewhere" }
     user_id { 1 }
     post_id { 1 }
-    user { create(:usernew) }
+    user { create(:user2) }
   end
 
   factory :buyer2, class: Buyer do
@@ -14,7 +14,7 @@ FactoryBot.define do
     location { "somewhere" }
     user_id { 1 }
     post_id { 1 }
-    user { create(:user4) }
+    user { create(:user2) }
   end
 
   factory :buyer3, class: Buyer do
@@ -23,6 +23,6 @@ FactoryBot.define do
     location { "somewhere" }
     user_id { 1 }
     post_id { 1 }
-    user { create(:user5) }
+    user { create(:user4) }
   end
 end

@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe BuyerMailer, type: :mailer do
   let(:post) { create(:post) }
-  let(:user1) { create(:userduplicate) }
-  let(:user2) { create(:usernew) }
+  let(:user1) { create(:user3) }
+  let(:user2) { create(:admin) }
   let(:buyer1) { create(:buyer2) }
   let(:buyer2) { create(:buyer3) }
   let(:buying_request_mail) { BuyerMailer.buying_request(buyer1, user1, post) }

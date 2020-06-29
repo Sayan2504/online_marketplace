@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SessionsHelper, type: :helper do
   let (:user1) { create(:admin) }
-  let (:user2) { create(:admin2) }
-  let (:user3) { create(:user) }
+  let (:user2) { create(:user2) }
+  let (:user3) { create(:user1) }
 
   describe "#login" do
     context "with valid session user id" do

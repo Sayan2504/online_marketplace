@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user) { create(:user4) }
+  let(:user) { create(:user2) }
   let(:post) { create(:post) }
 
   describe ".rejected" do

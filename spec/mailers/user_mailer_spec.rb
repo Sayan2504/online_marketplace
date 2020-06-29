@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
-  let(:user1) { create(:userduplicate) }
-  let(:user2) { create(:user5) }
+  let(:user1) { create(:user3) }
+  let(:user2) { create(:user4) }
   let(:mail) { UserMailer.welcome_email(user1) }
 
   #"welcome_email" mailer tests

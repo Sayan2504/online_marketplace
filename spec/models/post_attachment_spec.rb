@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostAttachment, type: :model do
-  let(:user) { create(:user4) }
+  let(:user) { create(:user2) }
   let(:post) { create(:post1) }
   subject { described_class.new(post_id: post.id, user_id: user.id) }
 

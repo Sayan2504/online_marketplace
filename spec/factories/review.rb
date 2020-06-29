@@ -7,6 +7,6 @@ FactoryBot.define do
     rating { "5" }
     post_id { 1 }
     approved_by { "null" }
-    post { create(:postnew) }
+    post { create(:post4) }
   end
 end

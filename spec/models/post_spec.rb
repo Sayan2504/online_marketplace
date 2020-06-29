@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:user) { create(:user) }
+  let(:user) { create(:user1) }
   let(:category) { create(:category) }
   subject { described_class.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "91-9876543210", city: "Somewhere", user_id: user.id, category_id: category.id, approved_by: "null") }
 

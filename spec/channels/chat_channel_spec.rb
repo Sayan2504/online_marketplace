@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ChatChannel, type: :channel do
-  let (:user1) { create(:user) }
-  let (:user2) { create(:usernew) }
+  let (:user1) { create(:user1) }
+  let (:user2) { create(:user2) }
 
   before { stub_connection current_user: user1 }
   

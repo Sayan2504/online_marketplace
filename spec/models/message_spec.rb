@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  let(:user1) { create(:user4) }
-  let(:user2) { create(:usernew) }
+  let(:user1) { create(:admin) }
+  let(:user2) { create(:user2) }
   let(:post) { create(:post1) }
   subject { described_class.new(body: "something", post_id: post.id, user_id: user1.id, receiver_id: user2.id) }
   
