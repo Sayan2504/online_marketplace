@@ -77,8 +77,8 @@
           1,
           1,
           null,
-          1,
-          1,
+          11,
+          11,
           null,
           1,
           1,
@@ -159,17 +159,13 @@
         "lines": [
           1,
           1,
-          0,
+          8,
           null,
           null,
           1,
-          0,
-          0,
+          7,
+          5,
           null,
-          null,
-          null,
-          1,
-          0,
           null,
           null,
           1,
@@ -177,9 +173,13 @@
           null,
           null,
           1,
-          0,
-          0,
-          0,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
           null,
           null,
           1,
@@ -190,159 +190,15 @@
           null
         ]
       },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/ad_mailer.rb": {
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/notification.rb": {
         "lines": [
           1,
-          1,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          null
-        ]
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/application_mailer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/buyer_mailer.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          6,
-          null,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          6,
-          null,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          6,
-          null,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          6,
-          null,
-          null
-        ]
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/post_mailer.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          6,
-          6,
-          6,
-          6,
-          null,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          null,
-          1,
-          6,
-          6,
-          6,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/user_mailer.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          6,
-          6,
-          null,
-          null
-        ]
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/buyer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
+          2,
           null,
           1,
           1,
           1,
           1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/review.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
           null
         ]
       },
@@ -446,13 +302,169 @@
         "branches": {
         }
       },
-      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/notification.rb": {
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/buyer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/models/review.rb": {
         "lines": [
           0,
           0,
           null,
           0,
           0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/user_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/post_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/ad_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/sayan2/Kreeti_technologies/training_project/online_marketplace/app/mailers/buyer_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
           0,
           0,
           0
@@ -1128,6 +1140,6 @@
         }
       }
     },
-    "timestamp": 1593384145
+    "timestamp": 1593413455
   }
 }
