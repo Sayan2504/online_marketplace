@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe BuyerMailer, type: :mailer do
-  let(:post) { Post.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1) }
-  let(:user1) { User.new(name: "Someone", email: "someone@gmail.com", password: "11111111") }
-  let(:user2) { User.new(name: "Someone", email: "someone2@gmail.com", password: "11111111") }
-  let(:buyer1) { Buyer.new(buyer_name: "Someone", email: "someone@gmail.com", location: "somewhere", post_id: 1, user_id: 1) }
-  let(:buyer2) { Buyer.new(buyer_name: "Someone", email: "someone2@gmail.com", location: "somewhere", post_id: 1, user_id: 1) }
+  let(:post) { create(:post) }
+  let(:user1) { create(:userduplicate) }
+  let(:user2) { create(:usernew) }
+  let(:buyer1) { create(:buyer2) }
+  let(:buyer2) { create(:buyer3) }
   let(:buying_request_mail) { BuyerMailer.buying_request(buyer1, user1, post) }
   let(:buying_request_sent_mail) { BuyerMailer.buying_request_sent(buyer1, user1, post) }
   let(:sell_mail) { BuyerMailer.sell(buyer1, post, user1) }

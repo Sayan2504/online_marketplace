@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe AdMailer, type: :mailer do
-  let(:post) { Post.new(ad_title: "Something", detailed_ad_title: "something", ad_description: "something", user_name: "Someone", phone: "9876543210", city: "Somewhere", user_id: 1) }
-  let(:user1) { User.new(name: "Someone", email: "someone@gmail.com", password: "11111111") }
-  let(:user2) { User.new(name: "Someone", email: "someone2@gmail.com", password: "11111111") }
+  let(:post) { create(:post) }
+  let(:user1) { create(:userduplicate) }
+  let(:user2) { create(:usernew) }
   let(:post_approved_mail) { AdMailer.post_approved(post, user1) }
   let(:post_rejected_mail) { AdMailer.post_rejected(post, user1) }
 
