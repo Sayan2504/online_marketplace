@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 
   def new
   end
-  
+ 
   def fb_google_create
     auth = request.env["omniauth.auth"]
     session[:omniauth] = auth.except('extra')

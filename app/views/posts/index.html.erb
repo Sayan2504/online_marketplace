@@ -16,7 +16,7 @@
   <div class="jumbotron pt-4 pb-4">
     <div class="container">
       <div class="row">
-        <div class="col-4">
+        <div class="col-sm-12 col-md-12 col-lg-4">
           <div class="form-inline">
             <%= form_tag(posts_path, method: "get") do %>
               <% if params[:user_id].present? && params[:decision].present? %>
