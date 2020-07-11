@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-   
   def create
     @review = Review.new(review_params)
     @review.post_id = Post.find(@review.post_id).id

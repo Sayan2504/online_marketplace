@@ -1,2 +1,0 @@
-class PostAttachmentController < ApplicationController
-end
