@@ -1,11 +1,6 @@
 class BuyersController < ApplicationController
   before_action :set_post, only: [:index, :new]
 
-  def bought
-    @buyer = Buyer.buyer_email(current_user.email)
-    @posts = Post.product_bought_sold(@buyer.ids)
-  end
-
   def create
     @buyer = Buyer.new(buyer_params)
     @user = User.find_by(email: @buyer.email)
@@ -45,6 +40,11 @@ class BuyersController < ApplicationController
     @buyer = Buyer.new
   end
 
+  def bought
+    @buyer = Buyer.buyer_email(current_user.email)
+    @posts = Post.product_bought_sold(@buyer.ids)
+  end
+  
   def sell
     @buyer = Buyer.find(params[:id])
     @post = Post.find(@buyer.post_id)

@@ -40,19 +40,9 @@ class UsersController < ApplicationController
     @user = User.new( { buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name] } )
   end
 
-  def rejected
-    @user = current_user
-    @posts = @user.posts.admin_post_state("rejected")
-  end
-
   def show
     @user = current_user
     @posts = @user.posts.admin_post_approved_state
-  end
-
-  def unchecked
-    @user = current_user
-    @posts = @user.posts.admin_post_state("null")
   end
 
   def update
@@ -62,6 +52,16 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def rejected
+    @user = current_user
+    @posts = @user.posts.admin_post_state("rejected")
+  end
+
+  def unchecked
+    @user = current_user
+    @posts = @user.posts.admin_post_state("null")
   end
 
   private
