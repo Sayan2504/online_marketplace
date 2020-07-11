@@ -1,8 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+User.new( { name: "admin", email: "admin@gmail.com", password: "adminpassword", password_confirmation: "adminpassword", admin: true } ).save
+User.new( { name: "user one", email: "user1@gmail.com", password: "12345678", password_confirmation: "12345678" } ).save
+User.new( { name: "user two", email: "user2@gmail.com", password: "12345678", password_confirmation: "12345678" } ).save
 
-
-User.new({ name: 'Sayan Sinha', email: 'sinhasayan888@gmail.com', password: 'adminpassword', password_confirmation: 'adminpassword', admin: 'true'}).save
-
-
-
+Category.new( { name: "Books" } ).save
+Category.new( { name: "Bikes" } ).save
+Category.new( { name: "Furniture" } ).save
+Category.new( { name: "Sports" } ).save
+Category.new( { name: "Cars" } ).save
+Category.new( { name: "Mobiles" } ).save
+Category.new( { name: "Electronics" } ).save
+Category.new( { name: "Real Estate" } ).save
+Category.new( { name: "Services" } ).save

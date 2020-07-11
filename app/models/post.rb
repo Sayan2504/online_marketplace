@@ -30,8 +30,9 @@ class Post < ApplicationRecord
 
   scope :admin_post_state, ->(state) { where(approved_by: state) }
   scope :admin_post_approved_state, -> { where.not(approved_by: ["null", "rejected"]) }
-  scope :post_category, ->(category) { where(category_id: category) }
+  
   scope :post_unsold, -> { where(buyer_id: nil) }
+  scope :post_category, ->(category) { where(category_id: category) }
   scope :post_ad_title, ->(title) { where("ad_title LIKE ?", "%#{title}%") }
   scope :post_city, ->(name) { where("city LIKE ?", "%#{name}%") }
   scope :product_bought_sold, ->(product_id) { where(buyer_id: product_id) }
