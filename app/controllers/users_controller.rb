@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :rejected, :show, :unchecked, :update, :index]
+  before_action :set_post, only: [:show, :index]
 
   def create
     @user = User.new(user_params)
@@ -30,7 +31,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @posts = @user.posts.admin_post_approved_state
   end
 
   def new
@@ -42,7 +42,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts.admin_post_approved_state
   end
 
   def update
@@ -65,6 +64,10 @@ class UsersController < ApplicationController
   
   def set_user
     @user = current_user
+  end
+
+  def set_post
+    @posts = @user.posts.admin_post_approved_state
   end
 
   def user_params
