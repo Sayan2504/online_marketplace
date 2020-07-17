@@ -3,31 +3,32 @@
     <div class="col-6 post-ad-title-show-page">
       <h2 class="text-center heading"><%= @post.ad_title.upcase %></h2>
     </div>
-    <% if admin_user? %>
-      <% if @post.buyer_id == nil %>
-        <% if @post.approved_by == "null" %>
-          <div class="col-6 text-right">
-            <div class="row btn-toolbar" style="display: block">
-              <%= link_to "Approve", admin_approve_path( { id: @post.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..." }, title: "Approve this post #{ @post.ad_title.upcase }" %>
-              <%= link_to "Reject", admin_reject_path( { id: @post.id } ), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..." }, title: "Reject this post #{ @post.ad_title.upcase }" %>
+    <% if logged_in? %>
+      <% if admin_user? %>
+        <% if @post.buyer_id == nil %>
+          <% if @post.approved_by == "null" %>
+            <div class="col-6 text-right">
+              <div class="row btn-toolbar" style="display: block">
+                <%= link_to "Approve", admin_approve_path( { id: @post.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..." }, title: "Approve this post #{ @post.ad_title.upcase }" %>
+                <%= link_to "Reject", admin_reject_path( { id: @post.id } ), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..." }, title: "Reject this post #{ @post.ad_title.upcase }" %>
+              </div>
             </div>
-          </div>
-        <% elsif @post.approved_by == "rejected" %>
+          <% elsif @post.approved_by == "rejected" %>
+            <div class="col-6">
+              <div class="row btn-toolbar text-right" style="display: block">
+                <%= link_to "Approve", admin_approve_path( { id: @post.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..." }, title: "Approve this post #{ @post.ad_title.upcase }" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
           <div class="col-6">
             <div class="row btn-toolbar text-right" style="display: block">
-              <%= link_to "Approve", admin_approve_path( { id: @post.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..." }, title: "Approve this post #{ @post.ad_title.upcase }" %>
+              <button type="button" class="btn btn-md btn-light" disabled>Product Sold</button>
             </div>
           </div>
         <% end %>
-      <% else %>
-        <div class="col-6">
-          <div class="row btn-toolbar text-right" style="display: block">
-            <button type="button" class="btn btn-md btn-secondary" disabled>Product Sold</button>
-          </div>
-        </div>
       <% end %>
-    <% elsif @post.approved_by != "null" or @post.approved_by != "rejected" %>
-      <% if logged_in? %>
+      <% if @post.approved_by != "null" or @post.approved_by != "rejected" %>
         <% if current_user.id == @user.id %>
             <div class="col-6 text-right">
               <div class="row btn-toolbar" style="display: block">
@@ -56,14 +57,14 @@
             </div>
           </div>
         <% end %>
-      <% else %>
-        <div class="col-6 text-right">
-          <div class="row btn-toolbar" style="display: block">
-            <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
-            <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
-          </div>
-        </div>
       <% end %>
+    <% else %>
+      <div class="col-6 text-right">
+        <div class="row btn-toolbar" style="display: block">
+          <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
+          <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
+        </div>
+      </div>
     <% end %>
   </div>
 </section>
