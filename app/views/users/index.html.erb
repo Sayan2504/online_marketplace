@@ -3,11 +3,19 @@
 <div class="jumbotron jumbotron-fluid bg-light text-dark">
   <div class="container text-center">
     <h1 class="display-4">Welcome Admin</h1>
-  </div>
-</div>
-<div class="jumbotron jumbotron-fluid bg-light text-dark">
-  <div class="container text-center">
     <h5 class="lead">Check the Unchecked Posts section and approve/reject posts by users</h5>
     <h5 class="lead">Approve/Reject reviews on the Approved Posts</h5>
   </div>
 </div>
+<section class="container ">
+  <div class="row">
+    <div class="col-12 text-center">
+      <% if @posts.present? %> 
+        <h1 class="text-center heading">Your Posts</h1>
+        <%= render "layouts/form" %>
+      <% else %>
+        <h2 class="text-center text-muted mt-5"> You have no posts now </h2>
+      <% end %>
+    </div> 
+  </div>
+</section>

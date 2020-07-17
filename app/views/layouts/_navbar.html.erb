@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top">
   <% if logged_in? %>
     <% if admin_user? %>
-      <%= link_to "Admin Homepage", users_path, class: "navbar-brand", title: "Move to Admin Homepage" %>
+      <%= link_to "#{ current_user.name }'s Homepage(Admin)", users_path, class: "navbar-brand", title: "Move to #{ current_user.name }'s Homepage(Admin)" %>
     <% else %>
       <%= link_to "#{ current_user.name }'s Homepage", user_path(current_user), class: "navbar-brand", title: "Move to #{ current_user.name }'s Homepage" %>
     <% end %>
