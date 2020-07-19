@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       post "approve_review"
     end  
   end    
-  resources :reviews, only: [:new, :create]
+  resources :reviews, only: [:new, :create, :edit, :destroy, :show, :update]
   resources :users do
     collection do
       get "unchecked"

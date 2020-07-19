@@ -1,50 +1,56 @@
-<section class="container">            
+<section class="container"> 
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-9">
       <h1 class="text-center heading">Reviews</h1>
     </div>
-  </div>
+  </div>           
   <% no_review_message = false %>
-  <% @reviews.each do |review| %>
-    <div class="row justify-content-center">
-      <div class="col-xs-12 col-sm-12 ">
-        <div class="card card-body justify-content-flex-center">
-          <div class="row">
-            <%= render "display_review_and_rating", review: review %>
-            <% if review.approved_by == "null" %>
-              <% if admin_user? %>
-                <div class="col-sm-3 mt-3">
+  <% registered = nil %>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-12 ">
+      <% @reviews.each do |review| %>
+        <% if review.approved_by == "null" %>
+          <% if admin_user? %>
+            <div class="card card-body justify-content-flex-center">
+              <div class="row">
+                <%= render "display_review_and_rating", review: review, reviewer_id: registered %>
+                <div class="col-sm-3 mt-2">
                   <%= link_to "Approve", approve_review_post_path( { id: review.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving"  }, title: "Approve this review" %>
                   <button type="button" class="btn btn-md btn-secondary" disabled>Send Message</button>
+                  <% no_review_message = true %>
                 </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="card card-body justify-content-flex-center">
+            <div class="row">
+              <% @user_email.each do |u| %>
+                <% if u.email == review.email %>
+                  <% registered = u.id %>
+                  <% break %>
+                <% end %>
               <% end %>
-            <% else %>
-              <div class="col-sm-3 mt-3">
-                <% if logged_in? && current_user.id == @user.id %>
-                  <% registered = false %>
-                  <% @user_email.each do |u| %>
-                    <% if u.email == review.email %>
-                      <% registered = u.id %>
-                      <% break %>
-                    <% end %>
-                  <% end %>
+              <%= render "display_review_and_rating", review: review, reviewer_id: registered %>
+              <% if logged_in? && current_user.id == @user.id %>
+                <div class="col-sm-3 mt-2">
                   <% if admin_user? %>
                     <button type="button" class="btn btn-md btn-primary" disabled>Approved</button>
                   <% end %>
-                  <% if registered != false %>
+                  <% if registered != nil %>
                     <%= link_to "Send Message", new_message_path( { post_id: @post.id, sender_id: @user.id, receiver_id: registered } ), class: "btn btn-md btn-primary", title: "Send message to #{ review.name }" %> 
                   <% else %>
                     <button type="button" class="btn btn-md btn-secondary" disabled>Unregistered</button>
                   <% end %>
-                <% end %>
-                <% no_review_message = true %>
-              </div>
-            <% end %>
+                </div>
+              <% end %>
+              <% no_review_message = true %>
+            </div>
           </div>
-        </div>
-      </div>   
-    </div>  
-  <% end %>    
+        <% end %>
+      <% end %>
+    </div>
+  </div>     
   <% if no_review_message == false %>
     <div class="col-xs-12 col-sm-12">
       <% if @post.approved_by == "null" %>

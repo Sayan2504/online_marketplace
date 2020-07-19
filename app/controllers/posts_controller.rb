@@ -19,22 +19,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post_attachment = @post.post_attachments.build
-  end
-
-  def update
-    if @post.update(post_params)
-      @post.user_id = current_user.id
-      if params[:post_attachments].present?
-        params[:post_attachments]["photo"].each do |a|
-          @post_attachment = @post.post_attachments.create(photo: a, post_id: @post.id, user_id: current_user.id)
-        end
-      end
-      redirect_to post_path(@post), flash: { success: "Post has been successfully updated" }
-    else
-      @post_attachment = @post.post_attachments.build
-      render "edit"
-    end
+    @post_attachment = @post.post_attachment
   end
 
   def destroy
@@ -82,6 +67,21 @@ class PostsController < ApplicationController
     @reviews = @post.reviews.all
     @user_email = User.all 
     @buyer_user = Buyer.buyer_post_id(@post.id) 
+  end
+
+  def update
+    if @post.update(post_params)
+      @post.user_id = current_user.id
+      if params[:post_attachments].present?
+        params[:post_attachments]["photo"].each do |a|
+          @post_attachment = @post.post_attachments.create(photo: a, post_id: @post.id, user_id: current_user.id)
+        end
+      end
+      redirect_to post_path(@post), flash: { success: "Post has been successfully updated" }
+    else
+      @post_attachment = @post.post_attachments.build
+      render "edit"
+    end
   end
 
   def approve

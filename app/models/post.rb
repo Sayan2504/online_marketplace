@@ -6,7 +6,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
-  has_many :post_attachments
+  has_many :post_attachments, dependent: :destroy
   has_many :reviews
   has_many :messages
   has_and_belongs_to_many :buyers

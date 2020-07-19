@@ -1,13 +1,16 @@
 <div class="col-sm-6"> 
   <div class="post-details-row mb-2">
-    <label><strong>Name : </strong></label>
-    <span><%= review.name %></span>
+    <span><strong><%= review.name %>:</strong></span>
+    <span><%= review.review.truncate(50) %></span>
   </div>
-  <div class="post-details-row">
-    <label><strong>Review : </strong></label>
-    <span><%= review.review %></span>
+  <div>
+    <% if reviewer_id == current_user.id %>
+      <%= link_to "Edit", edit_review_path(review.id), class: "pr-3", title: "Edit this post" %>
+      <%= link_to "Delete", review_path(review.id), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "pr-3", title: "Delete this review?" %>
+    <% end %> 
+    <%= link_to "Details", review_path(review.id), title: "Show details of this post" %>
   </div>
 </div>
-<div class="col-sm-3 mt-3">
+<div class="col-sm-3 mt-2">
   <%= render "rating_view", review: review %>
 </div>

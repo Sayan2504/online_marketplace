@@ -1,0 +1,50 @@
+<% provide(:title, @review.name) %>
+
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-md-12">
+    <div class="card details-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span><strong><u><%= @review.name %></u> : <u><%= @review.review %></u></strong></span>
+        <span>
+          <%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_review_path(@review), class: "btn btn-sm btn-primary" %>
+          <%= link_to '<i class="fas fa-edit"></i> Delete'.html_safe, review_path(@review), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary" %>
+          <%= link_to '<i class="fas fa-edit"></i> All Reviews'.html_safe, post_path(@review.post_id), class: "btn btn-sm btn-primary" %>
+        </span>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 details-row">
+            <label><strong>Reviewer name : </strong></label>
+            <span><%= @review.name %></span>
+          </div>
+          <div class="col-md-6 col-sm-12 details-row">
+            <label><strong>Reviewer email : </strong></label>
+            <span><%= @review.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 details-row pt-3">
+            <label><strong>Review : </strong></label>
+            <span><%= @review.review %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-12 details-row pt-3">
+            <label><strong>Reviewer location : </strong></label>
+            <span><%= @review.location %></span>
+          </div>
+          <div class="col-md-6 col-sm-12 details-row pt-3">
+            <div class="row">
+              <span class="col-2">
+                <label><strong>Rating : </strong></label>
+              </span>
+              <span class="col-10">
+                <%= render "posts/rating_view", review: @review %>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
