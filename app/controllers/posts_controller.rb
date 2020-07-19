@@ -1,5 +1,5 @@
 class PostsController < ApplicationController  
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_post_unique, only: [:approve, :reject]
 
   def create
@@ -15,6 +15,31 @@ class PostsController < ApplicationController
     else
       @post_attachment = @post.post_attachments.build
       render "new"
+    end
+  end
+
+  def edit
+    @post_attachment = @post.post_attachments.build
+  end
+
+  def update
+    if @post.update(post_params)
+      @post.user_id = current_user.id
+      if params[:post_attachments].present?
+        params[:post_attachments]["photo"].each do |a|
+          @post_attachment = @post.post_attachments.create(photo: a, post_id: @post.id, user_id: current_user.id)
+        end
+      end
+      redirect_to post_path(@post), flash: { success: "Post has been successfully updated" }
+    else
+      @post_attachment = @post.post_attachments.build
+      render "edit"
+    end
+  end
+
+  def destroy
+    if @post.delete
+      redirect_to user_path(current_user.id), flash: { danger: "Post has been successfully deleted" }
     end
   end
 

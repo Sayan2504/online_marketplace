@@ -1,65 +1,87 @@
 <section class="table-header mb-3">
   <div class="row">
-    <div class="col-6 post-ad-title-show-page">
-      <h2 class="text-center heading"><%= @post.ad_title.upcase %></h2>
-    </div>
+    <% if logged_in? && current_user.id == @user.id %>
+      <% if @post.buyer_id == nil %>
+        <div class="col-4 text-left">
+          <div class="row btn-toolbar" style="display: block">
+            <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-md btn-primary", title: "Edit this post" %>
+            <%= link_to "Delete Post", post_path(@post), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "btn btn-md btn-primary", title: "Delete this post?" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-4">
+          <div class="row btn-toolbar text-center" style="display: block">
+            <button type="button" class="btn btn-md btn-light" disabled>Product Sold</button>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <% if logged_in? && current_user.id == @user.id %>
+      <div class="col-4">
+        <h2 class="text-center heading"><%= @post.ad_title.upcase %></h2>
+      </div>
+    <% else %>
+      <div class="col-8 post-ad-title-show-page">
+        <h2 class="text-center heading"><%= @post.ad_title.upcase %></h2>
+      </div>
+    <% end %>
     <% if logged_in? %>
       <% if admin_user? %>
         <% if @post.buyer_id == nil %>
           <% if @post.approved_by == "null" %>
-            <div class="col-6 text-right">
+            <div class="col-4 text-right">
               <div class="row btn-toolbar" style="display: block">
                 <%= link_to "Approve", admin_approve_path( { id: @post.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..." }, title: "Approve this post #{ @post.ad_title.upcase }" %>
                 <%= link_to "Reject", admin_reject_path( { id: @post.id } ), class: "btn btn-md btn-secondary", data: { disable_with: "Rejecting..." }, title: "Reject this post #{ @post.ad_title.upcase }" %>
               </div>
             </div>
           <% elsif @post.approved_by == "rejected" %>
-            <div class="col-6">
+            <div class="col-4">
               <div class="row btn-toolbar text-right" style="display: block">
                 <%= link_to "Approve", admin_approve_path( { id: @post.id } ), class: "btn btn-md btn-primary", data: { disable_with: "Approving..." }, title: "Approve this post #{ @post.ad_title.upcase }" %>
               </div>
             </div>
           <% end %>
         <% else %>
-          <div class="col-6">
+          <div class="col-4">
             <div class="row btn-toolbar text-right" style="display: block">
               <button type="button" class="btn btn-md btn-light" disabled>Product Sold</button>
             </div>
           </div>
         <% end %>
       <% end %>
-      <% if @post.approved_by != "null" or @post.approved_by != "rejected" %>
+      <% if @post.approved_by != "null" && @post.approved_by != "rejected" %>
         <% if current_user.id == @user.id %>
-            <div class="col-6 text-right">
+            <div class="col-4 text-right">
               <div class="row btn-toolbar" style="display: block">
                 <%= link_to "Buyers list", buyers_path( { post_id: @post.id, user_id: @post.user.id } ), class: "btn btn-md btn-primary", title: "See the list of pending buying requests for #{ @post.ad_title.upcase }" %>
                 <%= link_to "Unread messages", notifications_path( { post_id: @post.id, sender_id: @post.user.id } ), class: "btn btn-md btn-primary", title: "See the list of unread messages for #{ @post.ad_title.upcase }" %>
               </div>
             </div>
         <% else %>
-          <div class="col-6 text-right">
-            <div class="row btn-toolbar" style="display: block">
-              <% if @post.buyer_id == nil %>
-                <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
-                <% requested = false %>
-                <% @buyer_user.each do |buyer_user| %>
-                  <% if buyer_user.email == current_user.email %>
-                    <% requested = true %>
-                    <% break %>
+            <div class="col-4 text-right">
+              <div class="row btn-toolbar" style="display: block">
+                <% if @post.buyer_id == nil %>
+                  <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
+                  <% requested = false %>
+                  <% @buyer_user.each do |buyer_user| %>
+                    <% if buyer_user.email == current_user.email %>
+                      <% requested = true %>
+                      <% break %>
+                    <% end %>
                   <% end %>
-                <% end %>
-                <% if requested == true %>
-                  <button type="button" class="btn btn-md btn-primary" disabled>Buying Request Pending</button>
-                <% else %>
-                  <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
-                <% end %>
-              <% end %>      
+                  <% if requested == true %>
+                    <button type="button" class="btn btn-md btn-primary" disabled>Buying Request Pending</button>
+                  <% else %>
+                    <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
+                  <% end %>
+                <% end %>      
+              </div>
             </div>
-          </div>
         <% end %>
       <% end %>
     <% else %>
-      <div class="col-6 text-right">
+      <div class="col-4 text-right">
         <div class="row btn-toolbar" style="display: block">
           <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
           <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>

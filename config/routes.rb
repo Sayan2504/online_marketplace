@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :notifications, only: :index do
     post "read_message", on: :member
   end
-  resources :posts, only: [:show, :create, :new, :index] do
+  resources :posts do
     member do
       post "approve"
       post "reject"
