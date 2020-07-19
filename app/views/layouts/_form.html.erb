@@ -14,7 +14,7 @@
               </div>
               <div class="col-sm-8 align-item-center text-align-center pr-0 pl-0 pb-0">
                 <span class="post-ad-title"><h5><%= link_to post.ad_title.upcase, post_path(post), title: "View details of the post #{ post.ad_title.upcase }" %></h5></span>
-                <% if post.approved_by != ["null", "rejected"] && post.buyer_id == nil %>   
+                <% if post.approved_by != "null" && post.approved_by != "rejected" && post.buyer_id == nil %>   
                   <span class="post-ad-title"><p><strong>Category:</strong><%= post.category.name %></p></span>
                   <span class="post-ad-title"><p><strong>Location:</strong><%= post.city %></p></span>
                 <% end %>
