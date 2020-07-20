@@ -64,17 +64,32 @@
                 <% if @post.buyer_id == nil %>
                   <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
                   <% requested = false %>
+                  <% buyer_id = nil %>
                   <% @buyer_user.each do |buyer_user| %>
                     <% if buyer_user.email == current_user.email %>
                       <% requested = true %>
+                      <% buyer_id = buyer_user.id %>
                       <% break %>
                     <% end %>
                   <% end %>
-                  <% if requested == true %>
-                    <button type="button" class="btn btn-md btn-primary" disabled>Buying Request Pending</button>
-                  <% else %>
-                    <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
-                  <% end %>
+                  <span class="dropdown show">
+                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Buy Product
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <% if requested == true %>
+                        <button class="dropdown-item" type="button" disabled>Request Sent</button>
+                        <%= link_to "Edit Request", edit_buyer_path(buyer_id), class: "dropdown-item", title: "Edit Request" %>
+                        <%= link_to "Show Request", buyer_path(buyer_id), class: "dropdown-item", title: "Show request details" %>
+                        <%= link_to "Delete Request", buyer_path(buyer_id), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "dropdown-item", title: "Delete buying request" %>
+                      <% else %>
+                        <%= link_to "Buying Request", new_buyer_path( { post_id: @post.id } ), class: "dropdown-item", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
+                        <button class="dropdown-item" type="button" disabled>Edit Request</button>
+                        <button class="dropdown-item" type="button" disabled>Show Request</button>
+                        <button class="dropdown-item" type="button" disabled>Delete Request</button>
+                      <% end %>
+                    </div>
+                  </span>
                 <% end %>      
               </div>
             </div>
@@ -84,7 +99,35 @@
       <div class="col-4 text-right">
         <div class="row btn-toolbar" style="display: block">
           <%= link_to "Write review", new_review_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Write a review for #{ @post.ad_title.upcase }" %>
-          <%= link_to "Buy Product", new_buyer_path( { post_id: @post.id } ), class: "btn btn-md btn-primary", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
+          <span class="dropdown show">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Buy Product
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <% requested = false %>
+              <% buyer_id = nil %>
+              <% @buyer_user.each do |buyer_user| %>
+                <% @user_email.each do |user| %>
+                  <% if buyer_user.email == user.email %>
+                    <% requested = true %>
+                    <% buyer_id = buyer_user.id %>
+                    <% break %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% if requested == true %>
+                <button class="dropdown-item" type="button" disabled>Request Sent</button>
+                <%= link_to "Edit Request", edit_buyer_path(buyer_id), class: "dropdown-item", title: "Edit Request" %>
+                <%= link_to "Show Request", buyer_path(buyer_id), class: "dropdown-item", title: "Show request details" %>
+                <%= link_to "Delete Request", buyer_path(buyer_id), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "dropdown-item", title: "Delete buying request" %>
+              <% else %>
+                <%= link_to "Buying Request", new_buyer_path( { post_id: @post.id } ), class: "dropdown-item", title: "Send a buying request for #{ @post.ad_title.upcase }" %>
+                <button class="dropdown-item" type="button" disabled>Edit Request</button>
+                <button class="dropdown-item" type="button" disabled>Show Request</button>
+                <button class="dropdown-item" type="button" disabled>Delete Request</button>
+              <% end %>
+            </div>
+          </span>
         </div>
       </div>
     <% end %>

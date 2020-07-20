@@ -66,7 +66,10 @@ class PostsController < ApplicationController
     @post_attachments = @post.post_attachments.all
     @reviews = @post.reviews.all
     @user_email = User.all 
-    @buyer_user = Buyer.buyer_post_id(@post.id) 
+    @buyer_user = Buyer.buyer_post_id(@post.id)
+    if @post.buyer_id != nil
+      @buyer = Buyer.find(@post.buyer_id)
+    end 
   end
 
   def update

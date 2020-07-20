@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get "/unchecked",  to: "ads#unchecked"
   end
 
-  resources :buyers, only: [:create, :new, :index] do
+  resources :buyers do
     member do
       get "sell"
       post "sell"

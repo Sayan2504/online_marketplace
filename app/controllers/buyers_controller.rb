@@ -1,5 +1,6 @@
 class BuyersController < ApplicationController
   before_action :set_post, only: [:index, :new]
+  before_action :set_buyer, only: [:edit, :update, :destroy, :show]
 
   def create
     @buyer = Buyer.new(buyer_params)
@@ -39,6 +40,31 @@ class BuyersController < ApplicationController
     @buyer = Buyer.new
   end
 
+  def show
+    @post = Post.find(@buyer.post_id)
+  end
+
+  def edit
+    @post = Post.find(@buyer.post_id)
+    @user = User.find(@buyer.user_id)
+  end
+
+  def destroy
+    if @buyer.delete
+      redirect_to post_path(@buyer.post_id), flash: { danger: "Buyer request has been successfully deleted" }
+    end
+  end
+
+  def update
+    if @buyer.update(buyer_params)
+      @buyer.post_id = Post.find(@buyer.post_id).id
+      @buyer.user_id = User.find(@buyer.user_id).id
+      redirect_to post_path(@buyer.post_id), flash: { success: "Buyer details has been successfully updated" }
+    else
+      render "edit"
+    end
+  end
+
   def bought
     @buyer = Buyer.buyer_email(current_user.email)
     @posts = Post.product_bought_sold(@buyer.ids)
@@ -64,6 +90,10 @@ class BuyersController < ApplicationController
   end 
 
   private
+
+  def set_buyer
+    @buyer = Buyer.find(params[:id])
+  end
 
   def buyer_params
     params.require(:buyer).permit(:buyer_name, :user_id, :post_id, :email, :location)

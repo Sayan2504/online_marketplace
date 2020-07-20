@@ -6,8 +6,6 @@
       <div class="card-header d-flex justify-content-between align-items-center">
         <span><strong><u><%= @review.name %></u> : <u><%= @review.review %></u></strong></span>
         <span>
-          <%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_review_path(@review), class: "btn btn-sm btn-primary" %>
-          <%= link_to '<i class="fas fa-edit"></i> Delete'.html_safe, review_path(@review), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary" %>
           <%= link_to '<i class="fas fa-edit"></i> All Reviews'.html_safe, post_path(@review.post_id), class: "btn btn-sm btn-primary" %>
         </span>
       </div>

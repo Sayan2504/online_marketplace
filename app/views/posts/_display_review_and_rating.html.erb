@@ -4,7 +4,7 @@
     <span><%= review.review.truncate(50) %></span>
   </div>
   <div>
-    <% if reviewer_id == current_user.id %>
+    <% if logged_in? && reviewer_id == current_user.id %>
       <%= link_to "Edit", edit_review_path(review.id), class: "pr-3", title: "Edit this post" %>
       <%= link_to "Delete", review_path(review.id), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "pr-3", title: "Delete this review?" %>
     <% end %> 

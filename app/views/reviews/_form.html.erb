@@ -43,7 +43,12 @@
           <%= f.text_area :review, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Write your review", title: "Enter your Review about the post #{ @post.ad_title.upcase }", maxlength: 255, minlength: 1 %>
         </div>
         <div class="form-row">
-          <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-12">
+          <div class="col-xs-12 order-2 order-sm-1 col-sm-3">
+            <% if !@review.new_record? %>
+              <%= link_to "Delete", review_path(@review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", title: "Delete this post?" %>
+            <% end %>
+          </div>
+          <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-9">
             <%= link_to "Cancel", post_path(@post), class: "btn btn-light btn-xs-block", title: "Cancel giving review" %>
             <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs-block", data: { disable_with: "Submitting..." }, title: "Submit your review" %>
           </div>

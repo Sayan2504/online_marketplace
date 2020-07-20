@@ -1,0 +1,37 @@
+<% provide(:title, @buyer.buyer_name) %>
+
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-md-12">
+    <div class="card details-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span><strong><u>Buyer</u> : <u><%= @buyer.buyer_name %></u></strong></span>
+        <span>
+          <%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_buyer_path(@buyer), class: "btn btn-sm btn-primary" %>
+          <%= link_to '<i class="fas fa-edit"></i> Delete'.html_safe, buyer_path(@buyer), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "btn btn-sm btn-primary" %>
+        </span>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 details-row">
+            <label><strong>Buyer name : </strong></label>
+            <span><%= @buyer.buyer_name %></span>
+          </div>
+          <div class="col-md-6 col-sm-12 details-row">
+            <label><strong>Buyer email : </strong></label>
+            <span><%= @buyer.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-12 details-row pt-3">
+            <label><strong>Buyer location : </strong></label>
+            <span><%= @buyer.location %></span>
+          </div>
+          <div class="col-md-6 col-sm-12 details-row pt-3">
+            <label><strong>Request for : </strong></label>
+            <span><%= @post.ad_title %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
