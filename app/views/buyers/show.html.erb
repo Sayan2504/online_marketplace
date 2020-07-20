@@ -5,6 +5,7 @@
     <div class="card details-card">
       <div class="card-header d-flex justify-content-between align-items-center">
         <span><strong><u>Buyer</u> : <u><%= @buyer.buyer_name %></u></strong></span>
+        <small>Request Submitted <%= time_ago_in_words(@buyer.created_at) %> ago</small>
         <span>
           <%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_buyer_path(@buyer), class: "btn btn-sm btn-primary" %>
           <%= link_to '<i class="fas fa-edit"></i> Delete'.html_safe, buyer_path(@buyer), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "btn btn-sm btn-primary" %>
