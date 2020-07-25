@@ -31,6 +31,12 @@ class UsersController < ApplicationController
   end
 
   def index
+    if !@user.present?
+      redirect_to root_path, flash: { warning: "Please log in/Sign up to continue" }
+    end
+    if logged_in?
+      redirect_to request.referrer, flash: { warning: "Please log out to continue" }
+    end
   end
 
   def new
@@ -42,6 +48,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !@user.present?
+      redirect_to root_path, flash: { warning: "Please log in/Sign up" }
+    end
   end
 
   def update
@@ -67,7 +76,9 @@ class UsersController < ApplicationController
   end
 
   def set_post
-    @posts = @user.posts.admin_post_approved_state
+    if @user.present?
+      @posts = @user.posts.admin_post_approved_state
+    end
   end
 
   def user_params

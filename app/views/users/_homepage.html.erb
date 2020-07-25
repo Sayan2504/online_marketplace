@@ -1,7 +1,9 @@
 <% if admin_user? %>
   <% provide(:title, "Admin") %>
-<% else %> 
-  <% provide(:title, current_user.name) %>
+<% else %>
+  <% if current_user.present? %>
+    <% provide(:title, current_user.name) %>
+  <% end %>
 <% end %>
 
 <div class="jumbotron jumbotron-fluid bg-light text-dark">
@@ -11,7 +13,9 @@
         <% if admin_user? %>
           <h1 class="display-4">Welcome Admin</h1> 
         <% else %>
-          <h1 class="display-4">Welcome <%= current_user.name %></h1>
+          <% if current_user.present? %>
+            <h1 class="display-4">Welcome <%= current_user.name %></h1>
+          <% end %>
         <% end %>
       </div>
       <div class="col-3 text-right">

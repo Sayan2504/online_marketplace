@@ -19,7 +19,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post_attachment = @post.post_attachment
+    if params[:post_attachments].present?
+      @post_attachment = @post.post_attachment
+    else
+      @post_attachment = @post.post_attachments.build
+    end
   end
 
   def destroy

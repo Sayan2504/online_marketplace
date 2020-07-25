@@ -45,7 +45,7 @@
         <div class="form-row">
           <div class="col-xs-12 order-2 order-sm-1 col-sm-3">
             <% if !@review.new_record? %>
-              <%= link_to "Delete", review_path(@review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", title: "Delete this post?" %>
+              <%= link_to "Delete", review_path(@review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", title: "Delete this review?" %>
             <% end %>
           </div>
           <div class="col-xs-12 text-right order-1 order-sm-2 col-sm-9">
