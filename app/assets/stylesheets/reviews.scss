@@ -7,7 +7,6 @@
     text-align: left;
     }
 
-
 .rating:not(:checked) > input { 
     display: inline-block;
     position:absolute;
@@ -15,8 +14,6 @@
     clip:rect(0,0,0,0);
     visibility: hidden;
     }
-
-
 
 .rating:not(:checked) > label {
     float:right; width:1em; padding:0 .1em; 
@@ -29,11 +26,9 @@
     text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
     }
 
-
 .rating:not(:checked) > label:before {
     content: '★ '; 
    }
-
 
 .rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
     color: gold; 
@@ -57,6 +52,16 @@
 #star_1.activated, #star_2.activated, #star_3.activated, #star_4.activated, #star_5.activated{
     color: gold; text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
      visibility: visible;
+}
+
+#star_1.not_activated, 
+#star_2.not_activated, 
+#star_3.not_activated, 
+#star_4.not_activated, 
+#star_5.not_activated{
+  color: rgb(235, 208, 208);
+  text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+  visibility: visible;
 }
 
 
