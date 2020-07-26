@@ -16,13 +16,13 @@
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-12">
             <%= f.label :detailed_ad_title, "Detailed Ad Title" %>
-            <%= f.text_field :detailed_ad_title, rows: "4", class: "form-control", required: true, autocomplete: :off, placeholder: "If no extra details, retype the Ad title", title: "Type the title for the post in detail", maxlength: 30, minlength: 2 %>
+            <%= f.text_field :detailed_ad_title, rows: "4", class: "form-control", autocomplete: :off, placeholder: "Type ad title for the post in detail", title: "Type the title for the post in detail", maxlength: 30 %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-12">
             <%= f.label :ad_description, "Ad Description" %>
-            <%= f.text_area :ad_description, rows: "4", class: "form-control", required: true, autocomplete: :off, placeholder: "Description about the advertisement", title: "Type the description about the post", maxlength: 255, minlength: 2 %>
+            <%= f.text_area :ad_description, rows: "4", class: "form-control", autocomplete: :off, placeholder: "Description about the advertisement", title: "Type the description about the post", maxlength: 255 %>
           </div>
         </div>
         <div class="form-row">
@@ -42,7 +42,7 @@
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :phone, "Phone number" %>
-            <%= f.text_field :phone, class: "form-control", required: true, autocomplete: :off, placeholder: "(country code)-(10 digit mobile number)", title: "Enter your contact number(country code follwed by - is mandatory)", maxlength: 15, minlength: 10 %>
+            <%= f.text_field :phone, class: "form-control", autocomplete: :off, placeholder: "(country code)-(10 digit mobile number)", title: "Enter your contact number", maxlength: 15 %>
           </div>
           <div class="form-group col-sm-12 col-md-6">
             <%= f.label :city, "City" %>

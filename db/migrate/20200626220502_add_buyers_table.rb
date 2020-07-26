@@ -5,7 +5,7 @@ class AddBuyersTable < ActiveRecord::Migration[6.0]
       t.bigint "post_id", null: false
       t.string "buyer_name", null: false
       t.string "email", null: false
-      t.string "location", null: false
+      t.string "location"
       t.datetime "created_at", precision: 6, null: false
       t.datetime "updated_at", precision: 6, null: false
     end

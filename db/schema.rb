@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_220502) do
     t.bigint "post_id", null: false
     t.string "buyer_name", null: false
     t.string "email", null: false
-    t.string "location", null: false
+    t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_buyers_on_user_id"
@@ -67,11 +67,11 @@ ActiveRecord::Schema.define(version: 2020_06_26_220502) do
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ad_title", null: false
-    t.string "detailed_ad_title", null: false
-    t.text "ad_description", null: false
     t.string "user_name", null: false
-    t.string "phone", null: false
     t.string "city", null: false
+    t.string "detailed_ad_title"
+    t.text "ad_description"
+    t.string "phone"
     t.string "approved_by", default: "null"
     t.integer "category_id", default: 0
     t.integer "buyer_id"
@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 2020_06_26_220502) do
     t.bigint "post_id", null: false
     t.string "name", null: false
     t.string "email", null: false
-    t.string "location", null: false
     t.text "review", null: false
     t.string "rating", null: false
+    t.string "location"
     t.string "approved_by", default: "null"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

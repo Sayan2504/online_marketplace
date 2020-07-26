@@ -11,7 +11,7 @@ class Buyer < ApplicationRecord
 
   validates :buyer_name, presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_NAME_AND_LOCATION_REGEX }
   validates :email, presence: true, length: { maximum: 80, minimum: 5 } , format: { with: VALID_EMAIL_REGEX }
-  validates :location, presence: true, length: { maximum: 30, minimum: 2 } , format: { with: VALID_NAME_AND_LOCATION_REGEX }
+  validates :location, length: { maximum: 30 } , format: { with: VALID_NAME_AND_LOCATION_REGEX }
   validates :post_id, presence: true
   validates :user_id, presence: true
 

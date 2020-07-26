@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
           <%= f.label :location , "Location:" %>
-          <%= f.text_field :location, class: "form-control", autofocus: true, required: true, autocomplete: :off, placeholder: "Your address", title: "Enter your location", maxlength: 30, minlength: 2 %>
+          <%= f.text_field :location, class: "form-control", autofocus: true, autocomplete: :off, placeholder: "Your address", title: "Enter your location", maxlength: 30 %>
         </div>
         <%= f.hidden_field :post_id, value: @post.id %>
         <%= f.hidden_field :user_id, value: @user.id %>
