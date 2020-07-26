@@ -17,17 +17,25 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def edit
+    if !admin_user?
+      redirect_to "/admin_facility.html"
+    end
   end
 
   def index
-    @categories = Category.all
+    if admin_user?
+      @categories = Category.all
+    else
+      redirect_to "/admin_facility.html"
+    end
   end 
 
   def new
-    @category = Category.new
-  end
-
-  def show
+    if admin_user?
+      @category = Category.new
+    else
+      redirect_to "/admin_facility.html"
+    end
   end
 
   def update

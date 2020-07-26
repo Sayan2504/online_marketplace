@@ -22,6 +22,9 @@ class SessionsController < ApplicationController
   end
 
   def new
+    if logged_in?
+      redirect_to "/logged_in.html"
+    end
   end
  
   def fb_google_create

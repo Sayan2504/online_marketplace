@@ -28,28 +28,27 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if !logged_in?
+      redirect_to "/logged_out.html"
+    end
   end
 
   def index
     if !@user.present?
       redirect_to root_path, flash: { warning: "Please log in/Sign up to continue" }
     end
-    if logged_in?
-      redirect_to request.referrer, flash: { warning: "Please log out to continue" }
-    end
   end
 
   def new
     if logged_in?
-      redirect_to root_path, flash: { warning: "You have already logged in" }
-      return
+      redirect_to "/logged_in.html"
     end
     @user = User.new( { buyer_post_id: params[:buyer_post_id], email: params[:email], name: params[:buyer_name] } )
   end
 
   def show
     if !@user.present?
-      redirect_to root_path, flash: { warning: "Please log in/Sign up" }
+      redirect_to root_path, flash: { warning: "Please log in/Sign up to continue" }
     end
   end
 
@@ -62,11 +61,19 @@ class UsersController < ApplicationController
   end
 
   def rejected
-    @posts = @user.posts.admin_post_state("rejected")
+    if logged_in?
+      @posts = @user.posts.admin_post_state("rejected")
+    else
+      redirect_to "/logged_out.html"
+    end
   end
 
   def unchecked
-    @posts = @user.posts.admin_post_state("null")
+    if logged_in?
+      @posts = @user.posts.admin_post_state("null")
+    else
+      redirect_to "/logged_out.html"
+    end
   end
 
   private

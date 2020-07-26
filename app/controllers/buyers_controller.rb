@@ -32,7 +32,16 @@ class BuyersController < ApplicationController
   end
 
   def index
-    @buyers = Buyer.buyer_post_id(params[:post_id])
+    @current_buyers_post = Buyer.find_by(post_id: params[:post_id])
+    if !logged_in?
+      redirect_to "/logged_out.html"
+    else
+      if @current_buyers_post.user_id == current_user.id
+       @buyers = Buyer.buyer_post_id(params[:post_id])
+      else
+        redirect_to "/invalid_user.html"
+      end
+    end
   end
 
   def new
@@ -41,12 +50,20 @@ class BuyersController < ApplicationController
   end
 
   def show
-    @post = Post.find(@buyer.post_id)
+    if @buyer.user_id == current_user.id
+      redirect_to "/invalid_user.html"
+    else
+      @post = Post.find(@buyer.post_id)
+    end
   end
 
   def edit
-    @post = Post.find(@buyer.post_id)
-    @user = User.find(@buyer.user_id)
+    if @buyer.user_id == current_user.id
+      redirect_to "/invalid_user.html"
+    else
+      @post = Post.find(@buyer.post_id)
+      @user = User.find(@buyer.user_id)
+    end
   end
 
   def destroy
@@ -66,8 +83,12 @@ class BuyersController < ApplicationController
   end
 
   def bought
-    @buyer = Buyer.buyer_email(current_user.email)
-    @posts = Post.product_bought_sold(@buyer.ids)
+    if logged_in?
+      @buyer = Buyer.buyer_email(current_user.email)
+      @posts = Post.product_bought_sold(@buyer.ids)
+    else
+      redirect_to "/logged_out.html"
+    end
   end
   
   def sell
@@ -85,8 +106,12 @@ class BuyersController < ApplicationController
   end
 
   def sold
-    @buyer = Buyer.buyer_user_id(current_user.id)
-    @posts = Post.product_bought_sold(@buyer.ids)
+    if logged_in?
+      @buyer = Buyer.buyer_user_id(current_user.id)
+      @posts = Post.product_bought_sold(@buyer.ids)
+    else
+      redirect_to "/logged_out.html"
+    end
   end 
 
   private

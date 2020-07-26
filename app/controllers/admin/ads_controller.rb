@@ -8,7 +8,11 @@ class Admin::AdsController < ApplicationController
   end
 
   def approved
-    @posts = Post.admin_post_approved_state
+    if admin_user?
+      @posts = Post.admin_post_approved_state
+    else
+      redirect_to "/admin_facility.html"
+    end
   end
 
   def reject
@@ -18,11 +22,19 @@ class Admin::AdsController < ApplicationController
   end  
 
   def rejected
-    @posts = Post.admin_post_state("rejected")
+    if admin_user?
+      @posts = Post.admin_post_state("rejected")
+    else
+      redirect_to "/admin_facility.html"
+    end
   end
 
   def unchecked
-    @posts = Post.admin_post_state("null")
+    if admin_user?
+      @posts = Post.admin_post_state("null")
+    else
+      redirect_to "/admin_facility.html"
+    end
   end
 
   private

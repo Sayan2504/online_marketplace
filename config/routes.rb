@@ -50,6 +50,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get '*path' => redirect('/404.html')
+  get '*path' => redirect("/404.html")
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

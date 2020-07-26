@@ -2,7 +2,11 @@ class NotificationsController < ApplicationController
   include NotificationsHelper
 
   def index
-    @notifications = notification_view
+    if logged_in?
+      @notifications = notification_view
+    else
+      redirect_to "/logged_out.html"
+    end
   end
 
   def read_message

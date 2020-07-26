@@ -11,12 +11,16 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @receiver = User.find(params[:receiver_id]) 
-    @post = Post.find(params[:post_id])
-    @messages = Message.receiver_side(current_user.id, @receiver.id).or (Message.sender_side(current_user.id, @receiver.id)) 
-    @messages = @messages.message_post_id(@post.id)
-    @messages = @messages.order("created_at ASC").includes(:user)
-    @message = Message.new
+    if logged_in?
+      @receiver = User.find(params[:receiver_id]) 
+      @post = Post.find(params[:post_id])
+      @messages = Message.receiver_side(current_user.id, @receiver.id).or (Message.sender_side(current_user.id, @receiver.id)) 
+      @messages = @messages.message_post_id(@post.id)
+      @messages = @messages.order("created_at ASC").includes(:user)
+      @message = Message.new
+    else
+      redirect_to "/logged_out.html"
+    end
   end
 
   private

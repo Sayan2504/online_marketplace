@@ -17,7 +17,16 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(@review.post_id)
+    @current_post = Post.find(@review.post_id)
+    if logged_in?
+      if @current_post.user_id != current_user.id
+        @post = Post.find(@review.post_id)
+      else
+        redirect_to "/invalid_user.html"
+      end
+    else
+      redirect_to "/logged_out.html"
+    end
   end
 
   def update

@@ -36,10 +36,16 @@
                     </div>
                   <% end %>
                 <% else %>
-                  <% if controller_name == "users" && post.buyer_id != nil && post.approved_by != ["null", "rejected"] %>
-                    <div class="row" style="display: inline-block">
-                      <button type="button" class="btn btn-md btn-secondary" disabled>Product Sold</button>
-                    </div> 
+                  <% if post.buyer_id != nil && post.approved_by != ["null", "rejected"] %>
+                    <% if controller_name == "users" %>
+                      <div class="row" style="display: inline-block">
+                        <button type="button" class="btn btn-md btn-secondary" disabled>Product Sold</button>
+                      </div> 
+                    <% else %>
+                      <div class="row ml-5" style="display: inline-block">
+                        <button type="button" class="btn btn-md btn-secondary" disabled>Product Sold</button>
+                      </div>
+                    <% end %>
                   <% end %>   
                 <% end %>
               </div>

@@ -19,10 +19,18 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if params[:post_attachments].present?
-      @post_attachment = @post.post_attachment
+    if logged_in?
+      if @post.user_id == current_user.id
+        if params[:post_attachments].present?
+          @post_attachment = @post.post_attachment
+        else
+          @post_attachment = @post.post_attachments.build
+        end
+      else
+        redirect_to "/invalid_user.html"
+      end
     else
-      @post_attachment = @post.post_attachments.build
+      redirect_to "/logged_out.html"
     end
   end
 
@@ -37,7 +45,9 @@ class PostsController < ApplicationController
     @posts = @posts.post_unsold.includes(:category)
     @post_ad_title = Post.post_ad_title(params[:ad_title]).post_unsold
     @post_city = Post.post_city(params[:location]).post_unsold
-    if params[:user_id]
+    if params[:user_id] && !logged_in?
+      redirect_to "/logged_out.html"
+    else
       if params[:decision] == "true"
         @myposts = Post.users_post(params[:user_id])
         @posts = @posts.users_post(params[:user_id])
@@ -45,7 +55,7 @@ class PostsController < ApplicationController
         @othersposts = Post.others_post(params[:user_id])
         @posts = @posts.others_post(params[:user_id])
       end
-    end 
+    end
     if params[:category_id] && !params[:category_id][:id].blank?
       @category = Category.find(params[:category_id][:id])
       @post_unsold = Post.post_category(params[:category_id][:id]).post_unsold
@@ -61,8 +71,12 @@ class PostsController < ApplicationController
   end     
 
   def new
-    @post = Post.new
-    @post_attachment = @post.post_attachments.build
+    if !logged_in?
+      redirect_to "/logged_out.html"
+    else
+      @post = Post.new
+      @post_attachment = @post.post_attachments.build
+    end
   end
     
   def show
