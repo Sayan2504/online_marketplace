@@ -9,10 +9,12 @@
       <div class="card-body">
         <%= form_for :session, url: login_path do |f| %>
           <div class="form-group">
+            <span class="mandatory-fields">*</span>
             <%= f.label :email, "Email Address" %>
             <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Email Address", title: "Enter your email id", maxlength: 80, minlength: 5 %>
           </div>
           <div class="form-group">
+            <span class="mandatory-fields">*</span>
             <%= f.label :password %>
             <%= f.password_field :password, class: "form-control", required: true, placeholder: "Password", title: "Enter your password", maxlength: 30, minlength: 6 %>
           </div>
@@ -27,6 +29,7 @@
             <%= link_to "auth/google_oauth2" do %><%= image_tag("google_logo.png", size: "50x45") %><% end %>
           </span>
         <% end %>
+        <p class="authentication-fields-instruction">Fields marked with <span class="mandatory-fields">*</span> are mandatory</p>
       </div>
     </div>
   </div>

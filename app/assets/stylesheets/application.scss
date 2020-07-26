@@ -21,12 +21,27 @@
   background: navy;
 }
 
-
 //All headings and texts  
 .heading{
   color:white;
 }
 
+//all mandatory fields in forms
+.mandatory-fields{
+  color: red;
+}
+
+.mandatory-fields-instruction{
+  font-style: italic;
+  margin-bottom: -10px;
+}
+
+.authentication-fields-instruction{
+  margin-top: 20px;
+  margin-bottom: -10px;
+}
+
+//all pages view
 #main{
   padding-top: 70px;
 }

@@ -30,7 +30,11 @@
         <div class="row">
           <div class="col-md-6 col-sm-12 details-row pt-3">
             <label><strong>Reviewer location : </strong></label>
-            <span><%= @review.location %></span>
+            <% if @review.location.present? %>
+              <span><%= @review.location %></span>
+            <% else %>
+              <span>Unknown</span>
+            <% end %>
           </div>
           <div class="col-md-6 col-sm-12 details-row pt-3">
             <div class="row">

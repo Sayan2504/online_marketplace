@@ -4,6 +4,7 @@
       <%= form_for [:admin, @category], html: { multipart: true } do |f| %>
         <%= render "shared/error_messages", object: @category %>
         <div class="form-group">
+          <span class="mandatory-fields">*</span>
           <%= f.label :name , "Category Name" %>
           <%= f.text_field :name, class: "form-control category-name", autofocus: true, required: true, autocomplete: :off, placeholder: "e.g. Bikes, Books etc. (maximum 14 characters)", title: "Enter Category name", maxlength: 14, minlength: 2 %>
         </div>
@@ -19,6 +20,7 @@
           </div>
         </div>
       <% end %>
+      <p class="mandatory-fields-instruction">Fields marked with <span class="mandatory-fields">*</span> are mandatory</p>
     </div>
   </div>
 </div>

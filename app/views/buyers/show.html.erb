@@ -26,7 +26,11 @@
         <div class="row">
           <div class="col-md-6 col-sm-12 details-row pt-3">
             <label><strong>Buyer location : </strong></label>
-            <span><%= @buyer.location %></span>
+            <% if @buyer.location.present? %>
+              <span><%= @buyer.location %></span>
+            <% else %>
+              <span>Unknown</span>
+            <% end %>
           </div>
           <div class="col-md-6 col-sm-12 details-row pt-3">
             <label><strong>Request for : </strong></label>

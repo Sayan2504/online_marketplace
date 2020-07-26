@@ -17,19 +17,31 @@
       <div class="card card-header heading">
         <div class="post-details-row mb-4">
           <label><strong>Advertisement : </strong></label>
-          <span><%= @post.detailed_ad_title %></span>
+          <% if @post.detailed_ad_title.present? %>
+            <span><%= @post.detailed_ad_title %></span>
+          <% else %>
+            <span><%= @post.ad_title %></span>
+          <% end %>
         </div>
         <div class="post-details-row mb-4">
           <label><strong>Description : </strong></label>
-          <span><%= @post.ad_description %></span>
+          <% if @post.ad_description.present? %>
+            <span><%= @post.ad_description %></span>
+          <% else %>
+            <span>Not provided</span>
+          <% end %>
         </div>
         <div class="post-details-row mb-4">
           <label><strong>Advertiser : </strong></label>
           <span><%= @post.user_name %></span>
         </div>
         <div class="post-details-row mb-4">
-          <label><strong>Contact : </strong></label>
-          <span><%= @post.phone %></span>
+          <label><strong>Contact Details: </strong></label>
+          <% if @post.phone.present? %>
+            <span><%= @post.phone %></span>
+          <% else %>
+            <span>Unknown</span>
+          <% end %>
         </div>
         <div class="post-details-row">
           <label><strong>Location : </strong></label>
