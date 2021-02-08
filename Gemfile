@@ -30,7 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 
 gem "bcrypt", "~> 3.1", ">= 3.1.13"
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
